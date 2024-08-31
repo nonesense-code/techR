@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Modify Product</title>
+</head>
+<body>
+  <div class="p-4 text-black h-full w-full bg-zinc-700">
+    <h1 class="text-4xl text-white text-center mb-6">Modify Product</h1>
+    
+    <% if (find) { %>
+      <form method="post" action="/modify/<%= find.id %>" class="w-full max-w-lg mx-auto bg-sky-600 p-4 rounded-lg">
+        <div class="flex flex-col gap-4">
+          <select
+            name="type"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+          >
+            <option value="phone" <%= find.productType === 'phone' ? 'selected' : '' %>>Phone</option>
+            <option value="laptop" <%= find.productType === 'laptop' ? 'selected' : '' %>>Laptop</option>
+            <option value="tablet" <%= find.productType === 'tablet' ? 'selected' : '' %>>Tablet</option>
+          </select>
+
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="Product Name"
+            name="name"
+            value="<%= find.name %>"
+          />
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="Product Display Size"
+            name="display"
+            value="<%= find.display%>"
+          />
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="Product Processor"
+            name="processor"
+            value="<%= find.processor%>"
+          />
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="Product RAM"
+            name="memory"
+            value="<%= find.memory%>"
+          />
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="Product Storage"
+            name="storage"
+            value="<%= find.storage%>"
+          />
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="Product Graphics Card"
+            name="graphics"
+            value="<%= find.graphics%>"
+          />
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="Product Battery Capacity"
+            name="battery"
+            value="<%= find.battery%>"
+          />
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="Product Build & Design"
+            name="build"
+            value="<%= find.build%>"
+          />
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="Product Camera"
+            name="camera"
+            value="<%= find.camera%>"
+          />
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="Product Price"
+            name="price"
+            value="<%= find.price%>"
+          />
+
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="Product Image URL"
+            name="image"
+            value="<%= find.image %>"
+          />
+
+          <select
+            name="popularity"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+          >
+            <option value="popular" <%= find.popularity === 'popular' ? 'selected' : '' %>>Popular</option>
+            <option value="average" <%= find.popularity === 'average' ? 'selected' : '' %>>Average</option>
+            <option value="not_pop" <%= find.popularity === 'not_pop' ? 'selected' : '' %>>Not Popular</option>
+          </select>
+
+          <textarea
+            name="blog"
+            class="outline-none resize-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold h-52"
+            placeholder="Blog"
+          ><%= find.blog %></textarea>
+
+          <div class="flex gap-2 items-center justify-center">
+            <input
+              type="submit"
+              value="Update"
+              class="bg-orange-600 p-2 rounded-xl font-semibold text-lg outline-none"
+            />
+            <input
+              type="reset"
+              value="Reset"
+              class="bg-orange-600 p-2 rounded-xl font-semibold text-lg outline-none"
+            />
+          </div>
+        </div>
+      </form>
+    <% } else { %>
+      <p class="text-white text-center">Product not found.</p>
+    <% } %>
+  </div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>My App</title>
+  </head>
+  <body>
+    <div class="p-4 text-black h-full w-full bg-zinc-700">
+      <form method="post" action="/addProduct">
+        <h1 class="text-4xl">Data Entry</h1>
+        <div class="mt-12 flex flex-col gap-2 w-[25%] bg-sky-600 p-4">
+          <select
+            name="type"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+          >
+            <option value="" class="">Select the device type</option>
+            <option value="phone">Phone</option>
+            <option value="laptop">Laptop</option>
+            <option value="tablet">Tablet</option>
+          </select>
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="Product Name"
+            name="name"
+          />
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="Product Display Size"
+            name="display"
+          />
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="Product Processor"
+            name="processor"
+          />
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="Product RAM"
+            name="memory"
+          />
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="Product Storage"
+            name="storage"
+          />
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="Product Graphics Card"
+            name="graphics"
+          />
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="Product Battery Capacity"
+            name="battery"
+          />
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="Product Build & Design"
+            name="build"
+          />
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="Product Camera"
+            name="camera"
+          />
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="Product Price"
+            name="price"
+          />
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="Product Image"
+            name="image"
+          />
+          <select
+            name="popularity"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+          >
+            <option value="" class="">Select the device type</option>
+            <option value="popular">Popular</option>
+            <option value="avgerage">Average</option>
+            <option value="not_pop">Not popular</option>
+          </select>
+          <textarea
+            type="text"
+            class="outline-none resize-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold h-52"
+            placeholder="Blog"
+            name="blog"
+          ></textarea>
+
+          <div class="flex gap-2 items-center justify-center">
+            <input
+              type="submit"
+              value="Submit"
+              class="bg-orange-600 p-2 rounded-xl font-semibold text-lg outline-none"
+            />
+            <input
+              type="reset"
+              value="Reset"
+              class="bg-orange-600 p-2 rounded-xl font-semibold text-lg outline-none"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
