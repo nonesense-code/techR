@@ -23,7 +23,11 @@ const databaseConnection = async () => {
 };
 databaseConnection();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://tech-r-client.vercel.app",
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
