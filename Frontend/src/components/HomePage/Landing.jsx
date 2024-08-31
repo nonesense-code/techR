@@ -38,7 +38,7 @@ function Landing() {
     };
 
     fetchProduct();
-  }, []);
+  }, [backendURL]);
 
   const toggleAnswer = (index) => {
     setVisibleIndex(visibleIndex === index ? null : index);

@@ -22,7 +22,7 @@ function Laptops() {
     };
 
     fetchLaptops();
-  }, []);
+  }, [backendURL]);
 
   return (
     <motion.div

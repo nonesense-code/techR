@@ -31,7 +31,7 @@ function TabletBlog() {
     };
 
     fetchproduct();
-  }, []);
+  }, [backendURL]);
 
   useEffect(() => {
     const fetchtablets = async () => {
@@ -48,7 +48,7 @@ function TabletBlog() {
     };
 
     fetchtablets();
-  }, []);
+  }, [backendURL]);
 
   useEffect(() => {
     const fetchtargettablets = async () => {
@@ -60,7 +60,7 @@ function TabletBlog() {
       }
     };
     fetchtargettablets();
-  }, [itname]);
+  }, [itname,backendURL]);
 
   return (
     <>

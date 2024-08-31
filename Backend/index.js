@@ -222,7 +222,6 @@ app.post("/modify/:id", async (req, res) => {
   }
 });
 
-// Catch-all handler to serve the index.html file for any route not matched above
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });

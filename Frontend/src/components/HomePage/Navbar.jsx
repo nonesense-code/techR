@@ -20,7 +20,7 @@ function Navbar() {
     };
 
     fetchData();
-  }, []);
+  }, [backendURL]);
 
   const handleSearch = (event) => {
     if (event.key === "Enter") {

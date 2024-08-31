@@ -31,7 +31,7 @@ function LaptopBlog() {
     };
 
     fetchProduct();
-  }, []);
+  }, [backendURL]);
 
   useEffect(() => {
     const fetchLaptops = async () => {
@@ -48,7 +48,7 @@ function LaptopBlog() {
     };
 
     fetchLaptops();
-  }, []);
+  }, [backendURL]);
 
   useEffect(() => {
     const fetchTargetLaptop = async () => {
@@ -70,7 +70,7 @@ function LaptopBlog() {
     };
 
     fetchTargetLaptop();
-  }, [itname]);
+  }, [itname, backendURL]);
 
   return (
     <>

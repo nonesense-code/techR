@@ -22,7 +22,7 @@ function Tablets() {
       }
     };
     fetchTablets();
-  }, []);
+  }, [backendURL]);
 
   return (
     <motion.div

@@ -31,7 +31,7 @@ function PhoneBlog() {
     };
 
     fetchproduct();
-  }, []);
+  }, [backendURL]);
 
   useEffect(() => {
     const fetchphones = async () => {
@@ -48,7 +48,7 @@ function PhoneBlog() {
     };
 
     fetchphones();
-  }, []);
+  }, [backendURL]);
 
   useEffect(() => {
     const fetchtargetphones = async () => {
@@ -60,7 +60,7 @@ function PhoneBlog() {
       }
     };
     fetchtargetphones();
-  }, [itname]);
+  }, [itname,backendURL]);
 
   return (
     <>

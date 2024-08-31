@@ -23,7 +23,7 @@ function Phones() {
     };
 
     fetchPhones();
-  }, []);
+  }, [backendURL]);
 
   return (
     <motion.div
