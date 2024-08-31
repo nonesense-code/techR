@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
 import axios from "axios";
-
+import { easeInOut, motion } from "framer-motion";
 function Navbar() {
   const [inputValue, setInputValue] = useState("");
   const [phoneData, setPhoneData] = useState([]);
   const backendURL = "https://tech-r.vercel.app/product/api";
-
+  // const backendURL = "http://192.168.254.3:5000/product/api";
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -32,7 +32,23 @@ function Navbar() {
   return (
     <div className="flex items-center justify-center bg-[#232F3E] w-auto py-2 px-4">
       <div className="flex items-center justify-between w-full max-w-screen-lg mx-auto">
-        <h1 className="text-2xl text-white font-bold">techR</h1>
+        <div className="flex items-center justify-start w-full">
+          {["t", "e", "c", "h", "R"].map((item, index) => (
+            <motion.div
+            key={index}
+              initial={{ y: "50%", opacity: 0 }}
+              animate={{ y: "0%", opacity: 1 }}
+              transition={{
+                duration: 0.3,
+                delay: index * 0.04,
+                ease: easeInOut,
+              }}
+              className="text-2xl text-white font-bold"
+            >
+              {item}
+            </motion.div>
+          ))}
+        </div>
         <div className="flex items-center bg-gray-600 rounded-md border-2 border-black">
           <input
             type="text"

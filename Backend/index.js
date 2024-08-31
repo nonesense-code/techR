@@ -1,9 +1,9 @@
-import express from "express";
-import cors from "cors";
-import mongoose from "mongoose";
-import dotenv from "dotenv";
-import path from "path";
-import productModel from "./models/Products.js";
+const express = require("express");
+const cors = require("cors");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+const path = require("path");
+const productModel = require("./models/Products.js");
 
 dotenv.config();
 
@@ -22,50 +22,21 @@ const databaseConnection = async () => {
   }
 };
 databaseConnection();
+const frontendURL = "https://tech-r-client.vercel.app";
+// const frontendURL = "http://192.168.254.3:3000";
 
 app.use(
   cors({
-    origin: "https://tech-r-client.vercel.app",
+    origin: `${frontendURL}`,
   })
 );
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static files from the React app
 app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-// API routes
-app.get("/product/api", async (req, res) => {
-  try {
-    const products = await productModel.find();
-    res.json(products);
-  } catch (error) {
-    console.error("Error fetching items:", error);
-    res.status(500).json({ message: "Error fetching items", error });
-  }
-});
-
-app.get("/product/api/:name", async (req, res) => {
-  const { name } = req.params;
-  let id;
-  try {
-    const products = await productModel.find();
-    products.forEach((item) => {
-      const dbName = item.name.toLowerCase().split(" ").join("");
-      if (dbName === name) {
-        id = item.id;
-      }
-    });
-    const sendData = await productModel.findOne({ _id: id });
-    res.json(sendData);
-  } catch (error) {
-    console.log(error);
-  }
-});
-
-// Your other routes (rendering views) remain unchanged
 app.get("/", (req, res) => {
   res.render("Home");
 });
@@ -137,6 +108,34 @@ app.post("/addProduct", async (req, res) => {
   res.redirect("/addProduct");
 });
 
+app.get("/product/api", async (req, res) => {
+  try {
+    const products = await productModel.find();
+    res.json(products);
+  } catch (error) {
+    console.error("Error fetching items:", error);
+    res.status(500).json({ message: "Error fetching items", error });
+  }
+});
+
+app.get("/product/api/:name", async (req, res) => {
+  const { name } = req.params;
+  let id;
+  try {
+    const products = await productModel.find();
+    products.forEach((item) => {
+      const dbName = item.name.toLowerCase().split(" ").join("");
+      if (dbName === name) {
+        id = item.id;
+      }
+    });
+    const sendData = await productModel.findOne({ _id: id });
+    res.json(sendData);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 app.get("/phones", async (req, res) => {
   const phones = await productModel.find({ productType: "phone" });
   res.render("Phones", { phones });
@@ -159,7 +158,9 @@ app.get("/modify", (req, res) => {
 app.get("/modify/:id", async (req, res) => {
   try {
     const id = req.params.id;
+
     const find = await productModel.findOne({ _id: id });
+
     return res.render("modify", { find });
   } catch (error) {
     console.error("Error finding the product:", error);
@@ -220,10 +221,6 @@ app.post("/modify/:id", async (req, res) => {
     console.error("Error updating the product:", error);
     res.redirect("/");
   }
-});
-
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 const PORT = process.env.PORT || 5173;
