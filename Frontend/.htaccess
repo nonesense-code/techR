@@ -1,9 +1,9 @@
-<IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteBase /subdirectory
-RewriteRule ^index\.html$ - [L]
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-l
+
+# Serve static assets if they exist
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Redirect all other requests to index.html
 RewriteRule . /index.html [L]
-</IfModule>
