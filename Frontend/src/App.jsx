@@ -14,13 +14,13 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="phone" element={<Phones />} />
-          <Route path="laptop" element={<Laptops />} />
-          <Route path="tablet" element={<Tablets />} />
-          <Route path="filter" element={<Filter />} />
-          <Route path="phone/:itname" element={<PhoneBlog />} />
-          <Route path="laptop/:itname" element={<LaptopBlog />} />
-          <Route path="tablet/:itname" element={<TabletBlog />} />
+          <Route path="/phone" element={<Phones />} />
+          <Route path="/laptop" element={<Laptops />} />
+          <Route path="/tablet" element={<Tablets />} />
+          <Route path="/filter" element={<Filter />} />
+          <Route path="/phone/:itname" element={<PhoneBlog />} />
+          <Route path="/laptop/:itname" element={<LaptopBlog />} />
+          <Route path="/tablet/:itname" element={<TabletBlog />} />
           <Route path="*" element={<Home />} />
         </Routes>
       </Router>
