@@ -15,7 +15,7 @@ function Navbar() {
           setPhoneData(response.data);
         }
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Error fetching datas:", error);
       }
     };
 
@@ -35,7 +35,7 @@ function Navbar() {
         <div className="flex items-center justify-start w-full">
           {["t", "e", "c", "h", "R"].map((item, index) => (
             <motion.div
-            key={index}
+              key={index}
               initial={{ y: "50%", opacity: 0 }}
               animate={{ y: "0%", opacity: 1 }}
               transition={{
