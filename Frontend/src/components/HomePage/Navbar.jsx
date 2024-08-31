@@ -15,7 +15,7 @@ function Navbar() {
           setPhoneData(response.data);
         }
       } catch (error) {
-        console.error("Error fetching datas:", error);
+        console.error("Error fetching data:", error);
       }
     };
 
