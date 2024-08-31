@@ -1,66 +1,60 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./HomePage/Navbar";
-import { GiProcessor } from "react-icons/gi";
-import { FaMicrochip } from "react-icons/fa6";
+import { GiProcessor, GiBattery100 } from "react-icons/gi";
+import { FaMicrochip } from "react-icons/fa";
 import { MdCamera } from "react-icons/md";
-import { GiBattery100 } from "react-icons/gi";
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { motion } from "framer-motion";
+import CircularLoader from "../CircularLoader";
+const backendURL = "https://tech-r.vercel.app/product/api";
+
+const fetchData = async (url) => {
+  try {
+    const response = await axios.get(url);
+    if (Array.isArray(response.data)) {
+      return response.data;
+    } else {
+      console.error("Data is not in the expected format:", response.data);
+      return [];
+    }
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
+  }
+};
 
 function PhoneBlog() {
   const [phones, setPhones] = useState([]);
-  const [targetphones, settargetPhones] = useState({});
+  const [targetPhones, setTargetPhones] = useState({});
+  const [product, setProduct] = useState([]);
   const { itname } = useParams();
-  const [product, setproduct] = useState([]);
-  const backendURL = "https://tech-r.vercel.app/product/api";
 
   useEffect(() => {
-    const fetchproduct = async () => {
-      try {
-        const response = await axios.get(`${backendURL}`);
-        if (Array.isArray(response.data)) {
-          setproduct(response.data);
-        } else {
-          console.error("Data is not in the expected format:", response.data);
-        }
-      } catch (error) {
-        console.error("Error fetching product:", error);
-      }
+    const loadData = async () => {
+      const allPhones = await fetchData(backendURL);
+      setPhones(allPhones);
+      const allProducts = await fetchData(backendURL);
+      setProduct(allProducts);
     };
 
-    fetchproduct();
-  }, [backendURL]);
+    loadData();
+  }, []);
 
   useEffect(() => {
-    const fetchphones = async () => {
-      try {
-        const response = await axios.get(`${backendURL}`);
-        if (Array.isArray(response.data)) {
-          setPhones(response.data);
-        } else {
-          console.error("Data is not in the expected format:", response.data);
-        }
-      } catch (error) {
-        console.error("Error fetching phones:", error);
-      }
-    };
-
-    fetchphones();
-  }, [backendURL]);
-
-  useEffect(() => {
-    const fetchtargetphones = async () => {
+    const fetchTargetPhones = async () => {
       try {
         const response = await axios.get(`${backendURL}/${itname}`);
-        settargetPhones(response.data);
+        setTargetPhones(response.data);
       } catch (error) {
         console.error("Error fetching target phone:", error);
       }
     };
-    fetchtargetphones();
-  }, [itname,backendURL]);
+
+    if (itname) {
+      fetchTargetPhones();
+    }
+  }, [itname]);
 
   return (
     <>
@@ -78,9 +72,13 @@ function PhoneBlog() {
                 <div className="flex flex-col gap-4 items-center h-full">
                   <h1 className="text-2xl">Popular</h1>
                   <div className="hidescroller w-full pt-4 flex flex-col gap-8 items-center overflow-y-auto p-4 h-[800px]">
-                    {phones.map((item, index) =>
-                      item.productType === "phone" &&
-                      item.popularity === "popular" ? (
+                    {phones
+                      .filter(
+                        (item) =>
+                          item.productType === "phone" &&
+                          item.popularity === "popular"
+                      )
+                      .map((item, index) => (
                         <div
                           key={index}
                           className="w-52 h-auto bg-white flex flex-col items-center justify-start border-4 border-black rounded-xl"
@@ -101,20 +99,19 @@ function PhoneBlog() {
                             {item.name}
                           </h1>
                         </div>
-                      ) : null
-                    )}
+                      ))}
                   </div>
                 </div>
               </div>
               <div className="w-full py-4">
                 <h1 className="text-xl px-4 md:text-4xl flex items-center justify-center md:justify-start min-h-[68px] whitespace-nowrap tracking-tighter text-[#001] font-semibold border-b-[3px] border-black/10 py-2">
-                  {targetphones.name || "..."}
+                  {targetPhones.name || "..."}
                 </h1>
                 <div className="flex flex-col md:flex-row items-center justify-around gap-4 p-4">
                   <div className="w-full md:w-1/2 bg-white overflow-hidden h-full border-2 border-black rounded-xl flex items-center justify-center">
                     <img
-                      src={targetphones.image}
-                      alt={targetphones.name}
+                      src={targetPhones.image}
+                      alt={targetPhones.name}
                       className="w-full h-full object-cover rounded-xl"
                     />
                   </div>
@@ -124,7 +121,7 @@ function PhoneBlog() {
                         <GiProcessor />
                         <span className="hidden md:flex text-lg">(RAM)</span>
                       </div>
-                      <span className="text-[18px]">{targetphones.memory}</span>
+                      <span className="text-[18px]">{targetPhones.memory}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <div className="flex items-center gap-1 bg-zinc-400 p-2 rounded-lg">
@@ -132,7 +129,7 @@ function PhoneBlog() {
                         <span className="hidden md:flex text-lg">(CPU)</span>
                       </div>
                       <span className="text-[18px]">
-                        {targetphones.processor}
+                        {targetPhones.processor}
                       </span>
                     </div>
                     <div className="flex items-center gap-2">
@@ -140,7 +137,7 @@ function PhoneBlog() {
                         <MdCamera />
                         <span className="hidden md:flex text-lg">(Camera)</span>
                       </div>
-                      <span className="text-[18px]">{targetphones.camera}</span>
+                      <span className="text-[18px]">{targetPhones.camera}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <div className="flex items-center gap-1 bg-zinc-400 p-2 rounded-lg">
@@ -150,20 +147,20 @@ function PhoneBlog() {
                         </span>
                       </div>
                       <span className="text-[18px]">
-                        {targetphones.battery}
+                        {targetPhones.battery}
                       </span>
                     </div>
                   </div>
                 </div>
                 <div className="p-4 text-black text-sm md:text-xl font-semibold mt-4">
-                  {targetphones.blog || "..."}
+                  {targetPhones.blog || "..."}
                 </div>
               </div>
             </div>
           </div>
           <div className="w-full max-w-7xl py-4">
             <div className="flex flex-col gap-4 w-full sm:w-1/2 mx-auto p-6">
-              {product.length > 0 &&
+              {product.length > 0 ? (
                 product.map((item, index) => (
                   <div
                     className="flex flex-col sm:flex-row p-4 items-center justify-between bg-white h-auto gap-2 rounded-lg"
@@ -195,7 +192,12 @@ function PhoneBlog() {
                       </div>
                     </div>
                   </div>
-                ))}
+                ))
+              ) : (
+                <p className="text-center text-lg text-gray-600">
+                  <CircularLoader />
+                </p>
+              )}
             </div>
           </div>
         </div>

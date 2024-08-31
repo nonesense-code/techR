@@ -3,7 +3,7 @@ import Navbar from "./HomePage/Navbar";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-
+import CircularLoader from "../CircularLoader";
 function Tablets() {
   const [tablets, setTablets] = useState([]);
   const backendURL = "https://tech-r.vercel.app/product/api";
@@ -72,7 +72,7 @@ function Tablets() {
             )
           ) : (
             <p className="text-center text-lg text-gray-600">
-              No Tablets available
+              <CircularLoader />
             </p>
           )}
         </div>

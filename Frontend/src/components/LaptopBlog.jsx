@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { motion } from "framer-motion";
+import CircularLoader from "../CircularLoader";
 
 function LaptopBlog() {
   const [laptops, setLaptops] = useState([]);
@@ -173,7 +174,7 @@ function LaptopBlog() {
           </div>
           <div className="w-full max-w-7xl py-4">
             <div className="flex flex-col gap-4 w-full sm:w-1/2 mx-auto p-6">
-              {product.length > 0 &&
+              {product.length > 0 ? (
                 product.map((item, index) => (
                   <div
                     className="flex flex-col sm:flex-row p-4 items-center justify-between bg-white h-auto gap-2 rounded-lg"
@@ -205,7 +206,12 @@ function LaptopBlog() {
                       </div>
                     </div>
                   </div>
-                ))}
+                ))
+              ) : (
+                <p className="text-center text-lg text-gray-600">
+                  <CircularLoader />
+                </p>
+              )}
             </div>
           </div>
         </div>

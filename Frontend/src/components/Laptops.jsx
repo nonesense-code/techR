@@ -72,7 +72,7 @@ function Laptops() {
             )
           ) : (
             <p className="text-center text-lg text-gray-600">
-              No Laptops available
+              <CircularLoader />
             </p>
           )}
         </div>

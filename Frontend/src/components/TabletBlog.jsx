@@ -8,7 +8,7 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { motion } from "framer-motion";
-
+import CircularLoader from "../CircularLoader";
 function TabletBlog() {
   const [tablets, setTablets] = useState([]);
   const [targettablets, settargetTablets] = useState({});
@@ -60,7 +60,7 @@ function TabletBlog() {
       }
     };
     fetchtargettablets();
-  }, [itname,backendURL]);
+  }, [itname, backendURL]);
 
   return (
     <>
@@ -68,7 +68,7 @@ function TabletBlog() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: .2 }}
+        transition={{ delay: 0.2 }}
         className="flex h-auto items-center justify-center w-full px-4 md:px-8 lg:px-1"
       >
         <div className="h-full w-auto">
@@ -167,7 +167,7 @@ function TabletBlog() {
           </div>
           <div className="w-full max-w-7xl py-4">
             <div className="flex flex-col gap-4 w-full sm:w-1/2 mx-auto p-6">
-              {product.length > 0 &&
+              {product.length > 0 ? (
                 product.map((item, index) => (
                   <div
                     className="flex flex-col sm:flex-row p-4 items-center justify-between bg-white h-auto gap-2 rounded-lg"
@@ -199,7 +199,12 @@ function TabletBlog() {
                       </div>
                     </div>
                   </div>
-                ))}
+                ))
+              ) : (
+                <p className="text-center text-lg text-gray-600">
+                  <CircularLoader />
+                </p>
+              )}
             </div>
           </div>
         </div>
