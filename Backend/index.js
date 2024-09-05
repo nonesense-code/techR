@@ -22,8 +22,7 @@ const databaseConnection = async () => {
   }
 };
 databaseConnection();
-const frontendURL = import.meta.env.VITE_FRONTEND_URL;
-
+const frontendURL = process.env.frontendURL;
 app.use(
   cors({
     origin: `${frontendURL}`,
