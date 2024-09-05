@@ -22,8 +22,7 @@ const databaseConnection = async () => {
   }
 };
 databaseConnection();
-// const frontendURL = "https://tech-r-client.vercel.app";
-const frontendURL = "http://192.168.254.8:3000";
+const frontendURL = import.meta.env.VITE_FRONTEND_URL;
 
 app.use(
   cors({
