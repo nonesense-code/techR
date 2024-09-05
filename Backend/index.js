@@ -22,7 +22,7 @@ const databaseConnection = async () => {
   }
 };
 databaseConnection();
-const frontendURL = process.env.frontendURL;
+const frontendURL = "https://tech-r-client.vercel.app/";
 app.use(
   cors({
     origin: `${frontendURL}`,
