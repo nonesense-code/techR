@@ -10,9 +10,9 @@ import CircularLoader from "../CircularLoader";
 
 const backendURL = import.meta.env.VITE_BACKEND_URL;
 
-const fetchData = async (url) => {
+const fetchData = async () => {
   try {
-    const response = await axios.get(url);
+    const response = await axios.get(`${backendURL}`);
     if (Array.isArray(response.data)) {
       return response.data;
     } else {
