@@ -286,7 +286,7 @@ function Landing() {
           )}
         </div>
       ) : (
-        <div className="h-screen w-full text-xl">
+        <div className="h-screen bg-red-900 w-full text-xl">
           <CircularLoader />
         </div>
       )}
