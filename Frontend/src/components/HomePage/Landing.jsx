@@ -8,14 +8,12 @@ import axios from "axios";
 import { easeInOut, motion } from "framer-motion";
 import { FaCrosshairs } from "react-icons/fa";
 import CircularLoader from "../../CircularLoader";
-
 function Landing() {
   const [product, setProduct] = useState([]);
   const [visibleIndex, setVisibleIndex] = useState(null);
   const [showFooter, setShowFooter] = useState(false);
   const [loading, setLoading] = useState(false);
-  const backendURL = "https://tech-r.vercel.app/product/api";
-  // const backendURL = "http://192.168.254.3:5000/product/api";
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowFooter(true);
@@ -149,18 +147,20 @@ function Landing() {
                     className="w-full p-2 mb-2 cursor-pointer text-[#003] text-lg md:text-xl font-semibold tracking-tighter"
                     onClick={() => toggleAnswer(index)}
                   >
-                    <h1 className="rounded-lg w-auto border-2 border-stone-500/40 bg-zinc-400 px-4 py-2 text-center">
+                    <div className="rounded-lg w-auto border-2 border-stone-500/40 bg-zinc-400 px-4 py-2 text-center">
                       {item.qns}
-                    </h1>
+                    </div>
                     <motion.div
                       initial={{ height: 0 }}
                       animate={{
                         height: visibleIndex === index ? "auto" : 0,
                       }}
                       transition={{ duration: 0.2 }}
-                      className={visibleIndex === index ? "block" : "hidden"}
+                      className={`${
+                        visibleIndex === index ? "block" : "hidden"
+                      } bg-zinc-500 border-[1px] border-black rounded-b-xl`}
                     >
-                      <h2 className="flex flex-col ml-4">
+                      <div className="flex flex-col  items-center justify-center rounded-b-xl ml-4">
                         {item.ans.map((inneritem, innerindex) => (
                           <div
                             key={innerindex}
@@ -169,7 +169,7 @@ function Landing() {
                             {inneritem}
                           </div>
                         ))}
-                      </h2>
+                      </div>
                     </motion.div>
                   </div>
                 ))}

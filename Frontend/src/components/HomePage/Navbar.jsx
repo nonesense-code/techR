@@ -5,8 +5,7 @@ import { easeInOut, motion } from "framer-motion";
 function Navbar() {
   const [inputValue, setInputValue] = useState("");
   const [phoneData, setPhoneData] = useState([]);
-  const backendURL = "https://tech-r.vercel.app/product/api";
-  // const backendURL = "http://192.168.254.3:5000/product/api";
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
   useEffect(() => {
     const fetchData = async () => {
       try {

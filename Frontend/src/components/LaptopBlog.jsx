@@ -8,8 +8,7 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import CircularLoader from "../CircularLoader";
 
-const backendURL = "https://tech-r.vercel.app/product/api";
-// const backendURL = "http://192.168.254.3:5000/product/api";
+const backendURL = import.meta.env.VITE_BACKEND_URL;
 
 const fetchData = async (url) => {
   try {

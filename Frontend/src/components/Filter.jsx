@@ -4,8 +4,7 @@ import axios from "axios";
 function Filter() {
   const [deviceType, setDeviceType] = useState("");
 
-  const backendURL = "https://tech-r.vercel.app/product/api";
-//   const backendURL = "http://192.168.254.3:5000/product/api";
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -173,6 +172,9 @@ function Filter() {
                 type="submit"
                 value="Find"
                 className="bg-sky-600 p-2 rounded-xl font-semibold text-lg outline-none"
+                onClick={() => {
+                  alert("We will be comming with it soon!");
+                }}
               />
               <input
                 type="reset"
