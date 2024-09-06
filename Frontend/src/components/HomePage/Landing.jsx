@@ -8,6 +8,8 @@ import axios from "axios";
 import { easeInOut, motion } from "framer-motion";
 import { FaCrosshairs } from "react-icons/fa";
 import CircularLoader from "../../CircularLoader";
+import Background from "../../videos/Background.mp4";
+
 function Landing() {
   const [product, setProduct] = useState([]);
   const [visibleIndex, setVisibleIndex] = useState(null);
@@ -147,7 +149,7 @@ function Landing() {
                     className="w-full p-2 mb-2 cursor-pointer text-[#003] text-lg md:text-xl font-semibold tracking-tighter"
                     onClick={() => toggleAnswer(index)}
                   >
-                    <div className="rounded-lg w-auto border-2 border-stone-500/40 bg-zinc-400 px-4 py-2 text-center">
+                    <div className="rounded-lg w-auto border-2 border-stone-500 bg-zinc-400/60 px-4 py-2 text-center">
                       {item.qns}
                     </div>
                     <motion.div
@@ -158,9 +160,9 @@ function Landing() {
                       transition={{ duration: 0.2 }}
                       className={`${
                         visibleIndex === index ? "block" : "hidden"
-                      } bg-zinc-500 border-[1px] border-black rounded-b-xl`}
+                      } bg-[#232F3E]/10 rounded-b-xl text-black`}
                     >
-                      <div className="flex flex-col  items-center justify-center rounded-b-xl ml-4">
+                      <div className="flex flex-col items-center justify-center rounded-b-xl ml-4">
                         {item.ans.map((inneritem, innerindex) => (
                           <div
                             key={innerindex}
@@ -220,7 +222,7 @@ function Landing() {
                             >
                               <Link
                                 to="/filter"
-                                className="h-full w-full flex flex-col items-center justify-center"
+                                className="h-full w-full outline-none flex flex-col items-center justify-center"
                               >
                                 <FaCrosshairs className="text-4xl mb-2" />
                                 <h1 className="text-xl">

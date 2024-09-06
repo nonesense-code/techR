@@ -16,10 +16,6 @@ body {
   background-color: #dcdcde;
 }
 
-.specsbackground {
-  background: linear-gradient(240deg, #fff, #eee, #ddd, #ccc, #bbb, #aaa);
-}
-
 .hidescroller::-webkit-scrollbar {
   display: none;
 }
