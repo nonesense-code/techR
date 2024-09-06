@@ -30,8 +30,8 @@ function Navbar() {
 
   return (
     <div className="flex items-center justify-center bg-[#232F3E] w-auto py-2 px-4">
-      <div className="flex items-center justify-between w-full max-w-screen-lg mx-auto">
-        <div className="flex items-center justify-start w-full">
+      <div className="flex items-center justify-between w-full mx-auto flex-wrap">
+        <div className="flex items-center justify-start">
           {["t", "e", "c", "h", "R"].map((item, index) => (
             <motion.div
               key={index}

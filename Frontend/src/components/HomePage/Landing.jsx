@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { CiMobile1 } from "react-icons/ci";
 import { AiOutlineLaptop } from "react-icons/ai";
 import { FaTabletScreenButton } from "react-icons/fa6";
@@ -8,7 +8,7 @@ import axios from "axios";
 import { easeInOut, motion } from "framer-motion";
 import { FaCrosshairs } from "react-icons/fa";
 import CircularLoader from "../../CircularLoader";
-import Background from "../../videos/Background.mp4";
+import Typed from "typed.js";
 
 function Landing() {
   const [product, setProduct] = useState([]);
@@ -16,6 +16,37 @@ function Landing() {
   const [showFooter, setShowFooter] = useState(false);
   const [loading, setLoading] = useState(false);
   const backendURL = import.meta.env.VITE_BACKEND_URL;
+
+  const [isMounted, setIsMounted] = useState(false);
+  const typedRef = useRef(null);
+  const elRef = useRef(null);
+
+  useEffect(() => {
+    setIsMounted(true);
+
+    if (isMounted && elRef.current) {
+      const options = {
+        strings: [
+          "Samsung Galaxy S24 Ultra",
+          "Iphone 15 pro max",
+          "Google Pixels 8 Pro",
+          "OnePlus 12",
+          "Xioami 14 Ultra",
+        ],
+        typeSpeed: 100,
+        backSpeed: 0,
+        loop: true,
+      };
+
+      typedRef.current = new Typed(elRef.current, options);
+    }
+    return () => {
+      if (typedRef.current) {
+        typedRef.current.destroy();
+      }
+    };
+  }, [isMounted]);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowFooter(true);
@@ -41,6 +72,33 @@ function Landing() {
     fetchProduct();
   }, [backendURL]);
 
+  const TypedComponent = () => {
+    const typedRef = useRef(null);
+    const elRef = useRef(null);
+
+    useEffect(() => {
+      if (elRef.current) {
+        const options = {
+          strings: [
+            "Welcome to TechSo!",
+            "We provide handpumps, pulleys, and more...",
+            "Explore our range of innovative solutions!",
+          ],
+          typeSpeed: 50,
+          backSpeed: 30,
+          loop: true,
+        };
+
+        typedRef.current = new Typed(elRef.current, options);
+      }
+
+      return () => {
+        if (typedRef.current) {
+          typedRef.current.destroy();
+        }
+      };
+    }, []);
+  };
   const toggleAnswer = (index) => {
     setVisibleIndex(visibleIndex === index ? null : index);
   };
@@ -142,7 +200,7 @@ function Landing() {
               </h2>
             </div>
             <div className="flex flex-col w-auto md:flex-row gap-4 justify-center">
-              <div className="hidden md:flex flex-col w-auto px-4 py-6 rounded-lg">
+              <div className="hidden lg:flex flex-col w-auto px-4 py-6 rounded-lg">
                 {queries.map((item, index) => (
                   <div
                     key={index}
@@ -181,9 +239,9 @@ function Landing() {
                   Best sales of 2024!
                 </div>
                 <div className="flex flex-col items-center justify-center h-auto w-auto gap-20">
-                  <div className="w-[620px] flex-items-center justify-center h-auto">
+                  <div className="w-auto flex-items-center justify-center h-auto">
                     <div className="h-auto w-auto flex items-center justify-center flex-col">
-                      <div className="flex flex-row items-center justify-center gap-6 mb-6 text-black">
+                      <div className="flex flex-row items-center justify-center gap-6 mb-6 text-black flex-wrap">
                         <Link to="/phone" className="outline-none">
                           <motion.div
                             whileHover={{ scale: 1.1 }}
@@ -235,7 +293,16 @@ function Landing() {
                       </div>
                     </div>
                   </div>
-
+                  {isMounted && (
+                    <div className="flex gap-2 flex-wrap items-center justify-evenly">
+                      <div className="bg-black text-orange-600 font-semibold text-xl p-2 rounded-sm">
+                        <h1>Trending</h1>
+                      </div>
+                      <div>
+                        <span ref={elRef} className="text-xl"></span>
+                      </div>
+                    </div>
+                  )}
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
