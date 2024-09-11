@@ -118,11 +118,11 @@ function PhoneBlog() {
                     {targetPhones.name || "..."}
                   </h1>
                   <div className="w-full h-auto p-4 flex flex-col gap-12 md:gap-4">
-                    <div className="w-full h-auto bg-white overflow-hidden border-2 border-black rounded-xl flex items-center justify-center">
+                    <div className="w-full h-auto overflow-hidden flex items-center justify-center">
                       <img
                         src={targetPhones.image}
                         alt={targetPhones.name}
-                        className="w-full md:max-w-[600px] md:w-auto min-h-80 sm:h-96 object-cover rounded-xl"
+                        className="w-full md:max-w-[600px] bg-white md:w-auto min-h-80 sm:h-96 object-cover rounded-xl"
                       />
                     </div>
                     <div className="w-full h-auto overflow-hidden flex flex-col gap-4 mt-2 text-2xl text-[#002] items-start justify-end">
