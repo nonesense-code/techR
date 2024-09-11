@@ -118,7 +118,7 @@ function LaptopBlog() {
                   </div>
                 </div>
               </div>
-              <div className="w-auto py-4">
+              <div className="w-full py-4">
                 <h1 className="text-xl px-4 md:text-4xl flex items-center justify-center md:justify-start min-h-[68px] whitespace-nowrap tracking-tighter text-[#001] font-semibold border-b-[3px] border-black/10 py-2">
                   {targetLaptops.name || "..."}
                 </h1>

@@ -113,7 +113,7 @@ function PhoneBlog() {
                     </div>
                   </div>
                 </div>
-                <div className="w-auto py-4">
+                <div className="w-full py-4">
                   <h1 className="text-xl px-4 md:text-4xl flex items-center justify-center md:justify-start min-h-[68px] whitespace-nowrap tracking-tighter text-[#001] font-semibold border-b-[3px] border-black/10 py-2">
                     {targetPhones.name || "..."}
                   </h1>
@@ -375,14 +375,14 @@ function PhoneBlog() {
                     </div>
                   </div>
                   <div className="p-4 text-black text-lg md:text-xl font-semibold mt-4">
-                  {targetPhones.blog || "..."}
+                    {targetPhones.blog || "..."}
                   </div>
                 </div>
               </div>
             </div>
             <div className="w-full max-w-7xl py-4">
               <div className="flex flex-col gap-4 w-full sm:w-1/2 mx-auto p-6">
-                {product.length > 0 ? (
+                {product.length > 0 &&
                   product.map((item, index) => (
                     <div
                       className="flex flex-col sm:flex-row p-4 items-center justify-between bg-white h-auto gap-2 rounded-lg"
@@ -405,21 +405,36 @@ function PhoneBlog() {
                         </Link>
                       </div>
                       <div className="w-full sm:w-1/2 flex flex-col p-4">
-                        <div className="text-2xl capitalize">
-                          {item.productType}
-                        </div>
-                        <div className="text-lg">{item.name}</div>
-                        <div className="text-sm mt-4 break-words">
-                          {item.description || "No description available"}
+                        <div className="w-full flex flex-col gap-4 text-center">
+                          <div>
+                            <div className="text-lg sm:text-xl md:text-2xl">
+                              {item.name}
+                            </div>
+                          </div>
+                          <div className="text-md sm:text-lg md:text-xl font-semibold">
+                            <motion.div
+                              whileHover={{
+                                scale: 1.01,
+                                color: "#900",
+                              }}
+                              className="tracking-wide break-words"
+                            >
+                              Categorie:{item.popularity || "Unknown"}
+                            </motion.div>
+                            <motion.div
+                              whileHover={{
+                                scale: 1.01,
+                                color: "#900",
+                              }}
+                              className="break-words"
+                            >
+                              Price:{item.price || "Not mentioned"}
+                            </motion.div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  ))
-                ) : (
-                  <div className="text-center text-lg text-gray-600">
-                    <CircularLoader />
-                  </div>
-                )}
+                  ))}
               </div>
             </div>
           </div>
