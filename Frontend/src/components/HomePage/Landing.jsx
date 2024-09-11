@@ -55,7 +55,7 @@ function Landing() {
               </h2>
             </div>
             <div className="flex flex-col w-auto md:flex-row gap-4 justify-center">
-              <Qnas value="hidden" />
+              <Qnas data="laptop" />
               <div className="flex flex-col w-auto p-2 rounded-lg">
                 <div className="text-center text-2xl md:text-3xl lg:text-4xl italic font-bold py-4 text-[#232F3E]">
                   Best sales of 2024!
@@ -117,7 +117,7 @@ function Landing() {
                   </div>
 
                   <Trending />
-                  <Qnas value="" width="full" />
+                  <Qnas data="phone" />
 
                   <motion.div
                     initial={{ opacity: 0 }}

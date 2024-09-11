@@ -14,12 +14,20 @@
       <form method="post" action="/modify/<%= find.id %>" class="w-full max-w-lg mx-auto bg-sky-600 p-4 rounded-lg">
         <div class="flex flex-col gap-4">
           <select
-            name="type"
+            placeholder="noothinbg"
             class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
           >
             <option value="phone" <%= find.productType === 'phone' ? 'selected' : '' %>>Phone</option>
             <option value="laptop" <%= find.productType === 'laptop' ? 'selected' : '' %>>Laptop</option>
             <option value="tablet" <%= find.productType === 'tablet' ? 'selected' : '' %>>Tablet</option>
+          </select>
+          <select
+            name="popularity"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+          >
+            <option value="popular" <%= find.popularity === 'popular' ? 'selected' : '' %>>Popular</option>
+            <option value="average" <%= find.popularity === 'average' ? 'selected' : '' %>>Average</option>
+            <option value="not_pop" <%= find.popularity === 'not_pop' ? 'selected' : '' %>>Not Popular</option>
           </select>
 
           <input
@@ -32,9 +40,51 @@
           <input
             type="text"
             class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
-            placeholder="Product Display Size"
-            name="display"
-            value="<%= find.display%>"
+            placeholder="Dimension"
+            name="dimension"
+            value="<%= find.dimension %>"
+          />
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="Build"
+            name="build"
+            value="<%= find.build %>"
+          />
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="Weight"
+            name="weight"
+            value="<%= find.weight %>"
+          />
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="Display Type"
+            name="dtype"
+            value="<%= find.dtype %>"
+          />
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="Display Size"
+            name="size"
+            value="<%= find.size%>"
+          />
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="Display Resolution"
+            name="resolution"
+            value="<%= find.resolution %>"
+          />
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="Operation System"
+            name="os"
+            value="<%= find.os %>"
           />
           <input
             type="text"
@@ -67,23 +117,86 @@
           <input
             type="text"
             class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
-            placeholder="Product Battery Capacity"
-            name="battery"
-            value="<%= find.battery%>"
+            placeholder="Battery Capacity"
+            name="capacity"
+            value="<%= find.capacity%>"
           />
           <input
             type="text"
             class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
-            placeholder="Product Build & Design"
-            name="build"
-            value="<%= find.build%>"
+            placeholder="Battery Charging"
+            name="charging"
+            value="<%= find.charging %>"
           />
           <input
             type="text"
             class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
-            placeholder="Product Camera"
-            name="camera"
-            value="<%= find.camera%>"
+            placeholder="Wi-Fi"
+            name="wifi"
+            value="<%= find.wifi %>"
+          />
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="Bluetooth"
+            name="bluetooth"
+            value="<%= find.bluetooth %>"
+          />
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="USB Type C"
+            name="typec"
+            value="<%= find.typec%>"
+          />
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="USB Type A"
+            name="usba"
+            value="<%= find.usba %>"
+          />
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="Ethernet"
+            name="ethernet"
+            value="<%= find.ethernet %>"
+          />
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="HDMI"
+            name="hdmi"
+            value="<%= find.hdmi %>"
+          />
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="Audio Jack"
+            name="audiojack"
+            value="<%= find.audiojack %>"
+          />
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="Product Main-Camera"
+            name="maincamera"
+            value="<%= find.maincamera%>"
+          />
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="Product Front-Camera"
+            name="frontcamera"
+            value="<%= find.frontcamera%>"
+          />
+          <input
+            type="text"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="Product Video"
+            name="video"
+            value="<%= find.video%>"
           />
           <input
             type="text"
@@ -101,14 +214,7 @@
             value="<%= find.image %>"
           />
 
-          <select
-            name="popularity"
-            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
-          >
-            <option value="popular" <%= find.popularity === 'popular' ? 'selected' : '' %>>Popular</option>
-            <option value="average" <%= find.popularity === 'average' ? 'selected' : '' %>>Average</option>
-            <option value="not_pop" <%= find.popularity === 'not_pop' ? 'selected' : '' %>>Not Popular</option>
-          </select>
+          
 
           <textarea
             name="blog"

@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <Router>
-        <Routes>
+        <Routes>  
           <Route path="/" element={<Home />} />
           <Route path="/phone" element={<Phones />} />
           <Route path="/laptop" element={<Laptops />} />

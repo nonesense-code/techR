@@ -8,14 +8,19 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  display: {
+  dtype: {
     type: String,
     // required: true,
   },
-  processor: {
+  size: {
     type: String,
     // required: true,
   },
+  resolution: {
+    type: String,
+    // required: true,
+  },
+
   memory: {
     type: String,
     // required: true,
@@ -24,19 +29,75 @@ const productSchema = new mongoose.Schema({
     type: String,
     // required: true,
   },
+  os: {
+    type: String,
+    // required: true,
+  },
+  processor: {
+    type: String,
+    // required: true,
+  },
   graphics: {
     type: String,
     // required: true,
   },
-  battery: {
+  capacity: {
     type: String,
     // required: true,
+  },
+  charging: {
+    type: String,
+    // required: true,
+  },
+  dimension: {
+    type: String,
+    // required:true,
   },
   build: {
     type: String,
     // required: true,
   },
-  camera: {
+  weight: {
+    type: String,
+    //required:true,
+  },
+  wifi: {
+    type: String,
+    //required:true,
+  },
+  bluetooth: {
+    type: String,
+    //required:true,
+  },
+  typec: {
+    type: String,
+    // required: true,
+  },
+  usba: {
+    type: String,
+    // required: true,
+  },
+  ethernet: {
+    type: String,
+    // required: true,
+  },
+  hdmi: {
+    type: String,
+    //required:true,,
+  },
+  audiojack: {
+    type: String,
+    // required: true,
+  },
+  maincamera: {
+    type: String,
+    // required: true,
+  },
+  frontcamera: {
+    type: String,
+    //required:true,
+  },
+  video: {
     type: String,
     // required: true,
   },
@@ -52,7 +113,6 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-
   blog: {
     type: String,
     required: true,

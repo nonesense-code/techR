@@ -10,9 +10,10 @@
     <div class="p-4 text-black h-full w-full bg-zinc-700">
       <form method="post" action="/addProduct">
         <h1 class="text-4xl">Data Entry</h1>
+
         <div class="mt-12 flex flex-col gap-2 w-[25%] bg-sky-600 p-4">
           <select
-            name="type"
+            name="productType"
             class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
           >
             <option value="" class="">Select the device type</option>
@@ -20,87 +21,206 @@
             <option value="laptop">Laptop</option>
             <option value="tablet">Tablet</option>
           </select>
+          <select
+            name="popularity"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+          >
+            <option value="" class="">Select the device popularity</option>
+            <option value="popular">Popular</option>
+            <option value="avgerage">Average</option>
+            <option value="not_pop">Not popular</option>
+          </select>
           <input
             type="text"
             class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
             placeholder="Product Name"
             name="name"
           />
-          <input
-            type="text"
-            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
-            placeholder="Product Display Size"
-            name="display"
-          />
-          <input
-            type="text"
-            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
-            placeholder="Product Processor"
-            name="processor"
-          />
-          <input
-            type="text"
-            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
-            placeholder="Product RAM"
-            name="memory"
-          />
-          <input
-            type="text"
-            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
-            placeholder="Product Storage"
-            name="storage"
-          />
-          <input
-            type="text"
-            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
-            placeholder="Product Graphics Card"
-            name="graphics"
-          />
-          <input
-            type="text"
-            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
-            placeholder="Product Battery Capacity"
-            name="battery"
-          />
-          <input
-            type="text"
-            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
-            placeholder="Product Build & Design"
-            name="build"
-          />
-          <input
-            type="text"
-            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
-            placeholder="Product Camera"
-            name="camera"
-          />
-          <input
-            type="text"
-            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
-            placeholder="Product Price"
-            name="price"
-          />
-          <input
-            type="text"
-            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
-            placeholder="Product Image"
-            name="image"
-          />
-          <select
-            name="popularity"
-            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
-          >
-            <option value="" class="">Select the device type</option>
-            <option value="popular">Popular</option>
-            <option value="avgerage">Average</option>
-            <option value="not_pop">Not popular</option>
-          </select>
-          <textarea
-            type="text"
-            class="outline-none resize-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold h-52"
-            placeholder="Blog"
-            name="blog"
-          ></textarea>
+          <div class="flex flex-col gap-2 items-center justify-center">
+            <h1 class="text-xl font-semibold tracking-wide">BODY</h1>
+            <input
+              type="text"
+              class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+              placeholder="Dimension"
+              name="dimension"
+            />
+            <input
+              type="text"
+              class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+              placeholder="Build"
+              name="build"
+            />
+            <input
+              type="text"
+              class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+              placeholder="Weight"
+              name="weight"
+            />
+          </div>
+          <div class="flex flex-col gap-2 items-center justify-center">
+            <h1 class="text-xl font-semibold tracking-wide">DISPLAY</h1>
+            <input
+              type="text"
+              class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+              placeholder="DisplayType"
+              name="dtype"
+            />
+            <input
+              type="text"
+              class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+              placeholder="Size"
+              name="size"
+            />
+            <input
+              type="text"
+              class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+              placeholder="Resolution"
+              name="resolution"
+            />
+          </div>
+          <div class="flex flex-col gap-2 items-center justify-center">
+            <h1 class="text-xl font-semibold tracking-wide">PLATFORM</h1>
+            <input
+              type="text"
+              class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+              placeholder="OS"
+              name="os"
+            />
+            <input
+              type="text"
+              class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+              placeholder="Processor"
+              name="processor"
+            />
+            <input
+              type="text"
+              class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+              placeholder="GPU"
+              name="graphics"
+            />
+          </div>
+          <div class="flex flex-col gap-2 items-center justify-center">
+            <h1 class="text-xl font-semibold tracking-wide">MEMORY</h1>
+            <input
+              type="text"
+              class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+              placeholder="RAM"
+              name="memory"
+            />
+            <input
+              type="text"
+              class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+              placeholder="Storage"
+              name="storage"
+            />
+          </div>
+          <div class="flex flex-col gap-2 items-center justify-center">
+            <h1 class="text-xl font-semibold tracking-wide">BATTERY</h1>
+            <input
+              type="text"
+              class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+              placeholder="Capacity"
+              name="capacity"
+            />
+            <input
+              type="text"
+              class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+              placeholder="Charging"
+              name="charging"
+            />
+          </div>
+          <div class="flex flex-col gap-2 items-center justify-center">
+            <h1 class="text-xl font-semibold tracking-wide">NETWORKS</h1>
+            <input
+              type="text"
+              class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+              placeholder="wi-Fi"
+              name="wifi"
+            />
+            <input
+              type="text"
+              class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+              placeholder="Bluetooth"
+              name="bluetooth"
+            />
+          </div>
+          <div class="flex flex-col gap-2 items-center justify-center">
+            <h1 class="text-xl font-semibold tracking-wide">PORTS</h1>
+            <input
+              type="text"
+              class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+              placeholder="Type C"
+              name="typec"
+            />
+            <input
+              type="text"
+              class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+              placeholder="USB A"
+              name="usba"
+            />
+            <input
+              type="text"
+              class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+              placeholder="Ethernet"
+              name="ethernet"
+            />
+            <input
+              type="text"
+              class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+              placeholder="HDMI"
+              name="hdmi"
+            />
+            <input
+              type="text"
+              class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+              placeholder="Audio Jack"
+              name="audiojack"
+            />
+          </div>
+
+          <div class="flex flex-col items-center justify-center gap-2">
+            <h1 class="text-xl font-semibold tracking-wide">CAMERA</h1>
+            <input
+              type="text"
+              class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+              placeholder="Main Camera"
+              name="maincamera"
+            />
+            <input
+              type="text"
+              class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+              placeholder="Front Camera"
+              name="frontcamera"
+            />
+            <input
+              type="text"
+              class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+              placeholder="Video"
+              name="video"
+            />
+          </div>
+          <div class="flex flex-col items-center justify-center gap-2">
+            <input
+              type="text"
+              class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+              placeholder="Product Price"
+              name="price"
+            />
+            <input
+              type="text"
+              class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+              placeholder="Product Image"
+              name="image"
+            />
+
+            <h1 class="text-lg font-semibold">Description of product</h1>
+            <textarea
+              type="text"
+              class="outline-none resize-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold h-52"
+              placeholder="Blog"
+              name="blog"
+            ></textarea>
+          </div>
 
           <div class="flex gap-2 items-center justify-center">
             <input

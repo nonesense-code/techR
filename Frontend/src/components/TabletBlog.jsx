@@ -79,7 +79,7 @@ function TabletBlog() {
         >
           <div className="h-full w-auto">
             <div className="w-auto max-w-7xl">
-              <div className="flex flex-col md:flex-row items-start justify-between border-b-4 border-black/10">
+              <div className="w-full flex flex-col md:flex-row items-start justify-between border-b-4 border-black/10">
                 <div className="hidden md:flex w-full md:w-1/3 border-r-4 border-black/10 py-4 h-auto">
                   <div className="flex flex-col gap-4 items-center h-full">
                     <h1 className="text-2xl">Popular</h1>
@@ -115,62 +115,268 @@ function TabletBlog() {
                     </div>
                   </div>
                 </div>
-                <div className="w-full py-4">
-                  <h1 className="text-xl px-4 md:text-4xl flex items-center justify-center md:justify-start min-h-[68px] whitespace-nowrap tracking-tighter text-[#001] font-semibold border-b-[3px] border-black/10 py-2">
+                <div className="w-auto py-4">
+                  <h1 className="text-4xl px-4 md:text-5xl flex items-center justify-center md:justify-start min-h-[68px] whitespace-nowrap tracking-tighter text-[#001] font-semibold border-b-4 border-black/10 py-2">
                     {targetTablets.name || "..."}
                   </h1>
-                  <div className="flex flex-col md:flex-row items-center justify-around gap-4 p-4">
-                    <div className="w-full md:w-1/2 bg-white overflow-hidden h-full border-2 border-black rounded-xl flex items-center justify-center">
+                  <div className="w-full h-auto p-4 flex flex-col gap-12 md:gap-4">
+                    <div className="w-full h-auto bg-white overflow-hidden border-2 border-black rounded-xl flex items-center justify-center">
                       <img
                         src={targetTablets.image}
                         alt={targetTablets.name}
-                        className="w-full h-full object-cover rounded-xl"
+                        className="w-full md:max-w-[600px] md:w-auto min-h-80 sm:h-96 object-cover rounded-xl"
                       />
                     </div>
-                    <div className="hidescroller w-full overflow-auto md:w-1/2 flex flex-col gap-6 p-2 text-2xl text-[#002] border-2 border-black rounded-xl">
-                      <div className="flex items-center gap-2">
-                        <div className="flex items-center gap-1 bg-zinc-400 p-2 rounded-lg">
-                          <GiProcessor />
-                          <span className="hidden md:flex text-lg">(RAM)</span>
+                    <div className="w-full h-auto overflow-hidden flex flex-col gap-4 mt-2 text-2xl text-[#002] items-start justify-end">
+                      <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
+                        <div className="text-lg md:text-xl text-center text-red font-bold text-red-700">
+                          BODY
                         </div>
-                        <span className="text-[18px]">
-                          {targetTablets.memory}
-                        </span>
+                        <div className="flex flex-col w-full">
+                          <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-1 p-2 rounded-lg">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
+                                Dimension:
+                              </h1>
+                            </div>
+                            <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                              {targetTablets.dimension || "Not found"}
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-1 p-2 rounded-lg">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
+                                Build:
+                              </h1>
+                            </div>
+                            <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                              {targetTablets.build || "Not found"}
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-1 p-2 rounded-lg">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
+                                Weight:
+                              </h1>
+                            </div>
+                            <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                              {targetTablets.weight || "Not found"}
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <div className="flex items-center gap-1 bg-zinc-400 p-2 rounded-lg">
-                          <FaMicrochip />
-                          <span className="hidden md:flex text-lg">(CPU)</span>
+                      <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
+                        <div className="text-lg md:text-xl text-center text-red font-bold text-red-700">
+                          DISPLAY
                         </div>
-                        <span className="text-[18px]">
-                          {targetTablets.processor}
-                        </span>
+                        <div className="flex flex-col w-full">
+                          <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-1 p-2 rounded-lg">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
+                                Type:
+                              </h1>
+                            </div>
+                            <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                              {targetTablets.dtype || "Not found"}
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-1 p-2 rounded-lg">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
+                                Size:
+                              </h1>
+                            </div>
+                            <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                              {targetTablets.size || "Not found"}
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-1 p-2 rounded-lg">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
+                                Resolution:
+                              </h1>
+                            </div>
+                            <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                              {targetTablets.resolution || "Not found"}
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <div className="flex items-center gap-1 bg-zinc-400 p-2 rounded-lg">
-                          <MdCamera />
-                          <span className="hidden md:flex text-lg">
-                            (Camera)
-                          </span>
+                      <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
+                        <div className="text-lg md:text-xl text-center text-red font-bold text-red-700">
+                          CAMERA
                         </div>
-                        <span className="text-[18px]">
-                          {targetTablets.camera}
-                        </span>
+                        <div className="flex flex-col w-full">
+                          <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-1 p-2 rounded-lg">
+                              <h1 className="text-[16px] mr-6 md:text-lg w-[96px] font-extrabold">
+                                MainCamera:
+                              </h1>
+                            </div>
+                            <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                              {targetTablets.maincamera || "Not found"}
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-1 p-2 rounded-lg">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
+                                Video:
+                              </h1>
+                            </div>
+                            <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                              {targetTablets.video || "Not found"}
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <div className="flex items-center gap-1 bg-zinc-400 p-2 rounded-lg">
-                          <GiBattery100 />
-                          <span className="hidden md:flex text-lg">
-                            (Battery)
-                          </span>
+                      <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
+                        <div className="text-lg md:text-xl text-center text-red font-bold text-red-700">
+                          PLATFORM
                         </div>
-                        <span className="text-[18px]">
-                          {targetTablets.battery}
-                        </span>
+                        <div className="flex flex-col w-full">
+                          <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-1 p-2 rounded-lg">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
+                                OS:
+                              </h1>
+                            </div>
+                            <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                              {targetTablets.os || "Not found"}
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-1 p-2 rounded-lg">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
+                                Processor:
+                              </h1>
+                            </div>
+                            <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                              {targetTablets.processor || "Not found"}
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-1 p-2 rounded-lg">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
+                                GPU:
+                              </h1>
+                            </div>
+                            <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                              {targetTablets.graphics || "Not found"}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
+                        <div className="text-lg md:text-xl text-center text-red font-bold text-red-700">
+                          MEMORY
+                        </div>
+                        <div className="flex flex-col w-full">
+                          <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-1 p-2 rounded-lg">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
+                                RAM:
+                              </h1>
+                            </div>
+                            <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                              {targetTablets.memory || "Not found"}
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-1 p-2 rounded-lg">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
+                                Storage:
+                              </h1>
+                            </div>
+                            <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                              {targetTablets.storage || "Not found"}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
+                        <div className="text-lg md:text-xl text-center text-red font-bold text-red-700">
+                          BATTERY
+                        </div>
+                        <div className="flex flex-col w-full">
+                          <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-1 p-2 rounded-lg">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
+                                Capacity:
+                              </h1>
+                            </div>
+                            <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                              {targetTablets.capacity || "Not found"}
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-1 p-2 rounded-lg">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
+                                Charging:
+                              </h1>
+                            </div>
+                            <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                              {targetTablets.charging || "Not found"}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
+                        <div className="text-lg md:text-xl text-center text-red font-bold text-red-700">
+                          NETWORKS
+                        </div>
+                        <div className="flex flex-col w-full">
+                          <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-1 p-2 rounded-lg">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
+                                Wi-Fi:
+                              </h1>
+                            </div>
+                            <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                              {targetTablets.wifi || "Not found"}
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-1 p-2 rounded-lg">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
+                                Bluetooth:
+                              </h1>
+                            </div>
+                            <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                              {targetTablets.bluetooth || "Not found"}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
+                        <div className="text-lg md:text-xl text-center text-red font-bold text-red-700">
+                          PORTS
+                        </div>
+                        <div className="flex flex-col w-full">
+                          <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-1 p-2 rounded-lg">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
+                                Type C:
+                              </h1>
+                            </div>
+                            <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                              {targetTablets.typec || "Not found"}
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-1 p-2 rounded-lg">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
+                                Audio Jack:
+                              </h1>
+                            </div>
+                            <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                              {targetTablets.audiojack || "Not found"}
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <div className="p-4 text-black text-sm md:text-xl font-semibold mt-4">
+                  <div className="p-4 text-black text-lg md:text-xl font-semibold mt-4">
                     {targetTablets.blog || "..."}
                   </div>
                 </div>

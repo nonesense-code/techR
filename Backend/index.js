@@ -12,18 +12,15 @@ const app = express();
 const URI = process.env.URI;
 const databaseConnection = async () => {
   try {
-    await mongoose.connect(URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(URI);
     console.log("MongoDB Connection successful");
   } catch (error) {
     console.error("Error connecting to MongoDB:", error);
   }
 };
 databaseConnection();
-const frontendURL = "https://tech-r-client.vercel.app";
-// const frontendURL = "http://192.168.254.8:3000";
+
+const frontendURL = process.env.frontendURL;
 
 app.use(
   cors({
@@ -47,35 +44,65 @@ app.get("/addProduct", (req, res) => {
 
 app.post("/addProduct", async (req, res) => {
   let {
-    type,
+    productType,
+    popularity,
     name,
-    display,
+    dimension,
+    build,
+    weight,
+    dtype,
+    size,
+    resolution,
+    os,
     processor,
+    graphics,
     memory,
     storage,
-    graphics,
-    battery,
-    build,
-    camera,
+    capacity,
+    charging,
+    wifi,
+    bluetooth,
+    typec,
+    usba,
+    ethernet,
+    hdmi,
+    audiojack,
+    maincamera,
+    frontcamera,
+    video,
     price,
     image,
-    popularity,
     blog,
   } = req.body;
   if (
-    !type ||
+    !productType ||
+    !popularity ||
     !name ||
-    !display ||
+    !dimension ||
+    !build ||
+    !weight ||
+    !dtype ||
+    !size ||
+    !resolution ||
+    !os ||
     !processor ||
+    !graphics ||
     !memory ||
     !storage ||
-    !graphics ||
-    !battery ||
-    !build ||
-    !camera ||
+    !capacity ||
+    !charging ||
+    !wifi ||
+    !bluetooth ||
+    !typec ||
+    !usba ||
+    !ethernet ||
+    !hdmi ||
+    !audiojack ||
+    !maincamera ||
+    !frontcamera ||
+    !video ||
     !price ||
     !image ||
-    !popularity ||
     !blog
   )
     return res.json({ message: "All the fields are required" });
@@ -86,19 +113,34 @@ app.post("/addProduct", async (req, res) => {
   else {
     try {
       const addItems = await productModel.create({
-        productType: type,
+        productType,
+        popularity,
         name,
-        display,
+        dimension,
+        build,
+        weight,
+        dtype,
+        size,
+        resolution,
+        os,
         processor,
+        graphics,
         memory,
         storage,
-        graphics,
-        battery,
-        build,
-        camera,
+        capacity,
+        charging,
+        wifi,
+        bluetooth,
+        typec,
+        usba,
+        ethernet,
+        hdmi,
+        audiojack,
+        maincamera,
+        frontcamera,
+        video,
         price,
         image,
-        popularity,
         blog,
       });
     } catch (error) {
@@ -172,50 +214,80 @@ app.post("/modify/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const {
-      type,
+      productType,
+      popularity,
       name,
-      display,
-      memory,
-      processor,
-      storage,
-      graphics,
-      battery,
+      dimension,
       build,
-      camera,
+      weight,
+      dtype,
+      size,
+      resolution,
+      os,
+      processor,
+      graphics,
+      memory,
+      storage,
+      capacity,
+      charging,
+      wifi,
+      bluetooth,
+      typec,
+      usba,
+      ethernet,
+      hdmi,
+      audiojack,
+      maincamera,
+      frontcamera,
+      video,
       price,
       image,
-      popularity,
       blog,
     } = req.body;
 
     await productModel.findOneAndUpdate(
       { _id: id },
       {
-        productType: type,
+        productType,
+        popularity,
         name,
-        display,
+        dimension,
+        build,
+        weight,
+        dtype,
+        size,
+        resolution,
+        os,
         processor,
+        graphics,
         memory,
         storage,
-        graphics,
-        battery,
-        build,
-        camera,
+        capacity,
+        charging,
+        wifi,
+        bluetooth,
+        typec,
+        usba,
+        ethernet,
+        hdmi,
+        audiojack,
+        maincamera,
+        frontcamera,
+        video,
         price,
         image,
-        popularity,
         blog,
       }
     );
 
-    if (type === "phone") {
+    if (productType === "phone") {
       res.redirect("/phones");
-    } else if (type === "laptop") {
+    } else if (productType === "laptop") {
       res.redirect("/laptops");
-    } else if (type === "tablet") {
+    } else if (productType === "tablet") {
       res.redirect("/tablets");
     } else {
-      res.redirect("/phones");
+      res.redirect("/");
     }
   } catch (error) {
     console.error("Error updating the product:", error);

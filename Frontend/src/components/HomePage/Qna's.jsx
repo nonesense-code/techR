@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-function Qnas(prop) {
+function Qnas(props) {
   const [visibleIndex, setVisibleIndex] = useState(null);
-
+  const [responsive, setResponsive] = useState();
+  useEffect(() => {
+    setResponsive(props.data);
+  }, []);
   const queries = [
     {
       qns: "Best product of 2024",
@@ -94,42 +97,79 @@ function Qnas(prop) {
 
   return (
     <>
-      <div
-        className={`${prop.value} lg:flex flex-col w-auto px-4 py-6 rounded-lg`}
-      >
-        {queries.map((item, index) => (
-          <div
-            key={index}
-            className="w-full p-2 mb-2 cursor-pointer text-[#003] text-lg md:text-xl font-semibold tracking-tighter"
-            onClick={() => toggleAnswer(index)}
-          >
-            <div className="rounded-lg w-auto border-2 border-stone-500 bg-zinc-400/60 px-4 py-2 text-center">
-              {item.qns}
-            </div>
-            <motion.div
-              initial={{ height: 0 }}
-              animate={{
-                height: visibleIndex === index ? "auto" : 0,
-              }}
-              transition={{ duration: 0.2 }}
-              className={`${
-                visibleIndex === index ? "block" : "hidden"
-              } bg-[#232F3E]/10 rounded-b-xl text-black`}
+      {responsive === "laptop" && (
+        <div className={`hidden lg:flex flex-col w-auto px-4 py-6 rounded-lg`}>
+          {queries.map((item, index) => (
+            <div
+              key={index}
+              className="w-full p-2 mb-2 cursor-pointer text-[#003] text-lg md:text-xl font-semibold tracking-tighter"
+              onClick={() => toggleAnswer(index)}
             >
-              <div className="flex flex-col items-center justify-center rounded-b-xl ml-4">
-                {item.ans.map((inneritem, innerindex) => (
-                  <div
-                    key={innerindex}
-                    className="my-1 text-[18px] font-semibold"
-                  >
-                    {inneritem}
-                  </div>
-                ))}
+              <div className="rounded-lg w-auto border-2 border-stone-500 bg-zinc-400/60 px-4 py-2 text-center">
+                {item.qns}
               </div>
-            </motion.div>
-          </div>
-        ))}
-      </div>
+              <motion.div
+                initial={{ height: 0 }}
+                animate={{
+                  height: visibleIndex === index ? "auto" : 0,
+                }}
+                transition={{ duration: 0.2 }}
+                className={`${
+                  visibleIndex === index ? "block" : "hidden"
+                } bg-[#232F3E]/10 rounded-b-xl text-black`}
+              >
+                <div className="flex flex-col items-center justify-center rounded-b-xl ml-4">
+                  {item.ans.map((inneritem, innerindex) => (
+                    <div
+                      key={innerindex}
+                      className="my-1 text-[18px] font-semibold"
+                    >
+                      {inneritem}
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {responsive === "phone" && (
+        <div className={`sm:hidden flex flex-col w-auto px-4 py-6 rounded-lg`}>
+          {queries.map((item, index) => (
+            <div
+              key={index}
+              className="w-full p-2 mb-2 cursor-pointer text-[#003] text-lg md:text-xl font-semibold tracking-tighter"
+              onClick={() => toggleAnswer(index)}
+            >
+              <div className="rounded-lg w-auto border-2 border-stone-500 bg-zinc-400/60 px-4 py-2 text-center">
+                {item.qns}
+              </div>
+              <motion.div
+                initial={{ height: 0 }}
+                animate={{
+                  height: visibleIndex === index ? "auto" : 0,
+                }}
+                transition={{ duration: 0.2 }}
+                className={`${
+                  visibleIndex === index ? "block" : "hidden"
+                } bg-[#232F3E]/10 rounded-b-xl text-black`}
+              >
+                <div className="flex flex-col items-center justify-center rounded-b-xl ml-4">
+                  {item.ans.map((inneritem, innerindex) => (
+                    <div
+                      key={innerindex}
+                      className="my-1 text-[18px] font-semibold"
+                    >
+                      {inneritem}
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+          ))}
+        </div>
+      )}
     </>
   );
 }
