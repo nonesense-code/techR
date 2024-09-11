@@ -7,7 +7,6 @@ const Trending = () => {
   useEffect(() => {
     const options = {
       strings: [
-        "Iphone 16 Pro Max",
         "Samsung Galaxy S24 Ultra",
         "Apple iPhone 15 Pro Max",
         "Google Pixel 9 Pro",
