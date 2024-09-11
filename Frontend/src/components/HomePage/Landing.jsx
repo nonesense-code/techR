@@ -149,9 +149,6 @@ function Landing() {
                             </Link>
                           </div>
                           <div className="w-full flex flex-col p-4 h-auto">
-                            <div className="text-2xl capitalize">
-                              {item.productType}
-                            </div>
                             <div className="text-lg">{item.name}</div>
                             <div className="text-sm mt-4 break-words">
                               {item.description || "No description available"}
