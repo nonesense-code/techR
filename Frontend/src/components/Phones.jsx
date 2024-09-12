@@ -28,6 +28,14 @@ function Phones() {
     fetchPhones();
   }, [backendURL]);
 
+  function truncateText(text, wordLimit) {
+    const words = text.split(" ");
+    if (words.length > wordLimit) {
+      return words.slice(0, wordLimit).join(" ") + "...";
+    }
+    return text;
+  }
+
   return (
     <div className="h-screen w-full">
       <Navbar />
@@ -71,7 +79,8 @@ function Phones() {
                               {phone.name}
                             </h2>
                             <p className="text-gray-600 mt-2">
-                              {phone.description || "No description available"}
+                              {(phone.blog && truncateText(phone.blog, 20)) ||
+                                "No description available"}{" "}
                             </p>
                           </div>
                         </Link>

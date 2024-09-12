@@ -127,13 +127,27 @@ function PhoneBlog() {
                     </div>
                     <div className="w-full h-auto overflow-hidden flex flex-col gap-4 mt-2 text-2xl text-[#002] items-start justify-end">
                       <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                        <div className="hidden md:flex text-lg md:text-xl text-center text-red font-bold text-red-700">
-                          BODY
+                        <div className="hidden md:flex flex-col mr-6 leading-tighter">
+                          {["B", "O", "D", "Y"].map((item, index) => (
+                            <motion.div
+                              initial={{ x: -6 }}
+                              animate={{ x: 6 }}
+                              transition={{
+                                delay: index * 0.4,
+                                duration: 2,
+                                repeat: Infinity,
+                                repeatType: "reverse",
+                              }}
+                              className="text-lg md:text-xl text-center text-red font-bold text-red-700"
+                            >
+                              {item}
+                            </motion.div>
+                          ))}
                         </div>
                         <div className="flex flex-col w-full gap-2">
                           <div className="flex items-center gap-2">
                             <div className="flex items-center gap-1 p-2 rounded-lg">
-                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
                                 Dimension:
                               </h1>
                             </div>
@@ -143,7 +157,7 @@ function PhoneBlog() {
                           </div>
                           <div className="flex items-center gap-2">
                             <div className="flex items-center gap-1 p-2 rounded-lg">
-                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
                                 Build:
                               </h1>
                             </div>
@@ -153,7 +167,7 @@ function PhoneBlog() {
                           </div>
                           <div className="flex items-center gap-2">
                             <div className="flex items-center gap-1 p-2 rounded-lg">
-                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
                                 Weight:
                               </h1>
                             </div>
@@ -164,13 +178,29 @@ function PhoneBlog() {
                         </div>
                       </div>
                       <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                        <div className="hidden md:flex text-lg md:text-xl text-center text-red font-bold text-red-700">
-                          DISPLAY
+                        <div className="hidden md:flex flex-col mr-6 leading-tighter">
+                          {["D", "I", "S", "P", "L", "A", "Y"].map(
+                            (item, index) => (
+                              <motion.div
+                                initial={{ x: -6 }}
+                                animate={{ x: 6 }}
+                                transition={{
+                                  delay: index * 0.4,
+                                  duration: 2,
+                                  repeat: Infinity,
+                                  repeatType: "reverse",
+                                }}
+                                className="text-lg md:text-xl text-center text-red font-bold text-red-700"
+                              >
+                                {item}
+                              </motion.div>
+                            )
+                          )}
                         </div>
                         <div className="flex flex-col w-full gap-2">
                           <div className="flex items-center gap-2">
                             <div className="flex items-center gap-1 p-2 rounded-lg">
-                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
                                 Type:
                               </h1>
                             </div>
@@ -180,7 +210,7 @@ function PhoneBlog() {
                           </div>
                           <div className="flex items-center gap-2">
                             <div className="flex items-center gap-1 p-2 rounded-lg">
-                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
                                 Size:
                               </h1>
                             </div>
@@ -190,7 +220,7 @@ function PhoneBlog() {
                           </div>
                           <div className="flex items-center gap-2">
                             <div className="flex items-center gap-1 p-2 rounded-lg">
-                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
                                 Resolution:
                               </h1>
                             </div>
@@ -201,13 +231,27 @@ function PhoneBlog() {
                         </div>
                       </div>
                       <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                        <div className="hidden md:flex text-lg md:text-xl text-center text-red font-bold text-red-700">
-                          CAMERA
+                        <div className="hidden md:flex flex-col mr-6 leading-tighter">
+                          {["C", "A", "M", "E", "R", "A"].map((item, index) => (
+                            <motion.div
+                              initial={{ x: -6 }}
+                              animate={{ x: 6 }}
+                              transition={{
+                                delay: index * 0.4,
+                                duration: 2,
+                                repeat: Infinity,
+                                repeatType: "reverse",
+                              }}
+                              className="text-lg md:text-xl text-center text-red font-bold text-red-700"
+                            >
+                              {item}
+                            </motion.div>
+                          ))}
                         </div>
                         <div className="flex flex-col w-full gap-2">
                           <div className="flex items-center gap-2">
                             <div className="flex items-center gap-1 p-2 rounded-lg">
-                              <h1 className="text-[16px] mr-6 md:text-lg w-[96px] font-extrabold whitespace-nowrap">
+                              <h1 className="text-[16px] mr-6 md:text-lg w-[96px] font-extrabold text-green-600 whitespace-nowrap">
                                 MainCamera:
                               </h1>
                             </div>
@@ -217,7 +261,7 @@ function PhoneBlog() {
                           </div>
                           <div className="flex items-center gap-2">
                             <div className="flex items-center gap-1 p-2 rounded-lg">
-                              <h1 className="text-[16px] mr-6 md:text-lg w-[96px] font-extrabold whitespace-nowrap">
+                              <h1 className="text-[16px] mr-6 md:text-lg w-[96px] font-extrabold text-green-600 whitespace-nowrap">
                                 FrontCamera:
                               </h1>
                             </div>
@@ -227,7 +271,7 @@ function PhoneBlog() {
                           </div>
                           <div className="flex items-center gap-2">
                             <div className="flex items-center gap-1 p-2 rounded-lg">
-                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
                                 Video:
                               </h1>
                             </div>
@@ -238,13 +282,29 @@ function PhoneBlog() {
                         </div>
                       </div>
                       <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                        <div className="hidden md:flex text-lg md:text-xl text-center text-red font-bold text-red-700">
-                          PLATFORM
+                        <div className="hidden md:flex flex-col mr-6 leading-tighter">
+                          {["P", "L", "A", "T", "F", "O", "R", "M"].map(
+                            (item, index) => (
+                              <motion.div
+                                initial={{ x: -6 }}
+                                animate={{ x: 6 }}
+                                transition={{
+                                  delay: index * 0.4,
+                                  duration: 2,
+                                  repeat: Infinity,
+                                  repeatType: "reverse",
+                                }}
+                                className="text-lg md:text-xl text-center text-red font-bold text-red-700"
+                              >
+                                {item}
+                              </motion.div>
+                            )
+                          )}
                         </div>
                         <div className="flex flex-col w-full gap-2">
                           <div className="flex items-center gap-2">
                             <div className="flex items-center gap-1 p-2 rounded-lg">
-                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
                                 OS:
                               </h1>
                             </div>
@@ -254,7 +314,7 @@ function PhoneBlog() {
                           </div>
                           <div className="flex items-center gap-2">
                             <div className="flex items-center gap-1 p-2 rounded-lg">
-                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
                                 Processor:
                               </h1>
                             </div>
@@ -264,7 +324,7 @@ function PhoneBlog() {
                           </div>
                           <div className="flex items-center gap-2">
                             <div className="flex items-center gap-1 p-2 rounded-lg">
-                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
                                 GPU:
                               </h1>
                             </div>
@@ -275,13 +335,27 @@ function PhoneBlog() {
                         </div>
                       </div>
                       <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                        <div className="hidden md:flex text-lg md:text-xl text-center text-red font-bold text-red-700">
-                          MEMORY
+                        <div className="hidden md:flex flex-col mr-6">
+                          {["M", "E", "M", "O", "R", "Y"].map((item, index) => (
+                            <motion.div
+                              initial={{ x: -6 }}
+                              animate={{ x: 6 }}
+                              transition={{
+                                delay: index * 0.4,
+                                duration: 2,
+                                repeat: Infinity,
+                                repeatType: "reverse",
+                              }}
+                              className="text-lg md:text-xl text-center text-red font-bold text-red-700"
+                            >
+                              {item}
+                            </motion.div>
+                          ))}
                         </div>
                         <div className="flex flex-col w-full gap-2">
                           <div className="flex items-center gap-2">
                             <div className="flex items-center gap-1 p-2 rounded-lg">
-                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
                                 RAM:
                               </h1>
                             </div>
@@ -291,7 +365,7 @@ function PhoneBlog() {
                           </div>
                           <div className="flex items-center gap-2">
                             <div className="flex items-center gap-1 p-2 rounded-lg">
-                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
                                 Storage:
                               </h1>
                             </div>
@@ -302,13 +376,29 @@ function PhoneBlog() {
                         </div>
                       </div>
                       <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                        <div className="hidden md:flex text-lg md:text-xl text-center text-red font-bold text-red-700">
-                          BATTERY
+                        <div className="hidden md:flex flex-col mr-6">
+                          {["B", "A", "T", "T", "E", "R", "Y"].map(
+                            (item, index) => (
+                              <motion.div
+                                initial={{ x: -6 }}
+                                animate={{ x: 6 }}
+                                transition={{
+                                  delay: index * 0.4,
+                                  duration: 2,
+                                  repeat: Infinity,
+                                  repeatType: "reverse",
+                                }}
+                                className="text-lg md:text-xl text-center text-red font-bold text-red-700"
+                              >
+                                {item}
+                              </motion.div>
+                            )
+                          )}
                         </div>
                         <div className="flex flex-col w-full gap-2">
                           <div className="flex items-center gap-2">
                             <div className="flex items-center gap-1 p-2 rounded-lg">
-                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
                                 Capacity:
                               </h1>
                             </div>
@@ -318,7 +408,7 @@ function PhoneBlog() {
                           </div>
                           <div className="flex items-center gap-2">
                             <div className="flex items-center gap-1 p-2 rounded-lg">
-                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
                                 Charging:
                               </h1>
                             </div>
@@ -329,13 +419,29 @@ function PhoneBlog() {
                         </div>
                       </div>
                       <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                        <div className="hidden md:flex text-lg md:text-xl text-center text-red font-bold text-red-700">
-                          NETWORKS
+                        <div className="hidden md:flex flex-col mr-6">
+                          {["N", "E", "T", "W", "O", "R", "K", "S"].map(
+                            (item, index) => (
+                              <motion.div
+                                initial={{ x: -6 }}
+                                animate={{ x: 6 }}
+                                transition={{
+                                  delay: index * 0.4,
+                                  duration: 2,
+                                  repeat: Infinity,
+                                  repeatType: "reverse",
+                                }}
+                                className="text-lg md:text-xl text-center text-red font-bold text-red-700"
+                              >
+                                {item}
+                              </motion.div>
+                            )
+                          )}
                         </div>
                         <div className="flex flex-col w-full gap-2">
                           <div className="flex items-center gap-2">
                             <div className="flex items-center gap-1 p-2 rounded-lg">
-                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
                                 Wi-Fi:
                               </h1>
                             </div>
@@ -345,7 +451,7 @@ function PhoneBlog() {
                           </div>
                           <div className="flex items-center gap-2">
                             <div className="flex items-center gap-1 p-2 rounded-lg">
-                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
                                 Bluetooth:
                               </h1>
                             </div>
@@ -356,13 +462,27 @@ function PhoneBlog() {
                         </div>
                       </div>
                       <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                        <div className="hidden md:flex text-lg md:text-xl text-center text-red font-bold text-red-700">
-                          PORTS
+                        <div className="hidden md:flex flex-col mr-6">
+                          {["P", "O", "R", "T", "S"].map((item, index) => (
+                            <motion.div
+                              initial={{ x: -6 }}
+                              animate={{ x: 6 }}
+                              transition={{
+                                delay: index * 0.4,
+                                duration: 2,
+                                repeat: Infinity,
+                                repeatType: "reverse",
+                              }}
+                              className="text-lg md:text-xl text-center text-red font-bold text-red-700"
+                            >
+                              {item}
+                            </motion.div>
+                          ))}
                         </div>
                         <div className="flex flex-col w-full gap-2">
                           <div className="flex items-center gap-2">
                             <div className="flex items-center gap-1 p-2 rounded-lg">
-                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
                                 Type C:
                               </h1>
                             </div>
@@ -372,7 +492,7 @@ function PhoneBlog() {
                           </div>
                           <div className="flex items-center gap-2">
                             <div className="flex items-center gap-1 p-2 rounded-lg">
-                              <h1 className="text-[16px] whitespace-nowrap md:text-lg w-[96px] font-extrabold">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600 whitespace-nowrap">
                                 Audio Jack:
                               </h1>
                             </div>

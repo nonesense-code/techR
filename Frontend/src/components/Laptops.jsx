@@ -28,6 +28,14 @@ function Laptops() {
     fetchLaptops();
   }, [backendURL]);
 
+  function truncateText(text, wordLimit) {
+    const words = text.split(" ");
+    if (words.length > wordLimit) {
+      return words.slice(0, wordLimit).join(" ") + "...";
+    }
+    return text;
+  }
+
   return (
     <div className="h-screen w-full">
       <Navbar />
@@ -74,7 +82,8 @@ function Laptops() {
                               {laptop.name}
                             </h2>
                             <p className="text-gray-600 mt-2">
-                              {laptop.description || "No description available"}
+                              {(laptop.blog && truncateText(laptop.blog, 20)) ||
+                                "No description available"}
                             </p>
                           </div>
                         </Link>

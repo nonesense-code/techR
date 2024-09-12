@@ -27,6 +27,14 @@ function Tablets() {
     fetchTablets();
   }, [backendURL]);
 
+  function truncateText(text, wordLimit) {
+    const words = text.split(" ");
+    if (words.length > wordLimit) {
+      return words.slice(0, wordLimit).join(" ") + "...";
+    }
+    return text;
+  }
+
   return (
     <div className="h-screen w-full">
       <Navbar />
@@ -73,7 +81,8 @@ function Tablets() {
                               {tablet.name}
                             </h2>
                             <p className="text-gray-600 mt-2">
-                              {tablet.description || "No description available"}
+                              {(tablet.blog && truncateText(tablet.blog, 20)) ||
+                                "No description available"}{" "}
                             </p>
                           </div>
                         </Link>
