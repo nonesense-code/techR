@@ -395,34 +395,34 @@ function LaptopBlog() {
               </div>{" "}
             </div>
           </div>
-          <div className="w-full max-w-7xl py-4">
-            <div className="flex flex-col gap-4 w-full sm:w-1/2 mx-auto p-6">
+          <div className="w-full py-4">
+            <div className="flex flex-col gap-4 w-auto mx-auto p-6">
               {product.length > 0 &&
                 product.map((item, index) => (
                   <div
-                    className="flex flex-col sm:flex-row p-4 items-center justify-between bg-white h-auto gap-2 rounded-lg"
+                    className="flex flex-col lg:flex-row p-4 w-full items-center justify-between bg-white h-auto gap-2 rounded-lg"
                     key={index}
                   >
-                    <div className="w-full sm:w-1/2">
+                    <div className="w-full">
                       <Link
                         to={`/${item.productType}/${item.name
                           .toLowerCase()
                           .split(" ")
                           .join("")}`}
                       >
-                        <div className="h-full w-full flex items-center justify-center">
+                        <div className="h-80 w-auto flex items-center justify-center">
                           <img
                             src={item.image}
                             alt={item.name}
-                            className="object-cover rounded-xl w-full h-full"
+                            className="object-cover rounded-xl w-auto h-80"
                           />
                         </div>
                       </Link>
                     </div>
                     <div className="w-full sm:w-1/2 flex flex-col p-4">
                       <div className="w-full flex flex-col gap-4 text-center">
-                        <div>
-                          <div className="text-lg sm:text-xl md:text-2xl">
+                        <div className="">
+                          <div className="text-lg sm:text-xl md:text-2xl whitespace-nowrap justify-center items-center">
                             {item.name}
                           </div>
                         </div>
