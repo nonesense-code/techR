@@ -217,6 +217,16 @@ function PhoneBlog() {
                           </div>
                           <div className="flex items-center gap-2">
                             <div className="flex items-center gap-1 p-2 rounded-lg">
+                              <h1 className="text-[16px] mr-6 md:text-lg w-[96px] font-extrabold whitespace-nowrap">
+                                FrontCamera:
+                              </h1>
+                            </div>
+                            <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                              {targetPhones.frontcamera || "Not found"}
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-1 p-2 rounded-lg">
                               <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
                                 Video:
                               </h1>
