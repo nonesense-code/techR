@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./HomePage/Navbar";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
-import { motion } from "framer-motion";
+import { motion, easeInOut } from "framer-motion";
 import CircularLoader from "../CircularLoader";
 
 const backendURL = import.meta.env.VITE_BACKEND_URL;
@@ -135,15 +135,21 @@ function TabletBlog() {
                       <div className="hidden md:flex flex-col mr-6 leading-tighter">
                         {["B", "O", "D", "Y"].map((item, index) => (
                           <motion.div
-                            initial={{ x: -6 }}
-                            animate={{ x: 6 }}
+                            key={index}
+                            initial={{ x: 0, scale: 1 }}
+                            animate={{
+                              x: 4,
+                              scale: 1.2,
+                              color: "#001",
+                            }}
                             transition={{
-                              delay: index * 0.4,
-                              duration: 2,
+                              delay: index * 0.9,
+                              duration: 4,
                               repeat: Infinity,
                               repeatType: "reverse",
+                              ease: easeInOut,
                             }}
-                            className="text-lg md:text-xl text-center text-red font-bold text-red-700"
+                            className="text-lg md:text-xl text-center text-red font-bold"
                           >
                             {item}
                           </motion.div>
@@ -187,15 +193,21 @@ function TabletBlog() {
                         {["D", "I", "S", "P", "L", "A", "Y"].map(
                           (item, index) => (
                             <motion.div
-                              initial={{ x: -6 }}
-                              animate={{ x: 6 }}
+                              key={index}
+                              initial={{ x: 0, scale: 1 }}
+                              animate={{
+                                x: 4,
+                                scale: 1.2,
+                                color: "#001",
+                              }}
                               transition={{
-                                delay: index * 0.4,
-                                duration: 2,
+                                delay: index * 0.9,
+                                duration: 4,
                                 repeat: Infinity,
                                 repeatType: "reverse",
+                                ease: easeInOut,
                               }}
-                              className="text-lg md:text-xl text-center text-red font-bold text-red-700"
+                              className="text-lg md:text-xl text-center text-red font-bold"
                             >
                               {item}
                             </motion.div>
@@ -239,15 +251,21 @@ function TabletBlog() {
                       <div className="hidden md:flex flex-col mr-6 leading-tighter">
                         {["C", "A", "M", "E", "R", "A"].map((item, index) => (
                           <motion.div
-                            initial={{ x: -6 }}
-                            animate={{ x: 6 }}
+                            key={index}
+                            initial={{ x: 0, scale: 1 }}
+                            animate={{
+                              x: 4,
+                              scale: 1.2,
+                              color: "#001",
+                            }}
                             transition={{
-                              delay: index * 0.4,
-                              duration: 2,
+                              delay: index * 0.9,
+                              duration: 4,
                               repeat: Infinity,
                               repeatType: "reverse",
+                              ease: easeInOut,
                             }}
-                            className="text-lg md:text-xl text-center text-red font-bold text-red-700"
+                            className="text-lg md:text-xl text-center text-red font-bold"
                           >
                             {item}
                           </motion.div>
@@ -291,15 +309,21 @@ function TabletBlog() {
                         {["P", "L", "A", "T", "F", "O", "R", "M"].map(
                           (item, index) => (
                             <motion.div
-                              initial={{ x: -6 }}
-                              animate={{ x: 6 }}
+                              key={index}
+                              initial={{ x: 0, scale: 1 }}
+                              animate={{
+                                x: 4,
+                                scale: 1.2,
+                                color: "#001",
+                              }}
                               transition={{
-                                delay: index * 0.4,
-                                duration: 2,
+                                delay: index * 0.9,
+                                duration: 4,
                                 repeat: Infinity,
                                 repeatType: "reverse",
+                                ease: easeInOut,
                               }}
-                              className="text-lg md:text-xl text-center text-red font-bold text-red-700"
+                              className="text-lg md:text-xl text-center text-red font-bold"
                             >
                               {item}
                             </motion.div>
@@ -343,15 +367,21 @@ function TabletBlog() {
                       <div className="hidden md:flex flex-col mr-6">
                         {["M", "E", "M", "O", "R", "Y"].map((item, index) => (
                           <motion.div
-                            initial={{ x: -6 }}
-                            animate={{ x: 6 }}
+                            key={index}
+                            initial={{ x: 0, scale: 1 }}
+                            animate={{
+                              x: 4,
+                              scale: 1.2,
+                              color: "#001",
+                            }}
                             transition={{
-                              delay: index * 0.4,
-                              duration: 2,
+                              delay: index * 0.9,
+                              duration: 4,
                               repeat: Infinity,
                               repeatType: "reverse",
+                              ease: easeInOut,
                             }}
-                            className="text-lg md:text-xl text-center text-red font-bold text-red-700"
+                            className="text-lg md:text-xl text-center text-red font-bold"
                           >
                             {item}
                           </motion.div>
@@ -385,15 +415,21 @@ function TabletBlog() {
                         {["B", "A", "T", "T", "E", "R", "Y"].map(
                           (item, index) => (
                             <motion.div
-                              initial={{ x: -6 }}
-                              animate={{ x: 6 }}
+                              key={index}
+                              initial={{ x: 0, scale: 1 }}
+                              animate={{
+                                x: 4,
+                                scale: 1.2,
+                                color: "#001",
+                              }}
                               transition={{
-                                delay: index * 0.4,
-                                duration: 2,
+                                delay: index * 0.9,
+                                duration: 4,
                                 repeat: Infinity,
                                 repeatType: "reverse",
+                                ease: easeInOut,
                               }}
-                              className="text-lg md:text-xl text-center text-red font-bold text-red-700"
+                              className="text-lg md:text-xl text-center text-red font-bold"
                             >
                               {item}
                             </motion.div>
@@ -428,15 +464,21 @@ function TabletBlog() {
                         {["N", "E", "T", "W", "O", "R", "K", "S"].map(
                           (item, index) => (
                             <motion.div
-                              initial={{ x: -6 }}
-                              animate={{ x: 6 }}
+                              key={index}
+                              initial={{ x: 0, scale: 1 }}
+                              animate={{
+                                x: 4,
+                                scale: 1.2,
+                                color: "#001",
+                              }}
                               transition={{
-                                delay: index * 0.4,
-                                duration: 2,
+                                delay: index * 0.9,
+                                duration: 4,
                                 repeat: Infinity,
                                 repeatType: "reverse",
+                                ease: easeInOut,
                               }}
-                              className="text-lg md:text-xl text-center text-red font-bold text-red-700"
+                              className="text-lg md:text-xl text-center text-red font-bold"
                             >
                               {item}
                             </motion.div>
@@ -470,15 +512,21 @@ function TabletBlog() {
                       <div className="hidden md:flex flex-col mr-6">
                         {["P", "O", "R", "T", "S"].map((item, index) => (
                           <motion.div
-                            initial={{ x: -6 }}
-                            animate={{ x: 6 }}
+                            key={index}
+                            initial={{ x: 0, scale: 1 }}
+                            animate={{
+                              x: 4,
+                              scale: 1.2,
+                              color: "#001",
+                            }}
                             transition={{
-                              delay: index * 0.4,
-                              duration: 2,
+                              delay: index * 0.9,
+                              duration: 4,
                               repeat: Infinity,
                               repeatType: "reverse",
+                              ease: easeInOut,
                             }}
-                            className="text-lg md:text-xl text-center text-red font-bold text-red-700"
+                            className="text-lg md:text-xl text-center font-bold"
                           >
                             {item}
                           </motion.div>
