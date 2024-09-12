@@ -78,7 +78,7 @@ function PhoneBlog() {
           <div className="h-full w-auto">
             <div className="w-auto max-w-7xl">
               <div className="flex flex-col md:flex-row items-start justify-between border-b-4 border-black/10">
-                <div className="hidden md:flex w-full md:w-1/3 border-r-4 border-black/10 py-4 h-auto">
+                <div className="hidden md:flex w-full md:w-1/3 h-auto">
                   <div className="flex flex-col gap-4 items-center h-full">
                     <h1 className="text-2xl">Popular</h1>
                     <div className="hidescroller w-full pt-4 flex flex-col gap-8 items-center overflow-y-auto p-4 h-[800px]">
@@ -113,8 +113,8 @@ function PhoneBlog() {
                     </div>
                   </div>
                 </div>
-                <div className="w-full py-4">
-                  <h1 className="text-xl px-4 md:text-4xl flex items-center justify-center md:justify-start min-h-[68px] whitespace-nowrap tracking-tighter text-[#001] font-semibold border-b-[3px] border-black/10 py-2">
+                <div className="w-full lg:border-l-4 lg:border-black/10 py-4">
+                  <h1 className="text-4xl px-4 flex items-center justify-center md:justify-start min-h-[68px] whitespace-nowrap tracking-tighter text-[#001] font-semibold border-b-[3px] border-black/10 py-2">
                     {targetPhones.name || "..."}
                   </h1>
                   <div className="w-full h-auto p-4 flex flex-col gap-12 md:gap-4">
