@@ -119,7 +119,7 @@ function LaptopBlog() {
                 </div>
               </div>
               <div className="w-full lg:border-l-4 lg:border-black/10 py-4">
-                <h1 className="px-4 text-4xl flex items-center justify-center md:justify-start min-h-[68px] whitespace-nowrap tracking-tighter text-[#001] font-semibold border-b-[3px] border-black/10 py-2">
+                <h1 className="text-4xl px-4 flex items-center justify-center md:justify-start min-h-[68px] whitespace-nowrap tracking-tighter text-[#001] font-semibold border-b-[3px] border-black/10 py-2">
                   {targetLaptops.name || "..."}
                 </h1>
                 <div className="w-full h-auto p-4 flex flex-col gap-12 md:gap-4">
@@ -127,15 +127,15 @@ function LaptopBlog() {
                     <img
                       src={targetLaptops.image}
                       alt={targetLaptops.name}
-                      className="w-full md:max-w-[600px] bg-white md:w-auto min-h-80 sm:h-96 object-cover rounded-xl"
+                      className="w-full md:max-w-[400px] bg-white md:w-auto min-h-80 sm:h-96 object-cover rounded-xl"
                     />
                   </div>
                   <div className="w-full h-auto overflow-hidden flex flex-col gap-4 mt-2 text-2xl text-[#002] items-start justify-end">
                     <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                      <div className="text-lg md:text-xl text-center text-red font-bold text-red-700">
+                      <div className="hidden md:flex text-lg md:text-xl text-center text-red font-bold text-red-700">
                         BODY
                       </div>
-                      <div className="flex flex-col w-full">
+                      <div className="flex flex-col w-full gap-2">
                         <div className="flex items-center gap-2">
                           <div className="flex items-center gap-1 p-2 rounded-lg">
                             <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
@@ -169,10 +169,10 @@ function LaptopBlog() {
                       </div>
                     </div>
                     <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                      <div className="text-lg md:text-xl text-center text-red font-bold text-red-700">
+                      <div className="hidden md:flex text-lg md:text-xl text-center text-red font-bold text-red-700">
                         DISPLAY
                       </div>
-                      <div className="flex flex-col w-full">
+                      <div className="flex flex-col w-full gap-2">
                         <div className="flex items-center gap-2">
                           <div className="flex items-center gap-1 p-2 rounded-lg">
                             <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
@@ -206,10 +206,10 @@ function LaptopBlog() {
                       </div>
                     </div>
                     <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                      <div className="text-lg md:text-xl text-center text-red font-bold text-red-700">
+                      <div className="hidden md:flex text-lg md:text-xl text-center text-red font-bold text-red-700">
                         CAMERA
                       </div>
-                      <div className="flex flex-col w-full">
+                      <div className="flex flex-col w-full gap-2">
                         <div className="flex items-center gap-2">
                           <div className="flex items-center gap-1 p-2 rounded-lg">
                             <h1 className="text-[16px] mr-6 md:text-lg w-[96px] font-extrabold whitespace-nowrap">
@@ -218,6 +218,16 @@ function LaptopBlog() {
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
                             {targetLaptops.maincamera || "Not found"}
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-1 p-2 rounded-lg">
+                            <h1 className="text-[16px] mr-6 md:text-lg w-[96px] font-extrabold whitespace-nowrap">
+                              FrontCamera:
+                            </h1>
+                          </div>
+                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                            {targetLaptops.frontcamera || "Not found"}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -233,10 +243,10 @@ function LaptopBlog() {
                       </div>
                     </div>
                     <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                      <div className="text-lg md:text-xl text-center text-red font-bold text-red-700">
+                      <div className="hidden md:flex text-lg md:text-xl text-center text-red font-bold text-red-700">
                         PLATFORM
                       </div>
-                      <div className="flex flex-col w-full">
+                      <div className="flex flex-col w-full gap-2">
                         <div className="flex items-center gap-2">
                           <div className="flex items-center gap-1 p-2 rounded-lg">
                             <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
@@ -270,10 +280,10 @@ function LaptopBlog() {
                       </div>
                     </div>
                     <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                      <div className="text-lg md:text-xl text-center text-red font-bold text-red-700">
+                      <div className="hidden md:flex text-lg md:text-xl text-center text-red font-bold text-red-700">
                         MEMORY
                       </div>
-                      <div className="flex flex-col w-full">
+                      <div className="flex flex-col w-full gap-2">
                         <div className="flex items-center gap-2">
                           <div className="flex items-center gap-1 p-2 rounded-lg">
                             <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
@@ -297,10 +307,10 @@ function LaptopBlog() {
                       </div>
                     </div>
                     <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                      <div className="text-lg md:text-xl text-center text-red font-bold text-red-700">
+                      <div className="hidden md:flex text-lg md:text-xl text-center text-red font-bold text-red-700">
                         BATTERY
                       </div>
-                      <div className="flex flex-col w-full">
+                      <div className="flex flex-col w-full gap-2">
                         <div className="flex items-center gap-2">
                           <div className="flex items-center gap-1 p-2 rounded-lg">
                             <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
@@ -324,10 +334,10 @@ function LaptopBlog() {
                       </div>
                     </div>
                     <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                      <div className="text-lg md:text-xl text-center text-red font-bold text-red-700">
+                      <div className="hidden md:flex text-lg md:text-xl text-center text-red font-bold text-red-700">
                         NETWORKS
                       </div>
-                      <div className="flex flex-col w-full">
+                      <div className="flex flex-col w-full gap-2">
                         <div className="flex items-center gap-2">
                           <div className="flex items-center gap-1 p-2 rounded-lg">
                             <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
@@ -351,10 +361,10 @@ function LaptopBlog() {
                       </div>
                     </div>
                     <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                      <div className="text-lg md:text-xl text-center text-red font-bold text-red-700">
+                      <div className="hidden md:flex text-lg md:text-xl text-center text-red font-bold text-red-700">
                         PORTS
                       </div>
-                      <div className="flex flex-col w-full">
+                      <div className="flex flex-col w-full gap-2">
                         <div className="flex items-center gap-2">
                           <div className="flex items-center gap-1 p-2 rounded-lg">
                             <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
@@ -363,36 +373,6 @@ function LaptopBlog() {
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
                             {targetLaptops.typec || "Not found"}
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
-                              USB A:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.usba || "Not found"}
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
-                              Ethernet:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.ethernet || "Not found"}
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold">
-                              HDMI:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.hdmi || "Not found"}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -412,7 +392,7 @@ function LaptopBlog() {
                 <div className="p-4 text-black text-lg md:text-xl font-semibold mt-4">
                   {targetLaptops.blog || "..."}
                 </div>
-              </div>
+              </div>{" "}
             </div>
           </div>
           <div className="w-full max-w-7xl py-4">
