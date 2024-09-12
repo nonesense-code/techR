@@ -275,16 +275,6 @@ function LaptopBlog() {
                         <div className="flex items-center gap-2">
                           <div className="flex items-center gap-1 p-2 rounded-lg">
                             <h1 className="text-[16px] mr-6 md:text-lg w-[96px] font-extrabold text-green-600 whitespace-nowrap">
-                              MainCamera:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.maincamera || "Not found"}
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] mr-6 md:text-lg w-[96px] font-extrabold text-green-600 whitespace-nowrap">
                               FrontCamera:
                             </h1>
                           </div>
