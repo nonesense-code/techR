@@ -29,6 +29,31 @@ function PhoneBlog() {
   const [product, setProduct] = useState([]);
   const { itname } = useParams();
 
+  const hasMultipleOptions =
+    targetPhones.ram2 || targetPhones.storage2 || targetPhones.price2;
+  const hasThreeOptions =
+    targetPhones.ram3 || targetPhones.storage3 || targetPhones.price3;
+
+  const rows = [
+    {
+      ram: targetPhones.ram1,
+      storage: targetPhones.storage1,
+      price: targetPhones.price1,
+    },
+    hasMultipleOptions && {
+      ram: targetPhones.ram2,
+      storage: targetPhones.storage2,
+      price: targetPhones.price2,
+    },
+    hasThreeOptions && {
+      ram: targetPhones.ram3,
+      storage: targetPhones.storage3,
+      price: targetPhones.price3,
+    },
+  ]
+    .filter(Boolean)
+    .filter((row) => row.ram && row.storage && row.price);
+
   useEffect(() => {
     const loadData = async () => {
       const allPhones = await fetchData(backendURL);
@@ -386,8 +411,16 @@ function PhoneBlog() {
                                 RAM:
                               </h1>
                             </div>
-                            <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                              {targetPhones.memory || "Not found"}
+                            <div className="text-[18px] flex gap-2 w-full bg-zinc-200 px-2 rounded-md text-black">
+                              {rows.map(
+                                (row, index) =>
+                                  row && (
+                                    <div key={index}>
+                                      {row.ram}
+                                      {index < rows.length - 1 && ","}
+                                    </div>
+                                  )
+                              )}
                             </div>
                           </div>
                           <div className="flex items-center gap-2">
@@ -396,8 +429,16 @@ function PhoneBlog() {
                                 Storage:
                               </h1>
                             </div>
-                            <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                              {targetPhones.storage || "Not found"}
+                            <div className="text-[18px] flex gap-2 w-full bg-zinc-200 px-2 rounded-md text-black">
+                              {rows.map(
+                                (row, index) =>
+                                  row && (
+                                    <div key={index}>
+                                      {row.storage}
+                                      {index < rows.length - 1 && ","}
+                                    </div>
+                                  )
+                              )}
                             </div>
                           </div>
                         </div>
@@ -549,6 +590,42 @@ function PhoneBlog() {
                       </div>
                     </div>
                   </div>
+
+                  {rows.length > 0 && (
+                    <div className="h-auto w-full p-8">
+                      <div className="border-4 border-black rounded-lg w-full flex flex-col">
+                        <div className="w-full flex flex-wrap bg-gray-200">
+                          <div className="flex-1 border-r-4 border-black p-2 text-center font-bold">
+                            S.N
+                          </div>
+                          <div className="flex-1 border-r-4 border-black p-2 text-center font-bold">
+                            OPTIONS
+                          </div>
+                          <div className="flex-1 p-2 text-center font-bold">
+                            PRICE
+                          </div>
+                        </div>
+
+                        {rows.map((row, index) => (
+                          <div
+                            key={index}
+                            className="w-full flex flex-wrap border-t-2 border-stone-600"
+                          >
+                            <div className="flex-1 border-r-4 border-black p-2 text-center">
+                              {index + 1}
+                            </div>
+                            <div className="flex-1 border-r-4 border-black p-2 text-center">
+                              {row.ram}/{row.storage}
+                            </div>
+                            <div className="flex-1 p-2 text-center">
+                              {row.price}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
                   <div className="p-4 text-black text-lg md:text-xl font-semibold mt-4">
                     {targetPhones.blog || "..."}
                   </div>

@@ -29,6 +29,31 @@ function LaptopBlog() {
   const [product, setProduct] = useState([]);
   const { itname } = useParams();
 
+  const hasMultipleOptions =
+    targetLaptops.ram2 || targetLaptops.storage2 || targetLaptops.price2;
+  const hasThreeOptions =
+    targetLaptops.ram3 || targetLaptops.storage3 || targetLaptops.price3;
+
+  const rows = [
+    {
+      ram: targetLaptops.ram1,
+      storage: targetLaptops.storage1,
+      price: targetLaptops.price1,
+    },
+    hasMultipleOptions && {
+      ram: targetLaptops.ram2,
+      storage: targetLaptops.storage2,
+      price: targetLaptops.price2,
+    },
+    hasThreeOptions && {
+      ram: targetLaptops.ram3,
+      storage: targetLaptops.storage3,
+      price: targetLaptops.price3,
+    },
+  ]
+    .filter(Boolean)
+    .filter((row) => row.ram && row.storage && row.price);
+
   useEffect(() => {
     const loadData = async () => {
       const allLaptops = await fetchData(backendURL);
@@ -384,8 +409,16 @@ function LaptopBlog() {
                               RAM:
                             </h1>
                           </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.memory || "Not found"}
+                          <div className="text-[18px] flex gap-2 w-full bg-zinc-200 px-2 rounded-md text-black">
+                            {rows.map(
+                              (row, index) =>
+                                row && (
+                                  <div key={index}>
+                                    {row.ram}
+                                    {index < rows.length - 1 && ","}
+                                  </div>
+                                )
+                            )}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -394,8 +427,16 @@ function LaptopBlog() {
                               Storage:
                             </h1>
                           </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.storage || "Not found"}
+                          <div className="text-[18px] flex gap-2 w-full bg-zinc-200 px-2 rounded-md text-black">
+                            {rows.map(
+                              (row, index) =>
+                                row && (
+                                  <div key={index}>
+                                    {row.storage}
+                                    {index < rows.length - 1 && ","}
+                                  </div>
+                                )
+                            )}
                           </div>
                         </div>
                       </div>
@@ -547,6 +588,41 @@ function LaptopBlog() {
                     </div>
                   </div>
                 </div>
+                {rows.length > 0 && (
+                  <div className="h-auto w-full p-8">
+                    <div className="border-4 border-black rounded-lg w-full flex flex-col">
+                      <div className="w-full flex flex-wrap bg-gray-200">
+                        <div className="flex-1 border-r-4 border-black p-2 text-center font-bold">
+                          S.N
+                        </div>
+                        <div className="flex-1 border-r-4 border-black p-2 text-center font-bold">
+                          OPTIONS
+                        </div>
+                        <div className="flex-1 p-2 text-center font-bold">
+                          PRICE
+                        </div>
+                      </div>
+
+                      {rows.map((row, index) => (
+                        <div
+                          key={index}
+                          className="w-full flex flex-wrap border-t-2 border-stone-600"
+                        >
+                          <div className="flex-1 border-r-4 border-black p-2 text-center">
+                            {index + 1}
+                          </div>
+                          <div className="flex-1 border-r-4 border-black p-2 text-center">
+                            {row.ram}/{row.storage}
+                          </div>
+                          <div className="flex-1 p-2 text-center">
+                            {row.price}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 <div className="p-4 text-black text-lg md:text-xl font-semibold mt-4">
                   {targetLaptops.blog || "..."}
                 </div>

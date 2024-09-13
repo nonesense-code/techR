@@ -29,6 +29,31 @@ function TabletBlog() {
   const [product, setProduct] = useState([]);
   const { itname } = useParams();
 
+  const hasMultipleOptions =
+    targetTablets.ram2 || targetTablets.storage2 || targetTablets.price2;
+  const hasThreeOptions =
+    targetTablets.ram3 || targetTablets.storage3 || targetTablets.price3;
+
+  const rows = [
+    {
+      ram: targetTablets.ram1,
+      storage: targetTablets.storage1,
+      price: targetTablets.price1,
+    },
+    hasMultipleOptions && {
+      ram: targetTablets.ram2,
+      storage: targetTablets.storage2,
+      price: targetTablets.price2,
+    },
+    hasThreeOptions && {
+      ram: targetTablets.ram3,
+      storage: targetTablets.storage3,
+      price: targetTablets.price3,
+    },
+  ]
+    .filter(Boolean)
+    .filter((row) => row.ram && row.storage && row.price);
+
   useEffect(() => {
     const loadData = async () => {
       const allTablets = await fetchData(backendURL);
@@ -394,8 +419,16 @@ function TabletBlog() {
                               RAM:
                             </h1>
                           </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetTablets.memory || "Not found"}
+                          <div className="text-[18px] flex gap-2 w-full bg-zinc-200 px-2 rounded-md text-black">
+                            {rows.map(
+                              (row, index) =>
+                                row && (
+                                  <div key={index}>
+                                    {row.ram}
+                                    {index < rows.length - 1 && ","}
+                                  </div>
+                                )
+                            )}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -404,8 +437,16 @@ function TabletBlog() {
                               Storage:
                             </h1>
                           </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetTablets.storage || "Not found"}
+                          <div className="text-[18px] flex gap-2 w-full bg-zinc-200 px-2 rounded-md text-black">
+                            {rows.map(
+                              (row, index) =>
+                                row && (
+                                  <div key={index}>
+                                    {row.storage}
+                                    {index < rows.length - 1 && ","}
+                                  </div>
+                                )
+                            )}
                           </div>
                         </div>
                       </div>
@@ -557,6 +598,41 @@ function TabletBlog() {
                     </div>
                   </div>
                 </div>
+                {rows.length > 0 && (
+                  <div className="h-auto w-full p-8">
+                    <div className="border-4 border-black rounded-lg w-full flex flex-col">
+                      <div className="w-full flex flex-wrap bg-gray-200">
+                        <div className="flex-1 border-r-4 border-black p-2 text-center font-bold">
+                          S.N
+                        </div>
+                        <div className="flex-1 border-r-4 border-black p-2 text-center font-bold">
+                          OPTIONS
+                        </div>
+                        <div className="flex-1 p-2 text-center font-bold">
+                          PRICE
+                        </div>
+                      </div>
+
+                      {rows.map((row, index) => (
+                        <div
+                          key={index}
+                          className="w-full flex flex-wrap border-t-2 border-stone-600"
+                        >
+                          <div className="flex-1 border-r-4 border-black p-2 text-center">
+                            {index + 1}
+                          </div>
+                          <div className="flex-1 border-r-4 border-black p-2 text-center">
+                            {row.ram}/{row.storage}
+                          </div>
+                          <div className="flex-1 p-2 text-center">
+                            {row.price}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 <div className="p-4 text-black text-lg md:text-xl font-semibold mt-4">
                   {targetTablets.blog || "..."}
                 </div>

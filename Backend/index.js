@@ -56,8 +56,12 @@ app.post("/addProduct", async (req, res) => {
     os,
     processor,
     graphics,
-    memory,
-    storage,
+    ram1,
+    ram2,
+    ram3,
+    storage1,
+    storage2,
+    storage3,
     capacity,
     charging,
     wifi,
@@ -70,7 +74,9 @@ app.post("/addProduct", async (req, res) => {
     maincamera,
     frontcamera,
     video,
-    price,
+    price1,
+    price2,
+    price3,
     image,
     blog,
   } = req.body;
@@ -87,8 +93,12 @@ app.post("/addProduct", async (req, res) => {
     !os ||
     !processor ||
     !graphics ||
-    !memory ||
-    !storage ||
+    !ram1 ||
+    !ram2 ||
+    !ram3 ||
+    !storage1 ||
+    !storage2 ||
+    !storage3 ||
     !capacity ||
     !charging ||
     !wifi ||
@@ -101,7 +111,9 @@ app.post("/addProduct", async (req, res) => {
     !maincamera ||
     !frontcamera ||
     !video ||
-    !price ||
+    !price1 ||
+    !price2 ||
+    !price3 ||
     !image ||
     !blog
   )
@@ -125,8 +137,12 @@ app.post("/addProduct", async (req, res) => {
         os,
         processor,
         graphics,
-        memory,
-        storage,
+        ram1,
+        ram2,
+        ram3,
+        storage1,
+        storage2,
+        storage3,
         capacity,
         charging,
         wifi,
@@ -139,7 +155,9 @@ app.post("/addProduct", async (req, res) => {
         maincamera,
         frontcamera,
         video,
-        price,
+        price1,
+        price2,
+        price3,
         image,
         blog,
       });
@@ -226,8 +244,12 @@ app.post("/modify/:id", async (req, res) => {
       os,
       processor,
       graphics,
-      memory,
-      storage,
+      ram1,
+      ram2,
+      ram3,
+      storage1,
+      storage2,
+      storage3,
       capacity,
       charging,
       wifi,
@@ -240,7 +262,9 @@ app.post("/modify/:id", async (req, res) => {
       maincamera,
       frontcamera,
       video,
-      price,
+      price1,
+      price2,
+      price3,
       image,
       blog,
     } = req.body;
@@ -260,8 +284,12 @@ app.post("/modify/:id", async (req, res) => {
         os,
         processor,
         graphics,
-        memory,
-        storage,
+        ram1,
+        ram2,
+        ram3,
+        storage1,
+        storage2,
+        storage3,
         capacity,
         charging,
         wifi,
@@ -274,7 +302,9 @@ app.post("/modify/:id", async (req, res) => {
         maincamera,
         frontcamera,
         video,
-        price,
+        price1,
+        price2,
+        price3,
         image,
         blog,
       }

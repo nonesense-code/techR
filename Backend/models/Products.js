@@ -21,11 +21,27 @@ const productSchema = new mongoose.Schema({
     // required: true,
   },
 
-  memory: {
+  ram1: {
     type: String,
     // required: true,
   },
-  storage: {
+  ram2: {
+    type: String,
+    // required: true,
+  },
+  ram3: {
+    type: String,
+    // required: true,
+  },
+  storage1: {
+    type: String,
+    // required: true,
+  },
+  storage2: {
+    type: String,
+    // required: true,
+  },
+  storage3: {
     type: String,
     // required: true,
   },
@@ -101,7 +117,15 @@ const productSchema = new mongoose.Schema({
     type: String,
     // required: true,
   },
-  price: {
+  price1: {
+    type: String,
+    // required: true,
+  },
+  price2: {
+    type: String,
+    // required: true,
+  },
+  price3: {
     type: String,
     // required: true,
   },
