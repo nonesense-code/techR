@@ -54,6 +54,7 @@ function LaptopBlog() {
     .filter(Boolean)
     .filter((row) => row.ram && row.storage && row.price);
 
+  console.log(rows);
   useEffect(() => {
     const loadData = async () => {
       const allLaptops = await fetchData(backendURL);
@@ -152,7 +153,7 @@ function LaptopBlog() {
                     <img
                       src={targetLaptops.image}
                       alt={targetLaptops.name}
-                      className="w-full md:max-w-[400px] bg-white md:w-auto min-h-80 sm:h-96 object-cover rounded-xl"
+                      className="w-auto bg-white min-h-80 sm:h-96 object-cover rounded-xl"
                     />
                   </div>
                   <div className="w-full h-auto overflow-hidden flex flex-col gap-4 mt-2 text-2xl text-[#002] items-start justify-end">

@@ -8,7 +8,7 @@ function Qnas(props) {
   }, []);
   const queries = [
     {
-      qns: "Best product of 2024",
+      qns: "Best Phones of 2024",
       ans: [
         "Iphone 15 Pro Max",
         "Samsung Galaxy S24 Ultra",
@@ -53,16 +53,17 @@ function Qnas(props) {
     {
       qns: "Most sold of 2024",
       ans: [
-        "Smartphones",
-        "Laptops",
-        "Smart Home Appliances",
-        "Wearables",
-        "Gaming Consoles",
-        "Google Nest HUB",
-        "Amazon Echo",
-        "PlayStation",
-        "Smart Speakers",
-        "Drones",
+        "iPhone 15 Pro Max",
+        "Galaxy S24 Ultra",
+        "Galaxy A54 5G",
+        "Lenovo’s ThinkPad X1",
+        "HP Envy x360",
+        "Apple MacBook Air (M2)",
+        "Asus ROG Zephyrus G14",
+        "Acer Aspire 5",
+        "iPad Pro (M2)",
+        "Samsung Galaxy Tab S9",
+        "Apple iPad Air (M2)",
       ],
     },
     {
