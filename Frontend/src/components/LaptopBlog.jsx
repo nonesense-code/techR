@@ -3,7 +3,6 @@ import Navbar from "./HomePage/Navbar";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { easeInOut, motion } from "framer-motion";
-import CircularLoader from "../CircularLoader";
 
 const backendURL = import.meta.env.VITE_BACKEND_URL;
 
@@ -23,7 +22,6 @@ const fetchData = async () => {
 };
 
 function LaptopBlog() {
-  const [loading, setLoading] = useState(true);
   const [laptops, setLaptops] = useState([]);
   const [targetLaptops, setTargetLaptops] = useState({});
   const [product, setProduct] = useState([]);
@@ -61,7 +59,6 @@ function LaptopBlog() {
       setLaptops(allLaptops);
       const allProducts = await fetchData(backendURL);
       setProduct(allProducts);
-      setLoading(false);
     };
 
     loadData();
@@ -72,7 +69,6 @@ function LaptopBlog() {
       try {
         const response = await axios.get(`${backendURL}/${itname}`);
         setTargetLaptops(response.data);
-        setLoading(false);
       } catch (error) {
         console.error("Error fetching target laptop:", error);
       }
@@ -89,14 +85,6 @@ function LaptopBlog() {
     });
   }, [itname]);
 
-  if (loading) {
-    return (
-      <div className="h-screen w-full flex items-center justify-center">
-        <CircularLoader />
-      </div>
-    );
-  }
-
   return (
     <>
       <Navbar />
@@ -109,7 +97,7 @@ function LaptopBlog() {
         <div className="h-full w-auto">
           <div className="w-auto max-w-7xl">
             <div className="flex flex-col md:flex-row items-start justify-between border-b-4 border-black/10">
-              <div className="hidden md:flex w-full md:w-1/3 h-auto">
+              <div className="hidden lg:flex w-full md:w-1/3 h-auto">
                 <div className="flex flex-col gap-4 items-center h-full">
                   <h1 className="text-2xl">Popular</h1>
                   <div className="hidescroller w-full pt-4 flex flex-col gap-8 items-center overflow-y-auto p-4 h-[800px]">

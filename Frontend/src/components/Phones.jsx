@@ -3,10 +3,8 @@ import Navbar from "./HomePage/Navbar";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import CircularLoader from "../CircularLoader";
 function Phones() {
   const [phones, setPhones] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   const backendURL = import.meta.env.VITE_BACKEND_URL;
 
@@ -14,7 +12,6 @@ function Phones() {
     const fetchPhones = async () => {
       try {
         const response = await axios.get(`${backendURL}`);
-        setLoading(false);
         if (Array.isArray(response.data)) {
           setPhones(response.data);
         } else {
@@ -39,58 +36,54 @@ function Phones() {
   return (
     <div className="h-screen w-full">
       <Navbar />
-      {loading ? (
-        <CircularLoader />
-      ) : (
-        <div className="h-screen w-full">
-          <div className="container mx-auto px-4 py-8">
-            <h1 className="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800">
-              Available Phones
-            </h1>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
-            >
-              {phones.length > 0 &&
-                phones.map(
-                  (phone, index) =>
-                    phone.productType === "phone" && (
-                      <motion.div
-                        whileHover={{
-                          scale: 1.03,
-                          duration: 0.4,
-                        }}
-                        key={index}
-                        className="bg-white shadow-lg rounded-lg overflow-hidden"
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5 }}
+        className="h-screen w-full"
+      >
+        <div className="container mx-auto px-4 py-8">
+          <h1 className="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800">
+            Available Phones
+          </h1>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {phones.length > 0 &&
+              phones.map(
+                (phone, index) =>
+                  phone.productType === "phone" && (
+                    <motion.div
+                      whileHover={{
+                        scale: 1.03,
+                        duration: 0.4,
+                      }}
+                      key={index}
+                      className="bg-white shadow-lg rounded-lg overflow-hidden"
+                    >
+                      <Link
+                        to={`${phone.name.toLowerCase().split(" ").join("")}`}
+                        className="block"
                       >
-                        <Link
-                          to={`${phone.name.toLowerCase().split(" ").join("")}`}
-                          className="block"
-                        >
-                          <img
-                            src={phone.image}
-                            alt={phone.name}
-                            className="w-full h-full object-cover"
-                          />
-                          <div className="p-4">
-                            <h2 className="text-xl font-semibold text-gray-800">
-                              {phone.name}
-                            </h2>
-                            <p className="text-gray-600 mt-2">
-                              {(phone.blog && truncateText(phone.blog, 20)) ||
-                                "No description available"}{" "}
-                            </p>
-                          </div>
-                        </Link>
-                      </motion.div>
-                    )
-                )}
-            </motion.div>
+                        <img
+                          src={phone.image}
+                          alt={phone.name}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="p-4">
+                          <h2 className="text-xl font-semibold text-gray-800">
+                            {phone.name}
+                          </h2>
+                          <p className="text-gray-600 mt-2">
+                            {(phone.blog && truncateText(phone.blog, 20)) ||
+                              "No description available"}{" "}
+                          </p>
+                        </div>
+                      </Link>
+                    </motion.div>
+                  )
+              )}
           </div>
         </div>
-      )}
+      </motion.div>
     </div>
   );
 }

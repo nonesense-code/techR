@@ -119,7 +119,7 @@ function Qnas(props) {
                   visibleIndex === index ? "block" : "hidden"
                 } bg-[#232F3E]/10 rounded-b-xl text-black`}
               >
-                <div className="flex flex-col items-center justify-center rounded-b-xl ml-4">
+                <div className="flex flex-col items-center justify-center rounded-b-xl">
                   {item.ans.map((inneritem, innerindex) => (
                     <div
                       key={innerindex}
@@ -136,14 +136,16 @@ function Qnas(props) {
       )}
 
       {responsive === "phone" && (
-        <div className={`sm:hidden flex flex-col w-auto px-4 py-6 rounded-lg`}>
+        <div
+          className={`sm:hidden flex flex-col items-center justify-center px-4 py-6 rounded-lg w-full`}
+        >
           {queries.map((item, index) => (
             <div
               key={index}
-              className="w-full p-2 mb-2 cursor-pointer text-[#003] text-lg md:text-xl font-semibold tracking-tighter"
+              className="w-[80%] p-2 mb-2 cursor-pointer text-[#003] font-semibold items-center justify-center"
               onClick={() => toggleAnswer(index)}
             >
-              <div className="rounded-lg w-auto border-2 border-stone-500 bg-zinc-400/60 px-4 py-2 text-center">
+              <div className="rounded-lg w-auto border-2 border-stone-500 bg-zinc-400/60 px-4 py-2 text-center text-sm">
                 {item.qns}
               </div>
               <motion.div
@@ -156,11 +158,15 @@ function Qnas(props) {
                   visibleIndex === index ? "block" : "hidden"
                 } bg-[#232F3E]/10 rounded-b-xl text-black`}
               >
-                <div className="flex flex-col items-center justify-center rounded-b-xl ml-4">
+                <div className="flex flex-col items-center justify-center rounded-b-xl">
                   {item.ans.map((inneritem, innerindex) => (
                     <div
                       key={innerindex}
-                      className="my-1 text-[18px] font-semibold"
+                      className={`my-1 text-[12px] font-semibold ${
+                        innerindex < item.ans.length - 1
+                          ? "border-b-2 border-black/80"
+                          : "border-b-0"
+                      } w-full text-center`}
                     >
                       {inneritem}
                     </div>

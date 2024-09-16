@@ -27,11 +27,12 @@ const Trending = () => {
   }, []);
 
   return (
-    <div className="flex items-center justify-evenly flex-wrap gap-2">
-      <div className="bg-black text-orange-600 text-2xl rounded-sm p-2">
+    <div className="flex items-center justify-center flex-wrap gap-2 mt-8 w-full">
+      <div className="bg-black text-orange-600 rounded-sm p-2 text-center w-auto text-[20px] md:text-xl lg:text-2xl whitespace-nowrap">
         Trending
       </div>
-      <div className="text-xl bg-zinc-400 p-2 rounded-sm">
+
+      <div className="bg-zinc-400 p-2 rounded-sm text-[12px] md:text-xl lg:text-2xl">
         <span ref={typedElement} />
       </div>
     </div>
