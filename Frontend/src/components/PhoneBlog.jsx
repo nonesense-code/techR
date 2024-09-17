@@ -138,8 +138,11 @@ function PhoneBlog() {
                 <div className="w-full h-auto p-4 flex flex-col gap-12 md:gap-4">
                   <div className="w-full h-auto overflow-hidden flex items-center justify-center">
                     <img
-                      src={targetPhones.image}
-                      alt={`https://plus.unsplash.com/premium_photo-1681680199361-bd62dc8de311?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHBob25lcyUyMGJsdXJ5fGVufDB8fDB8fHww`}
+                      src={
+                        targetPhones.image ||
+                        "https://plus.unsplash.com/premium_photo-1681680199361-bd62dc8de311?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHBob25lcyUyMGJsdXJ5fGVufDB8fDB8fHww"
+                      }
+                      alt={targetPhones.name}
                       className="w-full md:max-w-[400px] bg-white md:w-auto min-h-80 sm:h-96 object-cover rounded-xl"
                     />
                   </div>
