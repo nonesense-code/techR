@@ -176,7 +176,7 @@ function PhoneBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetPhones.dimension || "Not found"}
+                            {targetPhones.dimension || "..."}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -186,7 +186,7 @@ function PhoneBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetPhones.build || "Not found"}
+                            {targetPhones.build || "..."}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -196,7 +196,7 @@ function PhoneBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetPhones.weight || "Not found"}
+                            {targetPhones.weight || "..."}
                           </div>
                         </div>
                       </div>
@@ -235,7 +235,7 @@ function PhoneBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetPhones.dtype || "Not found"}
+                            {targetPhones.dtype || "..."}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -245,7 +245,7 @@ function PhoneBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetPhones.size || "Not found"}
+                            {targetPhones.size || "..."}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -255,7 +255,7 @@ function PhoneBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetPhones.resolution || "Not found"}
+                            {targetPhones.resolution || "..."}
                           </div>
                         </div>
                       </div>
@@ -292,7 +292,7 @@ function PhoneBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetPhones.maincamera || "Not found"}
+                            {targetPhones.maincamera || "..."}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -302,7 +302,7 @@ function PhoneBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetPhones.frontcamera || "Not found"}
+                            {targetPhones.frontcamera || "..."}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -312,7 +312,7 @@ function PhoneBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetPhones.video || "Not found"}
+                            {targetPhones.video || "..."}
                           </div>
                         </div>
                       </div>
@@ -351,7 +351,7 @@ function PhoneBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetPhones.os || "Not found"}
+                            {targetPhones.os || "..."}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -361,7 +361,7 @@ function PhoneBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetPhones.processor || "Not found"}
+                            {targetPhones.processor || "..."}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -371,7 +371,7 @@ function PhoneBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetPhones.graphics || "Not found"}
+                            {targetPhones.graphics || "..."}
                           </div>
                         </div>
                       </div>
@@ -473,7 +473,7 @@ function PhoneBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetPhones.capacity || "Not found"}
+                            {targetPhones.capacity || "..."}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -483,7 +483,7 @@ function PhoneBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetPhones.charging || "Not found"}
+                            {targetPhones.charging || "..."}
                           </div>
                         </div>
                       </div>
@@ -522,7 +522,7 @@ function PhoneBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetPhones.wifi || "Not found"}
+                            {targetPhones.wifi || "..."}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -532,7 +532,7 @@ function PhoneBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetPhones.bluetooth || "Not found"}
+                            {targetPhones.bluetooth || "..."}
                           </div>
                         </div>
                       </div>
@@ -569,7 +569,7 @@ function PhoneBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetPhones.typec || "Not found"}
+                            {targetPhones.typec || "..."}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -579,7 +579,7 @@ function PhoneBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetPhones.audiojack || "Not found"}
+                            {targetPhones.audiojack || "..."}
                           </div>
                         </div>
                       </div>

@@ -177,7 +177,7 @@ function LaptopBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.dimension || "Not found"}
+                            {targetLaptops.dimension || "..."}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -187,7 +187,7 @@ function LaptopBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.build || "Not found"}
+                            {targetLaptops.build || "..."}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -197,7 +197,7 @@ function LaptopBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.weight || "Not found"}
+                            {targetLaptops.weight || "..."}
                           </div>
                         </div>
                       </div>
@@ -236,7 +236,7 @@ function LaptopBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.dtype || "Not found"}
+                            {targetLaptops.dtype || "..."}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -246,7 +246,7 @@ function LaptopBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.size || "Not found"}
+                            {targetLaptops.size || "..."}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -256,7 +256,7 @@ function LaptopBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.resolution || "Not found"}
+                            {targetLaptops.resolution || "..."}
                           </div>
                         </div>
                       </div>
@@ -293,7 +293,7 @@ function LaptopBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.frontcamera || "Not found"}
+                            {targetLaptops.frontcamera || "..."}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -303,7 +303,7 @@ function LaptopBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.video || "Not found"}
+                            {targetLaptops.video || "..."}
                           </div>
                         </div>
                       </div>
@@ -342,7 +342,7 @@ function LaptopBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.os || "Not found"}
+                            {targetLaptops.os || "..."}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -352,7 +352,7 @@ function LaptopBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.processor || "Not found"}
+                            {targetLaptops.processor || "..."}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -362,7 +362,7 @@ function LaptopBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.graphics || "Not found"}
+                            {targetLaptops.graphics || "..."}
                           </div>
                         </div>
                       </div>
@@ -464,7 +464,7 @@ function LaptopBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.capacity || "Not found"}
+                            {targetLaptops.capacity || "..."}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -474,7 +474,7 @@ function LaptopBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.charging || "Not found"}
+                            {targetLaptops.charging || "..."}
                           </div>
                         </div>
                       </div>
@@ -513,7 +513,7 @@ function LaptopBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.wifi || "Not found"}
+                            {targetLaptops.wifi || "..."}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -523,7 +523,7 @@ function LaptopBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.bluetooth || "Not found"}
+                            {targetLaptops.bluetooth || "..."}
                           </div>
                         </div>
                       </div>
@@ -560,7 +560,7 @@ function LaptopBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.typec || "Not found"}
+                            {targetLaptops.typec || "..."}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -570,7 +570,7 @@ function LaptopBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.audiojack || "Not found"}
+                            {targetLaptops.audiojack || "..."}
                           </div>
                         </div>
                       </div>

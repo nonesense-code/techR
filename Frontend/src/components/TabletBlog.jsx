@@ -176,7 +176,7 @@ function TabletBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetTablets.dimension || "Not found"}
+                            {targetTablets.dimension || "..."}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -186,7 +186,7 @@ function TabletBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetTablets.build || "Not found"}
+                            {targetTablets.build || "..."}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -196,7 +196,7 @@ function TabletBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetTablets.weight || "Not found"}
+                            {targetTablets.weight || "..."}
                           </div>
                         </div>
                       </div>
@@ -235,7 +235,7 @@ function TabletBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetTablets.dtype || "Not found"}
+                            {targetTablets.dtype || "..."}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -245,7 +245,7 @@ function TabletBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetTablets.size || "Not found"}
+                            {targetTablets.size || "..."}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -255,7 +255,7 @@ function TabletBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetTablets.resolution || "Not found"}
+                            {targetTablets.resolution || "..."}
                           </div>
                         </div>
                       </div>
@@ -292,7 +292,7 @@ function TabletBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetTablets.maincamera || "Not found"}
+                            {targetTablets.maincamera || "..."}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -302,7 +302,7 @@ function TabletBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetTablets.frontcamera || "Not found"}
+                            {targetTablets.frontcamera || "..."}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -312,7 +312,7 @@ function TabletBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetTablets.video || "Not found"}
+                            {targetTablets.video || "..."}
                           </div>
                         </div>
                       </div>
@@ -351,7 +351,7 @@ function TabletBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetTablets.os || "Not found"}
+                            {targetTablets.os || "..."}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -361,7 +361,7 @@ function TabletBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetTablets.processor || "Not found"}
+                            {targetTablets.processor || "..."}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -371,7 +371,7 @@ function TabletBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetTablets.graphics || "Not found"}
+                            {targetTablets.graphics || "..."}
                           </div>
                         </div>
                       </div>
@@ -473,7 +473,7 @@ function TabletBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetTablets.capacity || "Not found"}
+                            {targetTablets.capacity || "..."}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -483,7 +483,7 @@ function TabletBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetTablets.charging || "Not found"}
+                            {targetTablets.charging || "..."}
                           </div>
                         </div>
                       </div>
@@ -522,7 +522,7 @@ function TabletBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetTablets.wifi || "Not found"}
+                            {targetTablets.wifi || "..."}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -532,7 +532,7 @@ function TabletBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetTablets.bluetooth || "Not found"}
+                            {targetTablets.bluetooth || "..."}
                           </div>
                         </div>
                       </div>
@@ -569,7 +569,7 @@ function TabletBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetTablets.typec || "Not found"}
+                            {targetTablets.typec || "..."}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -579,7 +579,7 @@ function TabletBlog() {
                             </h1>
                           </div>
                           <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetTablets.audiojack || "Not found"}
+                            {targetTablets.audiojack || "..."}
                           </div>
                         </div>
                       </div>
