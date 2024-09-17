@@ -140,11 +140,14 @@ function PhoneBlog() {
                     <img
                       src={
                         targetPhones.image ||
-                        "https://plus.unsplash.com/premium_photo-1681680199361-bd62dc8de311?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHBob25lcyUyMGJsdXJ5fGVufDB8fDB8fHww"
+                        "https://global.discourse-cdn.com/inductiveautomation/original/2X/9/97d457372f6c14182b686ecfdf5d4067df5e9373.png"
                       }
                       alt={targetPhones.name}
                       className="w-full md:max-w-[400px] bg-white md:w-auto min-h-80 sm:h-96 object-cover rounded-xl"
                     />
+                  </div>
+                  <div className="text-black text-lg md:text-xl font-semibold text-ellipsis">
+                    {targetPhones.blog || "..."}
                   </div>
                   <div className="w-full h-auto overflow-hidden flex flex-col gap-4 mt-2 text-2xl text-[#002] items-start justify-end">
                     <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
@@ -624,10 +627,6 @@ function PhoneBlog() {
                     </div>
                   </div>
                 )}
-
-                <div className="p-4 text-black text-lg md:text-xl font-semibold mt-4">
-                  {targetPhones.blog || "..."}
-                </div>
               </div>
             </div>
           </div>

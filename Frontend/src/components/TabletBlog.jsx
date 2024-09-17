@@ -143,6 +143,9 @@ function TabletBlog() {
                       className="w-auto bg-white min-h-80 sm:h-96 object-cover rounded-xl"
                     />
                   </div>
+                  <div className="p-4 text-black text-lg md:text-xl font-semibold mt-4">
+                    {targetTablets.blog || "..."}
+                  </div>
                   <div className="w-full h-auto overflow-hidden flex flex-col gap-4 mt-2 text-2xl text-[#002] items-start justify-end">
                     <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
                       <div className="hidden md:flex flex-col mr-6 leading-tighter">
@@ -620,10 +623,6 @@ function TabletBlog() {
                     </div>
                   </div>
                 )}
-
-                <div className="p-4 text-black text-lg md:text-xl font-semibold mt-4">
-                  {targetTablets.blog || "..."}
-                </div>
               </div>
             </div>
           </div>
