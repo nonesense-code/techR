@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./HomePage/Navbar";
 import axios from "axios";
+import Footer from "./Footer";
+
 function Filter() {
   const [deviceType, setDeviceType] = useState("");
 
@@ -9,7 +11,7 @@ function Filter() {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(`${backendURL}`);
-        response.data.map((item, index) => console.log(item.processor));
+        // response.data.map((item) => console.log(item.processor));
         if (Array.isArray(response.data)) {
         } else {
           console.error("Data is not in the expected format:", response.data);
@@ -185,6 +187,7 @@ function Filter() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

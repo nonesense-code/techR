@@ -69,7 +69,7 @@ function Phones() {
                           className="w-full h-full object-cover"
                         />
                         <div className="p-4">
-                          <h2 className="text-xl font-semibold text-gray-800">
+                          <h2 className="text-xl text-black text-center font-extrabold">
                             {phone.name}
                           </h2>
                           <p className="text-gray-600 mt-2">

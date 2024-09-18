@@ -188,6 +188,7 @@ app.get("/product/api/:name", async (req, res) => {
       if (dbName === name) {
         id = item.id;
       }
+      return;
     });
     const sendData = await productModel.findOne({ _id: id });
     res.json(sendData);

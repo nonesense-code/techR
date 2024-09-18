@@ -3,6 +3,7 @@ import Navbar from "./HomePage/Navbar";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { easeInOut, motion } from "framer-motion";
+import Footer from "./Footer";
 
 const backendURL = import.meta.env.VITE_BACKEND_URL;
 
@@ -27,23 +28,25 @@ function LaptopBlog() {
   const [product, setProduct] = useState([]);
   const { itname } = useParams();
 
-  const hasMultipleOptions =
+  const row1 =
+    targetLaptops.ram1 || targetLaptops.storage1 || targetLaptops.price1;
+  const row2 =
     targetLaptops.ram2 || targetLaptops.storage2 || targetLaptops.price2;
-  const hasThreeOptions =
+  const row3 =
     targetLaptops.ram3 || targetLaptops.storage3 || targetLaptops.price3;
 
   const rows = [
-    {
+    row1 && {
       ram: targetLaptops.ram1,
       storage: targetLaptops.storage1,
       price: targetLaptops.price1,
     },
-    hasMultipleOptions && {
+    row2 && {
       ram: targetLaptops.ram2,
       storage: targetLaptops.storage2,
       price: targetLaptops.price2,
     },
-    hasThreeOptions && {
+    row3 && {
       ram: targetLaptops.ram3,
       storage: targetLaptops.storage3,
       price: targetLaptops.price3,
@@ -52,7 +55,6 @@ function LaptopBlog() {
     .filter(Boolean)
     .filter((row) => row.ram && row.storage && row.price);
 
-  console.log(rows);
   useEffect(() => {
     const loadData = async () => {
       const allLaptops = await fetchData(backendURL);
@@ -98,7 +100,7 @@ function LaptopBlog() {
           <div className="w-auto max-w-7xl">
             <div className="flex flex-col md:flex-row items-start justify-between border-b-4 border-black/10">
               <div className="hidden lg:flex w-full md:w-1/3 h-auto">
-                <div className="flex flex-col gap-4 items-center h-full">
+                <div className="flex flex-col gap-4 items-center h-full mt-4">
                   <h1 className="text-2xl">Popular</h1>
                   <div className="hidescroller w-full pt-4 flex flex-col gap-8 items-center overflow-y-auto p-4 h-[800px]">
                     {laptops
@@ -148,67 +150,12 @@ function LaptopBlog() {
                     {targetLaptops.blog || "..."}
                   </div>
                   <div className="w-full h-auto overflow-hidden flex flex-col gap-4 mt-2 text-2xl text-[#002] items-start justify-end">
-                    <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                      <div className="hidden md:flex flex-col mr-6 leading-tighter">
-                        {["B", "O", "D", "Y"].map((item, index) => (
-                          <motion.div
-                            key={index}
-                            initial={{ x: 0, scale: 1 }}
-                            animate={{
-                              x: 4,
-                              scale: 1.2,
-                              color: "#001",
-                            }}
-                            transition={{
-                              delay: index * 0.9,
-                              duration: 4,
-                              repeat: Infinity,
-                              repeatType: "reverse",
-                              ease: easeInOut,
-                            }}
-                            className="text-lg md:text-xl text-center text-red font-bold"
-                          >
-                            {item}
-                          </motion.div>
-                        ))}
-                      </div>
-                      <div className="flex flex-col w-full gap-2">
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                              Dimension:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.dimension || "..."}
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                              Build:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.build || "..."}
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                              Weight:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.weight || "..."}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                      <div className="hidden md:flex flex-col mr-6 leading-tighter">
-                        {["D", "I", "S", "P", "L", "A", "Y"].map(
-                          (item, index) => (
+                    {(targetLaptops.dimension ||
+                      targetLaptops.build ||
+                      targetLaptops.weight) && (
+                      <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
+                        <div className="hidden md:flex flex-col mr-6 leading-tighter">
+                          {["B", "O", "D", "Y"].map((item, index) => (
                             <motion.div
                               key={index}
                               initial={{ x: 0, scale: 1 }}
@@ -228,93 +175,121 @@ function LaptopBlog() {
                             >
                               {item}
                             </motion.div>
-                          )
-                        )}
-                      </div>
-                      <div className="flex flex-col w-full gap-2">
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                              Type:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.dtype || "..."}
-                          </div>
+                          ))}
                         </div>
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                              Size:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.size || "..."}
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                              Resolution:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.resolution || "..."}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                      <div className="hidden md:flex flex-col mr-6 leading-tighter">
-                        {["C", "A", "M", "E", "R", "A"].map((item, index) => (
-                          <motion.div
-                            key={index}
-                            initial={{ x: 0, scale: 1 }}
-                            animate={{
-                              x: 4,
-                              scale: 1.2,
-                              color: "#001",
-                            }}
-                            transition={{
-                              delay: index * 0.9,
-                              duration: 4,
-                              repeat: Infinity,
-                              repeatType: "reverse",
-                              ease: easeInOut,
-                            }}
-                            className="text-lg md:text-xl text-center text-red font-bold"
-                          >
-                            {item}
-                          </motion.div>
-                        ))}
-                      </div>
-                      <div className="flex flex-col w-full gap-2">
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] mr-6 md:text-lg w-[96px] font-extrabold text-green-600 whitespace-nowrap">
-                              FrontCamera:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.frontcamera || "..."}
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                              Video:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.video || "..."}
-                          </div>
+                        <div className="flex flex-col w-full gap-2">
+                          {targetLaptops.dimension && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
+                                  Dimension:
+                                </h1>
+                              </div>
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetLaptops.dimension || "..."}
+                              </div>
+                            </div>
+                          )}
+                          {targetLaptops.build && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
+                                  Build:
+                                </h1>
+                              </div>
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetLaptops.build || "..."}
+                              </div>
+                            </div>
+                          )}
+                          {targetLaptops.weight && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
+                                  Weight:
+                                </h1>
+                              </div>
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetLaptops.weight || "..."}
+                              </div>
+                            </div>
+                          )}
                         </div>
                       </div>
-                    </div>
-                    <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                      <div className="hidden md:flex flex-col mr-6 leading-tighter">
-                        {["P", "L", "A", "T", "F", "O", "R", "M"].map(
-                          (item, index) => (
+                    )}
+                    {(targetLaptops.dtype ||
+                      targetLaptops.size ||
+                      targetLaptops.resolution) && (
+                      <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
+                        <div className="hidden md:flex flex-col mr-6 leading-tighter">
+                          {["D", "I", "S", "P", "L", "A", "Y"].map(
+                            (item, index) => (
+                              <motion.div
+                                key={index}
+                                initial={{ x: 0, scale: 1 }}
+                                animate={{
+                                  x: 4,
+                                  scale: 1.2,
+                                  color: "#001",
+                                }}
+                                transition={{
+                                  delay: index * 0.9,
+                                  duration: 4,
+                                  repeat: Infinity,
+                                  repeatType: "reverse",
+                                  ease: easeInOut,
+                                }}
+                                className="text-lg md:text-xl text-center text-red font-bold"
+                              >
+                                {item}
+                              </motion.div>
+                            )
+                          )}
+                        </div>
+                        <div className="flex flex-col w-full gap-2">
+                          {targetLaptops.dtype && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
+                                  Type:
+                                </h1>
+                              </div>
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetLaptops.dtype || "..."}
+                              </div>
+                            </div>
+                          )}
+                          {targetLaptops.size && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
+                                  Size:
+                                </h1>
+                              </div>
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetLaptops.size || "..."}
+                              </div>
+                            </div>
+                          )}
+                          {targetLaptops.resolution && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
+                                  Resolution:
+                                </h1>
+                              </div>
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetLaptops.resolution || "..."}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )}
+                    {(targetLaptops.frontcamera || targetLaptops.video) && (
+                      <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
+                        <div className="hidden md:flex flex-col mr-6 leading-tighter">
+                          {["C", "A", "M", "E", "R", "A"].map((item, index) => (
                             <motion.div
                               key={index}
                               initial={{ x: 0, scale: 1 }}
@@ -334,109 +309,111 @@ function LaptopBlog() {
                             >
                               {item}
                             </motion.div>
-                          )
-                        )}
-                      </div>
-                      <div className="flex flex-col w-full gap-2">
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                              OS:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.os || "..."}
-                          </div>
+                          ))}
                         </div>
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                              Processor:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.processor || "..."}
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                              GPU:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.graphics || "..."}
-                          </div>
+                        <div className="flex flex-col w-full gap-2">
+                          {targetLaptops.frontcamera && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] mr-6 md:text-lg w-[96px] font-extrabold text-green-600 whitespace-nowrap">
+                                  FrontCamera:
+                                </h1>
+                              </div>
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetLaptops.frontcamera || "..."}
+                              </div>
+                            </div>
+                          )}
+                          {targetLaptops.video && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
+                                  Video:
+                                </h1>
+                              </div>
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetLaptops.video || "..."}
+                              </div>
+                            </div>
+                          )}
                         </div>
                       </div>
-                    </div>
-                    <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                      <div className="hidden md:flex flex-col mr-6">
-                        {["M", "E", "M", "O", "R", "Y"].map((item, index) => (
-                          <motion.div
-                            key={index}
-                            initial={{ x: 0, scale: 1 }}
-                            animate={{
-                              x: 4,
-                              scale: 1.2,
-                              color: "#001",
-                            }}
-                            transition={{
-                              delay: index * 0.9,
-                              duration: 4,
-                              repeat: Infinity,
-                              repeatType: "reverse",
-                              ease: easeInOut,
-                            }}
-                            className="text-lg md:text-xl text-center text-red font-bold"
-                          >
-                            {item}
-                          </motion.div>
-                        ))}
-                      </div>
-                      <div className="flex flex-col w-full gap-2">
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                              RAM:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] flex gap-2 w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {rows.map(
-                              (row, index) =>
-                                row && (
-                                  <div key={index}>
-                                    {row.ram}
-                                    {index < rows.length - 1 && ","}
-                                  </div>
-                                )
-                            )}
-                          </div>
+                    )}
+                    {(targetLaptops.os ||
+                      targetLaptops.processor ||
+                      targetLaptops.graphics) && (
+                      <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
+                        <div className="hidden md:flex flex-col mr-6 leading-tighter">
+                          {["P", "L", "A", "T", "F", "O", "R", "M"].map(
+                            (item, index) => (
+                              <motion.div
+                                key={index}
+                                initial={{ x: 0, scale: 1 }}
+                                animate={{
+                                  x: 4,
+                                  scale: 1.2,
+                                  color: "#001",
+                                }}
+                                transition={{
+                                  delay: index * 0.9,
+                                  duration: 4,
+                                  repeat: Infinity,
+                                  repeatType: "reverse",
+                                  ease: easeInOut,
+                                }}
+                                className="text-lg md:text-xl text-center text-red font-bold"
+                              >
+                                {item}
+                              </motion.div>
+                            )
+                          )}
                         </div>
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                              Storage:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] flex gap-2 w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {rows.map(
-                              (row, index) =>
-                                row && (
-                                  <div key={index}>
-                                    {row.storage}
-                                    {index < rows.length - 1 && ","}
-                                  </div>
-                                )
-                            )}
-                          </div>
+                        <div className="flex flex-col w-full gap-2">
+                          {targetLaptops.os && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
+                                  OS:
+                                </h1>
+                              </div>
+
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetLaptops.os || "..."}
+                              </div>
+                            </div>
+                          )}
+                          {targetLaptops.processor && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
+                                  Processor:
+                                </h1>
+                              </div>
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetLaptops.processor || "..."}
+                              </div>
+                            </div>
+                          )}
+                          {targetLaptops.graphics && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
+                                  GPU:
+                                </h1>
+                              </div>
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetLaptops.graphics || "..."}
+                              </div>
+                            </div>
+                          )}
                         </div>
                       </div>
-                    </div>
-                    <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                      <div className="hidden md:flex flex-col mr-6">
-                        {["B", "A", "T", "T", "E", "R", "Y"].map(
-                          (item, index) => (
+                    )}
+
+                    {rows.length > 0 && (
+                      <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
+                        <div className="hidden md:flex flex-col mr-6">
+                          {["M", "E", "M", "O", "R", "Y"].map((item, index) => (
                             <motion.div
                               key={index}
                               initial={{ x: 0, scale: 1 }}
@@ -456,36 +433,166 @@ function LaptopBlog() {
                             >
                               {item}
                             </motion.div>
-                          )
-                        )}
-                      </div>
-                      <div className="flex flex-col w-full gap-2">
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                              Capacity:
-                            </h1>
+                          ))}
+                        </div>
+                        <div className="flex flex-col w-full gap-2">
+                          <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-1 p-2 rounded-lg">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
+                                RAM:
+                              </h1>
+                            </div>
+                            <div className="text-[18px] flex gap-2 w-full bg-zinc-200 px-2 rounded-md text-black">
+                              {rows.map(
+                                (row, index) =>
+                                  row && (
+                                    <div key={index}>
+                                      {row.ram}
+                                      {index < rows.length - 1 && ","}
+                                    </div>
+                                  )
+                              )}
+                            </div>
                           </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.capacity || "..."}
+                          <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-1 p-2 rounded-lg">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
+                                Storage:
+                              </h1>
+                            </div>
+                            <div className="text-[18px] flex gap-2 w-full bg-zinc-200 px-2 rounded-md text-black">
+                              {rows.map(
+                                (row, index) =>
+                                  row && (
+                                    <div key={index}>
+                                      {row.storage}
+                                      {index < rows.length - 1 && ","}
+                                    </div>
+                                  )
+                              )}
+                            </div>
                           </div>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                              Charging:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.charging || "..."}
-                          </div>
+                      </div>
+                    )}
+                    {(targetLaptops.capacity || targetLaptops.charging) && (
+                      <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
+                        <div className="hidden md:flex flex-col mr-6">
+                          {["B", "A", "T", "T", "E", "R", "Y"].map(
+                            (item, index) => (
+                              <motion.div
+                                key={index}
+                                initial={{ x: 0, scale: 1 }}
+                                animate={{
+                                  x: 4,
+                                  scale: 1.2,
+                                  color: "#001",
+                                }}
+                                transition={{
+                                  delay: index * 0.9,
+                                  duration: 4,
+                                  repeat: Infinity,
+                                  repeatType: "reverse",
+                                  ease: easeInOut,
+                                }}
+                                className="text-lg md:text-xl text-center text-red font-bold"
+                              >
+                                {item}
+                              </motion.div>
+                            )
+                          )}
+                        </div>
+                        <div className="flex flex-col w-full gap-2">
+                          {targetLaptops.capacity && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
+                                  Capacity:
+                                </h1>
+                              </div>
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetLaptops.capacity || "..."}
+                              </div>
+                            </div>
+                          )}
+                          {targetLaptops.charging && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
+                                  Charging:
+                                </h1>
+                              </div>
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetLaptops.charging || "..."}
+                              </div>
+                            </div>
+                          )}
                         </div>
                       </div>
-                    </div>
-                    <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                      <div className="hidden md:flex flex-col mr-6">
-                        {["N", "E", "T", "W", "O", "R", "K", "S"].map(
-                          (item, index) => (
+                    )}
+                    {(targetLaptops.wifi || targetLaptops.bluetooth) && (
+                      <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
+                        <div className="hidden md:flex flex-col mr-6">
+                          {["N", "E", "T", "W", "O", "R", "K", "S"].map(
+                            (item, index) => (
+                              <motion.div
+                                key={index}
+                                initial={{ x: 0, scale: 1 }}
+                                animate={{
+                                  x: 4,
+                                  scale: 1.2,
+                                  color: "#001",
+                                }}
+                                transition={{
+                                  delay: index * 0.9,
+                                  duration: 4,
+                                  repeat: Infinity,
+                                  repeatType: "reverse",
+                                  ease: easeInOut,
+                                }}
+                                className="text-lg md:text-xl text-center text-red font-bold"
+                              >
+                                {item}
+                              </motion.div>
+                            )
+                          )}
+                        </div>
+                        <div className="flex flex-col w-full gap-2">
+                          {targetLaptops.wifi && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
+                                  Wi-Fi:
+                                </h1>
+                              </div>
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetLaptops.wifi || "..."}
+                              </div>
+                            </div>
+                          )}
+                          {targetLaptops.bluetooth && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
+                                  Bluetooth:
+                                </h1>
+                              </div>
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetLaptops.bluetooth || "..."}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )}
+                    {(targetLaptops.typec ||
+                      targetLaptops.audiojack ||
+                      targetLaptops.ethernet ||
+                      targetLaptops.usba ||
+                      targetLaptops.hdmi) && (
+                      <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
+                        <div className="hidden md:flex flex-col mr-6">
+                          {["P", "O", "R", "T", "S"].map((item, index) => (
                             <motion.div
                               key={index}
                               initial={{ x: 0, scale: 1 }}
@@ -501,93 +608,86 @@ function LaptopBlog() {
                                 repeatType: "reverse",
                                 ease: easeInOut,
                               }}
-                              className="text-lg md:text-xl text-center text-red font-bold"
+                              className="text-lg md:text-xl text-center font-bold"
                             >
                               {item}
                             </motion.div>
-                          )
-                        )}
-                      </div>
-                      <div className="flex flex-col w-full gap-2">
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                              Wi-Fi:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.wifi || "..."}
-                          </div>
+                          ))}
                         </div>
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                              Bluetooth:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.bluetooth || "..."}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                      <div className="hidden md:flex flex-col mr-6">
-                        {["P", "O", "R", "T", "S"].map((item, index) => (
-                          <motion.div
-                            key={index}
-                            initial={{ x: 0, scale: 1 }}
-                            animate={{
-                              x: 4,
-                              scale: 1.2,
-                              color: "#001",
-                            }}
-                            transition={{
-                              delay: index * 0.9,
-                              duration: 4,
-                              repeat: Infinity,
-                              repeatType: "reverse",
-                              ease: easeInOut,
-                            }}
-                            className="text-lg md:text-xl text-center font-bold"
-                          >
-                            {item}
-                          </motion.div>
-                        ))}
-                      </div>
-                      <div className="flex flex-col w-full gap-2">
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                              Type C:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.typec || "..."}
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600 whitespace-nowrap">
-                              Audio Jack:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetLaptops.audiojack || "..."}
-                          </div>
+                        <div className="flex flex-col w-full gap-2">
+                          {targetLaptops.typec && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
+                                  Type C:
+                                </h1>
+                              </div>
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetLaptops.typec || "..."}
+                              </div>
+                            </div>
+                          )}
+                          {targetLaptops.audiojack && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600 whitespace-nowrap">
+                                  Audio Jack:
+                                </h1>
+                              </div>
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetLaptops.audiojack || "..."}
+                              </div>
+                            </div>
+                          )}
+                          {targetLaptops.ethernet && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600 whitespace-nowrap">
+                                  Ethernet:
+                                </h1>
+                              </div>
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetLaptops.ethernet || "..."}
+                              </div>
+                            </div>
+                          )}
+                          {targetLaptops.usba && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600 whitespace-nowrap">
+                                  USB Type A:
+                                </h1>
+                              </div>
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetLaptops.usba || "..."}
+                              </div>
+                            </div>
+                          )}
+                          {targetLaptops.hdmi && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600 whitespace-nowrap">
+                                  HDMI:
+                                </h1>
+                              </div>
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetLaptops.hdmi || "..."}
+                              </div>
+                            </div>
+                          )}
                         </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                 </div>
                 {rows.length > 0 && (
                   <div className="h-auto w-full p-8">
-                    <div className="border-4 border-black rounded-lg w-full flex flex-col">
+                    <div className="border-4 border-black overflow-hidden rounded-lg w-full flex flex-col">
                       <div className="w-full flex flex-wrap bg-gray-200">
-                        <div className="flex-1 border-r-4 border-black p-2 text-center font-bold">
+                        <div className="flex-1 border-r-4 border-black overflow-hidden p-2 text-center font-bold">
                           S.N
                         </div>
-                        <div className="flex-1 border-r-4 border-black p-2 text-center font-bold">
+                        <div className="flex-1 border-r-4 border-black z-20 p-2 text-center font-bold">
                           OPTIONS
                         </div>
                         <div className="flex-1 p-2 text-center font-bold">
@@ -644,7 +744,7 @@ function LaptopBlog() {
                     <div className="w-full sm:w-1/2 flex flex-col p-4">
                       <div className="w-full flex flex-col gap-4 text-center">
                         <div className="">
-                          <div className="text-lg sm:text-xl md:text-2xl whitespace-nowrap justify-center items-center">
+                          <div className="text-lg sm:text-xl md:text-2xl whitespace-nowrap justify-center items-center font-extrabold">
                             {item.name}
                           </div>
                         </div>
@@ -652,20 +752,20 @@ function LaptopBlog() {
                           <motion.div
                             whileHover={{
                               scale: 1.01,
-                              color: "#900",
+                              color: "#232F3E",
                             }}
-                            className="tracking-wide break-words"
+                            className="tracking-wide break-words capitalize"
                           >
                             Categorie:{item.popularity || "Unknown"}
                           </motion.div>
                           <motion.div
                             whileHover={{
                               scale: 1.01,
-                              color: "#900",
+                              color: "#232F3E",
                             }}
                             className="break-words"
                           >
-                            Price:{item.price || "Not mentioned"}
+                            Price:{item.price1 || "Not mentioned"}
                           </motion.div>
                         </div>
                       </div>
@@ -676,6 +776,7 @@ function LaptopBlog() {
           </div>
         </div>
       </motion.div>
+      <Footer />
     </>
   );
 }

@@ -21,7 +21,6 @@ function Landing() {
     const timer = setTimeout(() => {
       setShowFooter(true);
     }, 500);
-
     return () => clearTimeout(timer);
   }, []);
 
@@ -39,7 +38,6 @@ function Landing() {
         console.error("Error fetching product:", error);
       }
     };
-
     fetchProduct();
   }, [backendURL]);
 
@@ -48,7 +46,6 @@ function Landing() {
     if (words.length > wordLimit) {
       return words.slice(0, wordLimit).join(" ") + "...";
     }
-    return text;
   }
 
   return (

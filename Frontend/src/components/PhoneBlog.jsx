@@ -3,6 +3,7 @@ import Navbar from "./HomePage/Navbar";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { motion, easeInOut } from "framer-motion";
+import Footer from "./Footer";
 
 const backendURL = import.meta.env.VITE_BACKEND_URL;
 
@@ -72,7 +73,6 @@ function PhoneBlog() {
         console.error("Error fetching target phone:", error);
       }
     };
-
     fetchTargetPhones();
   }, [itname]);
 
@@ -97,7 +97,7 @@ function PhoneBlog() {
           <div className="w-auto max-w-7xl">
             <div className="flex flex-col md:flex-row items-start justify-between border-b-4 border-black/10">
               <div className="hidden lg:flex w-full md:w-1/3 h-auto">
-                <div className="flex flex-col gap-4 items-center h-full">
+                <div className="flex flex-col gap-4 items-center h-full mt-4">
                   <h1 className="text-2xl">Popular</h1>
                   <div className="hidescroller w-full pt-4 flex flex-col gap-8 items-center overflow-y-auto p-4 h-[800px]">
                     {phones
@@ -150,67 +150,12 @@ function PhoneBlog() {
                     {targetPhones.blog || "..."}
                   </div>
                   <div className="w-full h-auto overflow-hidden flex flex-col gap-4 mt-2 text-2xl text-[#002] items-start justify-end">
-                    <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                      <div className="hidden md:flex flex-col mr-6 leading-tighter">
-                        {["B", "O", "D", "Y"].map((item, index) => (
-                          <motion.div
-                            key={index}
-                            initial={{ x: 0, scale: 1 }}
-                            animate={{
-                              x: 4,
-                              scale: 1.2,
-                              color: "#001",
-                            }}
-                            transition={{
-                              delay: index * 0.9,
-                              duration: 4,
-                              repeat: Infinity,
-                              repeatType: "reverse",
-                              ease: easeInOut,
-                            }}
-                            className="text-lg md:text-xl text-center text-red font-bold"
-                          >
-                            {item}
-                          </motion.div>
-                        ))}
-                      </div>
-                      <div className="flex flex-col w-full gap-2">
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                              Dimension:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetPhones.dimension || "..."}
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                              Build:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetPhones.build || "..."}
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                              Weight:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetPhones.weight || "..."}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                      <div className="hidden md:flex flex-col mr-6 leading-tighter">
-                        {["D", "I", "S", "P", "L", "A", "Y"].map(
-                          (item, index) => (
+                    {(targetPhones.dimension ||
+                      targetPhones.build ||
+                      targetPhones.weight) && (
+                      <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
+                        <div className="hidden md:flex flex-col mr-6 leading-tighter">
+                          {["B", "O", "D", "Y"].map((item, index) => (
                             <motion.div
                               key={index}
                               initial={{ x: 0, scale: 1 }}
@@ -230,103 +175,121 @@ function PhoneBlog() {
                             >
                               {item}
                             </motion.div>
-                          )
-                        )}
-                      </div>
-                      <div className="flex flex-col w-full gap-2">
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                              Type:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetPhones.dtype || "..."}
-                          </div>
+                          ))}
                         </div>
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                              Size:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetPhones.size || "..."}
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                              Resolution:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetPhones.resolution || "..."}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                      <div className="hidden md:flex flex-col mr-6 leading-tighter">
-                        {["C", "A", "M", "E", "R", "A"].map((item, index) => (
-                          <motion.div
-                            key={index}
-                            initial={{ x: 0, scale: 1 }}
-                            animate={{
-                              x: 4,
-                              scale: 1.2,
-                              color: "#001",
-                            }}
-                            transition={{
-                              delay: index * 0.9,
-                              duration: 4,
-                              repeat: Infinity,
-                              repeatType: "reverse",
-                              ease: easeInOut,
-                            }}
-                            className="text-lg md:text-xl text-center text-red font-bold"
-                          >
-                            {item}
-                          </motion.div>
-                        ))}
-                      </div>
-                      <div className="flex flex-col w-full gap-2">
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] mr-6 md:text-lg w-[96px] font-extrabold text-green-600 whitespace-nowrap">
-                              MainCamera:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetPhones.maincamera || "..."}
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] mr-6 md:text-lg w-[96px] font-extrabold text-green-600 whitespace-nowrap">
-                              FrontCamera:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetPhones.frontcamera || "..."}
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                              Video:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetPhones.video || "..."}
-                          </div>
+                        <div className="flex flex-col w-full gap-2">
+                          {targetPhones.dimension && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
+                                  Dimension:
+                                </h1>
+                              </div>
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetPhones.dimension || "..."}
+                              </div>
+                            </div>
+                          )}
+                          {targetPhones.build && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
+                                  Build:
+                                </h1>
+                              </div>
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetPhones.build || "..."}
+                              </div>
+                            </div>
+                          )}
+                          {targetPhones.weight && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
+                                  Weight:
+                                </h1>
+                              </div>
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetPhones.weight || "..."}
+                              </div>
+                            </div>
+                          )}
                         </div>
                       </div>
-                    </div>
-                    <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                      <div className="hidden md:flex flex-col mr-6 leading-tighter">
-                        {["P", "L", "A", "T", "F", "O", "R", "M"].map(
-                          (item, index) => (
+                    )}
+                    {(targetPhones.dtype ||
+                      targetPhones.size ||
+                      targetPhones.resolution) && (
+                      <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
+                        <div className="hidden md:flex flex-col mr-6 leading-tighter">
+                          {["D", "I", "S", "P", "L", "A", "Y"].map(
+                            (item, index) => (
+                              <motion.div
+                                key={index}
+                                initial={{ x: 0, scale: 1 }}
+                                animate={{
+                                  x: 4,
+                                  scale: 1.2,
+                                  color: "#001",
+                                }}
+                                transition={{
+                                  delay: index * 0.9,
+                                  duration: 4,
+                                  repeat: Infinity,
+                                  repeatType: "reverse",
+                                  ease: easeInOut,
+                                }}
+                                className="text-lg md:text-xl text-center text-red font-bold"
+                              >
+                                {item}
+                              </motion.div>
+                            )
+                          )}
+                        </div>
+                        <div className="flex flex-col w-full gap-2">
+                          {targetPhones.dtype && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
+                                  Type:
+                                </h1>
+                              </div>
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetPhones.dtype || "..."}
+                              </div>
+                            </div>
+                          )}
+                          {targetPhones.size && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
+                                  Size:
+                                </h1>
+                              </div>
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetPhones.size || "..."}
+                              </div>
+                            </div>
+                          )}
+                          {targetPhones.resolution && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
+                                  Resolution:
+                                </h1>
+                              </div>
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetPhones.resolution || "..."}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )}
+                    {(targetPhones.frontcamera || targetPhones.video) && (
+                      <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
+                        <div className="hidden md:flex flex-col mr-6 leading-tighter">
+                          {["C", "A", "M", "E", "R", "A"].map((item, index) => (
                             <motion.div
                               key={index}
                               initial={{ x: 0, scale: 1 }}
@@ -346,109 +309,111 @@ function PhoneBlog() {
                             >
                               {item}
                             </motion.div>
-                          )
-                        )}
-                      </div>
-                      <div className="flex flex-col w-full gap-2">
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                              OS:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetPhones.os || "..."}
-                          </div>
+                          ))}
                         </div>
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                              Processor:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetPhones.processor || "..."}
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                              GPU:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetPhones.graphics || "..."}
-                          </div>
+                        <div className="flex flex-col w-full gap-2">
+                          {targetPhones.frontcamera && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] mr-6 md:text-lg w-[96px] font-extrabold text-green-600 whitespace-nowrap">
+                                  FrontCamera:
+                                </h1>
+                              </div>
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetPhones.frontcamera || "..."}
+                              </div>
+                            </div>
+                          )}
+                          {targetPhones.video && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
+                                  Video:
+                                </h1>
+                              </div>
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetPhones.video || "..."}
+                              </div>
+                            </div>
+                          )}
                         </div>
                       </div>
-                    </div>
-                    <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                      <div className="hidden md:flex flex-col mr-6">
-                        {["M", "E", "M", "O", "R", "Y"].map((item, index) => (
-                          <motion.div
-                            key={index}
-                            initial={{ x: 0, scale: 1 }}
-                            animate={{
-                              x: 4,
-                              scale: 1.2,
-                              color: "#001",
-                            }}
-                            transition={{
-                              delay: index * 0.9,
-                              duration: 4,
-                              repeat: Infinity,
-                              repeatType: "reverse",
-                              ease: easeInOut,
-                            }}
-                            className="text-lg md:text-xl text-center text-red font-bold"
-                          >
-                            {item}
-                          </motion.div>
-                        ))}
-                      </div>
-                      <div className="flex flex-col w-full gap-2">
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                              RAM:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] flex gap-2 w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {rows.map(
-                              (row, index) =>
-                                row && (
-                                  <div key={index}>
-                                    {row.ram}
-                                    {index < rows.length - 1 && ","}
-                                  </div>
-                                )
-                            )}
-                          </div>
+                    )}
+                    {(targetPhones.os ||
+                      targetPhones.processor ||
+                      targetPhones.graphics) && (
+                      <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
+                        <div className="hidden md:flex flex-col mr-6 leading-tighter">
+                          {["P", "L", "A", "T", "F", "O", "R", "M"].map(
+                            (item, index) => (
+                              <motion.div
+                                key={index}
+                                initial={{ x: 0, scale: 1 }}
+                                animate={{
+                                  x: 4,
+                                  scale: 1.2,
+                                  color: "#001",
+                                }}
+                                transition={{
+                                  delay: index * 0.9,
+                                  duration: 4,
+                                  repeat: Infinity,
+                                  repeatType: "reverse",
+                                  ease: easeInOut,
+                                }}
+                                className="text-lg md:text-xl text-center text-red font-bold"
+                              >
+                                {item}
+                              </motion.div>
+                            )
+                          )}
                         </div>
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                              Storage:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] flex gap-2 w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {rows.map(
-                              (row, index) =>
-                                row && (
-                                  <div key={index}>
-                                    {row.storage}
-                                    {index < rows.length - 1 && ","}
-                                  </div>
-                                )
-                            )}
-                          </div>
+                        <div className="flex flex-col w-full gap-2">
+                          {targetPhones.os && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
+                                  OS:
+                                </h1>
+                              </div>
+
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetPhones.os || "..."}
+                              </div>
+                            </div>
+                          )}
+                          {targetPhones.processor && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
+                                  Processor:
+                                </h1>
+                              </div>
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetPhones.processor || "..."}
+                              </div>
+                            </div>
+                          )}
+                          {targetPhones.graphics && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
+                                  GPU:
+                                </h1>
+                              </div>
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetPhones.graphics || "..."}
+                              </div>
+                            </div>
+                          )}
                         </div>
                       </div>
-                    </div>
-                    <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                      <div className="hidden md:flex flex-col mr-6">
-                        {["B", "A", "T", "T", "E", "R", "Y"].map(
-                          (item, index) => (
+                    )}
+
+                    {rows.length > 0 && (
+                      <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
+                        <div className="hidden md:flex flex-col mr-6">
+                          {["M", "E", "M", "O", "R", "Y"].map((item, index) => (
                             <motion.div
                               key={index}
                               initial={{ x: 0, scale: 1 }}
@@ -468,36 +433,164 @@ function PhoneBlog() {
                             >
                               {item}
                             </motion.div>
-                          )
-                        )}
-                      </div>
-                      <div className="flex flex-col w-full gap-2">
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                              Capacity:
-                            </h1>
+                          ))}
+                        </div>
+                        <div className="flex flex-col w-full gap-2">
+                          <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-1 p-2 rounded-lg">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
+                                RAM:
+                              </h1>
+                            </div>
+                            <div className="text-[18px] flex gap-2 w-full bg-zinc-200 px-2 rounded-md text-black">
+                              {rows.map(
+                                (row, index) =>
+                                  row && (
+                                    <div key={index}>
+                                      {row.ram}
+                                      {index < rows.length - 1 && ","}
+                                    </div>
+                                  )
+                              )}
+                            </div>
                           </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetPhones.capacity || "..."}
+                          <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-1 p-2 rounded-lg">
+                              <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
+                                Storage:
+                              </h1>
+                            </div>
+                            <div className="text-[18px] flex gap-2 w-full bg-zinc-200 px-2 rounded-md text-black">
+                              {rows.map(
+                                (row, index) =>
+                                  row && (
+                                    <div key={index}>
+                                      {row.storage}
+                                      {index < rows.length - 1 && ","}
+                                    </div>
+                                  )
+                              )}
+                            </div>
                           </div>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                              Charging:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetPhones.charging || "..."}
-                          </div>
+                      </div>
+                    )}
+                    {(targetPhones.capacity || targetPhones.charging) && (
+                      <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
+                        <div className="hidden md:flex flex-col mr-6">
+                          {["B", "A", "T", "T", "E", "R", "Y"].map(
+                            (item, index) => (
+                              <motion.div
+                                key={index}
+                                initial={{ x: 0, scale: 1 }}
+                                animate={{
+                                  x: 4,
+                                  scale: 1.2,
+                                  color: "#001",
+                                }}
+                                transition={{
+                                  delay: index * 0.9,
+                                  duration: 4,
+                                  repeat: Infinity,
+                                  repeatType: "reverse",
+                                  ease: easeInOut,
+                                }}
+                                className="text-lg md:text-xl text-center text-red font-bold"
+                              >
+                                {item}
+                              </motion.div>
+                            )
+                          )}
+                        </div>
+                        <div className="flex flex-col w-full gap-2">
+                          {targetPhones.capacity && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
+                                  Capacity:
+                                </h1>
+                              </div>
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetPhones.capacity || "..."}
+                              </div>
+                            </div>
+                          )}
+                          {targetPhones.charging && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
+                                  Charging:
+                                </h1>
+                              </div>
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetPhones.charging || "..."}
+                              </div>
+                            </div>
+                          )}
                         </div>
                       </div>
-                    </div>
-                    <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                      <div className="hidden md:flex flex-col mr-6">
-                        {["N", "E", "T", "W", "O", "R", "K", "S"].map(
-                          (item, index) => (
+                    )}
+                    {(targetPhones.wifi || targetPhones.bluetooth) && (
+                      <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
+                        <div className="hidden md:flex flex-col mr-6">
+                          {["N", "E", "T", "W", "O", "R", "K", "S"].map(
+                            (item, index) => (
+                              <motion.div
+                                key={index}
+                                initial={{ x: 0, scale: 1 }}
+                                animate={{
+                                  x: 4,
+                                  scale: 1.2,
+                                  color: "#001",
+                                }}
+                                transition={{
+                                  delay: index * 0.9,
+                                  duration: 4,
+                                  repeat: Infinity,
+                                  repeatType: "reverse",
+                                  ease: easeInOut,
+                                }}
+                                className="text-lg md:text-xl text-center text-red font-bold"
+                              >
+                                {item}
+                              </motion.div>
+                            )
+                          )}
+                        </div>
+                        <div className="flex flex-col w-full gap-2">
+                          {targetPhones.wifi && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
+                                  Wi-Fi:
+                                </h1>
+                              </div>
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetPhones.wifi || "..."}
+                              </div>
+                            </div>
+                          )}
+                          {targetPhones.bluetooth && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
+                                  Bluetooth:
+                                </h1>
+                              </div>
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetPhones.bluetooth || "..."}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )}
+                    {(targetPhones.typec ||
+                      targetPhones.audiojack ||
+                      targetPhones.resolution) && (
+                      <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
+                        <div className="hidden md:flex flex-col mr-6">
+                          {["P", "O", "R", "T", "S"].map((item, index) => (
                             <motion.div
                               key={index}
                               initial={{ x: 0, scale: 1 }}
@@ -513,89 +606,46 @@ function PhoneBlog() {
                                 repeatType: "reverse",
                                 ease: easeInOut,
                               }}
-                              className="text-lg md:text-xl text-center text-red font-bold"
+                              className="text-lg md:text-xl text-center font-bold"
                             >
                               {item}
                             </motion.div>
-                          )
-                        )}
-                      </div>
-                      <div className="flex flex-col w-full gap-2">
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                              Wi-Fi:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetPhones.wifi || "..."}
-                          </div>
+                          ))}
                         </div>
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                              Bluetooth:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetPhones.bluetooth || "..."}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                      <div className="hidden md:flex flex-col mr-6">
-                        {["P", "O", "R", "T", "S"].map((item, index) => (
-                          <motion.div
-                            key={index}
-                            initial={{ x: 0, scale: 1 }}
-                            animate={{
-                              x: 4,
-                              scale: 1.2,
-                              color: "#001",
-                            }}
-                            transition={{
-                              delay: index * 0.9,
-                              duration: 4,
-                              repeat: Infinity,
-                              repeatType: "reverse",
-                              ease: easeInOut,
-                            }}
-                            className="text-lg md:text-xl text-center font-bold"
-                          >
-                            {item}
-                          </motion.div>
-                        ))}
-                      </div>
-                      <div className="flex flex-col w-full gap-2">
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                              Type C:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetPhones.typec || "..."}
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 p-2 rounded-lg">
-                            <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600 whitespace-nowrap">
-                              Audio Jack:
-                            </h1>
-                          </div>
-                          <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                            {targetPhones.audiojack || "..."}
-                          </div>
+                        <div className="flex flex-col w-full gap-2">
+                          {targetPhones.typec && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
+                                  Type C:
+                                </h1>
+                              </div>
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetPhones.typec || "..."}
+                              </div>
+                            </div>
+                          )}
+                          {targetPhones.audiojack && (
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1 p-2 rounded-lg">
+                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600 whitespace-nowrap">
+                                  Audio Jack:
+                                </h1>
+                              </div>
+                              <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                {targetPhones.audiojack || "..."}
+                              </div>
+                            </div>
+                          )}
                         </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                 </div>
 
                 {rows.length > 0 && (
                   <div className="h-auto w-full p-8">
-                    <div className="border-4 border-black rounded-lg w-full flex flex-col">
+                    <div className="border-4 border-black overflow-hidden rounded-lg w-full flex flex-col">
                       <div className="w-full flex flex-wrap bg-gray-200">
                         <div className="flex-1 border-r-4 border-black p-2 text-center font-bold">
                           S.N
@@ -657,7 +707,7 @@ function PhoneBlog() {
                     <div className="w-full sm:w-1/2 flex flex-col p-4">
                       <div className="w-full flex flex-col gap-4 text-center">
                         <div className="">
-                          <div className="text-lg sm:text-xl md:text-2xl whitespace-nowrap justify-center items-center">
+                          <div className="text-lg sm:text-xl md:text-2xl whitespace-nowrap justify-center items-center font-extrabold">
                             {item.name}
                           </div>
                         </div>
@@ -665,20 +715,20 @@ function PhoneBlog() {
                           <motion.div
                             whileHover={{
                               scale: 1.01,
-                              color: "#900",
+                              color: "#232F3E",
                             }}
-                            className="tracking-wide break-words"
+                            className="tracking-wide break-words capitalize"
                           >
                             Categorie:{item.popularity || "Unknown"}
                           </motion.div>
                           <motion.div
                             whileHover={{
                               scale: 1.01,
-                              color: "#900",
+                              color: "#232F3E",
                             }}
                             className="break-words"
                           >
-                            Price:{item.price || "Not mentioned"}
+                            Price:{item.price1 || "Not mentioned"}
                           </motion.div>
                         </div>
                       </div>
@@ -689,6 +739,7 @@ function PhoneBlog() {
           </div>
         </div>
       </motion.div>
+      <Footer />
     </>
   );
 }

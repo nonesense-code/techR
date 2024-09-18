@@ -1,6 +1,6 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/HomePage/Home";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Phones from "./components/Phones";
 import Laptops from "./components/Laptops";
 import Tablets from "./components/Tablets";
@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <Router>
-        <Routes>  
+        <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/phone" element={<Phones />} />
           <Route path="/laptop" element={<Laptops />} />
