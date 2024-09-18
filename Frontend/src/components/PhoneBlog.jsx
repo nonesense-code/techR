@@ -728,7 +728,7 @@ function PhoneBlog() {
                             }}
                             className="break-words"
                           >
-                            Price:{item.price1 || "Not mentioned"}
+                            Price:{item.price1 || "$..."}
                           </motion.div>
                         </div>
                       </div>

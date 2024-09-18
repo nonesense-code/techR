@@ -3,12 +3,15 @@ import { FaSearch } from "react-icons/fa";
 import axios from "axios";
 import { easeInOut, motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 function Navbar() {
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState("");
   const [isFound, setisFound] = useState(true);
   const [data, setData] = useState([]);
+  const { itname } = useParams();
+  const [flag, setFlag] = useState(false);
   const backendURL = import.meta.env.VITE_BACKEND_URL;
   useEffect(() => {
     const fetchData = async () => {
@@ -31,19 +34,40 @@ function Navbar() {
       data.map((item) => {
         if (searchedItem === item.name.toLowerCase().split(" ").join("")) {
           setisFound(true);
+          setFlag(true);
           navigate(
             `/${item.productType}/${item.name
               .toLowerCase()
               .split(" ")
               .join("")}`
           );
+        } else if (itname === searchedItem) {
+          setisFound(true);
+          setFlag(true);
+          return;
         } else {
           setisFound(false);
-          setInputValue(inputValue + " !!!");
         }
       });
     }
   };
+
+  useEffect(() => {
+    const handleFocus = (event) => {
+      if (event.key === "/") {
+        event.preventDefault();
+        const x = document.querySelector("#searchedText");
+        if (x) {
+          x.focus();
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleFocus);
+    return () => {
+      window.removeEventListener("keydown", handleFocus);
+    };
+  }, []);
 
   return (
     <div className="navbar">
@@ -69,11 +93,14 @@ function Navbar() {
           <div className="flex items-center bg-gray-600 rounded-md border-2 border-black">
             <input
               type="text"
-              placeholder="Search"
+              placeholder="Search (/)"
               className="px-2 py-1 rounded-md w-24 sm:w-48 bg-gray-600 outline-none text-white placeholder:text-white/80"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              style={{ color: !isFound ? "#300" : "white" }}
+              style={{
+                color: !isFound ? "#900" : "white",
+                textDecoration: !isFound ? "underline" : "none",
+              }}
               onKeyDown={handleSearch}
               id="searchedText"
             />

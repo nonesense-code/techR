@@ -54,6 +54,7 @@ function LaptopBlog() {
   ]
     .filter(Boolean)
     .filter((row) => row.ram && row.storage && row.price);
+  console.log(rows);
 
   useEffect(() => {
     const loadData = async () => {
@@ -765,7 +766,7 @@ function LaptopBlog() {
                             }}
                             className="break-words"
                           >
-                            Price:{item.price1 || "Not mentioned"}
+                            Price:{item.price1 || "$..."}
                           </motion.div>
                         </div>
                       </div>
