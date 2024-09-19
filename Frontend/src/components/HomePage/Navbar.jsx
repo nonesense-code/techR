@@ -53,8 +53,8 @@ function Navbar() {
   };
 
   useEffect(() => {
-    const handleFocus = (event, props) => {
-      if (event.key === "/" || props.value === "Enter") {
+    const handleFocus = (event) => {
+      if (event.key === "/") {
         event.preventDefault();
         const x = document.querySelector("#searchedText");
         if (x) {
@@ -96,18 +96,13 @@ function Navbar() {
               placeholder="Search (/)"
               className="px-2 py-1 rounded-md w-24 sm:w-48 bg-gray-600 outline-none text-white placeholder:text-white/80"
               value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              style={{
-                color: !isFound ? "#900" : "white",
-                textDecoration: !isFound ? "underline" : "none",
+              onChange={(e) => {
+                setInputValue(e.target.value);
               }}
               onKeyDown={handleSearch}
               id="searchedText"
             />
-            <button
-              onClick={handleSearch("Enter")}
-              className="searchBtn h-8 w-8 flex items-center justify-center p-2 outline-none"
-            >
+            <button className="searchBtn h-8 w-8 flex items-center justify-center p-2 outline-none">
               <FaSearch className="text-white" />
             </button>
           </div>
