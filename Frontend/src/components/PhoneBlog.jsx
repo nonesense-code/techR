@@ -136,7 +136,7 @@ function PhoneBlog() {
                   {targetPhones.name || "..."}
                 </h1>
                 <div className="w-full h-auto p-4 flex flex-col gap-12 md:gap-4">
-                  <div className="w-full h-auto overflow-hidden flex items-center justify-center">
+                  {/* <div className="w-full h-auto overflow-hidden flex items-center justify-center">
                     <img
                       src={
                         targetPhones.image ||
@@ -148,7 +148,22 @@ function PhoneBlog() {
                   </div>
                   <div className="text-black text-lg md:text-xl font-semibold text-ellipsis">
                     {targetPhones.blog || "..."}
+                  </div> */}
+                  <div className="w-full h-auto overflow-hidden flex items-center justify-center">
+                    <img
+                      src={
+                        targetPhones.image ||
+                        "https://global.discourse-cdn.com/inductiveautomation/original/2X/9/97d457372f6c14182b686ecfdf5d4067df5e9373.png"
+                      }
+                      alt={targetPhones.name}
+                      className="w-full md:max-w-[400px] bg-white md:w-auto min-h-80 sm:h-96 object-cover rounded-xl"
+                      loading="lazy" // Lazy loading attribute
+                    />
                   </div>
+                  <div className="text-black text-lg md:text-xl font-semibold text-ellipsis">
+                    {targetPhones.blog || "..."}
+                  </div>
+
                   <div className="w-full h-auto overflow-hidden flex flex-col gap-4 mt-2 text-2xl text-[#002] items-start justify-end">
                     {(targetPhones.dimension ||
                       targetPhones.build ||

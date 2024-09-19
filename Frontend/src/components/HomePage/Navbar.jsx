@@ -53,8 +53,8 @@ function Navbar() {
   };
 
   useEffect(() => {
-    const handleFocus = (event) => {
-      if (event.key === "/") {
+    const handleFocus = (event, props) => {
+      if (event.key === "/" || props.value === "Enter") {
         event.preventDefault();
         const x = document.querySelector("#searchedText");
         if (x) {
@@ -104,7 +104,10 @@ function Navbar() {
               onKeyDown={handleSearch}
               id="searchedText"
             />
-            <button className="h-8 w-8 flex items-center justify-center p-2 outline-none">
+            <button
+              onClick={handleSearch("Enter")}
+              className="searchBtn h-8 w-8 flex items-center justify-center p-2 outline-none"
+            >
               <FaSearch className="text-white" />
             </button>
           </div>
