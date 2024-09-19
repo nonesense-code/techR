@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const productSchema = new mongoose.Schema({
   productType: {
     type: String,
-    required: true,
+    // required: true,
   },
   name: {
     type: String,
@@ -135,11 +135,11 @@ const productSchema = new mongoose.Schema({
   },
   popularity: {
     type: String,
-    required: true,
+    // required: true,
   },
   blog: {
     type: String,
-    required: true,
+    // required: true,
   },
 });
 
