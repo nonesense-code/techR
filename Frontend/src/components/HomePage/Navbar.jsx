@@ -69,7 +69,7 @@ function Navbar() {
   }, []);
 
   return (
-    <div className="navbar mb-8">
+    <div className="navbar">
       <div className="fixed w-full backdrop-blur-md py-2 px-4 z-50 bg-[#232F3E]">
         <div className="flex items-center justify-between w-auto flex-wrap gap-1">
           <div className="flex items-center justify-center gap-1 text-2xl ">
@@ -95,7 +95,7 @@ function Navbar() {
               ))}
             </div>
           </div>
-          <div className="hidden md:flex gap-2 items-center justify-evenly flex-1 text-[#8F9094] font-semibold text-xl flex-wrap">
+          <div className="hidden md:flex gap-2 items-center justify-evenly flex-1 text-[#cfd3e0] font-semibold text-xl flex-wrap">
             {["Home", "Phone", "Laptop", "Tablet"].map((item, index) => (
               <motion.div key={index} className="underline-animation">
                 <Link
@@ -139,7 +139,7 @@ function Navbar() {
               />
               <h1>techR</h1>
             </div>
-            <div className="flex md:hidden flex-col gap-6 items-start justify-center flex-1 text-[#8F9094] font-semibold text-xl flex-wrap">
+            <div className="flex md:hidden flex-col gap-6 items-start justify-center flex-1 text-[#cfd3e0] font-semibold text-xl flex-wrap">
               {["Home", "Phone", "Laptop", "Tablet"].map((item, index) => (
                 <motion.div key={index}>
                   <Link

@@ -7,6 +7,8 @@ import { FaCrosshairs } from "react-icons/fa";
 import CircularLoader from "../../CircularLoader";
 import Trending from "./Trending";
 import Qnas from "./Qna's";
+import img1 from "../../images/landingimage1.png";
+import img2 from "../../images/landingimage2.png";
 
 function Landing() {
   const [product, setProduct] = useState([]);
@@ -64,20 +66,56 @@ function Landing() {
             <Trending />
           </div>
         </div>
-        <div className="flex items-center justify-evenly gap-2">
+        <div className="flex gap-2 flex-col">
           <div>
-            <Qnas data="laptop" />
+            <img
+              src={img1}
+              alt=""
+              className="h-96 md:h-96 w-[1000px] object-cover object-center"
+            />
           </div>
-          {image && (
-            <div className="h-96 w-auto rounded-xl overflow-hidden flex items-center justify-center bg-white">
-              <img
-                src={image}
-                alt="Trends"
-                className="min-w-96 min-h-96 h-auto md:h-96 w-auto object-cover bg-cover object-center"
-              />
-            </div>
-          )}
+          <div>
+            <img
+              src={img2}
+              alt=""
+              className="h-96 md:h-96 w-[1000px] object-cover object-center"
+            />
+          </div>
         </div>
+        {/* <div className="w-full h-auto flex items-center justify-center flex-row mb-8 gap-8 flex-wrap">
+          <Link
+            to="/phone/iphone16promax"
+            className="h-72 md:h-auto w-auto overflow-hidden border-2 border-black flex items-center justify-center rounded-xl p-4"
+          >
+            <motion.div
+              whileHover={{
+                scale: 1.1,
+              }}
+            >
+              <img
+                src="https://images.unsplash.com/photo-1726587912121-ea21fcc57ff8?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt=""
+                className="h-80 w-52 md:h-[400px] md:w-[500px] object-cover object-center"
+              />
+            </motion.div>
+          </Link>
+          <Link
+            to="/phone/googlepixel9pro"
+            className="h-72 md:h-auto w-auto overflow-hidden border-2 border-black flex items-center justify-center rounded-xl p-4"
+          >
+            <motion.div
+              whileHover={{
+                scale: 1.1,
+              }}
+            >
+              <img
+                src="https://lh3.googleusercontent.com/Pn6gWhoGgOWaR5vHJ0v0gN4Ag2s42wwHhFyKfvYCyaR3cavQ4sTSQknSnUhooc_aMbp_1JHFI_P8fpND3n4Jyu53aXLiFzR3GZo=rw-e365-w1200"
+                alt=""
+                className="h-80 w-52 md:h-[400px] md:w-[500px] object-cover object-center"
+              />
+            </motion.div>
+          </Link>
+        </div> */}
       </div>
       <div className="h-full w-auto md:w-[800px]">
         {loading ? (

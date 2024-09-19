@@ -1,20 +1,20 @@
 import React from "react";
 import { motion } from "framer-motion";
 const newsItems = [
-  "New Tech Gadget Released: The Latest in AI Innovation",
-  "Breakthrough in Quantum Computing: What It Means for the Future",
-  "Tech Giants Collaborate on New Standards for Cybersecurity",
-  "Virtual Reality Headsets: The Next Big Thing in Entertainment",
-  "5G Rollout Continues: How It Will Impact Mobile Technology",
-  "Latest Trends in Smart Home Technology: What to Expect",
-  "Artificial Intelligence in Healthcare: Revolutionizing Patient Care",
-  "Upcoming Tech Conferences You Shouldn't Miss",
+  "iPhone 16 launches with great improvement in camera and with 6.9 inch display",
+  "Samsung Galaxy S25 Ultra renders tease exciting design improvements",
+  "The Google Pixel 9 Pro has launched with a stunning 6.3-inch AMOLED display, improved AI-powered camera features, and enhanced battery efficiency",
+  "PS5 Pro is officially revealed, promising enhanced PSVR 2 gaming experiences",
+  "AirPods Pro 2 gets a hearing test feature in a new software update",
+  "Qualcomm's next-gen gaming engine redefines mobile gaming experiences",
+  "Meta showcases its AI hardware with energy-efficient RISC-V cores",
+  "Sony’s new PS5 Pro aims for a game-changing VR performance",
 ];
 const News = () => {
   let news = newsItems.join(" | ");
   return (
-    <div className="fixed page2 bg-[#000] pt-14">
-      <div className="w-full overflow-hidden whitespace-nowrap flex text-[24px]">
+    <div className="fixed bg-[#000] pt-14 z-40">
+      <div className="w-full overflow-hidden whitespace-nowrap flex text-[16px]">
         <motion.h1
           initial={{ x: 0 }}
           animate={{ x: "-100%" }}
