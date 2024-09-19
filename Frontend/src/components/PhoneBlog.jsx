@@ -299,7 +299,9 @@ function PhoneBlog() {
                           </div>
                         </div>
                       )}
-                      {(targetPhones.frontcamera || targetPhones.video) && (
+                      {(targetPhones.frontcamera ||
+                        targetPhones.maincamera ||
+                        targetPhones.video) && (
                         <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
                           <div className="hidden md:flex flex-col mr-6 leading-tighter">
                             {["C", "A", "M", "E", "R", "A"].map(
@@ -336,6 +338,18 @@ function PhoneBlog() {
                                 </div>
                                 <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
                                   {targetPhones.frontcamera || "..."}
+                                </div>
+                              </div>
+                            )}
+                            {targetPhones.maincamera && (
+                              <div className="flex items-center gap-2">
+                                <div className="flex items-center gap-1 p-2 rounded-lg">
+                                  <h1 className="text-[16px] mr-6 md:text-lg w-[96px] font-extrabold text-green-600 whitespace-nowrap">
+                                    BackCamera:
+                                  </h1>
+                                </div>
+                                <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
+                                  {targetPhones.maincamera || "..."}
                                 </div>
                               </div>
                             )}

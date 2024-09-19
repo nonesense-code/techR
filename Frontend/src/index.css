@@ -19,3 +19,32 @@ body {
 .hidescroller::-webkit-scrollbar {
   display: none;
 }
+
+.underline-animation {
+  position: relative;
+  display: inline-block;
+}
+
+.underline-animation::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  background-color: currentColor;
+  width: 0;
+  transition: width 0.2s ease-in-out;
+  color: #fff;
+}
+
+.underline-animation:hover::after {
+  width: 100%;
+}
+
+.marquee_text {
+  font-family: sans-serif;
+  font-weight: bolder;
+  letter-spacing: 4px;
+  white-space: nowrap;
+  color: white;
+}

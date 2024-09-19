@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { CiMobile1 } from "react-icons/ci";
-import { AiOutlineLaptop } from "react-icons/ai";
-import { FaTabletScreenButton } from "react-icons/fa6";
 import Footer from "../Footer";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -16,6 +13,7 @@ function Landing() {
   const [showFooter, setShowFooter] = useState(false);
   const [loading, setLoading] = useState(false);
   const backendURL = import.meta.env.VITE_BACKEND_URL;
+  const [image, setImage] = useState("");
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -48,139 +46,88 @@ function Landing() {
     }
   }
 
+  useEffect(() => {
+    if (!product.popularity === "popular" || product.length === 0) return;
+    const intervalId = setInterval(() => {
+      const length = product.length;
+      const randomIndex = Math.floor(Math.random() * length);
+      setImage(product[randomIndex]?.image || "");
+    }, 4000);
+
+    return () => clearInterval(intervalId);
+  }, [product]);
   return (
-    <div>
-      <div className="flex flex-col items-center w-full">
-        <div className="w-auto px-4 md:px-6 lg:px-8">
-          <div className="text-center text-2xl md:text-3xl lg:text-4xl font-bold text-[#232F3E] mb-6 mt-8">
-            <h1>Research the best from techR!</h1>
-            <h2 className="text-xl md:text-2xl font-semibold">
-              Leading research center
-            </h2>
-          </div>
-          <div className="flex flex-col w-full md:flex-row gap-4 justify-center">
-            <div>
-              <Qnas data="laptop" />
-            </div>
-            <div className="flex flex-col w-auto p-2 rounded-lg">
-              <div className="text-center text-2xl md:text-3xl lg:text-4xl italic font-bold py-4 text-[#232F3E]">
-                Best sales of 2024!
-              </div>
-              <div className="flex flex-col items-center justify-center h-auto w-auto gap-20">
-                <div className="w-auto flex-items-center justify-center h-auto">
-                  <div className="h-auto w-auto flex items-center justify-center flex-col">
-                    <div className="flex flex-row items-center justify-center gap-6 mb-6 text-black flex-wrap">
-                      <Link to="/phone" className="outline-none">
-                        <motion.div
-                          whileHover={{ scale: 1.02 }}
-                          className="border-2 border-stone-600 p-4 rounded-xl outline-none flex flex-col items-center justify-center"
-                        >
-                          <CiMobile1 className="text-4xl mb-2" />
-                          <h1 className="text-xl">Phones</h1>
-                        </motion.div>
-                      </Link>
-                      <Link to="/laptop" className="outline-none">
-                        <motion.div
-                          whileHover={{ scale: 1.02 }}
-                          className="border-2 border-stone-600 p-4 rounded-xl flex flex-col items-center justify-center"
-                        >
-                          <AiOutlineLaptop className="text-4xl mb-2" />
-                          <h1 className="text-xl">Laptops</h1>
-                        </motion.div>
-                      </Link>
-                      <Link to="/tablet" className="outline-none">
-                        <motion.div
-                          whileHover={{ scale: 1.02 }}
-                          className="border-2 border-stone-600 p-4 rounded-xl flex flex-col items-center justify-center"
-                        >
-                          <FaTabletScreenButton className="text-4xl mb-2" />
-                          <h1 className="text-xl">Tablets</h1>
-                        </motion.div>
-                      </Link>
-                    </div>
-                    <div className="h-auto w-full text-center text-xl text-black md:text-3xl">
-                      <div className="flex flex-col h-auto w-auto gap-2">
-                        <div>Locate Your Ultimate Gadget</div>
-                        <div className="flex items-center justify-center">
-                          <motion.div
-                            whileHover={{ scale: 1.02 }}
-                            className="border-2 w-1/2 border-stone-600 p-4 rounded-xl"
-                          >
-                            <Link
-                              to="/filter"
-                              className="h-full w-full outline-none flex flex-col items-center justify-center"
-                            >
-                              <FaCrosshairs className="text-4xl mb-2" />
-                              <h1 className="text-xl">
-                                Filter by Your Criteria!
-                              </h1>
-                            </Link>
-                          </motion.div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+    <div className="flex flex-col items-center w-full">
+      <div className="w-auto flex-col items-center flex justify-center px-4 md:px-6 lg:px-8">
+        <div className="text-center text-2xl md:text-3xl lg:text-4xl font-bold text-[#232F3E] mt-2">
           <div>
             <Trending />
           </div>
-          <div>
-            <Qnas data="phone" />
-          </div>
         </div>
-        <div className="h-full w-auto md:w-[800px]">
-          {loading ? (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2, ease: easeInOut }}
-              className="flex flex-col gap-4 w-auto h-auto justify-evenly p-6"
-            >
-              {product.length > 0 &&
-                product.map((item, index) => (
-                  <div
-                    className="flex p-2 items-center justify-between bg-white h-auto gap-2 rounded-lg w-full sm:flex-row flex-col"
-                    key={index}
-                  >
-                    <div className="w-full flex items-center justify-center h-full">
-                      <Link
-                        to={`/${item.productType}/${item.name
-                          .toLowerCase()
-                          .split(" ")
-                          .join("")}`}
-                        className="outline-none"
-                      >
-                        <div className="h-52 w-full flex items-center justify-center">
-                          <img
-                            src={item.image}
-                            alt={item.name}
-                            className="object-cover rounded-xl w-full h-full"
-                          />
-                        </div>
-                      </Link>
-                    </div>
-                    <div className="w-auto flex flex-col p-4 h-auto">
-                      <div className="text-xl font-extrabold text-center">
-                        {item.name}
-                      </div>
-                      <div className="text-sm md:text-lg lg:text-xl mt-4 break-words">
-                        {(item.blog && truncateText(item.blog, 16)) ||
-                          "No description available"}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-            </motion.div>
-          ) : (
-            <div className="h-screen w-full text-xl">
-              <CircularLoader />
+        <div className="flex items-center justify-evenly gap-2">
+          <div>
+            <Qnas data="laptop" />
+          </div>
+          {image && (
+            <div className="h-96 w-auto rounded-xl overflow-hidden flex items-center justify-center bg-white">
+              <img
+                src={image}
+                alt="Trends"
+                className="min-w-96 min-h-96 h-auto md:h-96 w-auto object-cover bg-cover object-center"
+              />
             </div>
           )}
-          {showFooter && <Footer />}
         </div>
+      </div>
+      <div className="h-full w-auto md:w-[800px]">
+        {loading ? (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2, ease: easeInOut }}
+            className="flex flex-col gap-4 w-auto h-auto justify-evenly p-6"
+          >
+            {product.length > 0 &&
+              product.map((item, index) => (
+                <div
+                  className="flex p-2 items-center justify-between bg-white h-auto gap-2 rounded-lg w-full sm:flex-row flex-col"
+                  key={index}
+                >
+                  <div className="w-full flex items-center justify-center h-full">
+                    <Link
+                      to={`/${item.productType}/${item.name
+                        .toLowerCase()
+                        .split(" ")
+                        .join("")}`}
+                      className="outline-none"
+                    >
+                      <div className="h-52 w-full flex items-center justify-center">
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          className="object-cover rounded-xl w-full h-full"
+                        />
+                      </div>
+                    </Link>
+                  </div>
+                  <div className="w-auto flex flex-col p-4 h-auto">
+                    <div className="text-xl font-extrabold text-center">
+                      {item.name}
+                    </div>
+                    <div className="text-sm md:text-lg lg:text-xl mt-4 break-words">
+                      {(item.blog && truncateText(item.blog, 16)) ||
+                        "No description available"}
+                    </div>
+                  </div>
+                </div>
+              ))}
+          </motion.div>
+        ) : (
+          <div className="h-screen w-full text-xl">
+            <CircularLoader />
+          </div>
+        )}
+        {showFooter && <Footer />}
       </div>
     </div>
   );

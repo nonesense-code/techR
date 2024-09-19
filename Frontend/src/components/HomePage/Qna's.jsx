@@ -134,7 +134,6 @@ function Qnas(props) {
           ))}
         </div>
       )}
-
       {responsive === "phone" && (
         <div
           className={`sm:hidden flex flex-col items-center justify-center px-4 py-6 rounded-lg w-full`}

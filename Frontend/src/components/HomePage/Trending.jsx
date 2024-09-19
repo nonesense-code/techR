@@ -14,7 +14,7 @@ const Trending = () => {
         "OnePlus 12",
         "Xioami 14 Ultra",
       ],
-      typeSpeed: 80,
+      typeSpeed: 100,
       backSpeed: 0,
       loop: true,
     };
@@ -27,12 +27,11 @@ const Trending = () => {
   }, []);
 
   return (
-    <div className="flex items-center justify-center flex-wrap gap-2 mt-8 w-full">
-      <div className="bg-black text-orange-600 rounded-sm p-2 text-center w-auto text-[20px] md:text-xl lg:text-2xl whitespace-nowrap">
+    <div className="flex items-center justify-center flex-wrap gap-2 mt-2 mb-2 w-full">
+      <div className="bg-black text-[#FFA500] rounded-sm p-2 text-center w-auto text-[20px] md:text-xl lg:text-2xl whitespace-nowrap">
         Trending
       </div>
-
-      <div className="bg-zinc-400 p-2 rounded-sm text-[12px] md:text-xl lg:text-2xl">
+      <div className="bg-zinc-400 p-2 rounded-sm text-[18px] md:text-xl lg:text-2xl">
         <span ref={typedElement} />
       </div>
     </div>
