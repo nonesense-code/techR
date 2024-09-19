@@ -147,7 +147,7 @@ function LaptopBlog() {
                   </div>
                 </div>
                 <div className="w-full lg:border-l-4 lg:border-black/10 py-4">
-                  <h1 className="text-4xl px-4 flex items-center justify-center md:justify-start min-h-[68px] whitespace-nowrap tracking-tighter text-[#001] font-semibold border-b-[3px] border-black/10 py-2">
+                  <h1 className="text-2xl md:text-4xl px-4 flex items-center justify-center md:justify-start min-h-[68px] whitespace-nowrap tracking-tighter text-[#001] font-semibold border-b-[3px] border-black/10 py-2">
                     {targetLaptops.name || "..."}
                   </h1>
                   <div className="w-full h-auto p-4 flex flex-col gap-12 md:gap-4">
@@ -697,7 +697,7 @@ function LaptopBlog() {
                     </div>
                   </div>
                   {rows.length > 0 && (
-                    <div className="h-auto w-full p-8">
+                    <div className="h-auto w-full p-8 text-[12px] md:text-[18px] lg:text-xl">
                       <div className="border-4 border-black overflow-hidden rounded-lg w-full flex flex-col">
                         <div className="w-full flex flex-wrap bg-gray-200">
                           <div className="flex-1 border-r-4 border-black overflow-hidden p-2 text-center font-bold">
