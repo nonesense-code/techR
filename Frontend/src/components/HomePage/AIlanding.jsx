@@ -1,9 +1,9 @@
 import React from "react";
 import Trending from "./Trending";
-import img1 from "../../../public/images/landingimage1.png";
-import img2 from "../../../public/images/landingimage2.png";
-import img3 from "../../../public/images/landingimage3.png";
-import img4 from "../../../public/images/landingimage4.png";
+import img1 from "../../images/landingimage1.png";
+import img2 from "../../images/landingimage2.png";
+import img3 from "../../images/landimgimage3.png";
+import img4 from "../../images/landingimage4.png";
 
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 const Landing = () => {
@@ -18,7 +18,9 @@ const Landing = () => {
         <div>
           <Trending />
         </div>
-        <h1 className="text-5xl font-bold" id="heading">Welcome to TechR</h1>
+        <h1 className="text-5xl font-bold" id="heading">
+          Welcome to TechR
+        </h1>
         <p className="text-lg text-sky-600 mb-6 tracking-tight">
           Innovating technology solutions for a smarter future.
         </p>
