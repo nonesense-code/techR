@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/HomePage/Home";
 import Phones from "./components/Phones";
@@ -9,6 +9,7 @@ import LaptopBlog from "./components/LaptopBlog";
 import TabletBlog from "./components/TabletBlog";
 import About from "./components/HomePage/About";
 import Filter from "./components/Filter";
+
 function App() {
   return (
     <>

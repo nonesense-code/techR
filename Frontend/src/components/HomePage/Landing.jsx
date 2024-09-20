@@ -12,7 +12,6 @@ function Landing() {
   const [showFooter, setShowFooter] = useState(false);
   const [loading, setLoading] = useState(false);
   const backendURL = import.meta.env.VITE_BACKEND_URL;
-  const [image, setImage] = useState("");
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -45,16 +44,6 @@ function Landing() {
     }
   }
 
-  useEffect(() => {
-    if (!product.popularity === "popular" || product.length === 0) return;
-    const intervalId = setInterval(() => {
-      const length = product.length;
-      const randomIndex = Math.floor(Math.random() * length);
-      setImage(product[randomIndex]?.image || "");
-    }, 4000);
-
-    return () => clearInterval(intervalId);
-  }, [product]);
   return (
     <div className="flex flex-col items-center w-full">
       <AIlanding />
