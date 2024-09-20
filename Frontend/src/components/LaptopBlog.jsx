@@ -56,7 +56,6 @@ function LaptopBlog() {
   ]
     .filter(Boolean)
     .filter((row) => row.ram && row.storage && row.price);
-  console.log(rows);
 
   useEffect(() => {
     const loadData = async () => {

@@ -68,9 +68,6 @@ function PhoneBlog() {
     loadData();
   }, []);
 
-  // const random = Math.ceil(Math.random());
-  // console.log(random);
-
   useEffect(() => {
     const fetchTargetPhones = async () => {
       try {
