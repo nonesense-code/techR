@@ -6,6 +6,7 @@ import { FaTabletScreenButton } from "react-icons/fa6";
 import { FaHome } from "react-icons/fa";
 import { RiMenuFold2Fill } from "react-icons/ri";
 import { RiMenuFold3Fill } from "react-icons/ri";
+import { IoInformationCircle } from "react-icons/io5";
 import axios from "axios";
 import { easeInOut, motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -78,7 +79,7 @@ function Navbar() {
               onClick={() => setShow(!show)}
             />
             <div className="flex items-center justify-start">
-              {["t", "e", "c", "h", "R"].map((item, index) => (
+              {["T", "e", "c", "h", "R"].map((item, index) => (
                 <motion.div
                   key={index}
                   initial={{ y: "50%", opacity: 0 }}
@@ -96,19 +97,22 @@ function Navbar() {
             </div>
           </div>
           <div className="hidden md:flex gap-2 items-center justify-evenly flex-1 text-[#cfd3e0] font-semibold text-xl flex-wrap">
-            {["Home", "Phone", "Laptop", "Tablet"].map((item, index) => (
-              <motion.div key={index} className="underline-animation">
-                <Link
-                  to={`/${item.toLowerCase().split(" ").join("")}`}
-                  className="flex items-center justify-center gap-1 outline-none"
-                >
-                  {index === 0 && <FaHome />} {index === 1 && <CiMobile1 />}
-                  {index === 2 && <AiOutlineLaptop />}
-                  {index === 3 && <FaTabletScreenButton />}
-                  {item}
-                </Link>
-              </motion.div>
-            ))}
+            {["Home", "Phone", "Laptop", "Tablet", "About"].map(
+              (item, index) => (
+                <motion.div key={index} className="underline-animation">
+                  <Link
+                    to={`/${item.toLowerCase().split(" ").join("")}`}
+                    className="flex items-center justify-center gap-1 outline-none"
+                  >
+                    {index === 0 && <FaHome />} {index === 1 && <CiMobile1 />}
+                    {index === 2 && <AiOutlineLaptop />}
+                    {index === 3 && <FaTabletScreenButton />}
+                    {index === 4 && <IoInformationCircle />}
+                    {item}
+                  </Link>
+                </motion.div>
+              )
+            )}
           </div>
 
           <div className="flex items-center bg-gray-600 rounded-md border-2 border-black">
@@ -140,19 +144,22 @@ function Navbar() {
               <h1>techR</h1>
             </div>
             <div className="flex md:hidden flex-col gap-6 items-start justify-center flex-1 text-[#cfd3e0] font-semibold text-xl flex-wrap">
-              {["Home", "Phone", "Laptop", "Tablet"].map((item, index) => (
-                <motion.div key={index}>
-                  <Link
-                    to={`/${item.toLowerCase().split(" ").join("")}`}
-                    className="flex items-center justify-center gap-1 outline-none"
-                  >
-                    {index === 0 && <FaHome />} {index === 1 && <CiMobile1 />}
-                    {index === 2 && <AiOutlineLaptop />}
-                    {index === 3 && <FaTabletScreenButton />}
-                    {item}
-                  </Link>
-                </motion.div>
-              ))}
+              {["Home", "Phone", "Laptop", "Tablet", "About"].map(
+                (item, index) => (
+                  <motion.div key={index}>
+                    <Link
+                      to={`/${item.toLowerCase().split(" ").join("")}`}
+                      className="flex items-center justify-center gap-1 outline-none"
+                    >
+                      {index === 0 && <FaHome />} {index === 1 && <CiMobile1 />}
+                      {index === 2 && <AiOutlineLaptop />}
+                      {index === 3 && <FaTabletScreenButton />}
+                      {index === 4 && <IoInformationCircle />}
+                      {item}
+                    </Link>
+                  </motion.div>
+                )
+              )}
             </div>
           </div>
         </div>

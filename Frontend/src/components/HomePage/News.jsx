@@ -14,7 +14,7 @@ const News = () => {
   let news = newsItems.join(" | ");
   return (
     <div className="fixed bg-[#000] pt-14 z-40">
-      <div className="w-full overflow-hidden whitespace-nowrap flex text-[16px]">
+      <div className="w-full overflow-hidden whitespace-nowrap flex text-[16px] text-gray-400 tracking-wide">
         <motion.h1
           initial={{ x: 0 }}
           animate={{ x: "-100%" }}

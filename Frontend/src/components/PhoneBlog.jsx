@@ -151,12 +151,10 @@ function PhoneBlog() {
                   <div className="w-full h-auto p-4 flex flex-col gap-12 md:gap-4">
                     <div className="w-full h-auto overflow-hidden flex items-center justify-center">
                       <img
-                        src={
-                          targetPhones.image ||
-                          "https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ="
-                        }
+                        src={targetPhones.image}
                         alt={targetPhones.name}
-                        className="w-full md:max-w-[400px] bg-white md:w-auto min-h-80 sm:h-96 object-cover rounded-xl"
+                        // className="w-full md:max-w-[400px] bg-white md:w-auto min-h-80 sm:h-96 object-cover rounded-xl"
+                        className="w-auto bg-white min-h-80 sm:h-96 object-cover rounded-xl"
                       />
                     </div>
                     <div className="text-black text-lg md:text-xl font-semibold text-ellipsis">

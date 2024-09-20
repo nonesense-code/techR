@@ -41,10 +41,14 @@ body {
   width: 100%;
 }
 
-.marquee_text {
-  font-family: Helvetica, sans-serif;
-  font-weight: 700;
-  letter-spacing: 4px;
-  white-space: nowrap;
-  color: white;
+.stroke {
+  color: transparent;
+  text-shadow: 10px -10px 20px purple, -10px 10px 10px red;
+  -webkit-text-stroke: 2px black;
+}
+
+.stroke:hover {
+  -webkit-text-stroke: none;
+  text-shadow: 10px -10px 20px red, -10px 10px 10px purple;
+  color: red;
 }
