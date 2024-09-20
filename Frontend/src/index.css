@@ -52,3 +52,19 @@ body {
   text-shadow: 10px -10px 20px red, -10px 10px 10px purple;
   color: red;
 }
+
+#heading {
+  position: relative;
+  z-index: 1;
+}
+
+#heading::before {
+  content: "Welcome to TechR";
+  position: absolute;
+  left: -4px;
+  top: -4px;
+  color: rgba(32, 178, 171, 0.788);
+  -webkit-text-stroke: 1px #e89a19;
+  z-index: -1;
+  white-space: nowrap;
+}

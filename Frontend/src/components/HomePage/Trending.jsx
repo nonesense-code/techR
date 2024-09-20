@@ -31,7 +31,7 @@ const Trending = () => {
       <div className="bg-black text-[#FFA500] rounded-sm p-1  text-center w-auto text-[14px] md:text-xl whitespace-nowrap">
         Trending
       </div>
-      <div className="bg-zinc-400 px-1 md:p-1 rounded-sm text-[12px] md:text-xl">
+      <div className="bg-zinc-400 px-1 md:p-1 rounded-sm text-[12px] md:text-xl text-gray-900">
         <span ref={typedElement} />
       </div>
     </div>
