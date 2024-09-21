@@ -41,6 +41,27 @@ body {
   width: 100%;
 }
 
+.underline-animations {
+  position: relative;
+  display: inline-block;
+}
+
+.underline-animations::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  background-color: currentColor;
+  width: 0;
+  transition: width 0.2s ease-in-out;
+  color: #001;
+}
+
+.underline-animations:hover::after {
+  width: 100%;
+}
+
 .stroke {
   color: transparent;
   text-shadow: 10px -10px 20px purple, -10px 10px 10px red;

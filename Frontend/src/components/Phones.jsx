@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./HomePage/Navbar";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, reverseEasing } from "framer-motion";
+
 function Phones() {
   const [phones, setPhones] = useState([]);
 
@@ -34,7 +35,7 @@ function Phones() {
   }
 
   return (
-    <div className="h-screen w-full">
+    <div className="h-auto w-full">
       <Navbar />
       <motion.div
         initial={{ opacity: 0 }}
@@ -46,39 +47,52 @@ function Phones() {
           <h1 className="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800">
             Available Phones
           </h1>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="flex flex-col items-center justify-center w-full gap-6">
             {phones.length > 0 &&
               phones.map(
                 (phone, index) =>
                   phone.productType === "phone" && (
-                    <motion.div
-                      whileHover={{
-                        scale: 1.03,
-                        duration: 0.4,
-                      }}
+                    <div
                       key={index}
-                      className="bg-white shadow-lg rounded-lg overflow-hidden"
+                      className="bg-white shadow-lg rounded-lg overflow-hidden p-2 md:flex flex-row w-full"
                     >
                       <Link
                         to={`${phone.name.toLowerCase().split(" ").join("")}`}
-                        className="block"
                       >
-                        <img
-                          src={phone.image}
-                          alt={phone.name}
-                          className="w-full h-full object-cover"
-                        />
-                        <div className="p-4">
-                          <h2 className="text-xl text-black text-center font-extrabold">
-                            {phone.name}
-                          </h2>
-                          <p className="text-gray-600 mt-2">
-                            {(phone.blog && truncateText(phone.blog, 20)) ||
-                              "No description available"}{" "}
-                          </p>
+                        <div className="md:flex items-center justify-center gap-2">
+                          <div className="h-auto w-auto">
+                            <motion.div
+                              initial={{ y: 0 }}
+                              animate={{ y: 6 }}
+                              transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                                repeatType: "reverse",
+                              }}
+                              whileHover={{
+                                scale: 1.01,
+                              }}
+                              className="w-auto flex items-center justify-center bg-cover bg-center"
+                            >
+                              <img
+                                src={phone.image}
+                                alt={phone.name}
+                                className="w-full md:w-full md:h-96 p-12 object-contain object-center"
+                              />
+                            </motion.div>
+                          </div>
+                          <div className="p-4 md:w-1/2 gap-4 flex items-center justify-center flex-col">
+                            <h2 className="underline-animations text-xl text-black text-center font-extrabold">
+                              {phone.name}
+                            </h2>
+                            <p className="text-stone-600">
+                              {(phone.blog && truncateText(phone.blog, 30)) ||
+                                "No description available"}
+                            </p>
+                          </div>
                         </div>
                       </Link>
-                    </motion.div>
+                    </div>
                   )
               )}
           </div>

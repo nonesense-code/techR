@@ -49,47 +49,72 @@ function Landing() {
       <AIlanding />
       <div className="h-full w-auto md:w-[800px]">
         {loading ? (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2, ease: easeInOut }}
-            className="flex flex-col gap-4 w-auto h-auto justify-evenly px-4 md:px-0"
-          >
-            {product.length > 0 &&
-              product.map((item, index) => (
-                <div
-                  className="flex md:p-2 items-center justify-between bg-white h-auto gap-2 rounded-lg w-full flex-row"
-                  key={index}
-                >
-                  <div className="w-full flex items-center justify-center h-full">
-                    <Link
-                      to={`/${item.productType}/${item.name
-                        .toLowerCase()
-                        .split(" ")
-                        .join("")}`}
-                      className="outline-none"
-                    >
-                      <div className="h-52 w-full flex items-center justify-center">
-                        <img
-                          src={item.image}
-                          alt={item.name}
-                          className="object-contain object-center rounded-xl w-full h-full"
-                        />
+          <div className="h-auto w-full">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              className="h-auto w-full"
+            >
+              <div className="container mx-auto px-4 py-8">
+                <h1 className="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800">
+                  Available products
+                </h1>
+                <div className="flex flex-col items-center justify-center w-full gap-6">
+                  {product.length > 0 &&
+                    product.map((item, index) => (
+                      <div
+                        key={index}
+                        className="bg-white shadow-2xl rounded-lg overflow-hidden p-2 md:flex flex-row w-full"
+                      >
+                        <Link
+                          to={`/${item.productType}/${item.name
+                            .toLowerCase()
+                            .split(" ")
+                            .join("")}`}
+                        >
+                          <div className="md:flex items-center justify-center gap-2">
+                            <div className="h-auto w-auto">
+                              <motion.div
+                                initial={{ y: 0 }}
+                                animate={{ y: 6 }}
+                                transition={{
+                                  duration: 2,
+                                  repeat: Infinity,
+                                  repeatType: "reverse",
+                                }}
+                                className="w-auto flex items-center justify-center bg-cover bg-center"
+                              >
+                                <motion.div
+                                  whileHover={{
+                                    scale: 1.2,
+                                  }}
+                                >
+                                  <img
+                                    src={item.image}
+                                    alt={item.name}
+                                    className="w-full md:w-full md:h-96 p-12 object-contain object-center"
+                                  />
+                                </motion.div>
+                              </motion.div>
+                            </div>
+                            <div className="p-4 md:w-1/2 gap-4 flex items-center justify-center flex-col">
+                              <h2 className="underline-animations text-xl text-black text-center font-extrabold">
+                                {item.name}
+                              </h2>
+                              <p className="text-stone-600">
+                                {(item.blog && truncateText(item.blog, 30)) ||
+                                  "No description available"}
+                              </p>
+                            </div>
+                          </div>
+                        </Link>
                       </div>
-                    </Link>
-                  </div>
-                  <div className="w-[70%] flex flex-col p-4 h-auto items-center justify-evenly">
-                    <div className="text-lg font-semobold md:font-extrabold">
-                      {item.name}
-                    </div>
-                    <div className="text-[12px] md:text-lg lg:text-xl mt-2 break-words">
-                      {(item.blog && truncateText(item.blog, 16)) ||
-                        "No description available"}
-                    </div>
-                  </div>
+                    ))}
                 </div>
-              ))}
-          </motion.div>
+              </div>
+            </motion.div>
+          </div>
         ) : (
           <div className="h-screen w-full text-xl">
             <CircularLoader />

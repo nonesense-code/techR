@@ -27,7 +27,7 @@ const Trending = () => {
   }, []);
 
   return (
-    <div className="flex items-center justify-center flex-wrap gap-2 mt-2 mb-4 w-full flex-col md:flex-row">
+    <div className="flex items-center justify-center flex-wrap gap-2 mb-4 w-full flex-col md:flex-row">
       <div className="bg-black text-[#FFA500] rounded-sm p-1  text-center w-auto text-[14px] md:text-xl whitespace-nowrap">
         Trending
       </div>

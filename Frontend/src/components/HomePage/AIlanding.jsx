@@ -1,9 +1,9 @@
 import React from "react";
 import Trending from "./Trending";
-import img1 from "../../images/landingimage1.png";
-import img2 from "../../images/landingimage2.png";
-import img3 from "../../images/landimgimage3.png";
-import img4 from "../../images/landingimage4.png";
+import img1 from "../../../src/images/landingimage1.png";
+import img2 from "../../../src/images/landingimage2.png";
+import img3 from "../../../src/images/landingimage3.png";
+import img4 from "../../../src/images/landingimage4.png";
 
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 const Landing = () => {

@@ -89,7 +89,7 @@ function Navbar() {
                     delay: index * 0.04,
                     ease: easeInOut,
                   }}
-                  className="text-white font-extrabold tracking-wider"
+                  className="text-white font-extrabold tracking-wider select-none"
                 >
                   {item}
                 </motion.div>
@@ -101,7 +101,11 @@ function Navbar() {
               (item, index) => (
                 <motion.div key={index} className="underline-animation">
                   <Link
-                    to={`/${item.toLowerCase().split(" ").join("")}`}
+                    to={
+                      index === 0
+                        ? "/"
+                        : `/${item.toLowerCase().split(" ").join("")}`
+                    }
                     className="flex items-center justify-center gap-1 outline-none"
                   >
                     {index === 0 && <FaHome />} {index === 1 && <CiMobile1 />}
@@ -148,7 +152,11 @@ function Navbar() {
                 (item, index) => (
                   <motion.div key={index}>
                     <Link
-                      to={`/${item.toLowerCase().split(" ").join("")}`}
+                      to={
+                        index === 0
+                          ? "/"
+                          : `/${item.toLowerCase().split(" ").join("")}`
+                      }
                       className="flex items-center justify-center gap-1 outline-none"
                     >
                       {index === 0 && <FaHome />} {index === 1 && <CiMobile1 />}
