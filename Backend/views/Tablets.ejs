@@ -17,8 +17,8 @@
           class="w-72 h-96 overflow-hidden flex items-center justify-center flex-col gap-2"
         >
           <img
-            src="<%= tablet.image %>"
-            alt="<%= tablet.name %>"
+          src="data:image/jpeg;base64,<%= tablet.image.toString('base64') %>"
+          alt="<%= tablet.name %>"
             class="object-cover object-center h-64 w-full border-2 rounded-xl"
           />
           <h1 class="text-white text-2xl text-center"><%= tablet.name %></h1>

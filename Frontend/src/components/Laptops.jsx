@@ -75,7 +75,9 @@ function Laptops() {
                               className="w-auto flex items-center justify-center bg-cover bg-center"
                             >
                               <img
-                                src={laptop.image}
+                                src={`data:image/jpeg;base64,${laptop.image.toString(
+                                  "base64"
+                                )}`}
                                 alt={laptop.name}
                                 className="w-full md:w-full md:h-96 p-12 object-contain object-center"
                               />

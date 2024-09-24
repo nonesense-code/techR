@@ -11,7 +11,7 @@
     <h1 class="text-4xl text-white mb-6">Modify Product</h1>
     
     <% if (find) { %>
-      <form method="post" action="/modify/<%= find.id %>" class="w-full max-w-4xl bg-sky-600 p-6 rounded-lg shadow-lg">
+      <form method="post" action="/modify/<%= find.id %>" enctype="multipart/form-data" class="w-full max-w-4xl bg-sky-600 p-6 rounded-lg shadow-lg">
         <div class="space-y-4">
           <!-- Product Type Select -->
           <div class="flex flex-col md:flex-row md:space-x-4">
@@ -271,7 +271,7 @@
               value="<%= find.video %>"
             />
             <input
-              type="text"
+              type="file"
               name="image"
               class="outline-none rounded-lg bg-zinc-500 text-white px-3 py-2 placeholder:text-zinc-300/80 placeholder:font-semibold"
               placeholder="Image URL"

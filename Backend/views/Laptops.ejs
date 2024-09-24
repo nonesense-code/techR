@@ -17,7 +17,7 @@
           class="w-72 h-96 overflow-hidden flex items-center justify-center flex-col gap-2"
         >
           <img
-            src="<%= laptop.image %>"
+            src="data:image/jpeg;base64,<%= laptop.image.toString('base64') %>"
             alt="<%= laptop.name %>"
             class="object-cover object-center h-64 w-full border-2 rounded-xl"
           />

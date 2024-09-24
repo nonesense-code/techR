@@ -123,7 +123,7 @@ function Navbar() {
             <input
               type="text"
               placeholder="Search"
-              className="px-2 py-1 rounded-md w-24 sm:w-48 bg-gray-600 outline-none text-white placeholder:text-white/80"
+              className="px-2 py-1 rounded-md w-32 sm:w-auto bg-gray-600 outline-none text-white placeholder:text-white/80"
               value={inputValue}
               onChange={(e) => {
                 setInputValue(e.target.value);

@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="p-4 text-black h-full w-full bg-zinc-700">
-      <form method="post" action="/addProduct">
+      <form method="post" action="/addProduct" enctype="multipart/form-data">
         <h1 class="text-4xl">Data Entry</h1>
 
         <div class="mt-12 flex flex-col gap-2 w-[25%] bg-sky-600 p-4">
@@ -35,6 +35,12 @@
             class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
             placeholder="Product Name"
             name="name"
+          />
+          <input
+            type="file"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="Product Image"
+            name="image"
           />
           <input
             type="text"
@@ -242,13 +248,6 @@
             />
           </div>
           <div class="flex flex-col items-center justify-center gap-2">
-            <input
-              type="text"
-              class="outline-none rounded-lg bg-zinc-500 text-white px-2 py-1 placeholder:text-zinc-300/80 placeholder:font-semibold"
-              placeholder="Product Image"
-              name="image"
-            />
-
             <h1 class="text-lg font-semibold">Description of product</h1>
             <textarea
               type="text"

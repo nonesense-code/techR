@@ -3,7 +3,7 @@ import Footer from "../Footer";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { easeInOut, motion } from "framer-motion";
-import CircularLoader from "../../CircularLoader";
+// import CircularLoader from "../../CircularLoader";
 import AIlanding from "./AIlanding";
 import Contact from "./Contact";
 
@@ -48,7 +48,7 @@ function Landing() {
     <div className="flex flex-col items-center w-full">
       <AIlanding />
       <div className="h-full w-auto md:w-[800px]">
-        {loading ? (
+        {loading && (
           <div className="h-auto w-full">
             <motion.div
               initial={{ opacity: 0 }}
@@ -115,11 +115,12 @@ function Landing() {
               </div>
             </motion.div>
           </div>
-        ) : (
-          <div className="h-screen w-full text-xl">
-            <CircularLoader />
-          </div>
         )}
+          {/* : (
+           <div className="h-screen w-full text-xl">
+             <CircularLoader />
+           </div>
+         )} */}
       </div>
       <div className="flex flex-col items-center w-full">
         <Contact />

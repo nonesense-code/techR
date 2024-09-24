@@ -11,7 +11,6 @@ function Filter() {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(`${backendURL}`);
-        // response.data.map((item) => console.log(item.processor));
         if (Array.isArray(response.data)) {
         } else {
           console.error("Data is not in the expected format:", response.data);

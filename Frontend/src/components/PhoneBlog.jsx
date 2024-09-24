@@ -128,7 +128,7 @@ function PhoneBlog() {
                                 .join("")}`}
                             >
                               <img
-                                src={item.image}
+                                src={`data:image/jpeg;base64,${item.image}`}
                                 alt={item.name}
                                 className="rounded-t-lg w-full h-full object-cover object-top"
                               />
@@ -148,9 +148,8 @@ function PhoneBlog() {
                   <div className="w-full h-auto p-4 flex flex-col gap-12 md:gap-4">
                     <div className="w-full h-auto overflow-hidden flex items-center justify-center">
                       <img
-                        src={targetPhones.image}
+                        src={`data:image/jpeg;base64,${targetPhones.image}`}
                         alt={targetPhones.name}
-                        // className="w-full md:max-w-[400px] bg-white md:w-auto min-h-80 sm:h-96 object-cover rounded-xl"
                         className="w-auto bg-white min-h-80 sm:h-96 object-cover rounded-xl"
                       />
                     </div>
@@ -723,7 +722,9 @@ function PhoneBlog() {
                         >
                           <div className="h-80 w-auto flex items-center justify-center">
                             <img
-                              src={item.image}
+                              src={`data:image/jpeg;base64,${item.image.toString(
+                                "base64"
+                              )}`}
                               alt={item.name}
                               className="object-cover rounded-xl w-auto h-80"
                             />
