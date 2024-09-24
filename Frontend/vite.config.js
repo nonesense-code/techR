@@ -10,7 +10,7 @@
       strictPort: true,
       proxy: {
         "/product/api": {
-          target: "https://tech-r.vercel.app",
+          target: "https://tech-r.vercel.app/product/api",
           changeOrigin: true,
         },
       },
