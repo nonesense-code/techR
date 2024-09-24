@@ -24,11 +24,13 @@ databaseConnection();
 
 const frontendURL = process.env.frontendURL;
 
-app.use(
-  cors({
-    origin: `${frontendURL}`,
-  })
-);
+const corsOptions = {
+  origin: frontendURL,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
