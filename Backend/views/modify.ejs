@@ -13,7 +13,6 @@
     <% if (find) { %>
       <form method="post" action="/modify/<%= find.id %>" enctype="multipart/form-data" class="w-full max-w-4xl bg-sky-600 p-6 rounded-lg shadow-lg">
         <div class="space-y-4">
-          <!-- Product Type Select -->
           <div class="flex flex-col md:flex-row md:space-x-4">
             <select
               name="productType"
@@ -271,15 +270,21 @@
               value="<%= find.video %>"
             />
             <input
-              type="file"
-              name="image"
+            type="file"
+            name="image"
+            class="outline-none rounded-lg bg-zinc-500 text-white px-3 py-2 placeholder:text-zinc-300/80 placeholder:font-semibold"
+            placeholder="Image URL"
+            value="<%= find.image %>"
+            />
+            <input
+              type="text"
+              name="previousimage"
               class="outline-none rounded-lg bg-zinc-500 text-white px-3 py-2 placeholder:text-zinc-300/80 placeholder:font-semibold"
-              placeholder="Image URL"
+              placeholder="Previous Image URL"
               value="<%= find.image %>"
             />
           </div>
 
-          <!-- Blog Text Area -->
           <div>
             <label class="block text-white font-semibold mb-1 text-lg">Blog:</label>
             <textarea

@@ -26,8 +26,7 @@ const uploadImage = async (filePath) => {
         resource_type: "image",
       }
     );
-    console.log(result.secure_url);
-    return result.url;
+    return result.secure_url;
   } catch (error) {
     console.error("Error uploading image:", error.message);
   }
@@ -227,7 +226,7 @@ app.get("/modify/:id", async (req, res) => {
 app.post("/modify/:id", upload.single("image"), async (req, res) => {
   try {
     const id = req.params.id;
-    const {
+    let {
       productType,
       popularity,
       name,
@@ -262,52 +261,54 @@ app.post("/modify/:id", upload.single("image"), async (req, res) => {
       price2,
       price3,
       blog,
+      previousimage,
     } = req.body;
+    let imageURL;
+    imageURL = previousimage;
+    if (req.file) {
+      let imageBuffer = req.file.buffer;
+      const image = imageBuffer.toString("base64");
+      imageURL = await uploadImage(image);
+    }
 
-    let imageBuffer = req.file.buffer;
-    const image = imageBuffer.toString("base64");
-    let imageURL = await uploadImage(image);
-
-    await productModel.findOneAndUpdate(
-      { _id: id },
-      {
-        productType,
-        popularity,
-        name,
-        dimension,
-        build,
-        weight,
-        dtype,
-        size,
-        resolution,
-        os,
-        processor,
-        graphics,
-        ram1,
-        ram2,
-        ram3,
-        storage1,
-        storage2,
-        storage3,
-        capacity,
-        charging,
-        wifi,
-        bluetooth,
-        typec,
-        usba,
-        ethernet,
-        hdmi,
-        audiojack,
-        maincamera,
-        frontcamera,
-        video,
-        price1,
-        price2,
-        price3,
-        image: imageURL,
-        blog,
-      }
-    );
+    await productModel.findOneAndUpdate({
+      _id: id,
+      productType,
+      popularity,
+      name,
+      dimension,
+      build,
+      weight,
+      dtype,
+      size,
+      resolution,
+      os,
+      processor,
+      graphics,
+      ram1,
+      ram2,
+      ram3,
+      storage1,
+      storage2,
+      storage3,
+      capacity,
+      charging,
+      wifi,
+      bluetooth,
+      typec,
+      usba,
+      ethernet,
+      hdmi,
+      audiojack,
+      maincamera,
+      frontcamera,
+      video,
+      price1,
+      price2,
+      price3,
+      image: imageURL,
+      blog,
+    });
 
     if (productType === "phone") {
       res.redirect("/phones");
@@ -319,7 +320,7 @@ app.post("/modify/:id", upload.single("image"), async (req, res) => {
       res.redirect("/");
     }
   } catch (error) {
-    console.error("Error updating the product:", error);
+    console.error("Error updating the product:", error.message);
     res.redirect("/");
   }
 });
