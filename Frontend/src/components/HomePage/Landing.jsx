@@ -25,7 +25,6 @@ function Landing() {
       try {
         const response = await axios.get(`${backendURL}`);
         if (Array.isArray(response.data)) {
-          console.log(response.data[0].image);
           setProduct(response.data);
           setLoading(true);
         } else {
