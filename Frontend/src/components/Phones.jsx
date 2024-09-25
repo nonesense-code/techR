@@ -8,6 +8,7 @@ function Phones() {
   const [phones, setPhones] = useState([]);
 
   const backendURL = import.meta.env.VITE_BACKEND_URL;
+  const imageURL = import.meta.env.VITE_IMAGE_URL;
 
   useEffect(() => {
     const fetchPhones = async () => {
@@ -75,9 +76,7 @@ function Phones() {
                               className="w-auto flex items-center justify-center bg-cover bg-center"
                             >
                               <img
-                                src={`data:image/jpeg;base64,${phone.image.toString(
-                                  "base64"
-                                )}`}
+                                src={`${imageURL}${phone.image}`}
                                 alt={phone.name}
                                 className="w-full md:w-full md:h-96 p-12 object-contain object-center"
                               />

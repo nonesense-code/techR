@@ -8,6 +8,8 @@ function tablets() {
   const [tablets, setTablets] = useState([]);
 
   const backendURL = import.meta.env.VITE_BACKEND_URL;
+  const imageURL = import.meta.env.VITE_IMAGE_URL;
+
 
   useEffect(() => {
     const fetchtablets = async () => {
@@ -75,9 +77,7 @@ function tablets() {
                               className="w-auto flex items-center justify-center bg-cover bg-center"
                             >
                               <img
-                                src={`data:image/jpeg;base64,${tablet.image.toString(
-                                  "base64"
-                                )}`}
+                                src={`${imageURL}${tablet.image}`}
                                 alt={tablet.name}
                                 className="w-full md:w-full md:h-96 p-12 object-contain object-center"
                               />

@@ -6,6 +6,7 @@ import { easeInOut, motion } from "framer-motion";
 import Footer from "./Footer";
 import CircularLoader from "../CircularLoader";
 const backendURL = import.meta.env.VITE_BACKEND_URL;
+const imageURL = import.meta.env.VITE_IMAGE_URL;
 
 const fetchData = async () => {
   try {
@@ -132,7 +133,7 @@ function LaptopBlog() {
                                 .join("")}`}
                             >
                               <img
-                                src={`data:image/jpeg;base64,${item.image}`}
+                                src={`${imageURL}${item.image}`}
                                 alt={item.name}
                                 className="rounded-t-lg w-full h-full object-cover object-top"
                               />
@@ -152,7 +153,7 @@ function LaptopBlog() {
                   <div className="w-full h-auto p-4 flex flex-col gap-12 md:gap-4">
                     <div className="w-full h-auto overflow-hidden flex items-center justify-center">
                       <img
-                        src={`data:image/jpeg;base64,${targetLaptops.image}`}
+                        src={`${imageURL}${targetLaptops.image}`}
                         alt={targetLaptops.name}
                         className="w-auto bg-white min-h-80 sm:h-96 object-cover rounded-xl"
                       />
@@ -749,10 +750,8 @@ function LaptopBlog() {
                         >
                           <div className="h-80 w-auto flex items-center justify-center">
                             <img
-                             src={`data:image/jpeg;base64,${item.image.toString(
-                              "base64"
-                            )}`}
-                              alt={item.name}
+                        src={`${imageURL}${item.image}`}
+                        alt={item.name}
                               className="object-cover rounded-xl w-auto h-80"
                             />
                           </div>

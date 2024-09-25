@@ -12,7 +12,7 @@ function Landing() {
   const [showFooter, setShowFooter] = useState(false);
   const [loading, setLoading] = useState(false);
   const backendURL = import.meta.env.VITE_BACKEND_URL;
-
+  const imageURL = import.meta.env.VITE_IMAGE_URL;
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowFooter(true);
@@ -25,6 +25,7 @@ function Landing() {
       try {
         const response = await axios.get(`${backendURL}`);
         if (Array.isArray(response.data)) {
+          console.log(response.data[0].image);
           setProduct(response.data);
           setLoading(true);
         } else {
@@ -62,57 +63,61 @@ function Landing() {
                 </h1>
                 <div className="flex flex-col items-center justify-center w-full gap-6">
                   {product.length > 0 &&
-                    product.map((item, index) => (
-                      <div
-                        key={index}
-                        className="bg-white shadow-2xl rounded-lg overflow-hidden p-2 md:flex flex-row w-full"
-                      >
-                        <Link
-                          to={`/${item.productType}/${item.name
-                            .toLowerCase()
-                            .split(" ")
-                            .join("")}`}
+                    product.map((item, index) => {
+                      // const img = item.image;
+                      // const exactimg = `1727241387539-post1.jpeg"${img}`;
+                      // console.log(exactimg, "exact");
+                      // console.log(img, "image");
+                      return (
+                        <div
+                          key={index}
+                          className="bg-white shadow-2xl rounded-lg overflow-hidden p-2 md:flex flex-row w-full"
                         >
-                          <div className="md:flex items-center justify-center gap-2">
-                            <div className="h-auto w-auto">
-                              <motion.div
-                                initial={{ y: 0 }}
-                                animate={{ y: 6 }}
-                                transition={{
-                                  duration: 2,
-                                  repeat: Infinity,
-                                  repeatType: "reverse",
-                                }}
-                                className="w-auto flex items-center justify-center bg-cover bg-center"
-                              >
+                          <Link
+                            to={`/${item.productType}/${item.name
+                              .toLowerCase()
+                              .split(" ")
+                              .join("")}`}
+                          >
+                            <div className="md:flex items-center justify-center gap-2">
+                              <div className="h-auto w-auto">
                                 <motion.div
-                                  whileHover={{
-                                    scale: 1.2,
+                                  initial={{ y: 0 }}
+                                  animate={{ y: 6 }}
+                                  transition={{
+                                    duration: 2,
+                                    repeat: Infinity,
+                                    repeatType: "reverse",
                                   }}
+                                  className="w-auto flex items-center justify-center bg-cover bg-center"
                                 >
-                                  <img
-                                    src={`data:image/jpeg;base64,${item.image.toString(
-                                      "base64"
-                                    )}`}
-                                    alt={item.name}
-                                    className="w-full md:w-full md:h-96 p-12 object-contain object-center"
-                                  />
+                                  <motion.div
+                                    whileHover={{
+                                      scale: 1.2,
+                                    }}
+                                  >
+                                    <img
+                                      src={`${imageURL}${item.image}`}
+                                      alt={item.name}
+                                      className="w-full md:w-full md:h-96 p-12 object-contain object-center"
+                                    />
+                                  </motion.div>
                                 </motion.div>
-                              </motion.div>
+                              </div>
+                              <div className="p-4 md:w-1/2 gap-4 flex items-center justify-center flex-col">
+                                <h2 className="underline-animations text-xl text-black text-center font-extrabold">
+                                  {item.name}
+                                </h2>
+                                <p className="text-stone-600">
+                                  {(item.blog && truncateText(item.blog, 30)) ||
+                                    "No description available"}
+                                </p>
+                              </div>
                             </div>
-                            <div className="p-4 md:w-1/2 gap-4 flex items-center justify-center flex-col">
-                              <h2 className="underline-animations text-xl text-black text-center font-extrabold">
-                                {item.name}
-                              </h2>
-                              <p className="text-stone-600">
-                                {(item.blog && truncateText(item.blog, 30)) ||
-                                  "No description available"}
-                              </p>
-                            </div>
-                          </div>
-                        </Link>
-                      </div>
-                    ))}
+                          </Link>
+                        </div>
+                      );
+                    })}
                 </div>
               </div>
             </motion.div>
