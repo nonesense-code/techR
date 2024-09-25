@@ -2,7 +2,7 @@ import React from "react";
 
 const CircularLoader = () => {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex items-center justify-center h-auto w-full">
       <div className="animate-spin rounded-full h-20 w-20 border-4 border-t-transparent border-blue-500 border-solid"></div>
     </div>
   );
