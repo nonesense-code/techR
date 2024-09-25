@@ -132,7 +132,7 @@ function TabletBlog() {
                                 .join("")}`}
                             >
                               <img
-                                src={`${imageURL}${item.image}`}
+                                src={item.image}
                                 alt={item.name}
                                 className="rounded-t-lg w-full h-full object-cover object-top"
                               />
@@ -152,7 +152,7 @@ function TabletBlog() {
                   <div className="w-full h-auto p-4 flex flex-col gap-12 md:gap-4">
                     <div className="w-auto h-auto overflow-hidden flex items-center justify-center">
                       <img
-                        src={`${imageURL}${targetTablets.image}`}
+                        src={targetTablets.image}
                         alt={targetTablets.name}
                         className="w-auto bg-white min-h-80 sm:h-96 object-cover rounded-xl"
                       />
@@ -711,7 +711,7 @@ function TabletBlog() {
                         >
                           <div className="h-80 w-auto flex items-center justify-center">
                             <img
-                              src={`${imageURL}${item.image}`}
+                              src={item.image}
                               alt={item.name}
                               className="object-cover rounded-xl w-auto h-80"
                             />

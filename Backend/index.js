@@ -5,18 +5,33 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const path = require("path");
 const productModel = require("./models/Products.js");
+const cloudinary = require("cloudinary");
 dotenv.config();
 
 const multer = require("multer");
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "./public/images");
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.fieldname + Date.now() + "_" + file.originalname);
-  },
-});
+const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_API_SECRET,
+});
+
+const uploadImage = async (filePath) => {
+  try {
+    const result = await cloudinary.uploader.upload(
+      `data:image/jpeg;base64,${filePath}`,
+      {
+        resource_type: "image",
+      }
+    );
+    console.log(result.secure_url);
+    return result.url;
+  } catch (error) {
+    console.error("Error uploading image:", error.message);
+  }
+};
 
 const URI = process.env.URI;
 const databaseConnection = async () => {
@@ -41,7 +56,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
-app.use(express.static("public")); // Serve static files from the 'public' folder
+app.use(express.static("public"));
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -92,8 +107,9 @@ app.post("/addProduct", upload.single("image"), async (req, res) => {
     blog,
   } = req.body;
 
-  let image = req.file.originalname;
-  console.log(storage.getFilename.filename);
+  let imageBuffer = req.file.buffer;
+  const image = imageBuffer.toString("base64");
+  let imageURL = await uploadImage(image);
 
   if (!name || !image) {
     return res.json({ message: "Name and image are required!" });
@@ -137,7 +153,7 @@ app.post("/addProduct", upload.single("image"), async (req, res) => {
         price1,
         price2,
         price3,
-        image: image,
+        image: imageURL,
         blog,
       });
     } catch (error) {
@@ -188,7 +204,6 @@ app.get("/laptops", async (req, res) => {
 
 app.get("/tablets", async (req, res) => {
   const tablets = await productModel.find({ productType: "tablet" });
-  console.log(tablets);
   res.render("Tablets", { tablets });
 });
 
@@ -249,7 +264,9 @@ app.post("/modify/:id", upload.single("image"), async (req, res) => {
       blog,
     } = req.body;
 
-    let image = req.file.filename;
+    let imageBuffer = req.file.buffer;
+    const image = imageBuffer.toString("base64");
+    let imageURL = await uploadImage(image);
 
     await productModel.findOneAndUpdate(
       { _id: id },
@@ -287,7 +304,7 @@ app.post("/modify/:id", upload.single("image"), async (req, res) => {
         price1,
         price2,
         price3,
-        image: image,
+        image: imageURL,
         blog,
       }
     );

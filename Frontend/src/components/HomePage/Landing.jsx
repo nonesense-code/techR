@@ -63,10 +63,6 @@ function Landing() {
                 <div className="flex flex-col items-center justify-center w-full gap-6">
                   {product.length > 0 &&
                     product.map((item, index) => {
-                      // const img = item.image;
-                      // const exactimg = `1727241387539-post1.jpeg"${img}`;
-                      // console.log(exactimg, "exact");
-                      // console.log(img, "image");
                       return (
                         <div
                           key={index}
@@ -96,7 +92,7 @@ function Landing() {
                                     }}
                                   >
                                     <img
-                                      src={`${imageURL}${item.image}`}
+                                      src={item.image}
                                       alt={item.name}
                                       className="w-full md:w-full md:h-96 p-12 object-contain object-center"
                                     />

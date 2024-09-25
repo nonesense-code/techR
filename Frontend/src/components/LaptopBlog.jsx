@@ -133,7 +133,7 @@ function LaptopBlog() {
                                 .join("")}`}
                             >
                               <img
-                                src={`${imageURL}${item.image}`}
+                                src={item.image}
                                 alt={item.name}
                                 className="rounded-t-lg w-full h-full object-cover object-top"
                               />
@@ -153,7 +153,7 @@ function LaptopBlog() {
                   <div className="w-full h-auto p-4 flex flex-col gap-12 md:gap-4">
                     <div className="w-full h-auto overflow-hidden flex items-center justify-center">
                       <img
-                        src={`${imageURL}${targetLaptops.image}`}
+                        src={targetLaptops.image}
                         alt={targetLaptops.name}
                         className="w-auto bg-white min-h-80 sm:h-96 object-cover rounded-xl"
                       />
@@ -750,8 +750,8 @@ function LaptopBlog() {
                         >
                           <div className="h-80 w-auto flex items-center justify-center">
                             <img
-                        src={`${imageURL}${item.image}`}
-                        alt={item.name}
+                              src={item.image}
+                              alt={item.name}
                               className="object-cover rounded-xl w-auto h-80"
                             />
                           </div>
