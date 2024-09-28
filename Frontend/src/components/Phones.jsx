@@ -9,7 +9,6 @@ function Phones() {
 
 
   const backendURL = import.meta.env.VITE_BACKEND_URL;
-  const imageURL = import.meta.env.VITE_IMAGE_URL;
 
   useEffect(() => {
     const fetchPhones = async () => {

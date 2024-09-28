@@ -6,7 +6,6 @@ import { motion, easeInOut } from "framer-motion";
 import Footer from "./Footer";
 import CircularLoader from "../CircularLoader";
 const backendURL = import.meta.env.VITE_BACKEND_URL;
-const imageURL = import.meta.env.VITE_IMAGE_URL;
 
 const fetchData = async () => {
   try {

@@ -2,14 +2,13 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./HomePage/Navbar";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { motion, reverseEasing } from "framer-motion";
+import { motion } from "framer-motion";
 
 function Laptops() {
   const [laptops, setLaptops] = useState([]);
 
   const backendURL = import.meta.env.VITE_BACKEND_URL;
-  const imageURL = import.meta.env.VITE_IMAGE_URL;
-
+ 
   useEffect(() => {
     const fetchLaptops = async () => {
       try {
