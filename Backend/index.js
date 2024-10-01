@@ -165,7 +165,7 @@ app.post("/addProduct", upload.single("image"), async (req, res) => {
 app.get("/product/api", async (req, res) => {
   try {
     const products = await productModel.find();
-    res.json(products);
+    return res.json(products);
   } catch (error) {
     console.error("Error fetching items:", error);
     res.status(500).json({ message: "Error fetching items", error });
@@ -213,9 +213,7 @@ app.get("/modify", (req, res) => {
 app.get("/modify/:id", async (req, res) => {
   try {
     const id = req.params.id;
-
     const find = await productModel.findOne({ _id: id });
-
     return res.render("modify", { find });
   } catch (error) {
     console.error("Error finding the product:", error);

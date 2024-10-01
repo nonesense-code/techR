@@ -1,10 +1,9 @@
 import React from "react";
-import Navbar from "./Navbar";
 
 function About() {
   return (
     <div className="w-full h-auto">
-      <Navbar />
+
       {/* About Section */}
       <section id="about" className="px-8 py-16 bg-gray-800 w-auto h-auto">
         <h2 className="text-4xl font-bold mb-8 text-center text-white">

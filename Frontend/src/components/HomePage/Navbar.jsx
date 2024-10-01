@@ -70,7 +70,7 @@ function Navbar() {
   }, []);
 
   return (
-    <div className="navbar">
+    <div className="navbar max-w-96">
       <div className="fixed w-full backdrop-blur-md py-2 px-4 z-50 bg-[#232F3E]">
         <div className="flex items-center justify-between w-auto flex-wrap gap-1">
           <div className="flex items-center justify-center gap-1 text-2xl ">
@@ -138,7 +138,16 @@ function Navbar() {
         </div>
       </div>
       {show && (
-        <div className="md:hidden bg-black min-w-52 w-auto min-h-screen z-50 fixed text-white p-4">
+        <motion.div
+          initial={{ x: "-100%", opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{
+            type: "spring",
+            damping: 14,
+            duration: 1,
+          }}
+          className="md:hidden bg-black min-w-full w-full min-h-screen h-auto z-50 fixed text-white p-4"
+        >
           <div className="flex flex-col gap-12 items-start justify-evenly">
             <div className="flex items-center gap-1 justify-start text-xl font-extrabold tracking-wide">
               <RiMenuFold3Fill
@@ -158,6 +167,7 @@ function Navbar() {
                           : `/${item.toLowerCase().split(" ").join("")}`
                       }
                       className="flex items-center justify-center gap-1 outline-none"
+                      onClick={() => setShow(false)} // Hides the menu when link is clicked
                     >
                       {index === 0 && <FaHome />} {index === 1 && <CiMobile1 />}
                       {index === 2 && <AiOutlineLaptop />}
@@ -170,10 +180,11 @@ function Navbar() {
               )}
             </div>
           </div>
-        </div>
+        </motion.div>
       )}
+
       <News />
-      <div className="pb-20"></div>
+      <div className="pb-14"></div>
     </div>
   );
 }

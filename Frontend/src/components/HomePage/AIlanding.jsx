@@ -1,97 +1,143 @@
-import React from "react";
+import React, { useState } from "react";
 import Trending from "./Trending";
-import img2 from "../../../src/images/landingimage2.png";
-import img3 from "../../../src/images/landingimage3.png";
-import img4 from "../../../src/images/landingimage4.png";
-
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+import { motion } from "framer-motion";
+import redmi from "../../images/redminote11pro.jpeg";
+import samsungtab from "../../images/galaxytabs9ultra.jpg";
+import iPhone from "../../images/iPhone16promax_1.avif";
+
 const Landing = () => {
+  const hotDrops = {
+    name: "Redmi Note 11 pro",
+    note: "The newly launched Redmi Note 11 pro Max features a 108MP of main camera with an stunning photo quality!",
+    link: "/phone/redminote11pro",
+  };
+
+  const [show1, setShow1] = useState(false);
+  const [show2, setShow2] = useState(false);
   return (
-    <div className="h-auto text-white">
-      <section
-        className="flex flex-col items-center justify-center text-center h-72 bg-cover bg-bottom"
-        style={{
-          backgroundImage: `url(${img3})`,
-        }}
-      >
+    <div className="h-auto text-white w-full">
+      <section className="flex flex-col items-center justify-center text-center h-auto mt-8">
         <div>
           <Trending />
         </div>
-        <h1 className="text-5xl font-bold" id="heading">
-          Welcome to TechR
-        </h1>
-        <p className="text-lg text-sky-600 mb-6 tracking-tight">
-          Innovating technology solutions for a smarter future.
-        </p>
-      </section>
-
-      <section className="px-8 py-16">
-        <div className="flex items-center justify-center w-auto flex-col">
-          <h2 className="stroke text-4xl font-bold mb-2 text-center">
+        <div className="flex items-center justify-center w-auto md:w-full flex-col">
+          <h2 className="stroke text-2xl md:text-3xl font-bold mb-1 text-center cursor-pointer">
             HOT DROP
           </h2>
-          <h2 className="text-sm mb-8 text-center text-zinc-400">
-            Click Image for more details!
-          </h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div
-            className="bg-gray-900 p-6 rounded-lg text-center"
-            style={{ backgroundImage: `url(${img4})` }}
-          >
-            <Link to="/phone/iphone16promax">
-              <img
-                src="https://www.apple.com/v/iphone-16-pro/a/images/overview/product-viewer/iphone-pro/all_colors__fdpduog7urm2_large.jpg"
-                alt={img2}
-                className="mb-4 mx-auto h-48 object-cover rounded-md"
-              />
-              <h3 className="text-2xl font-semibold mb-2">
-                Iphone 16 pro lineup
-              </h3>
-            </Link>
-            <p className="text-gray-400">
-              Apple anounces its one of the major launch event of iPhones of
-              this year with exciting features.
-            </p>
-          </div>
-          <div
-            className="bg-gray-900 p-6 rounded-lg text-center"
-            style={{ backgroundImage: `url(${img4})` }}
-          >
-            <Link to="/laptop/asusrogzephyrusg14">
-              <img
-                src="https://rog.asus.com/media/157809658839.jpg"
-                alt="Product 2"
-                className="mb-4 mx-auto h-48 object-cover rounded-md"
-              />
-              <h3 className="text-2xl font-semibold mb-2">
-                Just Launched: ASUS ROG Zephyrus G14
-              </h3>
-            </Link>
+      </section>
 
-            <p className="text-gray-400">
-              High-performance gaming laptop featuring Ryzen 9, RTX 40 GPU, and
-              a stunning 120Hz display.
-            </p>
-          </div>
-          <div
-            className="bg-gray-900 p-6 rounded-lg text-center"
-            style={{ backgroundImage: `url(${img4})` }}
-          >
-            <Link to="/tablet/appleipadpro">
-              <img
-                src="https://www.apple.com/newsroom/videos/ipad-pro-magic-keyboard/posters/Apple-iPad-Pro-Magic-Keyboard-240507.jpg.large_2x.jpg"
-                alt="Product 3"
-                className="mb-4 mx-auto h-48 object-cover rounded-md"
-              />
-              <h3 className="text-2xl font-semibold mb-2">
-                Introducing the All-New Apple iPad Pro
-              </h3>
+      <section className="w-full md:px-8 flex items-center justify-center gap-2 mt-2 md:mt-4">
+        <div className="flex flex-col md:flex-row items-center w-full md:h-80 justify-center gap-2 mb-12 flex-wrap max-w-[700px] relative">
+          <div className="text-center w-full bg-no-repeat bg-center md:w-full relative">
+            <Link to={hotDrops.link} className="outline-none w-auto">
+              <div
+                onMouseEnter={() => setShow1(true)}
+                onMouseLeave={() => setShow1(false)}
+                className="flex items-center w-full justify-center h-auto md:h-auto md:w-auto flex-col relative"
+              >
+                <div>
+                  <img
+                    src={redmi}
+                    alt={hotDrops.name}
+                    className="mb-4 md:h-80 w-full md:w-auto h-full object-contain rounded-md md:rounded-none"
+                  />
+                </div>
+                {show1 && (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="hidden lg:flex absolute left-80 top-32 justify-center w-full z-50">
+                      {[
+                        "R",
+                        "e",
+                        "d",
+                        "m",
+                        "i",
+                        " ",
+                        "N",
+                        "o",
+                        "t",
+                        "e",
+                        " ",
+                        "1",
+                        "1",
+                        " ",
+                        "P",
+                        "r",
+                        "o",
+                      ].map((item, index) => (
+                        <motion.div
+                          key={index}
+                          initial={{ opacity: 0, y: 30 }}
+                          animate={{ opacity: 1, y: -10 }}
+                          transition={{ duration: 0.2, delay: index * 0.02 }}
+                          className="text-4xl text-[#00FFA3] mx-[1px]"
+                        >
+                          {item}
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             </Link>
-            <p className="text-gray-400">
-              Powerful M2 chip, Liquid Retina XDR display, and enhanced
-              multitasking capabilities for creative professionals.
-            </p>
+            <div className="absolute text-md md:text-xs text-black bottom-4 md:bottom-[16px] w-full z-30 bg-[#00ffa2c4] p-2">
+              <h1>{hotDrops.note}</h1>
+            </div>
+          </div>
+        </div>
+        <div className="hidden flex-col md:flex items-center w-full md:h-80 justify-center gap-2 mb-12 flex-wrap max-w-[700px] relative">
+          <div className="text-center w-full bg-no-repeat bg-center md:w-full relative">
+            <Link to={hotDrops.link} className="outline-none w-auto">
+              <div
+                onMouseEnter={() => setShow2(true)}
+                onMouseLeave={() => setShow2(false)}
+                className="flex items-center w-full justify-center h-auto md:h-auto md:w-auto flex-col relative"
+              >
+                <img
+                  src={samsungtab}
+                  alt={hotDrops.name}
+                  className="mb-4 md:h-80 w-full md:w-auto h-full object-contain rounded-md md:rounded-none"
+                />
+                {show2 && (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="hidden lg:flex absolute right-80 top-32 justify-center w-full z-50">
+                      {[
+                        "G",
+                        "a",
+                        "l",
+                        "a",
+                        "x",
+                        "y",
+                        "T",
+                        "a",
+                        "b",
+                        "S",
+                        "9",
+                        "U",
+                        "l",
+                        "t",
+                        "r",
+                        "a",
+                      ].map((item, index) => (
+                        <motion.div
+                          key={index}
+                          initial={{ opacity: 0, y: 30 }}
+                          animate={{ opacity: 1, y: -10 }}
+                          transition={{ duration: 0.2, delay: index * 0.02 }}
+                          className="text-4xl text-[#00FFA3] mx-[1px]"
+                        >
+                          {item}
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </Link>
+            <div className="absolute text-md md:text-xs text-black bottom-4 md:bottom-[16px] w-full z-30 bg-[#00ffa2c4] p-2">
+              <h1>{hotDrops.note}</h1>
+            </div>
           </div>
         </div>
       </section>

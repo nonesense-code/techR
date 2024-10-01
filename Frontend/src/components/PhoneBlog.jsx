@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "./HomePage/Navbar";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { motion, easeInOut } from "framer-motion";
 import Footer from "./Footer";
 import CircularLoader from "../CircularLoader";
 const backendURL = import.meta.env.VITE_BACKEND_URL;
+import { FaAmazon } from "react-icons/fa";
+import alibaba from "../images/alibabalogo.png";
+import daraz from "../images/darazlogo.png";
 
 const fetchData = async () => {
   try {
@@ -68,6 +70,19 @@ function PhoneBlog() {
     loadData();
   }, []);
 
+  const InfoSection = ({ label, value }) => (
+    <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1 p-2 rounded-lg bg-green-100">
+        <h1 className="text-xs whitespace-nowrap sm:text-sm md:text-lg font-extrabold text-green-600">
+          {label}:
+        </h1>
+      </div>
+      <div className="text-xs sm:text-sm md:text-lg w-full bg-zinc-200 px-3 py-2 rounded-md text-black">
+        {value || "Loading..."}
+      </div>
+    </div>
+  );
+
   useEffect(() => {
     const fetchTargetPhones = async () => {
       try {
@@ -91,7 +106,6 @@ function PhoneBlog() {
 
   return (
     <>
-      <Navbar />
       {loading ? (
         <div>
           <CircularLoader />
@@ -106,7 +120,7 @@ function PhoneBlog() {
           <div className="h-full w-auto">
             <div className="w-auto max-w-7xl">
               <div className="flex flex-col md:flex-row items-start justify-between border-b-4 border-black/10">
-                <div className="hidden lg:flex w-full md:w-1/3 h-auto">
+                <div className="hidden lg:flex mt-8 w-full md:w-1/3 h-auto">
                   <div className="flex flex-col gap-4 items-center h-full mt-4">
                     <h1 className="text-2xl">Popular</h1>
                     <div className="hidescroller w-full pt-4 flex flex-col gap-8 items-center overflow-y-auto p-4 h-[800px]">
@@ -142,10 +156,10 @@ function PhoneBlog() {
                   </div>
                 </div>
                 <div className="w-full lg:border-l-4 lg:border-black/10 py-4">
-                  <h1 className="text-2xl md:text-4xl px-4 flex items-center justify-center md:justify-start min-h-[68px] whitespace-nowrap tracking-tighter text-[#001] font-semibold border-b-[3px] border-black/10 py-2">
+                  <h1 className="mt-8 text-2xl md:text-3xl px-4 flex items-center justify-center md:justify-start whitespace-nowrap tracking-tighter text-[#001] font-semibold border-b-[3px] border-black/10">
                     {targetPhones.name || "..."}
                   </h1>
-                  <div className="w-full h-auto p-4 flex flex-col gap-12 md:gap-4">
+                  <div className="w-full h-auto p-4 flex flex-col gap-4">
                     <div className="w-full h-auto overflow-hidden flex items-center justify-center bg-white rounded-xl">
                       <img
                         src={targetPhones.image}
@@ -153,7 +167,7 @@ function PhoneBlog() {
                         className="w-auto min-h-80 sm:h-96 sm:object-cover object-contain"
                       />
                     </div>
-                    <div className="text-black text-lg md:text-xl font-semibold text-ellipsis">
+                    <div className="text-black text-sm tracking-wide md:text-xl font-bold text-ellipsis">
                       {targetPhones.blog || "..."}
                     </div>
                     <div className="w-full h-auto overflow-hidden flex flex-col gap-4 mt-2 text-2xl text-[#002] items-start justify-end">
@@ -184,42 +198,24 @@ function PhoneBlog() {
                               </motion.div>
                             ))}
                           </div>
-                          <div className="flex flex-col w-full gap-2">
+                          <div className="flex flex-col gap-3 w-full">
                             {targetPhones.dimension && (
-                              <div className="flex items-center gap-2">
-                                <div className="flex items-center gap-1 p-2 rounded-lg">
-                                  <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                                    Dimension:
-                                  </h1>
-                                </div>
-                                <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                                  {targetPhones.dimension || "..."}
-                                </div>
-                              </div>
+                              <InfoSection
+                                label="Dimension"
+                                value={targetPhones.dimension}
+                              />
                             )}
                             {targetPhones.build && (
-                              <div className="flex items-center gap-2">
-                                <div className="flex items-center gap-1 p-2 rounded-lg">
-                                  <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                                    Build:
-                                  </h1>
-                                </div>
-                                <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                                  {targetPhones.build || "..."}
-                                </div>
-                              </div>
+                              <InfoSection
+                                label="Build"
+                                value={targetPhones.build}
+                              />
                             )}
                             {targetPhones.weight && (
-                              <div className="flex items-center gap-2">
-                                <div className="flex items-center gap-1 p-2 rounded-lg">
-                                  <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                                    Weight:
-                                  </h1>
-                                </div>
-                                <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                                  {targetPhones.weight || "..."}
-                                </div>
-                              </div>
+                              <InfoSection
+                                label="Weight"
+                                value={targetPhones.weight}
+                              />
                             )}
                           </div>
                         </div>
@@ -253,42 +249,24 @@ function PhoneBlog() {
                               )
                             )}
                           </div>
-                          <div className="flex flex-col w-full gap-2">
+                          <div className="flex flex-col gap-3 w-full">
                             {targetPhones.dtype && (
-                              <div className="flex items-center gap-2">
-                                <div className="flex items-center gap-1 p-2 rounded-lg">
-                                  <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                                    Type:
-                                  </h1>
-                                </div>
-                                <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                                  {targetPhones.dtype || "..."}
-                                </div>
-                              </div>
+                              <InfoSection
+                                label="Type"
+                                value={targetPhones.dtype}
+                              />
                             )}
                             {targetPhones.size && (
-                              <div className="flex items-center gap-2">
-                                <div className="flex items-center gap-1 p-2 rounded-lg">
-                                  <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                                    Size:
-                                  </h1>
-                                </div>
-                                <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                                  {targetPhones.size || "..."}
-                                </div>
-                              </div>
+                              <InfoSection
+                                label="Size"
+                                value={targetPhones.size}
+                              />
                             )}
                             {targetPhones.resolution && (
-                              <div className="flex items-center gap-2">
-                                <div className="flex items-center gap-1 p-2 rounded-lg">
-                                  <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                                    Resolution:
-                                  </h1>
-                                </div>
-                                <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                                  {targetPhones.resolution || "..."}
-                                </div>
-                              </div>
+                              <InfoSection
+                                label="Resolution"
+                                value={targetPhones.resolution}
+                              />
                             )}
                           </div>
                         </div>
@@ -322,42 +300,24 @@ function PhoneBlog() {
                               )
                             )}
                           </div>
-                          <div className="flex flex-col w-full gap-2">
+                          <div className="flex flex-col gap-3 w-full">
                             {targetPhones.frontcamera && (
-                              <div className="flex items-center gap-2">
-                                <div className="flex items-center gap-1 p-2 rounded-lg">
-                                  <h1 className="text-[16px] mr-6 md:text-lg w-[96px] font-extrabold text-green-600 whitespace-nowrap">
-                                    FrontCamera:
-                                  </h1>
-                                </div>
-                                <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                                  {targetPhones.frontcamera || "..."}
-                                </div>
-                              </div>
+                              <InfoSection
+                                label="FrontCamera"
+                                value={targetPhones.frontcamera}
+                              />
                             )}
                             {targetPhones.maincamera && (
-                              <div className="flex items-center gap-2">
-                                <div className="flex items-center gap-1 p-2 rounded-lg">
-                                  <h1 className="text-[16px] mr-6 md:text-lg w-[96px] font-extrabold text-green-600 whitespace-nowrap">
-                                    BackCamera:
-                                  </h1>
-                                </div>
-                                <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                                  {targetPhones.maincamera || "..."}
-                                </div>
-                              </div>
+                              <InfoSection
+                                label="BackCamera"
+                                value={targetPhones.maincamera}
+                              />
                             )}
                             {targetPhones.video && (
-                              <div className="flex items-center gap-2">
-                                <div className="flex items-center gap-1 p-2 rounded-lg">
-                                  <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                                    Video:
-                                  </h1>
-                                </div>
-                                <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                                  {targetPhones.video || "..."}
-                                </div>
-                              </div>
+                              <InfoSection
+                                label="Video"
+                                value={targetPhones.video}
+                              />
                             )}
                           </div>
                         </div>
@@ -391,43 +351,21 @@ function PhoneBlog() {
                               )
                             )}
                           </div>
-                          <div className="flex flex-col w-full gap-2">
+                          <div className="flex flex-col gap-3 w-full">
                             {targetPhones.os && (
-                              <div className="flex items-center gap-2">
-                                <div className="flex items-center gap-1 p-2 rounded-lg">
-                                  <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                                    OS:
-                                  </h1>
-                                </div>
-
-                                <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                                  {targetPhones.os || "..."}
-                                </div>
-                              </div>
+                              <InfoSection label="OS" value={targetPhones.os} />
                             )}
                             {targetPhones.processor && (
-                              <div className="flex items-center gap-2">
-                                <div className="flex items-center gap-1 p-2 rounded-lg">
-                                  <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                                    Processor:
-                                  </h1>
-                                </div>
-                                <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                                  {targetPhones.processor || "..."}
-                                </div>
-                              </div>
+                              <InfoSection
+                                label="Processor"
+                                value={targetPhones.processor}
+                              />
                             )}
                             {targetPhones.graphics && (
-                              <div className="flex items-center gap-2">
-                                <div className="flex items-center gap-1 p-2 rounded-lg">
-                                  <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                                    GPU:
-                                  </h1>
-                                </div>
-                                <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                                  {targetPhones.graphics || "..."}
-                                </div>
-                              </div>
+                              <InfoSection
+                                label="Graphics"
+                                value={targetPhones.graphics}
+                              />
                             )}
                           </div>
                         </div>
@@ -460,37 +398,37 @@ function PhoneBlog() {
                               )
                             )}
                           </div>
-                          <div className="flex flex-col w-full gap-2">
-                            <div className="flex items-center gap-2">
-                              <div className="flex items-center gap-1 p-2 rounded-lg">
-                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
+                          <div className="flex flex-col w-full gap-2 items-start justify-center">
+                            <div className="flex items-center gap-2 w-full">
+                              <div className="flex items-center gap-1 p-2 rounded-lg bg-green-100">
+                                <h1 className="text-xs sm:text-sm md:text-lg font-extrabold text-green-600">
                                   RAM:
                                 </h1>
                               </div>
-                              <div className="text-[18px] flex gap-2 w-full bg-zinc-200 px-2 rounded-md text-black">
+                              <div className="text-xs flex sm:text-sm md:text-lg w-full bg-zinc-200 px-3 py-2 rounded-md text-black">
                                 {rows.map(
                                   (row, index) =>
                                     row && (
                                       <div key={index}>
-                                        {row.ram}
+                                        {row.ram + " "}
                                         {index < rows.length - 1 && ","}
                                       </div>
                                     )
                                 )}
                               </div>
                             </div>
-                            <div className="flex items-center gap-2">
-                              <div className="flex items-center gap-1 p-2 rounded-lg">
-                                <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
+                            <div className="flex items-center gap-2 w-full">
+                              <div className="flex items-center gap-1 p-2 rounded-lg bg-green-100">
+                                <h1 className="text-xs sm:text-sm md:text-lg font-extrabold text-green-600">
                                   Storage:
                                 </h1>
                               </div>
-                              <div className="text-[18px] flex gap-2 w-full bg-zinc-200 px-2 rounded-md text-black">
+                              <div className="text-xs flex sm:text-sm md:text-lg w-full bg-zinc-200 px-3 py-2 rounded-md text-black">
                                 {rows.map(
                                   (row, index) =>
                                     row && (
                                       <div key={index}>
-                                        {row.storage}
+                                        {row.storage + " "}
                                         {index < rows.length - 1 && ","}
                                       </div>
                                     )
@@ -527,30 +465,18 @@ function PhoneBlog() {
                               )
                             )}
                           </div>
-                          <div className="flex flex-col w-full gap-2">
+                          <div className="flex flex-col gap-3 w-full">
                             {targetPhones.capacity && (
-                              <div className="flex items-center gap-2">
-                                <div className="flex items-center gap-1 p-2 rounded-lg">
-                                  <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                                    Capacity:
-                                  </h1>
-                                </div>
-                                <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                                  {targetPhones.capacity || "..."}
-                                </div>
-                              </div>
+                              <InfoSection
+                                label="Capacity"
+                                value={targetPhones.capacity}
+                              />
                             )}
                             {targetPhones.charging && (
-                              <div className="flex items-center gap-2">
-                                <div className="flex items-center gap-1 p-2 rounded-lg">
-                                  <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                                    Charging:
-                                  </h1>
-                                </div>
-                                <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                                  {targetPhones.charging || "..."}
-                                </div>
-                              </div>
+                              <InfoSection
+                                label="Charging"
+                                value={targetPhones.charging}
+                              />
                             )}
                           </div>
                         </div>
@@ -582,30 +508,18 @@ function PhoneBlog() {
                               )
                             )}
                           </div>
-                          <div className="flex flex-col w-full gap-2">
+                          <div className="flex flex-col gap-3 w-full">
                             {targetPhones.wifi && (
-                              <div className="flex items-center gap-2">
-                                <div className="flex items-center gap-1 p-2 rounded-lg">
-                                  <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                                    Wi-Fi:
-                                  </h1>
-                                </div>
-                                <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                                  {targetPhones.wifi || "..."}
-                                </div>
-                              </div>
+                              <InfoSection
+                                label="Wi-Fi"
+                                value={targetPhones.wifi}
+                              />
                             )}
                             {targetPhones.bluetooth && (
-                              <div className="flex items-center gap-2">
-                                <div className="flex items-center gap-1 p-2 rounded-lg">
-                                  <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                                    Bluetooth:
-                                  </h1>
-                                </div>
-                                <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                                  {targetPhones.bluetooth || "..."}
-                                </div>
-                              </div>
+                              <InfoSection
+                                label="Bluetooth"
+                                value={targetPhones.bluetooth}
+                              />
                             )}
                           </div>
                         </div>
@@ -637,30 +551,18 @@ function PhoneBlog() {
                               </motion.div>
                             ))}
                           </div>
-                          <div className="flex flex-col w-full gap-2">
+                          <div className="flex flex-col gap-3 w-full">
                             {targetPhones.typec && (
-                              <div className="flex items-center gap-2">
-                                <div className="flex items-center gap-1 p-2 rounded-lg">
-                                  <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600">
-                                    Type C:
-                                  </h1>
-                                </div>
-                                <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                                  {targetPhones.typec || "..."}
-                                </div>
-                              </div>
+                              <InfoSection
+                                label="Type-C"
+                                value={targetPhones.typec}
+                              />
                             )}
                             {targetPhones.audiojack && (
-                              <div className="flex items-center gap-2">
-                                <div className="flex items-center gap-1 p-2 rounded-lg">
-                                  <h1 className="text-[16px] md:text-lg w-[96px] font-extrabold text-green-600 whitespace-nowrap">
-                                    Audio Jack:
-                                  </h1>
-                                </div>
-                                <div className="text-[18px] w-full bg-zinc-200 px-2 rounded-md text-black">
-                                  {targetPhones.audiojack || "..."}
-                                </div>
-                              </div>
+                              <InfoSection
+                                label="Audio Jack"
+                                value={targetPhones.audiojack}
+                              />
                             )}
                           </div>
                         </div>
@@ -702,9 +604,43 @@ function PhoneBlog() {
                       </div>
                     </div>
                   )}
+                  <div className="flex flex-col items-center justify-center text-lg text-center">
+                    <div>
+                      <h1>Make a purchase plan from here!</h1>
+                      <h2>
+                        Want to save big? Here's your shortcut to incredible
+                        savings!
+                      </h2>
+                    </div>
+                    <div className="flex items-center justify-center gap-4 border-2 border-black px-4 rounded-md">
+                      <div className="flex items-center justify-center flex-col border-r-2 border-black min-h-24 h-auto pr-2">
+                        <a href="#" target="_blank">
+                          <FaAmazon className="text-4xl h-full" />
+                        </a>
+                        <h1 className="cursor-pointer">Amazon</h1>
+                      </div>
+                      <div className="flex items-center justify-center flex-col border-r-2 border-black min-h-24 h-full pr-4">
+                        <a href="#" target="_blank">
+                          <img
+                            src={alibaba}
+                            alt=""
+                            className="h-16 w-20 scale-125 object-contain"
+                          />
+                        </a>
+                        <h1 className="cursor-pointer">Alibaba</h1>
+                      </div>
+                      <div className="flex items-center justify-center flex-col">
+                        <a href="#" target="_blank">
+                          <img src={daraz} alt="" className="h-12 w-20" />
+                        </a>
+                        <h1 className="cursor-pointer">Daraz</h1>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
+
             <div className="w-full py-4">
               <div className="flex flex-col gap-4 w-auto mx-auto p-6">
                 {product.length > 0 &&

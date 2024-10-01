@@ -9,11 +9,13 @@ import LaptopBlog from "./components/LaptopBlog";
 import TabletBlog from "./components/TabletBlog";
 import About from "./components/HomePage/About";
 import Filter from "./components/Filter";
+import Navbar from "./components/HomePage/Navbar";
 
 function App() {
   return (
     <>
       <Router>
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/phone" element={<Phones />} />

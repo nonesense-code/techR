@@ -7,13 +7,18 @@
   font-weight: 600;
 }
 
+::selection {
+  background-color: rgba(255, 68, 0, 0.822);
+  color: #ffffff;
+}
+
 html,
 body {
   height: 100%;
   width: 100%;
   overflow-x: hidden;
   color: #001;
-  background-color: #dcdcde;
+  background-color: #d9d9d9;
 }
 
 .hidescroller::-webkit-scrollbar {
@@ -33,7 +38,7 @@ body {
   height: 2px;
   background-color: currentColor;
   width: 0;
-  transition: width 0.2s ease-in-out;
+  transition: width 0.1s ease-in-out;
   color: #fff;
 }
 
@@ -71,21 +76,5 @@ body {
 .stroke:hover {
   -webkit-text-stroke: none;
   text-shadow: 10px -10px 20px red, -10px 10px 10px purple;
-  color: red;
-}
-
-#heading {
-  position: relative;
-  z-index: 1;
-}
-
-#heading::before {
-  content: "Welcome to TechR";
-  position: absolute;
-  left: -4px;
-  top: -4px;
-  color: rgba(32, 178, 171, 0.788);
-  -webkit-text-stroke: 1px #e89a19;
-  z-index: -1;
-  white-space: nowrap;
+  color: purple;
 }
