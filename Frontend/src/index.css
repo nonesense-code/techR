@@ -36,12 +36,23 @@ body {
   left: 0;
   bottom: 0;
   height: 2px;
-  background-color: currentColor;
   width: 0;
-  transition: width 0.1s ease-in-out;
-  color: #fff;
+  background-color: #00ffa3;
 }
 
+.underline-animation:hover::after {
+  transition: underlineanimation 2s ease-in-out;
+}
+
+@keyframes underlineanimation {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
 .underline-animation:hover::after {
   width: 100%;
 }

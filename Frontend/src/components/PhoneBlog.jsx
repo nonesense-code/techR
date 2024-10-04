@@ -71,7 +71,7 @@ function PhoneBlog() {
   }, []);
 
   const InfoSection = ({ label, value }) => (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2 max-w-[1200px]">
       <div className="flex items-center gap-1 p-2 rounded-lg bg-green-100">
         <h1 className="text-xs whitespace-nowrap sm:text-sm md:text-lg font-extrabold text-green-600">
           {label}:
@@ -156,7 +156,7 @@ function PhoneBlog() {
                   </div>
                 </div>
                 <div className="w-full lg:border-l-4 lg:border-black/10 py-4">
-                  <h1 className="mt-8 text-2xl md:text-3xl px-4 flex items-center justify-center md:justify-start whitespace-nowrap tracking-tighter text-[#001] font-semibold border-b-[3px] border-black/10">
+                  <h1 className="mt-8 text-2xl md:text-3xl px-4 flex items-center justify-center lg:justify-start whitespace-nowrap tracking-tighter text-[#001] font-semibold border-b-[3px] border-black/10">
                     {targetPhones.name || "..."}
                   </h1>
                   <div className="w-full h-auto p-4 flex flex-col gap-4">
@@ -641,7 +641,7 @@ function PhoneBlog() {
               </div>
             </div>
 
-            <div className="w-full py-4">
+            {/* <div className="w-full py-4">
               <div className="flex flex-col gap-4 w-auto mx-auto p-6">
                 {product.length > 0 &&
                   product.map((item, index) => (
@@ -697,7 +697,7 @@ function PhoneBlog() {
                     </div>
                   ))}
               </div>
-            </div>
+            </div> */}
           </div>
         </motion.div>
       )}

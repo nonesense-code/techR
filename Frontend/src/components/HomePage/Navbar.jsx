@@ -4,8 +4,8 @@ import { CiMobile1 } from "react-icons/ci";
 import { AiOutlineLaptop } from "react-icons/ai";
 import { FaTabletScreenButton } from "react-icons/fa6";
 import { FaHome } from "react-icons/fa";
-import { RiMenuFold2Fill } from "react-icons/ri";
-import { RiMenuFold3Fill } from "react-icons/ri";
+import { IoMenu } from "react-icons/io5";
+import { RxCross2 } from "react-icons/rx";
 import { IoInformationCircle } from "react-icons/io5";
 import axios from "axios";
 import { easeInOut, motion } from "framer-motion";
@@ -70,72 +70,74 @@ function Navbar() {
   }, []);
 
   return (
-    <div className="navbar max-w-96">
-      <div className="fixed w-full backdrop-blur-md py-2 px-4 z-50 bg-[#232F3E]">
-        <div className="flex items-center justify-between w-auto flex-wrap gap-1">
-          <div className="flex items-center justify-center gap-1 text-2xl ">
-            <RiMenuFold2Fill
-              className="text-white md:hidden p-1 rounded-full h-8 w-8 border-2 border-stone-600 flex items-center justify-center"
-              onClick={() => setShow(!show)}
-            />
-            <div className="flex items-center justify-start">
-              {["T", "e", "c", "h", "R"].map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ y: "50%", opacity: 0 }}
-                  animate={{ y: "0%", opacity: 1 }}
-                  transition={{
-                    duration: 0.3,
-                    delay: index * 0.04,
-                    ease: easeInOut,
-                  }}
-                  className="text-white font-extrabold tracking-wider select-none"
-                >
-                  {item}
-                </motion.div>
-              ))}
+    <div>
+      <div className="navbar w-full z-50 fixed flex md:justify-center justify-between items-center bg-[#232F3E] h-12">
+        <div className="fixed w-full backdrop-blur-md bg-[#232F3E] max-w-[1200px] flex items-center justify-center flex-col h-12">
+          <div className="flex items-center justify-between md:justify-around px-4 md:px-0 w-full flex-wrap gap-1">
+            <div className="logo flex items-center justify-center text-2xl ">
+              <IoMenu
+                className="text-white md:hidden rounded-full h-8 w-8 border-2 border-stone-600 flex items-center justify-center"
+                onClick={() => setShow(!show)}
+              />
+              <div className="flex items-center justify-start">
+                {["T", "e", "c", "h", "R"].map((item, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ y: "50%", opacity: 0 }}
+                    animate={{ y: "0%", opacity: 1 }}
+                    transition={{
+                      duration: 0.3,
+                      delay: index * 0.04,
+                      ease: easeInOut,
+                    }}
+                    className="text-white font-extrabold tracking-wider select-none"
+                  >
+                    {item}
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+            <div className="links hidden md:flex gap-8 items-center justify-evenly text-[#cfd3e0] font-semibold text-xl flex-wrap">
+              {["Home", "Phone", "Laptop", "Tablet", "About"].map(
+                (item, index) => (
+                  <motion.div key={index} className="underline-animation">
+                    <Link
+                      to={
+                        index === 0
+                          ? "/"
+                          : `/${item.toLowerCase().split(" ").join("")}`
+                      }
+                      className="flex items-center justify-center gap-1 outline-none"
+                    >
+                      {index === 0 && <FaHome />} {index === 1 && <CiMobile1 />}
+                      {index === 2 && <AiOutlineLaptop />}
+                      {index === 3 && <FaTabletScreenButton />}
+                      {index === 4 && <IoInformationCircle />}
+                      {item}
+                    </Link>
+                  </motion.div>
+                )
+              )}
+            </div>
+            <div className="searchbar flex items-center bg-gray-600 rounded-md border-2 border-black">
+              <input
+                type="text"
+                placeholder="Search"
+                className="px-2 py-1 rounded-md w-32 sm:w-auto bg-gray-600 outline-none text-white placeholder:text-white/80"
+                value={inputValue}
+                onChange={(e) => {
+                  setInputValue(e.target.value);
+                }}
+                onKeyDown={handleSearch}
+                id="searchedText"
+              />
+              <button className="searchBtn h-8 w-8 flex items-center justify-center p-2 outline-none">
+                <FaSearch className="text-white" />
+              </button>
             </div>
           </div>
-          <div className="hidden md:flex gap-2 items-center justify-evenly flex-1 text-[#cfd3e0] font-semibold text-xl flex-wrap">
-            {["Home", "Phone", "Laptop", "Tablet", "About"].map(
-              (item, index) => (
-                <motion.div key={index} className="underline-animation">
-                  <Link
-                    to={
-                      index === 0
-                        ? "/"
-                        : `/${item.toLowerCase().split(" ").join("")}`
-                    }
-                    className="flex items-center justify-center gap-1 outline-none"
-                  >
-                    {index === 0 && <FaHome />} {index === 1 && <CiMobile1 />}
-                    {index === 2 && <AiOutlineLaptop />}
-                    {index === 3 && <FaTabletScreenButton />}
-                    {index === 4 && <IoInformationCircle />}
-                    {item}
-                  </Link>
-                </motion.div>
-              )
-            )}
-          </div>
-
-          <div className="flex items-center bg-gray-600 rounded-md border-2 border-black">
-            <input
-              type="text"
-              placeholder="Search"
-              className="px-2 py-1 rounded-md w-32 sm:w-auto bg-gray-600 outline-none text-white placeholder:text-white/80"
-              value={inputValue}
-              onChange={(e) => {
-                setInputValue(e.target.value);
-              }}
-              onKeyDown={handleSearch}
-              id="searchedText"
-            />
-            <button className="searchBtn h-8 w-8 flex items-center justify-center p-2 outline-none">
-              <FaSearch className="text-white" />
-            </button>
-          </div>
         </div>
+        <News />
       </div>
       {show && (
         <motion.div
@@ -146,17 +148,17 @@ function Navbar() {
             damping: 14,
             duration: 1,
           }}
-          className="md:hidden bg-black min-w-full w-full min-h-screen h-auto z-50 fixed text-white p-4"
+          className="w-auto min-h-screen bg-black text-white p-4 md:hidden "
         >
           <div className="flex flex-col gap-12 items-start justify-evenly">
             <div className="flex items-center gap-1 justify-start text-xl font-extrabold tracking-wide">
-              <RiMenuFold3Fill
+              <RxCross2
                 className="p-1 rounded-full h-8 w-8 bg-stone-600 flex items-center justify-center"
                 onClick={() => setShow(!show)}
               />
               <h1>techR</h1>
             </div>
-            <div className="flex md:hidden flex-col gap-6 items-start justify-center flex-1 text-[#cfd3e0] font-semibold text-xl flex-wrap">
+            <div className="flex md:hidden flex-col gap-4 items-start justify-center flex-1 text-[#cfd3e0] font-semibold text-lg flex-wrap">
               {["Home", "Phone", "Laptop", "Tablet", "About"].map(
                 (item, index) => (
                   <motion.div key={index}>
@@ -182,8 +184,6 @@ function Navbar() {
           </div>
         </motion.div>
       )}
-
-      <News />
       <div className="pb-14"></div>
     </div>
   );

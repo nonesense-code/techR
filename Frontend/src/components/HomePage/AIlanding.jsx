@@ -16,7 +16,7 @@ const Landing = () => {
   const [show1, setShow1] = useState(false);
   const [show2, setShow2] = useState(false);
   return (
-    <div className="h-auto text-white w-full">
+    <div className="h-auto text-white w-full max-w-[1300px] z-0">
       <section className="flex flex-col items-center justify-center text-center h-auto mt-8">
         <div>
           <Trending />
@@ -29,7 +29,7 @@ const Landing = () => {
       </section>
 
       <section className="w-full md:px-8 flex items-center justify-center gap-2 mt-2 md:mt-4">
-        <div className="flex flex-col md:flex-row items-center w-full md:h-80 justify-center gap-2 mb-12 flex-wrap max-w-[700px] relative">
+        <div className="flex flex-col md:flex-row items-center w-full md:h-80 justify-center gap-2 mb-12 flex-wrap relative">
           <div className="text-center w-full bg-no-repeat bg-center md:w-full relative">
             <Link to={hotDrops.link} className="outline-none w-auto">
               <div
@@ -70,7 +70,7 @@ const Landing = () => {
                           key={index}
                           initial={{ opacity: 0, y: 30 }}
                           animate={{ opacity: 1, y: -10 }}
-                          transition={{ duration: 0.2, delay: index * 0.02 }}
+                          transition={{ duration: 0.2, delay: index * 0.01 }}
                           className="text-4xl text-[#00FFA3] mx-[1px]"
                         >
                           {item}
@@ -81,12 +81,12 @@ const Landing = () => {
                 )}
               </div>
             </Link>
-            <div className="absolute text-md md:text-xs text-black bottom-4 md:bottom-[16px] w-full z-30 bg-[#00ffa2c4] p-2">
+            <div className="absolute text-sm font-semibold md:text-xs text-black bottom-4 md:bottom-[16px] w-full z-30 bg-[#00ffa2c4] p-2">
               <h1>{hotDrops.note}</h1>
             </div>
           </div>
         </div>
-        <div className="hidden flex-col md:flex items-center w-full md:h-80 justify-center gap-2 mb-12 flex-wrap max-w-[700px] relative">
+        <div className="hidden flex-col md:flex items-center w-full md:h-80 justify-center gap-2 mb-12 flex-wrap relative">
           <div className="text-center w-full bg-no-repeat bg-center md:w-full relative">
             <Link to={hotDrops.link} className="outline-none w-auto">
               <div
@@ -97,7 +97,7 @@ const Landing = () => {
                 <img
                   src={samsungtab}
                   alt={hotDrops.name}
-                  className="mb-4 md:h-80 w-full md:w-auto h-full object-contain rounded-md md:rounded-none"
+                  className="mb-4 md:h-80 w-full md:w-auto h-full object-contain md:rounded-none p-2 border-2 border-black"
                 />
                 {show2 && (
                   <div className="absolute inset-0 flex items-center justify-center">
@@ -124,7 +124,7 @@ const Landing = () => {
                           key={index}
                           initial={{ opacity: 0, y: 30 }}
                           animate={{ opacity: 1, y: -10 }}
-                          transition={{ duration: 0.2, delay: index * 0.02 }}
+                          transition={{ duration: 0.2, delay: index * 0.01 }}
                           className="text-4xl text-[#00FFA3] mx-[1px]"
                         >
                           {item}

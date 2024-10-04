@@ -42,6 +42,7 @@ function Landing() {
   const [showFooter, setShowFooter] = useState(false);
   const [loading, setLoading] = useState(false);
   const backendURL = import.meta.env.VITE_BACKEND_URL;
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowFooter(true);
@@ -76,11 +77,11 @@ function Landing() {
   return (
     <div className="flex flex-col items-center w-full">
       <AIlanding />
-      <div className="h-full min-w-full sm:min-w-0 w-auto md:w-[1200px]">
-        <h1 className="text-center text-lg font-bold tracking-wide">
+      <div className="h-full min-w-full sm:min-w-0 w-auto md:max-w-[1200px]">
+        <h1 className="text-center text-2xl font-bold tracking-wide">
           Distinguished Picks
         </h1>
-        <div className="w-full flex flex-wrap border-2 border-stone-600">
+        <div className="w-full flex flex-wrap border-2 border-stone-600 mt-2">
           <div className="flex-1 min-w-0 w-full md:w-1/3 border-r-2 border-black p-2 text-center hover:bg-sky-600/30 active:bg-sky-600/40 overflow-hidden">
             <Link
               to="/phone"
@@ -117,21 +118,27 @@ function Landing() {
             </Link>
           </div>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-2 relative h-full w-full gap-1 mt-10">
-          {popular_items.map((item, index) => (
-            <div key={index} className="relative w-full overflow-hidden">
-              <Link to={item.link}>
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className="border-b-2 border-white/70 object-cover h-auto w-full bg-black border-r-2 border-white hover:scale-105 duration-200 ease-out"
-                />
-                <div className="absolute text-center bg-black border-white border-t-2 border-b-2 text-sky-500 w-full bottom-0 h-auto p-2 mx-auto left-0 right-0">
-                  {item.name}
-                </div>
-              </Link>
-            </div>
-          ))}
+
+        <div className="flex flex-col items-center justify-center gap-2 mt-10">
+          <div className="text-center text-2xl font-bold tracking-wide">
+            Top Deals
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-2 relative h-full w-full gap-1">
+            {popular_items.map((item, index) => (
+              <div key={index} className="relative w-full overflow-hidden">
+                <Link to={item.link}>
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="border-b-2 border-white/70 object-cover h-auto w-full bg-black border-r-2 border-white hover:scale-105 duration-200 ease-out"
+                  />
+                  <div className="absolute text-center bg-black border-white border-t-2 border-b-2 text-sky-500 w-full bottom-0 h-auto p-2 mx-auto left-0 right-0">
+                    {item.name}
+                  </div>
+                </Link>
+              </div>
+            ))}
+          </div>
         </div>
 
         {loading ? (
@@ -143,7 +150,7 @@ function Landing() {
               className="h-auto w-full"
             >
               <div className="container mx-auto px-4 py-8">
-                <h1 className="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800">
+                <h1 className="text-2xl md:text-4xl font-bold text-center mb-8 text-gray-800">
                   Explore more options
                 </h1>
                 <div className="flex flex-col items-center justify-center w-full gap-6">

@@ -8,14 +8,14 @@ import {
 
 function Contact() {
   return (
-    <div className="w-full mt-4">
+    <div className="w-full mt-4 flex items-center justify-center">
       <section
         id="contact"
         className="px-8 py-16 bg-[#232F3E] text-white w-full"
       >
         <h2 className="text-4xl font-bold mb-8 text-center">Contact Us</h2>
 
-        <form className="w-auto h-auto mx-auto p-4">
+        <form className="w-auto h-auto mx-auto p-4 max-w-[1200px]">
           <div className="mb-4">
             <label className="block text-gray-400 mb-2">Name</label>
             <input
@@ -32,7 +32,7 @@ function Contact() {
           </div>
           <div className="mb-4">
             <label className="block text-gray-400 mb-2">Message</label>
-            <textarea className="w-full px-4 py-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"></textarea>
+            <textarea className="w-full px-4 py-2 md:text-lg bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"></textarea>
           </div>
           <button
             type="submit"

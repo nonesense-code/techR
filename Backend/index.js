@@ -35,7 +35,10 @@ const uploadImage = async (filePath) => {
 const URI = process.env.URI;
 const databaseConnection = async () => {
   try {
-    await mongoose.connect(URI);
+    await mongoose.connect(URI, {
+      serverSelectionTimeoutMS: 30000,
+      connectTimeoutMS: 30000,
+    });
     console.log("MongoDB Connection successful");
   } catch (error) {
     console.error("Error connecting to MongoDB:", error);
