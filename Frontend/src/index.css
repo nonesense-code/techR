@@ -27,7 +27,10 @@ body {
 
 .underline-animation {
   position: relative;
-  display: inline-block;
+}
+
+.underline-animation:hover {
+  color: #6ee7bbe7;
 }
 
 .underline-animation::after {
@@ -37,45 +40,26 @@ body {
   bottom: 0;
   height: 2px;
   width: 0;
-  background-color: #00ffa3;
+  background-color: #cfd3e0;
 }
 
 .underline-animation:hover::after {
-  transition: underlineanimation 2s ease-in-out;
+  animation: grow 0.5s ease-in-out forwards;
 }
 
-@keyframes underlineanimation {
+@keyframes grow {
   0% {
-    width: 0%;
+    width: 0;
+    left: 0;
   }
-
-  100% {
+  50% {
     width: 100%;
+    left: 0;
   }
-}
-.underline-animation:hover::after {
-  width: 100%;
-}
-
-.underline-animations {
-  position: relative;
-  display: inline-block;
-}
-
-.underline-animations::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 2px;
-  background-color: currentColor;
-  width: 0;
-  transition: width 0.2s ease-in-out;
-  color: #001;
-}
-
-.underline-animations:hover::after {
-  width: 100%;
+  100% {
+    width: 0%;
+    left: 100%;
+  }
 }
 
 .stroke {
