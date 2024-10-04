@@ -48,13 +48,11 @@ databaseConnection();
 
 const frontendURL = process.env.frontendURL;
 
-// const corsOptions = {
-//   origin: frontendURL,
-//   methods: ["GET", "POST", "PUT", "DELETE"],
-//   credentials: true,
-// };
-
-const corsOptions = ["https://techrbytes.com", "https://www.techrbytes.com"];
+const corsOptions = {
+  origin: frontendURL,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+};
 
 app.use(cors(corsOptions));
 app.use(express.json());
