@@ -97,7 +97,7 @@ const Landing = () => {
                 <img
                   src={samsungtab}
                   alt={hotDrops.name}
-                  className="mb-4 md:h-80 w-full md:w-auto h-full object-contain md:rounded-none p-2 border-2 border-black"
+                  className="mb-4 md:h-80 w-full md:w-auto h-full object-contain md:rounded-none p-2"
                 />
                 {show2 && (
                   <div className="absolute inset-0 flex items-center justify-center">

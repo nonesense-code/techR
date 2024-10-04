@@ -79,23 +79,25 @@ function Navbar() {
                 className="text-white md:hidden rounded-full h-8 w-8 border-2 border-stone-600 flex items-center justify-center"
                 onClick={() => setShow(!show)}
               />
-              <div className="flex items-center justify-start">
-                {["T", "e", "c", "h", "R"].map((item, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ y: "50%", opacity: 0 }}
-                    animate={{ y: "0%", opacity: 1 }}
-                    transition={{
-                      duration: 0.3,
-                      delay: index * 0.04,
-                      ease: easeInOut,
-                    }}
-                    className="text-white font-extrabold tracking-wider select-none"
-                  >
-                    {item}
-                  </motion.div>
-                ))}
-              </div>
+              <a href="https://www.techrbytes.com/">
+                <div className="flex items-center justify-start">
+                  {["T", "e", "c", "h", "R"].map((item, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ y: "50%", opacity: 0 }}
+                      animate={{ y: "0%", opacity: 1 }}
+                      transition={{
+                        duration: 0.3,
+                        delay: index * 0.04,
+                        ease: easeInOut,
+                      }}
+                      className="text-white font-extrabold tracking-wider select-none"
+                    >
+                      {item}
+                    </motion.div>
+                  ))}
+                </div>
+              </a>
             </div>
             <div className="links hidden md:flex gap-8 items-center justify-evenly text-[#cfd3e0] font-semibold text-xl flex-wrap">
               {["Home", "Phone", "Laptop", "Tablet", "About"].map(
