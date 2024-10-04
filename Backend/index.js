@@ -47,6 +47,7 @@ const databaseConnection = async () => {
 databaseConnection();
 
 const frontendURL = process.env.frontendURL;
+console.log(frontendURL);
 
 const corsOptions = {
   origin: frontendURL,
