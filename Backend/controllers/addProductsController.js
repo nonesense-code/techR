@@ -1,4 +1,5 @@
 const productModel = require("../models/Products");
+const cloudinary = require("cloudinary");
 
 module.exports.addProducts = async (req, res) => {
   let {
@@ -38,9 +39,16 @@ module.exports.addProducts = async (req, res) => {
     blog,
   } = req.body;
 
-  let imageBuffer = req.file.buffer;
+  const imageBuffer = req.file.buffer;
   const image = imageBuffer.toString("base64");
-  let imageURL = await uploadImage(image);
+
+  const result = await cloudinary.uploader.upload(
+    `data:image/jpeg;base64,${image}`,
+    {
+      folder: "products",
+    }
+  );
+  imageURL = result.secure_url;
 
   if (!name || !image) {
     return res.json({ message: "Name and image are required!" });
@@ -91,5 +99,5 @@ module.exports.addProducts = async (req, res) => {
       console.log("Something went wrong", error);
     }
   }
-  res.redirect("/addProduct");
+  res.redirect("/products/addProduct");
 };

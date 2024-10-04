@@ -71,14 +71,21 @@ function Navbar() {
 
   return (
     <div>
-      <div className="navbar w-full z-50 fixed flex md:justify-center justify-between items-center bg-[#232F3E] h-12">
-        <div className="fixed w-full backdrop-blur-md bg-[#232F3E] max-w-[1200px] flex items-center justify-center flex-col h-12">
+      <div className="navbar w-full z-50 fixed flex md:justify-center justify-between items-center h-12 bg-gradient-to-l from-zinc-900 via-gray-800 to-stone-600">
+        <div className="fixed w-full backdrop-blur-md  max-w-[1200px] flex items-center justify-center flex-col h-12 bg-transparent">
           <div className="flex items-center justify-between md:justify-around px-4 md:px-0 w-full flex-wrap gap-1">
-            <div className="logo flex items-center justify-center text-2xl ">
-              <IoMenu
-                className="text-white md:hidden rounded-full h-8 w-8 border-2 border-stone-600 flex items-center justify-center"
-                onClick={() => setShow(!show)}
-              />
+            <div className="logo flex items-center justify-center gap-1 text-2xl ">
+              {!show ? (
+                <IoMenu
+                  className="text-white md:hidden rounded-full h-8 w-8 border-2 border-stone-400 p-[2px] flex items-center justify-center"
+                  onClick={() => setShow(!show)}
+                />
+              ) : (
+                <RxCross2
+                  className="text-white md:hidden rounded-full h-8 w-8 border-2 border-stone-400 p-[2px] flex items-center justify-center"
+                  onClick={() => setShow(!show)}
+                />
+              )}
               <a href="https://www.techrbytes.com/">
                 <div className="flex items-center justify-start">
                   {["T", "e", "c", "h", "R"].map((item, index) => (
@@ -152,14 +159,7 @@ function Navbar() {
           }}
           className="w-auto min-h-screen bg-black text-white p-4 md:hidden "
         >
-          <div className="flex flex-col gap-12 items-start justify-evenly">
-            <div className="flex items-center gap-1 justify-start text-xl font-extrabold tracking-wide">
-              <RxCross2
-                className="p-1 rounded-full h-8 w-8 bg-stone-600 flex items-center justify-center"
-                onClick={() => setShow(!show)}
-              />
-              <h1>techR</h1>
-            </div>
+          <div className="flex flex-col gap-12 items-start justify-evenly mt-24">
             <div className="flex md:hidden flex-col gap-4 items-start justify-center flex-1 text-[#cfd3e0] font-semibold text-lg flex-wrap">
               {["Home", "Phone", "Laptop", "Tablet", "About"].map(
                 (item, index) => (
@@ -171,9 +171,10 @@ function Navbar() {
                           : `/${item.toLowerCase().split(" ").join("")}`
                       }
                       className="flex items-center justify-center gap-1 outline-none"
-                      onClick={() => setShow(false)} // Hides the menu when link is clicked
+                      onClick={() => setShow(false)}
                     >
-                      {index === 0 && <FaHome />} {index === 1 && <CiMobile1 />}
+                      {index === 0 && <FaHome />}
+                      {index === 1 && <CiMobile1 />}
                       {index === 2 && <AiOutlineLaptop />}
                       {index === 3 && <FaTabletScreenButton />}
                       {index === 4 && <IoInformationCircle />}

@@ -1,4 +1,5 @@
 const productModel = require("../models/Products");
+const cloudinary = require("cloudinary");
 
 module.exports.modifyProducts = async (req, res) => {
   try {
@@ -40,18 +41,24 @@ module.exports.modifyProducts = async (req, res) => {
       blog,
       previousimage,
     } = req.body;
-    let imageURL;
-    imageURL = previousimage;
+
+    let imageURL = previousimage;
+
     if (req.file) {
-      let imageBuffer = req.file.buffer;
+      const imageBuffer = req.file.buffer;
       const image = imageBuffer.toString("base64");
-      imageURL = await uploadImage(image);
+
+      const result = await cloudinary.uploader.upload(
+        `data:image/jpeg;base64,${image}`,
+        {
+          folder: "products",
+        }
+      );
+      imageURL = result.secure_url;
     }
 
     await productModel.findOneAndUpdate(
-      {
-        _id: id,
-      },
+      { _id: id },
       {
         productType,
         popularity,
@@ -91,6 +98,7 @@ module.exports.modifyProducts = async (req, res) => {
       }
     );
 
+    // Redirect based on product type
     if (productType === "phone") {
       res.redirect("/phones");
     } else if (productType === "laptop") {
@@ -101,7 +109,7 @@ module.exports.modifyProducts = async (req, res) => {
       res.redirect("/");
     }
   } catch (error) {
-    console.error("Error updating the product:", error.message);
+    console.error("Error updating the product:", error);
     res.redirect("/");
   }
 };

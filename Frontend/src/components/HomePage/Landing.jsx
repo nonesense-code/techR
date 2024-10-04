@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Footer from "../Footer";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { easeInOut, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import CircularLoader from "../../CircularLoader";
 import AIlanding from "./AIlanding";
 import Contact from "./Contact";
@@ -13,6 +13,7 @@ import samsumgtab from "../../images/galaxytabs9ultra.jpg";
 import acer from "../../images/acernitrov15.png";
 import apple from "../../images/applemac.png";
 import iPhone from "../../images/iPhone16promax_1.avif";
+import redmi from "../../images/redminote11pro.jpeg";
 
 function Landing() {
   const popular_items = [
@@ -27,9 +28,9 @@ function Landing() {
       link: "/laptop/acernitrov15",
     },
     {
-      name: "iPhone 16 Pro Max",
-      image: iPhone,
-      link: "/phone/iphone16promax",
+      name: "Redmi Note 11 Pro",
+      image: redmi,
+      link: "/phone/redminote11pro",
     },
     {
       name: "Galaxy Tab S9 Ultra",
@@ -132,7 +133,7 @@ function Landing() {
                     alt={item.name}
                     className="border-b-2 border-white/70 object-cover h-auto w-full bg-black border-r-2 border-white hover:scale-105 duration-200 ease-out"
                   />
-                  <div className="absolute text-center bg-black border-white border-t-2 border-b-2 text-sky-500 w-full bottom-0 h-auto p-2 mx-auto left-0 right-0">
+                  <div className="absolute text-center bg-black border-white border-t-2 border-b-2 text-[#00FFA3] w-full bottom-0 h-auto p-2 mx-auto left-0 right-0">
                     {item.name}
                   </div>
                 </Link>

@@ -650,7 +650,7 @@ function TabletBlog() {
                 </div>
               </motion.div>
             </div>
-            <div className="w-full py-4">
+            {/* <div className="w-full py-4">
               <div className="flex flex-col gap-4 w-auto mx-auto p-6">
                 {product.length > 0 &&
                   product.map((item, index) => (
@@ -706,7 +706,7 @@ function TabletBlog() {
                     </div>
                   ))}
               </div>
-            </div>
+            </div> */}
           </div>
         </motion.div>
       )}

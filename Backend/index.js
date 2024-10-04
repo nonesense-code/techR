@@ -4,7 +4,8 @@ const cors = require("cors");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 require("dotenv").config();
-const cloudinary = require("cloudinary");
+
+const cloudinary = require("cloudinary").v2;
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
@@ -13,6 +14,7 @@ cloudinary.config({
 });
 
 const frontendURL = process.env.frontendURL;
+
 const corsOptions = {
   origin: frontendURL,
   methods: ["GET", "POST", "PUT", "DELETE"],

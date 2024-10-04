@@ -3,14 +3,17 @@ import Trending from "./Trending";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import { motion } from "framer-motion";
 import redmi from "../../images/redminote11pro.jpeg";
-import samsungtab from "../../images/galaxytabs9ultra.jpg";
+import acer from "../../images/asusrogzephyrusg14.jpg";
 import iPhone from "../../images/iPhone16promax_1.avif";
 
 const Landing = () => {
-  const hotDrops = {
-    name: "Redmi Note 11 pro",
-    note: "The newly launched Redmi Note 11 pro Max features a 108MP of main camera with an stunning photo quality!",
+  const hotDrop1 = {
+    note: "The newly launched iPhone 16 Pro Max features a stunning display and advanced performance making a perfect fit for a premium mobile experience!",
     link: "/phone/redminote11pro",
+  };
+  const hotDrop2 = {
+    note: "The recently unveiled Samsung Galaxy Tab S9 Ultra features an impressive 14.6-inch AMOLED screen and delivers powerful performance, ideal for enhancing productivity and providing an immersive entertainment experience!",
+    link: "/laptop/asusrogzephyrusg14",
   };
 
   const [show1, setShow1] = useState(false);
@@ -27,11 +30,10 @@ const Landing = () => {
           </h2>
         </div>
       </section>
-
       <section className="w-full md:px-8 flex items-center justify-center gap-2 mt-2 md:mt-4">
         <div className="flex flex-col md:flex-row items-center w-full md:h-80 justify-center gap-2 mb-12 flex-wrap relative">
           <div className="text-center w-full bg-no-repeat bg-center md:w-full relative">
-            <Link to={hotDrops.link} className="outline-none w-auto">
+            <Link to={hotDrop1.link} className="outline-none w-auto">
               <div
                 onMouseEnter={() => setShow1(true)}
                 onMouseLeave={() => setShow1(false)}
@@ -39,32 +41,28 @@ const Landing = () => {
               >
                 <div>
                   <img
-                    src={redmi}
-                    alt={hotDrops.name}
-                    className="mb-4 md:h-80 w-full md:w-auto h-full object-contain rounded-md md:rounded-none"
+                    src={iPhone}
+                    alt={hotDrop1.name}
+                    className="mb-4 w-full h-full md:w-[800px] md:h-[300px] object-contain rounded-md md:rounded-none"
                   />
                 </div>
                 {show1 && (
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="hidden lg:flex absolute left-80 top-32 justify-center w-full z-50">
                       {[
-                        "R",
-                        "e",
-                        "d",
-                        "m",
                         "i",
-                        " ",
-                        "N",
+                        "P",
+                        "h",
                         "o",
-                        "t",
+                        "n",
                         "e",
-                        " ",
-                        "1",
-                        "1",
-                        " ",
+                        "16",
                         "P",
                         "r",
                         "o",
+                        "M",
+                        "a",
+                        "x",
                       ].map((item, index) => (
                         <motion.div
                           key={index}
@@ -81,44 +79,45 @@ const Landing = () => {
                 )}
               </div>
             </Link>
-            <div className="absolute text-sm font-semibold md:text-xs text-black bottom-4 md:bottom-[16px] w-full z-30 bg-[#00ffa2c4] p-2">
-              <h1>{hotDrops.note}</h1>
+            <div className="absolute text-sm md:text-xs bottom-4 md:bottom-[16px] w-full z-30 bg-black/60 text-white p-2">
+              <h1>{hotDrop1.note}</h1>
             </div>
           </div>
         </div>
         <div className="hidden flex-col md:flex items-center w-full md:h-80 justify-center gap-2 mb-12 flex-wrap relative">
-          <div className="text-center w-full bg-no-repeat bg-center md:w-full relative">
-            <Link to={hotDrops.link} className="outline-none w-auto">
+          <div className="text-center w-full md:w-full relative">
+            <Link to={hotDrop2.link} className="outline-none w-auto">
               <div
                 onMouseEnter={() => setShow2(true)}
                 onMouseLeave={() => setShow2(false)}
                 className="flex items-center w-full justify-center h-auto md:h-auto md:w-auto flex-col relative"
               >
                 <img
-                  src={samsungtab}
-                  alt={hotDrops.name}
-                  className="mb-4 md:h-80 w-full md:w-auto h-full object-contain md:rounded-none p-2"
+                  src={acer}
+                  alt={hotDrop2.name}
+                  className="mb-4 h-[300px] w-[800px] object-contain md:rounded-none p-2 bg-gradient-to-r from-zinc-900 via-gray-800 to-stone-600"
                 />
                 {show2 && (
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="hidden lg:flex absolute right-80 top-32 justify-center w-full z-50">
                       {[
-                        "G",
-                        "a",
-                        "l",
-                        "a",
-                        "x",
+                        "A",
+                        "s",
+                        "u",
+                        "s",
+                        "R",
+                        "o",
+                        "g",
+                        "z",
+                        "e",
+                        "p",
+                        "h",
                         "y",
-                        "T",
-                        "a",
-                        "b",
-                        "S",
-                        "9",
-                        "U",
-                        "l",
-                        "t",
                         "r",
-                        "a",
+                        "u",
+                        "s",
+                        "g",
+                        "14",
                       ].map((item, index) => (
                         <motion.div
                           key={index}
@@ -135,8 +134,8 @@ const Landing = () => {
                 )}
               </div>
             </Link>
-            <div className="absolute text-md md:text-xs text-black bottom-4 md:bottom-[16px] w-full z-30 bg-[#00ffa2c4] p-2">
-              <h1>{hotDrops.note}</h1>
+            <div className="absolute text-md md:text-xs bottom-4 md:bottom-[16px] w-full z-30 bg-black/60 text-white p-2">
+              <h1>{hotDrop2.note}</h1>
             </div>
           </div>
         </div>
