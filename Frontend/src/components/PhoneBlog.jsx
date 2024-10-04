@@ -119,7 +119,12 @@ function PhoneBlog() {
         >
           <div className="h-full w-auto">
             <div className="w-auto max-w-7xl">
-              <div className="flex flex-col md:flex-row items-start justify-between border-b-4 border-black/10">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+                className="flex flex-col md:flex-row items-start justify-between border-b-4 border-black/10"
+              >
                 <div className="hidden lg:flex mt-8 w-full md:w-1/3 h-auto">
                   <div className="flex flex-col gap-4 items-center h-full mt-4">
                     <h1 className="text-2xl">Popular</h1>
@@ -638,7 +643,7 @@ function PhoneBlog() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </div>
 
             {/* <div className="w-full py-4">

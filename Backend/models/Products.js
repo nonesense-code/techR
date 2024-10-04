@@ -1,4 +1,18 @@
 const mongoose = require("mongoose");
+const URI = process.env.URI;
+const databaseConnection = async () => {
+  try {
+    await mongoose.connect(URI, {
+      serverSelectionTimeoutMS: 30000,
+      connectTimeoutMS: 30000,
+    });
+    console.log("MongoDB Connection successful for product-model");
+  } catch (error) {
+    console.error("Error connecting to MongoDB:", error);
+  }
+};
+databaseConnection();
+
 const productSchema = new mongoose.Schema({
   productType: {
     type: String,
@@ -49,7 +63,7 @@ const productSchema = new mongoose.Schema({
   },
   charging: {
     type: String,
-    },
+  },
   dimension: {
     type: String,
   },
@@ -109,7 +123,6 @@ const productSchema = new mongoose.Schema({
     type: String,
   },
 });
-
 const productModel = mongoose.model("product", productSchema);
 
 module.exports = productModel;
