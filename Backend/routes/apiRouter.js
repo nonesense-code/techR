@@ -1,9 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const productModel = require("../models/Products");
-const isLoggedIn = require("../utils/isLoggedIn");
 
-router.get("/", isLoggedIn, async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const products = await productModel.find();
     return res.json(products);
@@ -13,7 +12,7 @@ router.get("/", isLoggedIn, async (req, res) => {
   }
 });
 
-router.get("/:name", isLoggedIn, async (req, res) => {
+router.get("/:name", async (req, res) => {
   const { name } = req.params;
   let id;
   try {

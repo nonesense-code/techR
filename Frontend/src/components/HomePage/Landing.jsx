@@ -54,7 +54,6 @@ function Landing() {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(`${backendURL}`);
-        console.log(response.data);
         if (Array.isArray(response.data)) {
           setProduct(response.data);
           setLoading(true);
