@@ -43,14 +43,17 @@ module.exports.registerUser = async (req, res) => {
 
 module.exports.loginUser = async (req, res) => {
   let { email, password } = req.body;
+
   try {
     if (!email || !password) {
       return res.status(400).send("E-mail and Password are required!");
     }
+
     let user = await userModel.findOne({ email });
     if (!user) {
       return res.status(401).send("E-mail or Password is incorrect");
     }
+
     bcrypt.compare(password, user.password, (err, result) => {
       if (err) return res.status(500).send("Error comparing passwords");
 
@@ -59,7 +62,7 @@ module.exports.loginUser = async (req, res) => {
         res.cookie("token", token);
         res.redirect("/");
       } else {
-        res.status(401).send("E-mail or Password is incorrect");
+        res.status(401).send("Incorrect Password");
       }
     });
   } catch (error) {
