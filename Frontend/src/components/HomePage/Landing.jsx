@@ -158,6 +158,7 @@ function Landing() {
                   <div className="flex items-center justify-center gap-6 flex-col">
                     {product
                       .filter((item) => item.latest === "true")
+                      .slice(0, 4)
                       .map((item, index) => {
                         return (
                           <div
@@ -222,6 +223,7 @@ function Landing() {
                   <div className="flex items-center justify-evenly gap-2 w-full p-4 flex-wrap">
                     {product
                       .filter((item) => item.item_categorie === "budget")
+                      .slice(0, 6)
                       .map((item, index) => (
                         <div
                           key={index}
@@ -255,6 +257,7 @@ function Landing() {
                   <div className="flex items-center justify-center gap-6 flex-col">
                     {product
                       .filter((item) => item.mostsold === "true")
+                      .slice(0, 4)
                       .map((item, index) => {
                         return (
                           <div
@@ -319,6 +322,7 @@ function Landing() {
                   <div className="flex items-center justify-evenly gap-2 w-full p-4 flex-wrap">
                     {product
                       .filter((item) => item.item_categorie === "midrange")
+                      .slice(0, 6)
                       .map((item, index) => (
                         <div
                           key={index}
@@ -352,6 +356,7 @@ function Landing() {
                   <div className="flex items-center justify-center gap-6 flex-col">
                     {product
                       .filter((item) => item.mostpopular === "true")
+                      .slice(0, 4)
                       .map((item, index) => {
                         return (
                           <div
@@ -416,6 +421,7 @@ function Landing() {
                   <div className="flex items-center justify-evenly gap-2 w-full p-4 flex-wrap">
                     {product
                       .filter((item) => item.item_categorie === "flagship")
+                      .slice(0, 6)
                       .map((item, index) => (
                         <div
                           key={index}
@@ -449,6 +455,7 @@ function Landing() {
                   <div className="flex items-center justify-center gap-6 flex-col">
                     {product
                       .filter((item) => item.recommended === "true")
+                      .slice(0, 4)
                       .map((item, index) => {
                         return (
                           <div
