@@ -100,14 +100,6 @@ function LaptopBlog() {
     fetchTargetLaptops();
   }, [itname]);
 
-  useEffect(() => {
-    const body = document.querySelector("#root");
-
-    body.scrollIntoView({
-      behavior: "smooth",
-    });
-  }, [itname]);
-
   return (
     <>
       {loading ? (

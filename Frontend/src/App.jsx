@@ -11,12 +11,13 @@ import About from "./components/HomePage/About";
 import Contact from "./components/HomePage/Contact";
 import Filter from "./components/Filter";
 import Navbar from "./components/HomePage/Navbar";
-
+import ScrollToTop from "./components/ScrollToTop";
 function App() {
   return (
     <>
       <Router>
         <Navbar />
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/phone" element={<Phones />} />

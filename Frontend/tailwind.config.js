@@ -5,7 +5,6 @@ export default {
     extend: {
       screens: {
         lap: "1200px",
-        tab: "600px",
       },
     },
   },

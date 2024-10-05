@@ -97,12 +97,6 @@ function PhoneBlog() {
     fetchTargetPhones();
   }, [itname]);
 
-  useEffect(() => {
-    const body = document.querySelector("#root");
-    body.scrollIntoView({
-      behavior: "smooth",
-    });
-  }, [itname]);
 
   return (
     <>
@@ -117,8 +111,8 @@ function PhoneBlog() {
           transition={{ delay: 0.2 }}
           className="flex h-auto items-center justify-center w-full px-4 md:px-8 lg:px-1"
         >
-          <div className="h-full w-auto">
-            <div className="w-auto max-w-7xl">
+          <div className="h-full w-auto max-w-[1300px]">
+            <div className="w-auto">
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -645,9 +639,32 @@ function PhoneBlog() {
                 </div>
               </motion.div>
             </div>
+            <div className="h-screen w-full mt-12">
+              <div className="flex items-start justify-center flex-col gap-2">
+                <h1 className="text-black text-lg md:text-xl font-bold text-left">
+                  DISPLAY
+                </h1>
+                <p>
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                  Aspernatur at eligendi sunt sit explicabo expedita quae,
+                  provident iste earum consequuntur quidem excepturi odio
+                  dolores, et cupiditate dolor. Amet totam delectus quod, atque
+                  dolore ipsum ipsam labore nobis similique asperiores dicta
+                  perspiciatis aliquam voluptates ullam quo! Molestiae ducimus
+                  et iure ut totam unde dolor ab consequatur ipsum soluta eos
+                  laboriosam deleniti laudantium debitis, quidem facere labore
+                  quasi? Adipisci omnis quasi nesciunt veniam deserunt odio
+                  atque, blanditiis non inventore maiores libero ad quisquam
+                  cupiditate. Quo placeat quidem delectus, nulla repudiandae
+                  pariatur? Placeat cumque laborum eveniet repudiandae illo iste
+                  non fugiat minima aliquam?
+                </p>
+              </div>
+            </div>
           </div>
         </motion.div>
       )}
+
       {showFooter && <Footer />}
     </>
   );
