@@ -7,6 +7,7 @@ import { FaHome } from "react-icons/fa";
 import { IoMenu } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
 import { IoInformationCircle } from "react-icons/io5";
+import { RiContactsBookFill } from "react-icons/ri";
 import axios from "axios";
 import { easeInOut, motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -77,12 +78,12 @@ function Navbar() {
             <div className="logo flex items-center justify-center gap-1 text-2xl ">
               {!show ? (
                 <IoMenu
-                  className="text-white md:hidden rounded-full h-8 w-8 border-2 border-stone-400 p-[2px] flex items-center justify-center"
+                  className="text-white lap:hidden rounded-full h-8 w-8 border-2 border-stone-400 p-[2px] flex items-center justify-center"
                   onClick={() => setShow(!show)}
                 />
               ) : (
                 <RxCross2
-                  className="text-white md:hidden rounded-full h-8 w-8 border-2 border-stone-400 p-[2px] flex items-center justify-center"
+                  className="text-white lap:hidden rounded-full h-8 w-8 border-2 border-stone-400 p-[2px] flex items-center justify-center"
                   onClick={() => setShow(!show)}
                 />
               )}
@@ -106,8 +107,8 @@ function Navbar() {
                 </div>
               </a>
             </div>
-            <div className="links hidden md:flex gap-8 items-center justify-evenly text-[#cfd3e0] font-semibold text-xl flex-wrap">
-              {["Home", "Phone", "Laptop", "Tablet", "About"].map(
+            <div className="links hidden lap:flex gap-8 items-center justify-evenly text-[#cfd3e0] font-semibold text-xl flex-wrap">
+              {["Home", "Phone", "Laptop", "Tablet", "About", "Contact"].map(
                 (item, index) => (
                   <motion.div key={index} className="underline-animation">
                     <Link
@@ -122,6 +123,7 @@ function Navbar() {
                       {index === 2 && <AiOutlineLaptop />}
                       {index === 3 && <FaTabletScreenButton />}
                       {index === 4 && <IoInformationCircle />}
+                      {index === 5 && <RiContactsBookFill />}
                       {item}
                     </Link>
                   </motion.div>
@@ -148,6 +150,7 @@ function Navbar() {
         </div>
         <News />
       </div>
+
       {show && (
         <motion.div
           initial={{ x: "-100%", opacity: 0 }}
@@ -157,11 +160,11 @@ function Navbar() {
             damping: 14,
             duration: 1,
           }}
-          className="w-auto min-h-screen bg-black text-white p-4 md:hidden "
+          className="fixed w-full z-20 min-h-screen bg-black text-white p-4 lap:hidden "
         >
           <div className="flex flex-col gap-12 items-start justify-evenly mt-24">
-            <div className="flex md:hidden flex-col gap-4 items-start justify-center flex-1 text-[#cfd3e0] font-semibold text-lg flex-wrap">
-              {["Home", "Phone", "Laptop", "Tablet", "About"].map(
+            <div className="flex lap:hidden flex-col gap-4 items-start justify-center flex-1 text-[#cfd3e0] font-semibold text-lg flex-wrap">
+              {["Home", "Phone", "Laptop", "Tablet", "About", "Contact"].map(
                 (item, index) => (
                   <motion.div key={index}>
                     <Link
@@ -178,6 +181,7 @@ function Navbar() {
                       {index === 2 && <AiOutlineLaptop />}
                       {index === 3 && <FaTabletScreenButton />}
                       {index === 4 && <IoInformationCircle />}
+                      {index === 5 && <RiContactsBookFill />}
                       {item}
                     </Link>
                   </motion.div>

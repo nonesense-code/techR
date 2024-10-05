@@ -9,7 +9,7 @@ import iPhone from "../../images/iPhone16promax_1.avif";
 const Landing = () => {
   const hotDrop1 = {
     note: "The newly launched iPhone 16 Pro Max features a stunning display and advanced performance making a perfect fit for a premium mobile experience!",
-    link: "/phone/redminote11pro",
+    link: "/phone/iphone16promax",
   };
   const hotDrop2 = {
     note: "The recently unveiled Samsung Galaxy Tab S9 Ultra features an impressive 14.6-inch AMOLED screen and delivers powerful performance, ideal for enhancing productivity and providing an immersive entertainment experience!",
@@ -43,7 +43,7 @@ const Landing = () => {
                   <img
                     src={iPhone}
                     alt={hotDrop1.name}
-                    className="mb-4 w-full h-full md:w-[800px] md:h-[300px] object-contain rounded-md md:rounded-none"
+                    className="mb-4 w-full h-full md:w-[800px] md:h-[300px] object-cover object-top rounded-md md:rounded-none"
                   />
                 </div>
                 {show1 && (

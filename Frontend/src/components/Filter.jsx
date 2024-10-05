@@ -58,8 +58,7 @@ function Filter() {
 
   return (
     <>
-      <Navbar />
-      <div className="h-screen w-auto flex items-start justify-evenly">
+      <div className="h-screen w-auto mt-8 flex items-start justify-evenly">
         <div className="p-4 text-black h-auto w-auto flex items-center flex-col justify-center">
           <h1 className="text-4xl">Search your needs!</h1>
           <div className="mt-12 border-2 border-black rounded-xl w-full mx-auto p-4 items-center justify-center">

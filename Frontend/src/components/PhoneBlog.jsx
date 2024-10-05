@@ -645,64 +645,6 @@ function PhoneBlog() {
                 </div>
               </motion.div>
             </div>
-
-            {/* <div className="w-full py-4">
-              <div className="flex flex-col gap-4 w-auto mx-auto p-6">
-                {product.length > 0 &&
-                  product.map((item, index) => (
-                    <div
-                      className="flex flex-col lg:flex-row p-4 w-full items-center justify-between bg-white h-auto gap-2 rounded-lg"
-                      key={index}
-                    >
-                      <div className="w-full">
-                        <Link
-                          to={`/${item.productType}/${item.name
-                            .toLowerCase()
-                            .split(" ")
-                            .join("")}`}
-                        >
-                          <div className="h-80 w-auto flex items-center justify-center">
-                            <img
-                              src={item.image}
-                              alt={item.name}
-                              className="object-cover rounded-xl w-auto h-80"
-                            />
-                          </div>
-                        </Link>
-                      </div>
-                      <div className="w-full sm:w-1/2 flex flex-col p-4">
-                        <div className="w-full flex flex-col gap-4 text-center">
-                          <div className="">
-                            <div className="text-lg sm:text-xl md:text-2xl whitespace-nowrap justify-center items-center font-extrabold">
-                              {item.name}
-                            </div>
-                          </div>
-                          <div className="text-md sm:text-lg md:text-xl font-semibold">
-                            <motion.div
-                              whileHover={{
-                                scale: 1.01,
-                                color: "#232F3E",
-                              }}
-                              className="tracking-wide break-words capitalize"
-                            >
-                              Categorie:{item.popularity || "Unknown"}
-                            </motion.div>
-                            <motion.div
-                              whileHover={{
-                                scale: 1.01,
-                                color: "#232F3E",
-                              }}
-                              className="break-words"
-                            >
-                              Price:{item.price1 || "$..."}
-                            </motion.div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-              </div>
-            </div> */}
           </div>
         </motion.div>
       )}

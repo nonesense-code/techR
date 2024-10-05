@@ -151,63 +151,260 @@ function Landing() {
               className="h-auto w-full"
             >
               <div className="container mx-auto px-4 py-8">
-                <h1 className="text-2xl md:text-4xl font-bold text-center mb-8 text-gray-800">
-                  Explore more options
-                </h1>
-                <div className="flex flex-col items-center justify-center w-full gap-6">
-                  {product.length > 0 &&
-                    product.map((item, index) => {
-                      return (
-                        <div
-                          key={index}
-                          className="bg-white shadow-2xl rounded-lg overflow-hidden p-2 md:flex flex-row w-full"
-                        >
-                          <Link
-                            to={`/${item.productType}/${item.name
-                              .toLowerCase()
-                              .split(" ")
-                              .join("")}`}
-                            className="outline-none"
+                {/* for the newly launched change item.popularity to item.isNew */}
+                <div className="flex flex-col items-start justify-center">
+                  <h1 className="text-xl lg:text-3xl font-bold bg-black p-2 rounded-md text-[#FFA500] mb-2">
+                    Newly Launched
+                  </h1>
+                  <div className="flex items-center justify-center gap-6 flex-col">
+                    {product
+                      .filter((item) => item.popularity === "average")
+                      .map((item, index) => {
+                        return (
+                          <div
+                            key={index}
+                            className="border-2 border-[#79d1ec] rounded-xl shadow-lg shadow-[#00FFA3] backdrop-blur-md overflow-hidden p-2 md:flex flex-row w-full"
                           >
-                            <div className="md:flex items-center justify-center gap-2">
-                              <div className="h-auto w-auto">
-                                <motion.div
-                                  initial={{ y: 0 }}
-                                  animate={{ y: 6 }}
-                                  transition={{
-                                    duration: 2,
-                                    repeat: Infinity,
-                                    repeatType: "reverse",
-                                  }}
-                                  className="w-auto flex items-center justify-center bg-cover bg-center"
-                                >
+                            <Link
+                              to={`/${item.productType}/${item.name
+                                .toLowerCase()
+                                .split(" ")
+                                .join("")}`}
+                              className="outline-none"
+                            >
+                              <div className="md:flex items-center justify-center gap-2">
+                                <div className="h-auto w-auto">
                                   <motion.div
-                                    whileHover={{
-                                      scale: 1.2,
+                                    initial={{ y: 0 }}
+                                    animate={{ y: -2 }}
+                                    transition={{
+                                      duration: 2,
+                                      repeat: Infinity,
+                                      repeatType: "reverse",
                                     }}
+                                    className="w-auto flex items-center justify-center bg-cover bg-center"
                                   >
-                                    <img
-                                      src={item.image}
-                                      alt={item.name}
-                                      className="w-full md:w-full md:h-96 p-12 object-contain object-center"
-                                    />
+                                    <motion.div
+                                      whileHover={{
+                                        scale: 1.02,
+                                      }}
+                                    >
+                                      <img
+                                        src={item.image}
+                                        alt={item.name}
+                                        className="w-full h-52 md:w-96 md:h-72 object-contain object-center"
+                                      />
+                                    </motion.div>
                                   </motion.div>
-                                </motion.div>
+                                </div>
+                                <div className="p-4 md:w-1/2 gap-4 flex items-center justify-center flex-col">
+                                  <h2 className="underline-animations text-xl text-black text-center font-extrabold">
+                                    {item.name}
+                                  </h2>
+                                  <p className="text-stone-600 border-[1px] shadow-stone-600 shadow-md border-stone-600/30 p-2 rounded-xl break-words text-center">
+                                    {(item.blog &&
+                                      truncateText(item.blog, 30)) ||
+                                      "No description available"}
+                                  </p>
+                                </div>
                               </div>
-                              <div className="p-4 md:w-1/2 gap-4 flex items-center justify-center flex-col">
-                                <h2 className="underline-animations text-xl text-black text-center font-extrabold">
-                                  {item.name}
-                                </h2>
-                                <p className="text-stone-600">
-                                  {(item.blog && truncateText(item.blog, 30)) ||
-                                    "No description available"}
-                                </p>
+                            </Link>
+                          </div>
+                        );
+                      })}
+                  </div>
+                </div>
+
+                {/* for most sale of this year change item.popularity to item.isMostSold */}
+                <div className="flex flex-col items-start justify-center mt-20">
+                  <h1 className="text-xl lg:text-3xl font-bold bg-black p-2 rounded-md text-[#FFA500] mb-2">
+                    Most Sold of {new Date().getFullYear()}
+                  </h1>
+                  <div className="flex items-center justify-center gap-6 flex-col">
+                    {product
+                      .filter((item) => item.popularity === "average")
+                      .map((item, index) => {
+                        return (
+                          <div
+                            key={index}
+                            className="border-2 border-[#f1cb69] rounded-xl shadow-lg shadow-[#FBC02D] backdrop-blur-md overflow-hidden p-2 md:flex flex-row w-full"
+                          >
+                            <Link
+                              to={`/${item.productType}/${item.name
+                                .toLowerCase()
+                                .split(" ")
+                                .join("")}`}
+                              className="outline-none"
+                            >
+                              <div className="md:flex items-center justify-center gap-2">
+                                <div className="h-auto w-auto">
+                                  <motion.div
+                                    initial={{ y: 0 }}
+                                    animate={{ y: -2 }}
+                                    transition={{
+                                      duration: 2,
+                                      repeat: Infinity,
+                                      repeatType: "reverse",
+                                    }}
+                                    className="w-auto flex items-center justify-center bg-cover bg-center"
+                                  >
+                                    <motion.div
+                                      whileHover={{
+                                        scale: 1.02,
+                                      }}
+                                    >
+                                      <img
+                                        src={item.image}
+                                        alt={item.name}
+                                        className="w-full h-52 md:w-96 md:h-72 object-contain object-center"
+                                      />
+                                    </motion.div>
+                                  </motion.div>
+                                </div>
+                                <div className="p-4 md:w-1/2 gap-4 flex items-center justify-center flex-col">
+                                  <h2 className="underline-animations text-xl text-black text-center font-extrabold">
+                                    {item.name}
+                                  </h2>
+                                  <p className="text-stone-600 border-[1px] shadow-stone-600 shadow-md border-stone-600/30 p-2 rounded-xl break-words text-center">
+                                    {(item.blog &&
+                                      truncateText(item.blog, 30)) ||
+                                      "No description available"}
+                                  </p>
+                                </div>
                               </div>
-                            </div>
-                          </Link>
-                        </div>
-                      );
-                    })}
+                            </Link>
+                          </div>
+                        );
+                      })}
+                  </div>
+                </div>
+
+                {/* for most popular it is perfect item.popularity keep as it is */}
+                <div className="flex flex-col items-start justify-center mt-20">
+                  <h1 className="text-xl lg:text-3xl font-bold bg-black p-2 rounded-md text-[#FFA500] mb-2">
+                    Most Popular
+                  </h1>
+                  <div className="flex items-center justify-center gap-6 flex-col">
+                    {product
+                      .filter((item) => item.popularity === "average")
+                      .map((item, index) => {
+                        return (
+                          <div
+                            key={index}
+                            className="border-2 border-[#77bffa] rounded-xl shadow-lg shadow-[#42A5F5] backdrop-blur-md overflow-hidden p-2 md:flex flex-row w-full"
+                          >
+                            <Link
+                              to={`/${item.productType}/${item.name
+                                .toLowerCase()
+                                .split(" ")
+                                .join("")}`}
+                              className="outline-none"
+                            >
+                              <div className="md:flex items-center justify-center gap-2">
+                                <div className="h-auto w-auto">
+                                  <motion.div
+                                    initial={{ y: 0 }}
+                                    animate={{ y: -2 }}
+                                    transition={{
+                                      duration: 2,
+                                      repeat: Infinity,
+                                      repeatType: "reverse",
+                                    }}
+                                    className="w-auto flex items-center justify-center bg-cover bg-center"
+                                  >
+                                    <motion.div
+                                      whileHover={{
+                                        scale: 1.02,
+                                      }}
+                                    >
+                                      <img
+                                        src={item.image}
+                                        alt={item.name}
+                                        className="w-full h-52 md:w-96 md:h-72 object-contain object-center"
+                                      />
+                                    </motion.div>
+                                  </motion.div>
+                                </div>
+                                <div className="p-4 md:w-1/2 gap-4 flex items-center justify-center flex-col">
+                                  <h2 className="underline-animations text-xl text-black text-center font-extrabold">
+                                    {item.name}
+                                  </h2>
+                                  <p className="text-stone-600 border-[1px] shadow-stone-600 shadow-md border-stone-600/30 p-2 rounded-xl break-words text-center">
+                                    {(item.blog &&
+                                      truncateText(item.blog, 30)) ||
+                                      "No description available"}
+                                  </p>
+                                </div>
+                              </div>
+                            </Link>
+                          </div>
+                        );
+                      })}
+                  </div>
+                </div>
+
+                {/* for recommended product change item.popularity to recommended */}
+                <div className="flex flex-col items-start justify-center mt-20">
+                  <h1 className="text-xl lg:text-3xl font-bold bg-black p-2 rounded-md text-[#FFA500] mb-2">
+                    Recommended for you
+                  </h1>
+                  <div className="flex items-center justify-center gap-6 flex-col">
+                    {product
+                      .filter((item) => item.popularity === "average")
+                      .map((item, index) => {
+                        return (
+                          <div
+                            key={index}
+                            className="border-2 border-[#d28bee] rounded-xl shadow-lg shadow-[#9B59B6] backdrop-blur-md overflow-hidden p-2 md:flex flex-row w-full"
+                          >
+                            <Link
+                              to={`/${item.productType}/${item.name
+                                .toLowerCase()
+                                .split(" ")
+                                .join("")}`}
+                              className="outline-none"
+                            >
+                              <div className="md:flex items-center justify-center gap-2">
+                                <div className="h-auto w-auto">
+                                  <motion.div
+                                    initial={{ y: 0 }}
+                                    animate={{ y: -2 }}
+                                    transition={{
+                                      duration: 2,
+                                      repeat: Infinity,
+                                      repeatType: "reverse",
+                                    }}
+                                    className="w-auto flex items-center justify-center bg-cover bg-center"
+                                  >
+                                    <motion.div
+                                      whileHover={{
+                                        scale: 1.02,
+                                      }}
+                                    >
+                                      <img
+                                        src={item.image}
+                                        alt={item.name}
+                                        className="w-full h-52 md:w-96 md:h-72 object-contain object-center"
+                                      />
+                                    </motion.div>
+                                  </motion.div>
+                                </div>
+                                <div className="p-4 md:w-1/2 gap-4 flex items-center justify-center flex-col">
+                                  <h2 className="underline-animations text-xl text-black text-center font-extrabold">
+                                    {item.name}
+                                  </h2>
+                                  <p className="text-stone-600 border-[1px] shadow-stone-600 shadow-md border-stone-600/30 p-2 rounded-xl break-words text-center">
+                                    {(item.blog &&
+                                      truncateText(item.blog, 30)) ||
+                                      "No description available"}
+                                  </p>
+                                </div>
+                              </div>
+                            </Link>
+                          </div>
+                        );
+                      })}
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -217,9 +414,6 @@ function Landing() {
             <CircularLoader />
           </div>
         )}
-      </div>
-      <div className="flex flex-col items-center w-full">
-        <Contact />
       </div>
       {showFooter && <Footer />}
     </div>
