@@ -639,7 +639,7 @@ function PhoneBlog() {
                 </div>
               </motion.div>
             </div>
-            <div className="h-screen w-full mt-12">
+            {/* <div className="h-screen w-full mt-12">
               <div className="flex items-start justify-center flex-col gap-2">
                 <h1 className="text-black text-lg md:text-xl font-bold text-left">
                   DISPLAY
@@ -660,7 +660,7 @@ function PhoneBlog() {
                   non fugiat minima aliquam?
                 </p>
               </div>
-            </div>
+            </div> */}
           </div>
         </motion.div>
       )}
