@@ -4,7 +4,13 @@ const cloudinary = require("cloudinary");
 module.exports.modifyProducts = async (req, res) => {
   try {
     const id = req.params.id;
+
     let {
+      latest,
+      mostsold,
+      mostpopular,
+      recommended,
+      item_categorie,
       productType,
       popularity,
       name,
@@ -41,7 +47,6 @@ module.exports.modifyProducts = async (req, res) => {
       blog,
       previousimage,
     } = req.body;
-
     let imageURL = previousimage;
 
     if (req.file) {
@@ -57,9 +62,21 @@ module.exports.modifyProducts = async (req, res) => {
       imageURL = result.secure_url;
     }
 
+    const updatedData = {
+      latest: latest === "true" ? "true" : "false",
+      mostsold: mostsold === "true" ? "true" : "false",
+      mostpopular: mostpopular === "true" ? "true" : "false",
+      recommended: recommended === "true" ? "true" : "false",
+    };
+
     await productModel.findOneAndUpdate(
       { _id: id },
       {
+        latest: updatedData.latest,
+        mostsold: updatedData.mostsold,
+        mostpopular: updatedData.mostpopular,
+        recommended: updatedData.recommended,
+        item_categorie,
         productType,
         popularity,
         name,

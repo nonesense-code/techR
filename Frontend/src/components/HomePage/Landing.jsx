@@ -158,7 +158,7 @@ function Landing() {
                   </h1>
                   <div className="flex items-center justify-center gap-6 flex-col">
                     {product
-                      .filter((item) => item.popularity === "average")
+                      .filter((item) => item.latest === "true")
                       .map((item, index) => {
                         return (
                           <div
@@ -215,6 +215,39 @@ function Landing() {
                   </div>
                 </div>
 
+                {/* Budget device showcase */}
+                <div className="bg-[#F5F5F5] rounded-md lg:rounded-xl w-full h-auto flex items-center justify-center flex-col mt-20">
+                  <h1 className="bg-black text-[#FFA500] rounded-md p-1 text-center w-auto text-[18px] md:text-xl whitespace-nowrap mt-4">
+                    Check out the Budget devices
+                  </h1>
+                  <div className="flex items-center justify-evenly gap-2 w-full p-4 flex-wrap">
+                    {product
+                      .filter((item) => item.item_categorie === "budget")
+                      .map((item, index) => (
+                        <div
+                          key={index}
+                          className="flex items-center justify-center flex-col gap-1"
+                        >
+                          <Link
+                            to={`/${item.productType}/${item.name
+                              .toLowerCase()
+                              .split(" ")
+                              .join("")}`}
+                          >
+                            <img
+                              src={item.image}
+                              alt={item.name}
+                              className="h-32 w-32 md:h-64 md:w-80 object-cover object-center border-2 border-[#0006] rounded-xl shadow-md shadow-[#4A90E2]"
+                            />
+                            <h1 className="text-center mt-2">
+                              Price:{item.price1}
+                            </h1>
+                          </Link>
+                        </div>
+                      ))}
+                  </div>
+                </div>
+
                 {/* for most sale of this year change item.popularity to item.isMostSold */}
                 <div className="flex flex-col items-start justify-center mt-20">
                   <h1 className="text-xl lg:text-3xl font-bold bg-black p-2 rounded-md text-[#FFA500] mb-2">
@@ -222,7 +255,7 @@ function Landing() {
                   </h1>
                   <div className="flex items-center justify-center gap-6 flex-col">
                     {product
-                      .filter((item) => item.popularity === "average")
+                      .filter((item) => item.mostsold === "true")
                       .map((item, index) => {
                         return (
                           <div
@@ -279,6 +312,39 @@ function Landing() {
                   </div>
                 </div>
 
+                {/* Premium midrange device showcase */}
+                <div className="bg-[#F5F5F5] rounded-md lg:rounded-xl w-full h-auto flex items-center justify-center flex-col mt-20">
+                  <h1 className="bg-black text-[#FFA500] rounded-md p-1 text-center w-auto text-[18px] md:text-xl whitespace-nowrap mt-4">
+                    Check out the premium midrange devices
+                  </h1>
+                  <div className="flex items-center justify-evenly gap-2 w-full p-4 flex-wrap">
+                    {product
+                      .filter((item) => item.item_categorie === "midrange")
+                      .map((item, index) => (
+                        <div
+                          key={index}
+                          className="flex items-center justify-center flex-col gap-1"
+                        >
+                          <Link
+                            to={`/${item.productType}/${item.name
+                              .toLowerCase()
+                              .split(" ")
+                              .join("")}`}
+                          >
+                            <img
+                              src={item.image}
+                              alt={item.name}
+                              className="h-32 w-32 md:h-64 md:w-80 object-cover object-center border-2 border-[#0006] rounded-xl shadow-md shadow-[#4A90E2]"
+                            />
+                            <h1 className="text-center mt-2">
+                              Price:{item.price1}
+                            </h1>
+                          </Link>
+                        </div>
+                      ))}
+                  </div>
+                </div>
+
                 {/* for most popular it is perfect item.popularity keep as it is */}
                 <div className="flex flex-col items-start justify-center mt-20">
                   <h1 className="text-xl lg:text-3xl font-bold bg-black p-2 rounded-md text-[#FFA500] mb-2">
@@ -286,7 +352,7 @@ function Landing() {
                   </h1>
                   <div className="flex items-center justify-center gap-6 flex-col">
                     {product
-                      .filter((item) => item.popularity === "average")
+                      .filter((item) => item.mostpopular === "true")
                       .map((item, index) => {
                         return (
                           <div
@@ -343,6 +409,39 @@ function Landing() {
                   </div>
                 </div>
 
+                {/* flagship device showcase */}
+                <div className="bg-[#F5F5F5] rounded-md lg:rounded-xl w-full h-auto flex items-center justify-center flex-col mt-20">
+                  <h1 className="bg-black text-[#FFA500] rounded-md p-1 text-center w-auto text-[18px] md:text-xl whitespace-nowrap mt-4">
+                    Flagship devices
+                  </h1>
+                  <div className="flex items-center justify-evenly gap-2 w-full p-4 flex-wrap">
+                    {product
+                      .filter((item) => item.item_categorie === "flagship")
+                      .map((item, index) => (
+                        <div
+                          key={index}
+                          className="flex items-center justify-center flex-col gap-1"
+                        >
+                          <Link
+                            to={`/${item.productType}/${item.name
+                              .toLowerCase()
+                              .split(" ")
+                              .join("")}`}
+                          >
+                            <img
+                              src={item.image}
+                              alt={item.name}
+                              className="h-32 w-32 md:h-64 md:w-80 object-cover object-center border-2 border-[#0006] rounded-xl shadow-md shadow-[#4A90E2]"
+                            />
+                            <h1 className="text-center mt-2">
+                              Price:{item.price1}
+                            </h1>
+                          </Link>
+                        </div>
+                      ))}
+                  </div>
+                </div>
+
                 {/* for recommended product change item.popularity to recommended */}
                 <div className="flex flex-col items-start justify-center mt-20">
                   <h1 className="text-xl lg:text-3xl font-bold bg-black p-2 rounded-md text-[#FFA500] mb-2">
@@ -350,7 +449,7 @@ function Landing() {
                   </h1>
                   <div className="flex items-center justify-center gap-6 flex-col">
                     {product
-                      .filter((item) => item.popularity === "average")
+                      .filter((item) => item.recommended === "true")
                       .map((item, index) => {
                         return (
                           <div

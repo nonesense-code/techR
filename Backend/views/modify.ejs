@@ -12,6 +12,7 @@
     <% if (find) { %>
       <form method="post" action="/modify/<%= find.id %>" enctype="multipart/form-data" class="w-full max-w-4xl bg-sky-600 p-6 rounded-lg shadow-lg">
         <div class="space-y-4">
+
           <div class="flex flex-col md:flex-row md:space-x-4">
             <select
               name="productType"
@@ -31,6 +32,73 @@
               <option value="not popular" <%= find.popularity === 'not popular' ? 'selected' : '' %>>Not Popular</option>
             </select>
           </div>
+          <!-- boolean -->
+          <div class="flex flex-col md:flex-row md:space-x-4 bg-zinc-500 text-white px-3 py-2 rounded-lg">
+            <div>Newly Launched:</div>
+            <div class="flex items-center justify-center gap-4">
+                <label>
+                    <input type="radio" name="latest" value="true" <%= find.latest === 'true' ? 'checked' : '' %> >True
+                </label>
+                <label>
+                    <input type="radio" name="latest" value="false" <%= find.latest === 'false' ? 'checked' : '' %> >False
+                </label>
+            </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row md:space-x-4 bg-zinc-500 text-white px-3 py-2 rounded-lg">
+            <div>Most Sold of 2024:</div>
+            <div class="flex items-center justify-center gap-4">
+                <label>
+                    <input type="radio" name="mostsold" value="true" <%= find.mostsold === 'true' ? 'checked' : '' %> >True
+                </label>
+                <label>
+                    <input type="radio" name="mostsold" value="false" <%= find.mostsold === 'false' ? 'checked' : '' %> >False
+                </label>
+            </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row md:space-x-4 bg-zinc-500 text-white px-3 py-2 rounded-lg">
+            <div>Most Popular:</div>
+            <div class="flex items-center justify-center gap-4">
+                <label>
+                    <input type="radio" name="mostpopular" value="true" <%= find.mostpopular === 'true' ? 'checked' : '' %> >True
+                </label>
+                <label>
+                    <input type="radio" name="mostpopular" value="false" <%= find.mostpopular === 'false' ? 'checked' : '' %> >False
+                </label>
+            </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row md:space-x-4 bg-zinc-500 text-white px-3 py-2 rounded-lg">
+            <div>Recommended for you:</div>
+            <div class="flex items-center justify-center gap-4">
+                <label>
+                    <input type="radio" name="recommended" value="true" <%= find.recommended === 'true' ? 'checked' : '' %> >True
+                </label>
+                <label>
+                    <input type="radio" name="recommended" value="false" <%= find.recommended === 'false' ? 'checked' : '' %> >False
+                </label>
+            </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row md:space-x-4 bg-zinc-500 text-white px-3 py-2 rounded-lg">
+            <!-- <div>Budget Devices:</div> -->
+            <h1 class="whitespace-nowrap">Item catagorie:</h1>
+            <div class="flex items-center justify-evenly w-full gap-4">
+                <label>
+                Budget:
+                <input type="radio" name="item_categorie" value="budget" <%= find.item_categorie === 'budget' ? 'checked' : '' %> >
+              </label>
+                <label>
+                Midrange:
+                <input type="radio" name="item_categorie" value="midrange" <%= find.item_categorie === 'midrange' ? 'checked' : '' %> >
+              </label>
+                <label>
+                Flagship:
+                <input type="radio" name="item_categorie" value="flagship" <%= find.item_categorie === 'flagship' ? 'checked' : '' %> >
+              </label>
+            </div>
+        </div>
 
           <!-- General Product Details -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
