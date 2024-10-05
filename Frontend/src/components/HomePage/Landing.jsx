@@ -14,7 +14,7 @@ import acer from "../../images/acernitrov15.png";
 import apple from "../../images/applemac.png";
 import iPhone from "../../images/iPhone16promax_1.avif";
 import redmi from "../../images/redminote11pro.jpeg";
-
+import GoogleAds from "../GoogleAds";
 function Landing() {
   const popular_items = [
     {
@@ -119,7 +119,6 @@ function Landing() {
             </Link>
           </div>
         </div>
-
         <div className="flex flex-col items-center justify-center gap-2 mt-10">
           <div className="text-center text-2xl font-bold tracking-wide">
             Top Deals
@@ -141,7 +140,7 @@ function Landing() {
             ))}
           </div>
         </div>
-
+        <GoogleAds />
         {loading ? (
           <div className="h-auto w-full">
             <motion.div
