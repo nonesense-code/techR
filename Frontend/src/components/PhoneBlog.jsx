@@ -4,14 +4,14 @@ import axios from "axios";
 import { motion, easeInOut } from "framer-motion";
 import Footer from "./Footer";
 import CircularLoader from "../CircularLoader";
-const backendURL = import.meta.env.VITE_BACKEND_URL;
 import { FaAmazon } from "react-icons/fa";
 import alibaba from "../images/alibabalogo.png";
 import daraz from "../images/darazlogo.png";
+import { useQuery } from "react-query";
 
-const fetchData = async () => {
+const fetchPopularItems = async (backendURL) => {
   try {
-    const response = await axios.get(`${backendURL}`);
+    const response = await axios.get(backendURL);
     if (Array.isArray(response.data)) {
       return response.data;
     } else {
@@ -22,14 +22,50 @@ const fetchData = async () => {
     return [];
   }
 };
+const fetchTargetPhones = async (targetURL) => {
+  try {
+    const response = await axios.get(targetURL);
+
+    if (typeof response.data === "object" && response.data !== null) {
+      return response.data;
+    } else {
+      return;
+    }
+  } catch (error) {
+    if (error.response) {
+      console.error("Error response from server:", error.response);
+    } else if (error.request) {
+      console.error("No response received:", error.request);
+    } else {
+      console.error("Error during request setup:", error.message);
+    }
+    return;
+  }
+};
 
 function PhoneBlog() {
-  const [phones, setPhones] = useState([]);
-  const [targetPhones, setTargetPhones] = useState({});
-  const [product, setProduct] = useState([]);
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
   const { itname } = useParams();
-  const [loading, setLoading] = useState(true);
-  const [showFooter, setshowFooter] = useState(false);
+
+  const { data: phones = [], isLoading: isLoadingPopular } = useQuery(
+    ["phones", backendURL],
+    () => fetchPopularItems(backendURL),
+    {
+      staleTime: 1000 * 60 * 5,
+    }
+  );
+
+  const targetURL = backendURL + "/" + itname;
+
+  const { data: targetPhones = [], isLoading: isLoadingTarget } = useQuery(
+    ["targetPhones", targetURL],
+    () => fetchTargetPhones(targetURL),
+    {
+      staleTime: 1000 * 60 * 5,
+    }
+  );
+
+  const isLoading = isLoadingPopular || isLoadingTarget;
 
   const hasMultipleOptions =
     targetPhones.ram2 || targetPhones.storage2 || targetPhones.price2;
@@ -56,19 +92,6 @@ function PhoneBlog() {
     .filter(Boolean)
     .filter((row) => row.ram && row.storage && row.price);
 
-  useEffect(() => {
-    const loadData = async () => {
-      const allPhones = await fetchData(backendURL);
-      setPhones(allPhones);
-      setLoading(false);
-      setshowFooter(true);
-      const allProducts = await fetchData(backendURL);
-      setProduct(allProducts);
-    };
-
-    loadData();
-  }, []);
-
   const InfoSection = ({ label, value }) => (
     <div className="flex items-center gap-2 max-w-[1200px]">
       <div className="flex items-center gap-1 p-2 rounded-lg bg-green-100">
@@ -82,31 +105,12 @@ function PhoneBlog() {
     </div>
   );
 
-  useEffect(() => {
-    const fetchTargetPhones = async () => {
-      try {
-        const response = await axios.get(`${backendURL}/${itname}`);
-        setTargetPhones(response.data);
-        setLoading(false);
-        setshowFooter(true);
-      } catch (error) {
-        console.error("Error fetching target phone:", error);
-      }
-    };
-    fetchTargetPhones();
-  }, [itname]);
-
   return (
     <>
-      {loading ? (
-        <div>
-          <CircularLoader />
-        </div>
-      ) : (
+      {!isLoading ? (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
           className="flex h-auto items-center justify-center w-full px-4 md:px-8 lg:px-1"
         >
           <div className="h-full w-auto max-w-[1300px]">
@@ -613,13 +617,13 @@ function PhoneBlog() {
                     </div>
                     <div className="flex items-center justify-center gap-4 border-2 border-black px-4 rounded-md">
                       <div className="flex items-center justify-center flex-col border-r-2 border-black min-h-24 h-auto pr-2">
-                        <a href="#" target="_blank">
+                        <a href="#" target="_blank" className="outline-none">
                           <FaAmazon className="text-4xl h-full" />
                         </a>
                         <h1 className="cursor-pointer">Amazon</h1>
                       </div>
                       <div className="flex items-center justify-center flex-col border-r-2 border-black min-h-24 h-full pr-4">
-                        <a href="#" target="_blank">
+                        <a href="#" target="_blank" className="outline-none">
                           <img
                             src={alibaba}
                             alt=""
@@ -630,7 +634,7 @@ function PhoneBlog() {
                         <h1 className="cursor-pointer">Alibaba</h1>
                       </div>
                       <div className="flex items-center justify-center flex-col">
-                        <a href="#" target="_blank">
+                        <a href="#" target="_blank" className="outline-none">
                           <img
                             src={daraz}
                             alt=""
@@ -647,9 +651,12 @@ function PhoneBlog() {
             </div>
           </div>
         </motion.div>
+      ) : (
+        <div>
+          <CircularLoader />
+        </div>
       )}
-
-      {showFooter && <Footer />}
+      <Footer />
     </>
   );
 }

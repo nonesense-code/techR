@@ -5,7 +5,6 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import CircularLoader from "../../CircularLoader";
 import AIlanding from "./AIlanding";
-import Contact from "./Contact";
 import { CiMobile3 } from "react-icons/ci";
 import { LiaLaptopSolid } from "react-icons/lia";
 import { FaTabletAlt } from "react-icons/fa";
@@ -15,6 +14,16 @@ import apple from "../../images/applemac.png";
 import iPhone from "../../images/iPhone16promax_1.avif";
 import redmi from "../../images/redminote11pro.jpeg";
 import GoogleAds from "../GoogleAds";
+import { useQuery } from "react-query";
+
+const fetchProducts = async (backendURL) => {
+  const response = await axios.get(backendURL);
+  if (!Array.isArray(response.data)) {
+    throw new Error("Data format is not an array");
+  }
+  return response.data;
+};
+
 function Landing() {
   const popular_items = [
     {
@@ -40,10 +49,6 @@ function Landing() {
   ];
 
   const backendURL = import.meta.env.VITE_BACKEND_URL;
-  const [product, setProduct] = useState([]);
-  const [showFooter, setShowFooter] = useState(false);
-  const [loading, setLoading] = useState(false);
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowFooter(true);
@@ -51,22 +56,16 @@ function Landing() {
     return () => clearTimeout(timer);
   }, []);
 
-  useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const response = await axios.get(`${backendURL}`);
-        if (Array.isArray(response.data)) {
-          setProduct(response.data);
-          setLoading(true);
-        } else {
-          console.error("Data is not in the expected format:", response.data);
-        }
-      } catch (error) {
-        console.error("Error fetching product:", error);
-      }
-    };
-    fetchProduct();
-  }, [backendURL]);
+  const {
+    isLoading,
+    data: product = [],
+    isError,
+    error,
+  } = useQuery(["product", backendURL], () => fetchProducts(backendURL), {
+    staleTime: 1000 * 60 * 5,
+  });
+
+  const [showFooter, setShowFooter] = useState(false);
 
   function truncateText(text, wordLimit) {
     const words = text.split(" ");
@@ -74,6 +73,8 @@ function Landing() {
       return words.slice(0, wordLimit).join(" ") + "...";
     }
   }
+
+  if (isError) return <div>Error fetching products: {error.message}</div>;
 
   return (
     <div className="flex flex-col items-center w-full">
@@ -142,12 +143,12 @@ function Landing() {
           </div>
         </div>
         <GoogleAds />
-        {loading ? (
+        {!isLoading ? (
           <div className="h-auto w-full">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
+              // transition={{  }}
               className="h-auto w-full"
             >
               <div className="container mx-auto px-4 py-8">

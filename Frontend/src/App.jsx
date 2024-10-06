@@ -12,7 +12,7 @@ import Contact from "./components/HomePage/Contact";
 import Filter from "./components/Filter";
 import Navbar from "./components/HomePage/Navbar";
 import ScrollToTop from "./components/ScrollToTop";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 const queryClient = new QueryClient();
 
@@ -20,9 +20,9 @@ function App() {
   return (
     <>
       <Router>
-        <Navbar />
-        <ScrollToTop />
         <QueryClientProvider client={queryClient}>
+          <Navbar />
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/phone" element={<Phones />} />

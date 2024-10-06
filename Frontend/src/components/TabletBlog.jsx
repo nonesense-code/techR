@@ -7,11 +7,11 @@ import CircularLoader from "../CircularLoader";
 import { FaAmazon } from "react-icons/fa";
 import alibaba from "../images/alibabalogo.png";
 import daraz from "../images/darazlogo.png";
-const backendURL = import.meta.env.VITE_BACKEND_URL;
+import { useQuery } from "react-query";
 
-const fetchData = async () => {
+const fetchPopularItems = async (backendURL) => {
   try {
-    const response = await axios.get(`${backendURL}`);
+    const response = await axios.get(backendURL);
     if (Array.isArray(response.data)) {
       return response.data;
     } else {
@@ -22,14 +22,50 @@ const fetchData = async () => {
     return [];
   }
 };
+const fetchTargetTablets = async (targetURL) => {
+  try {
+    const response = await axios.get(targetURL);
+
+    if (typeof response.data === "object" && response.data !== null) {
+      return response.data;
+    } else {
+      return;
+    }
+  } catch (error) {
+    if (error.response) {
+      console.error("Error response from server:", error.response);
+    } else if (error.request) {
+      console.error("No response received:", error.request);
+    } else {
+      console.error("Error during request setup:", error.message);
+    }
+    return;
+  }
+};
 
 function TabletBlog() {
-  const [tablets, setTablets] = useState([]);
-  const [targetTablets, setTargetTablets] = useState({});
-  const [product, setProduct] = useState([]);
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
   const { itname } = useParams();
-  const [loading, setLoading] = useState(true);
-  const [showFooter, setshowFooter] = useState(false);
+
+  const { data: tablets = [], isLoading: isLoadingPopular } = useQuery(
+    ["tablets", backendURL],
+    () => fetchPopularItems(backendURL),
+    {
+      staleTime: 1000 * 60 * 5,
+    }
+  );
+
+  const targetURL = backendURL + "/" + itname;
+
+  const { data: targetTablets = [], isLoading: isLoadingTarget } = useQuery(
+    ["targetTablets", targetURL],
+    () => fetchTargetTablets(targetURL),
+    {
+      staleTime: 1000 * 60 * 5,
+    }
+  );
+
+  const isLoading = isLoadingPopular || isLoadingTarget;
 
   const hasMultipleOptions =
     targetTablets.ram2 || targetTablets.storage2 || targetTablets.price2;
@@ -56,19 +92,6 @@ function TabletBlog() {
     .filter(Boolean)
     .filter((row) => row.ram && row.storage && row.price);
 
-  useEffect(() => {
-    const loadData = async () => {
-      const allTablets = await fetchData(backendURL);
-      setTablets(allTablets);
-      setLoading(false);
-      setshowFooter(true);
-      const allProducts = await fetchData(backendURL);
-      setProduct(allProducts);
-    };
-
-    loadData();
-  }, []);
-
   const InfoSection = ({ label, value }) => (
     <div className="flex items-center gap-2">
       <div className="flex items-center gap-1 p-2 rounded-lg bg-green-100">
@@ -82,32 +105,12 @@ function TabletBlog() {
     </div>
   );
 
-  useEffect(() => {
-    const fetchTargetTablets = async () => {
-      try {
-        const response = await axios.get(`${backendURL}/${itname}`);
-        setTargetTablets(response.data);
-        setLoading(false);
-        setshowFooter(true);
-      } catch (error) {
-        console.error("Error fetching target tablet:", error);
-      }
-    };
-
-    fetchTargetTablets();
-  }, [itname]);
-
   return (
     <>
-      {loading ? (
-        <div>
-          <CircularLoader />
-        </div>
-      ) : (
+      {!isLoading ? (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
           className="flex h-auto w-auto items-center justify-center px-4 md:px-8 lg:px-1"
         >
           <div className="h-full w-auto">
@@ -650,8 +653,12 @@ function TabletBlog() {
             </div>
           </div>
         </motion.div>
+      ) : (
+        <div>
+          <CircularLoader />
+        </div>
       )}
-      {showFooter && <Footer />}
+      <Footer />
     </>
   );
 }
