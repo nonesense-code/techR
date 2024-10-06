@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Footer from "../Footer";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { motion } from "framer-motion";
@@ -50,9 +49,7 @@ function Landing() {
 
   const backendURL = import.meta.env.VITE_BACKEND_URL;
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowFooter(true);
-    }, 500);
+    const timer = setTimeout(() => {}, 500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -64,8 +61,6 @@ function Landing() {
   } = useQuery(["product", backendURL], () => fetchProducts(backendURL), {
     staleTime: 1000 * 60 * 5,
   });
-
-  const [showFooter, setShowFooter] = useState(false);
 
   function truncateText(text, wordLimit) {
     const words = text.split(" ");
@@ -148,7 +143,6 @@ function Landing() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              // transition={{  }}
               className="h-auto w-full"
             >
               <div className="container mx-auto px-4 py-8">
@@ -529,7 +523,6 @@ function Landing() {
           </div>
         )}
       </div>
-      {showFooter && <Footer />}
     </div>
   );
 }

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { easeInOut, motion } from "framer-motion";
-import Footer from "./Footer";
 import CircularLoader from "../CircularLoader";
 import { FaAmazon } from "react-icons/fa";
 import alibaba from "../images/alibabalogo.png";
@@ -113,7 +112,6 @@ function LaptopBlog() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
           className="flex h-auto w-auto items-center justify-center px-4 md:px-8 lg:px-1"
         >
           <div className="h-full w-auto">
@@ -121,7 +119,6 @@ function LaptopBlog() {
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
                 className="flex flex-col md:flex-row items-start justify-between border-b-4 border-black/10"
               >
                 <div className="hidden lg:flex mt-8 w-full md:w-1/3 h-auto">
@@ -680,7 +677,6 @@ function LaptopBlog() {
           <CircularLoader />
         </div>
       )}
-      <Footer />
     </>
   );
 }

@@ -11,6 +11,7 @@ import About from "./components/HomePage/About";
 import Contact from "./components/HomePage/Contact";
 import Filter from "./components/Filter";
 import Navbar from "./components/HomePage/Navbar";
+import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import { QueryClient, QueryClientProvider } from "react-query";
 
@@ -36,6 +37,7 @@ function App() {
             <Route path="/tablet/:itname" element={<TabletBlog />} />
             <Route path="*" element={<Home />} />
           </Routes>
+          <Footer />
         </QueryClientProvider>
       </Router>
     </>

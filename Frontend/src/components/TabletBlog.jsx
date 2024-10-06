@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { motion, easeInOut } from "framer-motion";
-import Footer from "./Footer";
 import CircularLoader from "../CircularLoader";
 import { FaAmazon } from "react-icons/fa";
 import alibaba from "../images/alibabalogo.png";
@@ -118,7 +117,6 @@ function TabletBlog() {
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
                 className="flex flex-col md:flex-row items-start justify-between border-b-4 border-black/10"
               >
                 <div className="hidden lg:flex mt-8 w-full md:w-1/3 h-auto">
@@ -658,7 +656,6 @@ function TabletBlog() {
           <CircularLoader />
         </div>
       )}
-      <Footer />
     </>
   );
 }

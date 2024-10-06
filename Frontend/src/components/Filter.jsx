@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Footer from "./Footer";
 
 function Filter() {
   const [deviceType, setDeviceType] = useState("");
@@ -184,7 +183,6 @@ function Filter() {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 }

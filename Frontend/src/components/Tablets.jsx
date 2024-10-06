@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import CircularLoader from "../CircularLoader";
 
-function tablets() {
+function Tablets() {
   const [tablets, setTablets] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const backendURL = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
-    const fetchtablets = async () => {
+    const fetchTablets = async () => {
       try {
         const response = await axios.get(`${backendURL}`);
         if (Array.isArray(response.data)) {
@@ -26,7 +26,7 @@ function tablets() {
       }
     };
 
-    fetchtablets();
+    fetchTablets();
   }, [backendURL]);
 
   function truncateText(text, wordLimit) {
@@ -38,7 +38,7 @@ function tablets() {
   }
 
   return (
-    <div className="h-auto w-full">
+    <div className="min-h-screen w-full">
       {loading ? (
         <CircularLoader />
       ) : (
@@ -46,11 +46,11 @@ function tablets() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
-          className="h-screen w-full"
+          className="min-h-screen w-full"
         >
           <div className="container mx-auto px-4 py-8">
             <h1 className="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800">
-              Available tablets
+              Available Tablets
             </h1>
             <div className="flex flex-col items-center justify-center w-full gap-6">
               {tablets.length > 0 &&
@@ -114,4 +114,4 @@ function tablets() {
   );
 }
 
-export default tablets;
+export default Tablets;
