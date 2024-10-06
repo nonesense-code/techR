@@ -163,6 +163,7 @@ function TabletBlog() {
                         src={targetTablets.image}
                         alt={targetTablets.name}
                         className="w-auto min-h-80 sm:h-96 sm:object-cover object-contain"
+                        loading="lazy"
                       />
                     </div>
                     <div className="text-black text-sm tracking-wide md:text-xl font-bold text-ellipsis">
@@ -626,13 +627,19 @@ function TabletBlog() {
                             src={alibaba}
                             alt=""
                             className="h-16 w-20 scale-125 object-contain"
+                            loading="lazy"
                           />
                         </a>
                         <h1 className="cursor-pointer">Alibaba</h1>
                       </div>
                       <div className="flex items-center justify-center flex-col">
                         <a href="#" target="_blank">
-                          <img src={daraz} alt="" className="h-12 w-20" />
+                          <img
+                            src={daraz}
+                            alt=""
+                            className="h-12 w-20"
+                            loading="lazy"
+                          />
                         </a>
                         <h1 className="cursor-pointer">Daraz</h1>
                       </div>
@@ -641,63 +648,6 @@ function TabletBlog() {
                 </div>
               </motion.div>
             </div>
-            {/* <div className="w-full py-4">
-              <div className="flex flex-col gap-4 w-auto mx-auto p-6">
-                {product.length > 0 &&
-                  product.map((item, index) => (
-                    <div
-                      className="flex flex-col lg:flex-row p-4 w-full items-center justify-between bg-white h-auto gap-2 rounded-lg"
-                      key={index}
-                    >
-                      <div className="w-full">
-                        <Link
-                          to={`/${item.productType}/${item.name
-                            .toLowerCase()
-                            .split(" ")
-                            .join("")}`}
-                        >
-                          <div className="h-80 w-auto flex items-center justify-center">
-                            <img
-                              src={item.image}
-                              alt={item.name}
-                              className="object-cover rounded-xl w-auto h-80"
-                            />
-                          </div>
-                        </Link>
-                      </div>
-                      <div className="w-full sm:w-1/2 flex flex-col p-4">
-                        <div className="w-full flex flex-col gap-4 text-center">
-                          <div className="">
-                            <div className="text-lg sm:text-xl md:text-2xl whitespace-nowrap justify-center items-center font-extrabold">
-                              {item.name}
-                            </div>
-                          </div>
-                          <div className="text-md sm:text-lg md:text-xl font-semibold">
-                            <motion.div
-                              whileHover={{
-                                scale: 1.01,
-                                color: "#232F3E",
-                              }}
-                              className="tracking-wide break-words capitalize"
-                            >
-                              Categorie:{item.popularity || "Unknown"}
-                            </motion.div>
-                            <motion.div
-                              whileHover={{
-                                scale: 1.01,
-                                color: "#232F3E",
-                              }}
-                              className="break-words"
-                            >
-                              Price:{item.price1 || "$..."}
-                            </motion.div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-              </div>
-            </div> */}
           </div>
         </motion.div>
       )}

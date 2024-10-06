@@ -47,6 +47,7 @@ const Landing = () => {
                     }
                     alt={hotDrop1.name}
                     className="mb-4 w-full h-full md:w-[800px] md:h-[300px] object-cover object-top rounded-md md:rounded-none"
+                    loading="lazy"
                   />
                 </div>
                 {show1 && (
@@ -102,6 +103,7 @@ const Landing = () => {
                   }
                   alt={hotDrop2.name}
                   className="mb-4 h-[300px] w-[800px] object-contain md:rounded-none p-2 bg-gradient-to-r from-zinc-900 via-gray-800 to-stone-600"
+                  loading="lazy"
                 />
                 {show2 && (
                   <div className="absolute inset-0 flex items-center justify-center">

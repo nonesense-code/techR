@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/HomePage/Home";
 import Phones from "./components/Phones";
@@ -12,25 +12,31 @@ import Contact from "./components/HomePage/Contact";
 import Filter from "./components/Filter";
 import Navbar from "./components/HomePage/Navbar";
 import ScrollToTop from "./components/ScrollToTop";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
+
 function App() {
   return (
     <>
       <Router>
         <Navbar />
         <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/phone" element={<Phones />} />
-          <Route path="/laptop" element={<Laptops />} />
-          <Route path="/tablet" element={<Tablets />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/filter" element={<Filter />} />
-          <Route path="/phone/:itname" element={<PhoneBlog />} />
-          <Route path="/laptop/:itname" element={<LaptopBlog />} />
-          <Route path="/tablet/:itname" element={<TabletBlog />} />
-          <Route path="*" element={<Home />} />
-        </Routes>
+        <QueryClientProvider client={queryClient}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/phone" element={<Phones />} />
+            <Route path="/laptop" element={<Laptops />} />
+            <Route path="/tablet" element={<Tablets />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/filter" element={<Filter />} />
+            <Route path="/phone/:itname" element={<PhoneBlog />} />
+            <Route path="/laptop/:itname" element={<LaptopBlog />} />
+            <Route path="/tablet/:itname" element={<TabletBlog />} />
+            <Route path="*" element={<Home />} />
+          </Routes>
+        </QueryClientProvider>
       </Router>
     </>
   );

@@ -83,6 +83,7 @@ function Phones() {
                                   src={phone.image}
                                   alt={phone.name}
                                   className="w-full md:w-full md:h-96 p-12 object-contain object-center"
+                                  loading="lazy"
                                 />
                               </motion.div>
                             </div>

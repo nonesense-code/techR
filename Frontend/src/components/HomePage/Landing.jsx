@@ -39,10 +39,10 @@ function Landing() {
     },
   ];
 
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
   const [product, setProduct] = useState([]);
   const [showFooter, setShowFooter] = useState(false);
   const [loading, setLoading] = useState(false);
-  const backendURL = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -131,6 +131,7 @@ function Landing() {
                     src={item.image}
                     alt={item.name}
                     className="border-b-2 border-white/70 object-cover h-auto w-full bg-black border-r-2 border-white hover:scale-105 duration-200 ease-out"
+                    loading="lazy"
                   />
                   <div className="absolute text-center bg-black border-white border-t-2 border-b-2 text-[#00FFA3] w-full bottom-0 h-auto p-2 mx-auto left-0 right-0">
                     {item.name}
@@ -151,8 +152,8 @@ function Landing() {
             >
               <div className="container mx-auto px-4 py-8">
                 {/* for the newly launched change item.popularity to item.isNew */}
-                <div className="flex flex-col items-start justify-center">
-                  <h1 className="text-xl lg:text-3xl font-bold bg-black p-2 rounded-md text-[#FFA500] mb-2">
+                <div className="flex flex-col items-center justify-center">
+                  <h1 className="text-md lg:text-3xl font-bold bg-black p-2 rounded-md text-[#FFA500] mb-2">
                     Newly Launched
                   </h1>
                   <div className="flex items-center justify-center gap-6 flex-col">
@@ -193,6 +194,7 @@ function Landing() {
                                         src={item.image}
                                         alt={item.name}
                                         className="w-full h-52 md:w-96 md:h-72 object-contain object-center"
+                                        loading="lazy"
                                       />
                                     </motion.div>
                                   </motion.div>
@@ -239,6 +241,7 @@ function Landing() {
                               src={item.image}
                               alt={item.name}
                               className="h-32 w-32 md:h-64 md:w-80 object-cover object-center border-2 border-[#0006] rounded-xl shadow-md shadow-[#4A90E2]"
+                              loading="lazy"
                             />
                             <h1 className="text-center mt-2">
                               Price:{item.price1}
@@ -250,8 +253,8 @@ function Landing() {
                 </div>
 
                 {/* for most sale of this year change item.popularity to item.isMostSold */}
-                <div className="flex flex-col items-start justify-center mt-20">
-                  <h1 className="text-xl lg:text-3xl font-bold bg-black p-2 rounded-md text-[#FFA500] mb-2">
+                <div className="flex flex-col items-center justify-center mt-20">
+                  <h1 className="text-md lg:text-3xl font-bold bg-black p-2 rounded-md text-[#FFA500] mb-2">
                     Most Sold of {new Date().getFullYear()}
                   </h1>
                   <div className="flex items-center justify-center gap-6 flex-col">
@@ -292,6 +295,7 @@ function Landing() {
                                         src={item.image}
                                         alt={item.name}
                                         className="w-full h-52 md:w-96 md:h-72 object-contain object-center"
+                                        loading="lazy"
                                       />
                                     </motion.div>
                                   </motion.div>
@@ -338,6 +342,7 @@ function Landing() {
                               src={item.image}
                               alt={item.name}
                               className="h-32 w-32 md:h-64 md:w-80 object-cover object-center border-2 border-[#0006] rounded-xl shadow-md shadow-[#4A90E2]"
+                              loading="lazy"
                             />
                             <h1 className="text-center mt-2">
                               Price:{item.price1}
@@ -349,8 +354,8 @@ function Landing() {
                 </div>
 
                 {/* for most popular it is perfect item.popularity keep as it is */}
-                <div className="flex flex-col items-start justify-center mt-20">
-                  <h1 className="text-xl lg:text-3xl font-bold bg-black p-2 rounded-md text-[#FFA500] mb-2">
+                <div className="flex flex-col items-center justify-center mt-20">
+                  <h1 className="text-md lg:text-3xl font-bold bg-black p-2 rounded-md text-[#FFA500] mb-2">
                     Most Popular
                   </h1>
                   <div className="flex items-center justify-center gap-6 flex-col">
@@ -391,6 +396,7 @@ function Landing() {
                                         src={item.image}
                                         alt={item.name}
                                         className="w-full h-52 md:w-96 md:h-72 object-contain object-center"
+                                        loading="lazy"
                                       />
                                     </motion.div>
                                   </motion.div>
@@ -437,6 +443,7 @@ function Landing() {
                               src={item.image}
                               alt={item.name}
                               className="h-32 w-32 md:h-64 md:w-80 object-cover object-center border-2 border-[#0006] rounded-xl shadow-md shadow-[#4A90E2]"
+                              loading="lazy"
                             />
                             <h1 className="text-center mt-2">
                               Price:{item.price1}
@@ -448,8 +455,8 @@ function Landing() {
                 </div>
 
                 {/* for recommended product change item.popularity to recommended */}
-                <div className="flex flex-col items-start justify-center mt-20">
-                  <h1 className="text-xl lg:text-3xl font-bold bg-black p-2 rounded-md text-[#FFA500] mb-2">
+                <div className="flex flex-col items-center justify-center mt-20">
+                  <h1 className="text-md lg:text-3xl font-bold bg-black p-2 rounded-md text-[#FFA500] mb-2">
                     Recommended for you
                   </h1>
                   <div className="flex items-center justify-center gap-6 flex-col">
@@ -490,6 +497,7 @@ function Landing() {
                                         src={item.image}
                                         alt={item.name}
                                         className="w-full h-52 md:w-96 md:h-72 object-contain object-center"
+                                        loading="lazy"
                                       />
                                     </motion.div>
                                   </motion.div>

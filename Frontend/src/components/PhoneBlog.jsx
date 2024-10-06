@@ -142,6 +142,7 @@ function PhoneBlog() {
                                 src={item.image}
                                 alt={item.name}
                                 className="rounded-t-lg w-full h-full object-cover object-top"
+                                loading="lazy"
                               />
                             </Link>
                             <h1 className="w-full text-center bg-zinc-600 rounded-b-lg">
@@ -162,6 +163,7 @@ function PhoneBlog() {
                         src={targetPhones.image}
                         alt={targetPhones.name}
                         className="w-auto min-h-80 sm:h-96 sm:object-cover object-contain"
+                        loading="lazy"
                       />
                     </div>
                     <div className="text-black text-sm tracking-wide md:text-xl font-bold text-ellipsis">
@@ -622,13 +624,19 @@ function PhoneBlog() {
                             src={alibaba}
                             alt=""
                             className="h-16 w-20 scale-125 object-contain"
+                            loading="lazy"
                           />
                         </a>
                         <h1 className="cursor-pointer">Alibaba</h1>
                       </div>
                       <div className="flex items-center justify-center flex-col">
                         <a href="#" target="_blank">
-                          <img src={daraz} alt="" className="h-12 w-20" />
+                          <img
+                            src={daraz}
+                            alt=""
+                            className="h-12 w-20"
+                            loading="lazy"
+                          />
                         </a>
                         <h1 className="cursor-pointer">Daraz</h1>
                       </div>
@@ -637,28 +645,6 @@ function PhoneBlog() {
                 </div>
               </motion.div>
             </div>
-            {/* <div className="h-screen w-full mt-12">
-              <div className="flex items-start justify-center flex-col gap-2">
-                <h1 className="text-black text-lg md:text-xl font-bold text-left">
-                  DISPLAY
-                </h1>
-                <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Aspernatur at eligendi sunt sit explicabo expedita quae,
-                  provident iste earum consequuntur quidem excepturi odio
-                  dolores, et cupiditate dolor. Amet totam delectus quod, atque
-                  dolore ipsum ipsam labore nobis similique asperiores dicta
-                  perspiciatis aliquam voluptates ullam quo! Molestiae ducimus
-                  et iure ut totam unde dolor ab consequatur ipsum soluta eos
-                  laboriosam deleniti laudantium debitis, quidem facere labore
-                  quasi? Adipisci omnis quasi nesciunt veniam deserunt odio
-                  atque, blanditiis non inventore maiores libero ad quisquam
-                  cupiditate. Quo placeat quidem delectus, nulla repudiandae
-                  pariatur? Placeat cumque laborum eveniet repudiandae illo iste
-                  non fugiat minima aliquam?
-                </p>
-              </div>
-            </div> */}
           </div>
         </motion.div>
       )}
