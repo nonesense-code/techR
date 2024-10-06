@@ -3,7 +3,7 @@ import Trending from "./Trending";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import { motion } from "framer-motion";
 import redmi from "../../images/redminote11pro.jpeg";
-import acer from "../../images/asusrogzephyrusg14.jpg";
+import asus from "../../images/asusrogzephyrusg14.jpg";
 import iPhone from "../../images/iPhone16promax_1.avif";
 
 const Landing = () => {
@@ -41,7 +41,10 @@ const Landing = () => {
               >
                 <div>
                   <img
-                    src={iPhone}
+                    src={
+                      "https://res.cloudinary.com/dsvlevzds/image/upload/v1728104678/n1rtqevggzkw91opb0dw.avif" ||
+                      iPhone
+                    }
                     alt={hotDrop1.name}
                     className="mb-4 w-full h-full md:w-[800px] md:h-[300px] object-cover object-top rounded-md md:rounded-none"
                   />
@@ -93,7 +96,10 @@ const Landing = () => {
                 className="flex items-center w-full justify-center h-auto md:h-auto md:w-auto flex-col relative"
               >
                 <img
-                  src={acer}
+                  src={
+                    "https://res.cloudinary.com/dsvlevzds/image/upload/v1727536743/s0v9feuerycegvvegoja.png" ||
+                    asus
+                  }
                   alt={hotDrop2.name}
                   className="mb-4 h-[300px] w-[800px] object-contain md:rounded-none p-2 bg-gradient-to-r from-zinc-900 via-gray-800 to-stone-600"
                 />

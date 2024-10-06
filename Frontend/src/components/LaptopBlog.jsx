@@ -15,11 +15,10 @@ const fetchData = async () => {
     if (Array.isArray(response.data)) {
       return response.data;
     } else {
-      console.error("Data is not in the expected format:", response.data);
       return [];
     }
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.error("Error fetching data:", error.message);
     return [];
   }
 };
