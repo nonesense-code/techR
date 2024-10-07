@@ -134,7 +134,6 @@ function Landing() {
 
   return (
     <div className="flex flex-col items-center w-full">
-      <div></div>
       <AIlanding />
       <div className="h-full min-w-full sm:min-w-0 w-auto md:max-w-[1200px]">
         <h1 className="text-center text-2xl font-bold tracking-wide">
