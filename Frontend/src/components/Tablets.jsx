@@ -5,29 +5,40 @@ import { motion } from "framer-motion";
 import CircularLoader from "../CircularLoader";
 
 function Tablets() {
-  const [tablets, setTablets] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
 
-  const tabletURL = import.meta.env.VITE_TABLETS_URL;
+  const [products, setProducts] = useState({
+    phones: [],
+    laptops: [],
+    tablets: [],
+    mostpopular: [],
+    latest: [],
+    budget: [],
+    mostsold: [],
+    midrange: [],
+    flagship: [],
+    recommended: [],
+    popularity: [],
+  });
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const fetchProducts = async (url) => {
+    try {
+      const response = await axios.get(url);
+      setProducts(response.data);
+      setIsLoading(false);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setError(error);
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchTablets = async () => {
-      try {
-        const response = await axios.get(`${tabletURL}`);
-        if (Array.isArray(response.data)) {
-          setTablets(response.data);
-          setLoading(false);
-        } else {
-          console.error("Data is not in the expected format:", response.data);
-        }
-      } catch (error) {
-        console.error("Error fetching tablets:", error);
-        setLoading(false);
-      }
-    };
-
-    fetchTablets();
-  }, [tabletURL]);
+    fetchProducts(backendURL);
+  }, []);
 
   function truncateText(text, wordLimit) {
     const words = text.split(" ");
@@ -39,7 +50,7 @@ function Tablets() {
 
   return (
     <div className="min-h-screen w-full">
-      {loading ? (
+      {isLoading ? (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -48,18 +59,14 @@ function Tablets() {
           <CircularLoader />
         </motion.div>
       ) : (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="min-h-screen w-full"
-        >
+        <div className="min-h-screen w-full">
           <div className="container mx-auto px-4 py-8">
             <h1 className="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800">
               Available Tablets
             </h1>
             <div className="flex flex-col items-center justify-center w-full gap-6">
-              {tablets.length > 0 &&
-                tablets.map((tablet, index) => (
+              {products.tablets.length > 0 &&
+                products.tablets.map((tablet, index) => (
                   <div
                     key={index}
                     className="bg-white shadow-lg rounded-lg overflow-hidden p-2 md:flex flex-row w-full"
@@ -106,7 +113,7 @@ function Tablets() {
                 ))}
             </div>
           </div>
-        </motion.div>
+        </div>
       )}
     </div>
   );

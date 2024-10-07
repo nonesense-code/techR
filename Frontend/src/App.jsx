@@ -13,12 +13,14 @@ import Navbar from "./components/HomePage/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import { QueryClient, QueryClientProvider } from "react-query";
+import Test from "./components/Test";
 
 const queryClient = new QueryClient();
 
 function App() {
   return (
     <>
+      {/* <Test /> */}
       <Router>
         <QueryClientProvider client={queryClient}>
           <Navbar />

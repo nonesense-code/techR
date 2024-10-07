@@ -3,6 +3,7 @@ const app = express();
 const cors = require("cors");
 const path = require("path");
 const cookieParser = require("cookie-parser");
+const compression = require("compression");
 require("dotenv").config();
 
 const cloudinary = require("cloudinary").v2;
@@ -29,6 +30,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static("public"));
 app.use(cookieParser());
+app.use(compression());
 
 const homeRouter = require("../Backend/routes/app");
 const addProductRouter = require("../Backend/routes/addProduct");

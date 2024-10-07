@@ -1,66 +1,77 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { easeInOut, motion } from "framer-motion";
 import CircularLoader from "../CircularLoader";
-import { FaAmazon } from "react-icons/fa";
+import { FaAmazon, FaDiceFive } from "react-icons/fa";
 import alibaba from "../images/alibabalogo.png";
 import daraz from "../images/darazlogo.png";
 import { useQuery } from "react-query";
 
-const fetchPopularItems = async (targetLaptopURL) => {
-  try {
-    const response = await axios.get(targetLaptopURL);
-    if (Array.isArray(response.data)) {
-      return response.data;
-    } else {
-      return [];
-    }
-  } catch (error) {
-    console.error("Error fetching data:", error.message);
-    return [];
-  }
-};
-const fetchTargetLaptops = async (targetURL) => {
+const fetchTargetLaptops = async (targetURL, navigate) => {
   try {
     const response = await axios.get(targetURL);
 
     if (typeof response.data === "object" && response.data !== null) {
       return response.data;
     } else {
+      navigate("/laptop");
       return;
     }
   } catch (error) {
     if (error.response) {
       console.error("Error response from server:", error.response);
-    } else if (error.request) {
-      console.error("No response received:", error.request);
     } else {
       console.error("Error during request setup:", error.message);
     }
+    navigate("/laptop");
     return;
   }
 };
 
 function LaptopBlog() {
-  const targetLaptopURL = import.meta.env.VITE_TARGETITEM_URL;
-  const popularItemsURL = import.meta.env.VITE_POPULARITY_URL;
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
+  const navigate = useNavigate();
 
+  const [products, setProducts] = useState({
+    phones: [],
+    laptops: [],
+    tablets: [],
+    mostpopular: [],
+    latest: [],
+    budget: [],
+    mostsold: [],
+    midrange: [],
+    flagship: [],
+    recommended: [],
+    popularity: [],
+  });
+
+  const [isLoadingPopular, setIsLoading] = useState(true);
+
+  const fetchProducts = async (url) => {
+    try {
+      const response = await axios.get(url);
+      setProducts(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts(backendURL);
+  }, [backendURL]);
+
+  const targetLaptopURL = import.meta.env.VITE_TARGETLAPTOP_URL;
   const { itname } = useParams();
 
-  const { data: laptops = [], isLoading: isLoadingPopular } = useQuery(
-    ["laptops", popularItemsURL],
-    () => fetchPopularItems(popularItemsURL),
-    {
-      staleTime: 1000 * 60 * 5,
-    }
-  );
-
-  const targetURL = targetLaptopURL + "/" + itname;
+  const targetURL = `${targetLaptopURL}/${itname}`;
 
   const { data: targetLaptops = [], isLoading: isLoadingTarget } = useQuery(
     ["targetLaptops", targetURL],
-    () => fetchTargetLaptops(targetURL),
+    () => fetchTargetLaptops(targetURL, navigate),
     {
       staleTime: 1000 * 60 * 5,
     }
@@ -111,56 +122,42 @@ function LaptopBlog() {
   return (
     <>
       {!isLoading ? (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="flex h-auto w-auto items-center justify-center px-4 md:px-8 lg:px-1"
-        >
-          <div className="h-full w-auto">
-            <div className="w-auto max-w-7xl">
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="flex flex-col md:flex-row items-start justify-between border-b-4 border-black/10"
-              >
+        <div className="flex h-auto items-center justify-center w-full px-4 md:px-8 lg:px-1">
+          <div className="h-full w-auto max-w-[1300px]">
+            <div className="w-auto">
+              <div className="flex flex-col md:flex-row items-start justify-between border-b-4 border-black/10">
                 <div className="hidden lg:flex mt-8 w-full md:w-1/3 h-auto">
                   <div className="flex flex-col gap-4 items-center h-full mt-4">
                     <h1 className="text-2xl">Popular</h1>
                     <div className="hidescroller w-full pt-4 flex flex-col gap-8 items-center overflow-y-auto p-4 h-[800px]">
-                      {laptops
-                        .filter(
-                          (item) =>
-                            item.productType === "laptop" &&
-                            item.popularity === "popular"
-                        )
-                        .map((item, index) => (
-                          <div
-                            key={index}
-                            className="w-52 h-auto bg-white flex flex-col items-center justify-start border-4 border-black rounded-xl"
+                      {products.mostpopular.map((item, index) => (
+                        <div
+                          key={index}
+                          className="w-52 h-auto bg-white flex flex-col items-center justify-start border-4 border-black rounded-xl"
+                        >
+                          <Link
+                            to={`/${item.productType}/${item.name
+                              .toLowerCase()
+                              .split(" ")
+                              .join("")}`}
                           >
-                            <Link
-                              to={`/laptop/${item.name
-                                .toLowerCase()
-                                .split(" ")
-                                .join("")}`}
-                            >
-                              <img
-                                src={item.image}
-                                alt={item.name}
-                                className="rounded-t-lg w-full h-full object-cover object-top"
-                                loading="lazy"
-                              />
-                            </Link>
-                            <h1 className="w-full text-center bg-zinc-600 rounded-b-lg">
-                              {item.name}
-                            </h1>
-                          </div>
-                        ))}
+                            <img
+                              src={item.image}
+                              alt={item.name}
+                              className="rounded-t-lg w-full h-full object-cover object-top"
+                              loading="lazy"
+                            />
+                          </Link>
+                          <h1 className="w-full text-center bg-zinc-600 rounded-b-lg">
+                            {item.name}
+                          </h1>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
                 <div className="w-full lg:border-l-4 lg:border-black/10 py-4">
-                  <h1 className="mt-8 text-2xl md:text-3xl px-4 flex items-center justify-center md:justify-start whitespace-nowrap tracking-tighter text-[#001] font-semibold border-b-[3px] border-black/10">
+                  <h1 className="mt-8 text-2xl md:text-3xl px-4 flex items-center justify-center lg:justify-start whitespace-nowrap tracking-tighter text-[#001] font-semibold border-b-[3px] border-black/10">
                     {targetLaptops.name || "..."}
                   </h1>
                   <div className="w-full h-auto p-4 flex flex-col gap-4">
@@ -572,24 +569,6 @@ function LaptopBlog() {
                                 value={targetLaptops.audiojack}
                               />
                             )}
-                            {targetLaptops.ethernet && (
-                              <InfoSection
-                                label="Ethernet"
-                                value={targetLaptops.ethernet}
-                              />
-                            )}
-                            {targetLaptops.usba && (
-                              <InfoSection
-                                label="USB-A"
-                                value={targetLaptops.usba}
-                              />
-                            )}
-                            {targetLaptops.hdmi && (
-                              <InfoSection
-                                label="HDMI"
-                                value={targetLaptops.hdmi}
-                              />
-                            )}
                           </div>
                         </div>
                       )}
@@ -640,13 +619,13 @@ function LaptopBlog() {
                     </div>
                     <div className="flex items-center justify-center gap-4 border-2 border-black px-4 rounded-md">
                       <div className="flex items-center justify-center flex-col border-r-2 border-black min-h-24 h-auto pr-2">
-                        <a href="#" target="_blank">
+                        <a href="#" target="_blank" className="outline-none">
                           <FaAmazon className="text-4xl h-full" />
                         </a>
                         <h1 className="cursor-pointer">Amazon</h1>
                       </div>
                       <div className="flex items-center justify-center flex-col border-r-2 border-black min-h-24 h-full pr-4">
-                        <a href="#" target="_blank">
+                        <a href="#" target="_blank" className="outline-none">
                           <img
                             src={alibaba}
                             alt=""
@@ -657,7 +636,7 @@ function LaptopBlog() {
                         <h1 className="cursor-pointer">Alibaba</h1>
                       </div>
                       <div className="flex items-center justify-center flex-col">
-                        <a href="#" target="_blank">
+                        <a href="#" target="_blank" className="outline-none">
                           <img
                             src={daraz}
                             alt=""
@@ -670,10 +649,10 @@ function LaptopBlog() {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       ) : (
         <motion.div
           initial={{ opacity: 0 }}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { motion, easeInOut } from "framer-motion";
 import CircularLoader from "../CircularLoader";
@@ -8,64 +8,74 @@ import alibaba from "../images/alibabalogo.png";
 import daraz from "../images/darazlogo.png";
 import { useQuery } from "react-query";
 
-const fetchPopularItems = async (targetPhoneURL) => {
-  try {
-    const response = await axios.get(targetPhoneURL);
-    if (Array.isArray(response.data)) {
-      return response.data;
-    } else {
-      return [];
-    }
-  } catch (error) {
-    console.error("Error fetching data:", error.message);
-    return [];
-  }
-};
-const fetchTargetPhones = async (targetURL) => {
+const fetchTargetTablet = async (targetURL, navigate) => {
   try {
     const response = await axios.get(targetURL);
 
     if (typeof response.data === "object" && response.data !== null) {
       return response.data;
     } else {
+      navigate("/phone");
       return;
     }
   } catch (error) {
     if (error.response) {
       console.error("Error response from server:", error.response);
-    } else if (error.request) {
-      console.error("No response received:", error.request);
     } else {
       console.error("Error during request setup:", error.message);
     }
+    navigate("/phone");
     return;
   }
 };
 
 function PhoneBlog() {
-  const targetPhoneURL = import.meta.env.VITE_TARGETITEM_URL;
-  const popularItemsURL = import.meta.env.VITE_POPULARITY_URL;
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
+  const navigate = useNavigate();
 
+  const [products, setProducts] = useState({
+    phones: [],
+    laptops: [],
+    tablets: [],
+    mostpopular: [],
+    latest: [],
+    budget: [],
+    mostsold: [],
+    midrange: [],
+    flagship: [],
+    recommended: [],
+    popularity: [],
+  });
+
+  const [isLoadingPopular, setIsLoading] = useState(true);
+
+  const fetchProducts = async (url) => {
+    try {
+      const response = await axios.get(url);
+      setProducts(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts(backendURL);
+  }, [backendURL]);
+
+  const targetPhoneURL = import.meta.env.VITE_TARGETPHONE_URL;
   const { itname } = useParams();
 
-  const { data: phones = [], isLoading: isLoadingPopular } = useQuery(
-    ["phones", popularItemsURL],
-    () => fetchPopularItems(popularItemsURL),
-    {
-      staleTime: 1000 * 60 * 5,
-    }
-  );
-
-  const targetURL = targetPhoneURL + "/" + itname;
+  const targetURL = `${targetPhoneURL}/${itname}`;
 
   const { data: targetPhones = [], isLoading: isLoadingTarget } = useQuery(
     ["targetPhones", targetURL],
-    () => fetchTargetPhones(targetURL),
+    () => fetchTargetTablet(targetURL, navigate),
     {
       staleTime: 1000 * 60 * 5,
     }
   );
-
   const isLoading = isLoadingPopular || isLoadingTarget;
 
   const hasMultipleOptions =
@@ -109,51 +119,37 @@ function PhoneBlog() {
   return (
     <>
       {!isLoading ? (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="flex h-auto items-center justify-center w-full px-4 md:px-8 lg:px-1"
-        >
+        <div className="flex h-auto items-center justify-center w-full px-4 md:px-8 lg:px-1">
           <div className="h-full w-auto max-w-[1300px]">
             <div className="w-auto">
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="flex flex-col md:flex-row items-start justify-between border-b-4 border-black/10"
-              >
+              <div className="flex flex-col md:flex-row items-start justify-between border-b-4 border-black/10">
                 <div className="hidden lg:flex mt-8 w-full md:w-1/3 h-auto">
                   <div className="flex flex-col gap-4 items-center h-full mt-4">
                     <h1 className="text-2xl">Popular</h1>
                     <div className="hidescroller w-full pt-4 flex flex-col gap-8 items-center overflow-y-auto p-4 h-[800px]">
-                      {phones
-                        .filter(
-                          (item) =>
-                            item.productType === "phone" &&
-                            item.popularity === "popular"
-                        )
-                        .map((item, index) => (
-                          <div
-                            key={index}
-                            className="w-52 h-auto bg-white flex flex-col items-center justify-start border-4 border-black rounded-xl"
+                      {products.mostpopular.map((item, index) => (
+                        <div
+                          key={index}
+                          className="w-52 h-auto bg-white flex flex-col items-center justify-start border-4 border-black rounded-xl"
+                        >
+                          <Link
+                            to={`/${item.productType}/${item.name
+                              .toLowerCase()
+                              .split(" ")
+                              .join("")}`}
                           >
-                            <Link
-                              to={`/phone/${item.name
-                                .toLowerCase()
-                                .split(" ")
-                                .join("")}`}
-                            >
-                              <img
-                                src={item.image}
-                                alt={item.name}
-                                className="rounded-t-lg w-full h-full object-cover object-top"
-                                loading="lazy"
-                              />
-                            </Link>
-                            <h1 className="w-full text-center bg-zinc-600 rounded-b-lg">
-                              {item.name}
-                            </h1>
-                          </div>
-                        ))}
+                            <img
+                              src={item.image}
+                              alt={item.name}
+                              className="rounded-t-lg w-full h-full object-cover object-top"
+                              loading="lazy"
+                            />
+                          </Link>
+                          <h1 className="w-full text-center bg-zinc-600 rounded-b-lg">
+                            {item.name}
+                          </h1>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -647,10 +643,10 @@ function PhoneBlog() {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       ) : (
         <motion.div
           initial={{ opacity: 0 }}

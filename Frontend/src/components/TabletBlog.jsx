@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { motion, easeInOut } from "framer-motion";
 import CircularLoader from "../CircularLoader";
@@ -8,64 +8,74 @@ import alibaba from "../images/alibabalogo.png";
 import daraz from "../images/darazlogo.png";
 import { useQuery } from "react-query";
 
-const fetchPopularItems = async (targetTabletURL) => {
-  try {
-    const response = await axios.get(targetTabletURL);
-    if (Array.isArray(response.data)) {
-      return response.data;
-    } else {
-      return [];
-    }
-  } catch (error) {
-    console.error("Error fetching data:", error.message);
-    return [];
-  }
-};
-const fetchTargetTablets = async (targetURL) => {
+const fetchTargetTablet = async (targetURL, navigate) => {
   try {
     const response = await axios.get(targetURL);
 
     if (typeof response.data === "object" && response.data !== null) {
       return response.data;
     } else {
+      navigate("/tablet");
       return;
     }
   } catch (error) {
     if (error.response) {
       console.error("Error response from server:", error.response);
-    } else if (error.request) {
-      console.error("No response received:", error.request);
     } else {
       console.error("Error during request setup:", error.message);
     }
+    navigate("/tablet");
     return;
   }
 };
 
 function TabletBlog() {
-  const targetTabletURL = import.meta.env.VITE_TARGETITEM_URL;
-  const popularItemsURL = import.meta.env.VITE_POPULARITY_URL;
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
+  const navigate = useNavigate();
 
+  const [products, setProducts] = useState({
+    phones: [],
+    laptops: [],
+    tablets: [],
+    mostpopular: [],
+    latest: [],
+    budget: [],
+    mostsold: [],
+    midrange: [],
+    flagship: [],
+    recommended: [],
+    popularity: [],
+  });
+
+  const [isLoadingPopular, setIsLoading] = useState(true);
+
+  const fetchProducts = async (url) => {
+    try {
+      const response = await axios.get(url);
+      setProducts(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts(backendURL);
+  }, [backendURL]);
+
+  const targetTabletURL = import.meta.env.VITE_TARGETTABLET_URL;
   const { itname } = useParams();
 
-  const { data: tablets = [], isLoading: isLoadingPopular } = useQuery(
-    ["tablets", popularItemsURL],
-    () => fetchPopularItems(popularItemsURL),
-    {
-      staleTime: 1000 * 60 * 5,
-    }
-  );
-
-  const targetURL = targetTabletURL + "/" + itname;
+  const targetURL = `${targetTabletURL}/${itname}`;
 
   const { data: targetTablets = [], isLoading: isLoadingTarget } = useQuery(
     ["targetTablets", targetURL],
-    () => fetchTargetTablets(targetURL),
+    () => fetchTargetTablet(targetURL, navigate),
     {
       staleTime: 1000 * 60 * 5,
     }
   );
-
   const isLoading = isLoadingPopular || isLoadingTarget;
 
   const hasMultipleOptions =
@@ -109,50 +119,36 @@ function TabletBlog() {
   return (
     <>
       {!isLoading ? (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="flex h-auto w-auto items-center justify-center px-4 md:px-8 lg:px-1"
-        >
+        <div className="flex h-auto w-auto items-center justify-center px-4 md:px-8 lg:px-1">
           <div className="h-full w-auto">
             <div className="w-auto max-w-7xl">
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="flex flex-col md:flex-row items-start justify-between border-b-4 border-black/10"
-              >
+              <div className="flex flex-col md:flex-row items-start justify-between border-b-4 border-black/10">
                 <div className="hidden lg:flex mt-8 w-full md:w-1/3 h-auto">
                   <div className="flex flex-col gap-4 items-center h-full mt-4">
                     <h1 className="text-2xl">Popular</h1>
                     <div className="hidescroller w-full pt-4 flex flex-col gap-8 items-center overflow-y-auto p-4 h-[800px]">
-                      {tablets
-                        .filter(
-                          (item) =>
-                            item.productType === "tablet" &&
-                            item.popularity === "popular"
-                        )
-                        .map((item, index) => (
-                          <div
-                            key={index}
-                            className="w-52 h-auto bg-white flex flex-col items-center justify-start border-4 border-black rounded-xl"
+                      {products.mostpopular.map((item, index) => (
+                        <div
+                          key={index}
+                          className="w-52 h-auto bg-white flex flex-col items-center justify-start border-4 border-black rounded-xl"
+                        >
+                          <Link
+                            to={`/${item.productType}/${item.name
+                              .toLowerCase()
+                              .split(" ")
+                              .join("")}`}
                           >
-                            <Link
-                              to={`/tablet/${item.name
-                                .toLowerCase()
-                                .split(" ")
-                                .join("")}`}
-                            >
-                              <img
-                                src={item.image}
-                                alt={item.name}
-                                className="rounded-t-lg w-full h-full object-cover object-top"
-                              />
-                            </Link>
-                            <h1 className="w-full text-center bg-zinc-600 rounded-b-lg">
-                              {item.name}
-                            </h1>
-                          </div>
-                        ))}
+                            <img
+                              src={item.image}
+                              alt={item.name}
+                              className="rounded-t-lg w-full h-full object-cover object-top"
+                            />
+                          </Link>
+                          <h1 className="w-full text-center bg-zinc-600 rounded-b-lg">
+                            {item.name}
+                          </h1>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -649,10 +645,10 @@ function TabletBlog() {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       ) : (
         <motion.div
           initial={{ opacity: 0 }}
