@@ -10,7 +10,6 @@ import { FaTabletAlt } from "react-icons/fa";
 import samsumgtab from "../../images/galaxytabs9ultra.jpg";
 import acer from "../../images/acernitrov15.png";
 import apple from "../../images/applemac.png";
-import iPhone from "../../images/iPhone16promax_1.avif";
 import redmi from "../../images/redminote11pro.jpeg";
 import GoogleAds from "../GoogleAds";
 import { useQuery } from "react-query";
@@ -47,20 +46,75 @@ function Landing() {
     },
   ];
 
-  const backendURL = import.meta.env.VITE_BACKEND_URL;
   useEffect(() => {
     const timer = setTimeout(() => {}, 500);
     return () => clearTimeout(timer);
   }, []);
 
+  const productsURLs = {
+    latest: import.meta.env.VITE_LATESTPRODUCTS_URL,
+    budget: import.meta.env.VITE_BUDGETPRODUCTS_URL,
+    mostsold: import.meta.env.VITE_MOSTSOLDPRODUCTS_URL,
+    midrange: import.meta.env.VITE_MIDRANGEPRODUCTS_URL,
+    mostpopular: import.meta.env.VITE_MOSTPOPULARPRODUCTS_URL,
+    flagship: import.meta.env.VITE_FLAGSHIPPRODUCTS_URL,
+    recommended: import.meta.env.VITE_RECOMMENDEDPRODUCTS_URL,
+  };
+
+  const useFetchProducts = (key, url) => {
+    return useQuery([key, url], () => fetchProducts(url), {
+      staleTime: 1000 * 60 * 5,
+    });
+  };
+
   const {
-    isLoading,
-    data: product = [],
-    isError,
-    error,
-  } = useQuery(["product", backendURL], () => fetchProducts(backendURL), {
-    staleTime: 1000 * 60 * 5,
-  });
+    latestLoading,
+    data: latestproducts = [],
+    latestisError,
+    latestError,
+  } = useFetchProducts("latestproducts", productsURLs.latest);
+
+  const {
+    budgetLoading,
+    data: budgetproducts = [],
+    budgetisError,
+    budgetError,
+  } = useFetchProducts("budgetproducts", productsURLs.budget);
+
+  const {
+    mostsoldLoading,
+    data: mostsoldproducts = [],
+    mostsoldisError,
+    mostsoldError,
+  } = useFetchProducts("mostsoldproducts", productsURLs.mostsold);
+
+  const {
+    midrangeLoading,
+    data: midrangeproducts = [],
+    midrangeproductsisError,
+    midrangeproductsError,
+  } = useFetchProducts("midrangeproducts", productsURLs.midrange);
+
+  const {
+    mostpopularLoading,
+    data: mostpopularproducts = [],
+    mostpopularproductsisError,
+    mostpopularproductsError,
+  } = useFetchProducts("mostpopularproducts", productsURLs.mostpopular);
+
+  const {
+    flagshipLoading,
+    data: flagshipproducts = [],
+    flagshipproductsisError,
+    flagshipproductsError,
+  } = useFetchProducts("flagshipproducts", productsURLs.flagship);
+
+  const {
+    recommendedLoading,
+    data: recommendedproducts = [],
+    recommendedproductsisError,
+    recommendedproductsError,
+  } = useFetchProducts("recommendedproducts", productsURLs.recommended);
 
   function truncateText(text, wordLimit) {
     const words = text.split(" ");
@@ -69,7 +123,14 @@ function Landing() {
     }
   }
 
-  if (isError) return <div>Error fetching products: {error.message}</div>;
+  const isLoading =
+    latestLoading ||
+    budgetLoading ||
+    mostsoldLoading ||
+    midrangeLoading ||
+    mostpopularLoading ||
+    flagshipLoading ||
+    recommendedLoading;
 
   return (
     <div className="flex flex-col items-center w-full">
@@ -147,15 +208,13 @@ function Landing() {
             >
               <div className="container mx-auto px-4 py-8">
                 {/* for the newly launched change item.popularity to item.isNew */}
-                <div className="flex flex-col items-center justify-center">
-                  <h1 className="text-md lg:text-3xl font-bold bg-black p-2 rounded-md text-[#FFA500] mb-2">
-                    Newly Launched
-                  </h1>
-                  <div className="flex items-center justify-center gap-6 flex-col">
-                    {product
-                      .filter((item) => item.latest === "true")
-                      .slice(0, 4)
-                      .map((item, index) => {
+                {!latestLoading && (
+                  <div className="flex flex-col items-center justify-center">
+                    <h1 className="text-md lg:text-3xl font-bold bg-black p-2 rounded-md text-[#FFA500] mb-2">
+                      Newly Launched
+                    </h1>
+                    <div className="flex items-center justify-center gap-6 flex-col">
+                      {latestproducts.slice(0, 4).map((item, index) => {
                         return (
                           <div
                             key={index}
@@ -209,19 +268,18 @@ function Landing() {
                           </div>
                         );
                       })}
+                    </div>
                   </div>
-                </div>
+                )}
 
                 {/* Budget device showcase */}
-                <div className="bg-[#F5F5F5] rounded-md lg:rounded-xl w-full h-auto flex items-center justify-center flex-col mt-20">
-                  <h1 className="bg-black text-[#FFA500] rounded-md p-1 text-center w-auto text-[18px] md:text-xl whitespace-nowrap mt-4">
-                    Check out the Budget devices
-                  </h1>
-                  <div className="flex items-center justify-evenly gap-2 w-full p-4 flex-wrap">
-                    {product
-                      .filter((item) => item.item_categorie === "budget")
-                      .slice(0, 6)
-                      .map((item, index) => (
+                {!budgetLoading && (
+                  <div className="bg-[#F5F5F5] rounded-md lg:rounded-xl w-full h-auto flex items-center justify-center flex-col mt-20">
+                    <h1 className="bg-black text-[#FFA500] rounded-md p-1 text-center w-auto text-[18px] md:text-xl whitespace-nowrap mt-4">
+                      Check out the Budget devices
+                    </h1>
+                    <div className="flex items-center justify-evenly gap-2 w-full p-4 flex-wrap">
+                      {budgetproducts.slice(0, 6).map((item, index) => (
                         <div
                           key={index}
                           className="flex items-center justify-center flex-col gap-1"
@@ -244,19 +302,18 @@ function Landing() {
                           </Link>
                         </div>
                       ))}
+                    </div>
                   </div>
-                </div>
+                )}
 
                 {/* for most sale of this year change item.popularity to item.isMostSold */}
-                <div className="flex flex-col items-center justify-center mt-20">
-                  <h1 className="text-md lg:text-3xl font-bold bg-black p-2 rounded-md text-[#FFA500] mb-2">
-                    Most Sold of {new Date().getFullYear()}
-                  </h1>
-                  <div className="flex items-center justify-center gap-6 flex-col">
-                    {product
-                      .filter((item) => item.mostsold === "true")
-                      .slice(0, 4)
-                      .map((item, index) => {
+                {!mostsoldLoading && (
+                  <div className="flex flex-col items-center justify-center mt-20">
+                    <h1 className="text-md lg:text-3xl font-bold bg-black p-2 rounded-md text-[#FFA500] mb-2">
+                      Most Sold of {new Date().getFullYear()}
+                    </h1>
+                    <div className="flex items-center justify-center gap-6 flex-col">
+                      {mostsoldproducts.slice(0, 4).map((item, index) => {
                         return (
                           <div
                             key={index}
@@ -310,19 +367,18 @@ function Landing() {
                           </div>
                         );
                       })}
+                    </div>
                   </div>
-                </div>
+                )}
 
                 {/* Premium midrange device showcase */}
-                <div className="bg-[#F5F5F5] rounded-md lg:rounded-xl w-full h-auto flex items-center justify-center flex-col mt-20">
-                  <h1 className="bg-black text-[#FFA500] rounded-md p-1 text-center w-auto text-[18px] md:text-xl whitespace-nowrap mt-4">
-                    Check out the premium midrange devices
-                  </h1>
-                  <div className="flex items-center justify-evenly gap-2 w-full p-4 flex-wrap">
-                    {product
-                      .filter((item) => item.item_categorie === "midrange")
-                      .slice(0, 6)
-                      .map((item, index) => (
+                {!midrangeLoading && (
+                  <div className="bg-[#F5F5F5] rounded-md lg:rounded-xl w-full h-auto flex items-center justify-center flex-col mt-20">
+                    <h1 className="bg-black text-[#FFA500] rounded-md p-1 text-center w-auto text-[18px] md:text-xl whitespace-nowrap mt-4">
+                      Check out the premium midrange devices
+                    </h1>
+                    <div className="flex items-center justify-evenly gap-2 w-full p-4 flex-wrap">
+                      {midrangeproducts.slice(0, 6).map((item, index) => (
                         <div
                           key={index}
                           className="flex items-center justify-center flex-col gap-1"
@@ -345,19 +401,17 @@ function Landing() {
                           </Link>
                         </div>
                       ))}
+                    </div>
                   </div>
-                </div>
-
+                )}
                 {/* for most popular it is perfect item.popularity keep as it is */}
-                <div className="flex flex-col items-center justify-center mt-20">
-                  <h1 className="text-md lg:text-3xl font-bold bg-black p-2 rounded-md text-[#FFA500] mb-2">
-                    Most Popular
-                  </h1>
-                  <div className="flex items-center justify-center gap-6 flex-col">
-                    {product
-                      .filter((item) => item.mostpopular === "true")
-                      .slice(0, 4)
-                      .map((item, index) => {
+                {!mostpopularLoading && (
+                  <div className="flex flex-col items-center justify-center mt-20">
+                    <h1 className="text-md lg:text-3xl font-bold bg-black p-2 rounded-md text-[#FFA500] mb-2">
+                      Most Popular
+                    </h1>
+                    <div className="flex items-center justify-center gap-6 flex-col">
+                      {mostpopularproducts.slice(0, 4).map((item, index) => {
                         return (
                           <div
                             key={index}
@@ -411,19 +465,18 @@ function Landing() {
                           </div>
                         );
                       })}
+                    </div>
                   </div>
-                </div>
+                )}
 
                 {/* flagship device showcase */}
-                <div className="bg-[#F5F5F5] rounded-md lg:rounded-xl w-full h-auto flex items-center justify-center flex-col mt-20">
-                  <h1 className="bg-black text-[#FFA500] rounded-md p-1 text-center w-auto text-[18px] md:text-xl whitespace-nowrap mt-4">
-                    Flagship devices
-                  </h1>
-                  <div className="flex items-center justify-evenly gap-2 w-full p-4 flex-wrap">
-                    {product
-                      .filter((item) => item.item_categorie === "flagship")
-                      .slice(0, 6)
-                      .map((item, index) => (
+                {!flagshipLoading && (
+                  <div className="bg-[#F5F5F5] rounded-md lg:rounded-xl w-full h-auto flex items-center justify-center flex-col mt-20">
+                    <h1 className="bg-black text-[#FFA500] rounded-md p-1 text-center w-auto text-[18px] md:text-xl whitespace-nowrap mt-4">
+                      Flagship devices
+                    </h1>
+                    <div className="flex items-center justify-evenly gap-2 w-full p-4 flex-wrap">
+                      {flagshipproducts.slice(0, 6).map((item, index) => (
                         <div
                           key={index}
                           className="flex items-center justify-center flex-col gap-1"
@@ -446,19 +499,17 @@ function Landing() {
                           </Link>
                         </div>
                       ))}
+                    </div>
                   </div>
-                </div>
-
+                )}
                 {/* for recommended product change item.popularity to recommended */}
-                <div className="flex flex-col items-center justify-center mt-20">
-                  <h1 className="text-md lg:text-3xl font-bold bg-black p-2 rounded-md text-[#FFA500] mb-2">
-                    Recommended for you
-                  </h1>
-                  <div className="flex items-center justify-center gap-6 flex-col">
-                    {product
-                      .filter((item) => item.recommended === "true")
-                      .slice(0, 4)
-                      .map((item, index) => {
+                {!recommendedLoading && (
+                  <div className="flex flex-col items-center justify-center mt-20">
+                    <h1 className="text-md lg:text-3xl font-bold bg-black p-2 rounded-md text-[#FFA500] mb-2">
+                      Recommended for you
+                    </h1>
+                    <div className="flex items-center justify-center gap-6 flex-col">
+                      {recommendedproducts.slice(0, 4).map((item, index) => {
                         return (
                           <div
                             key={index}
@@ -512,15 +563,21 @@ function Landing() {
                           </div>
                         );
                       })}
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </motion.div>
           </div>
         ) : (
-          <div className="h-screen w-full text-xl">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="h-screen w-full text-xl"
+          >
             <CircularLoader />
-          </div>
+          </motion.div>
         )}
       </div>
     </div>

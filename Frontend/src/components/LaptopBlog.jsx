@@ -8,9 +8,9 @@ import alibaba from "../images/alibabalogo.png";
 import daraz from "../images/darazlogo.png";
 import { useQuery } from "react-query";
 
-const fetchPopularItems = async (backendURL) => {
+const fetchPopularItems = async (targetLaptopURL) => {
   try {
-    const response = await axios.get(backendURL);
+    const response = await axios.get(targetLaptopURL);
     if (Array.isArray(response.data)) {
       return response.data;
     } else {
@@ -43,18 +43,20 @@ const fetchTargetLaptops = async (targetURL) => {
 };
 
 function LaptopBlog() {
-  const backendURL = import.meta.env.VITE_BACKEND_URL;
+  const targetLaptopURL = import.meta.env.VITE_TARGETITEM_URL;
+  const popularItemsURL = import.meta.env.VITE_POPULARITY_URL;
+
   const { itname } = useParams();
 
   const { data: laptops = [], isLoading: isLoadingPopular } = useQuery(
-    ["laptops", backendURL],
-    () => fetchPopularItems(backendURL),
+    ["laptops", popularItemsURL],
+    () => fetchPopularItems(popularItemsURL),
     {
       staleTime: 1000 * 60 * 5,
     }
   );
 
-  const targetURL = backendURL + "/" + itname;
+  const targetURL = targetLaptopURL + "/" + itname;
 
   const { data: targetLaptops = [], isLoading: isLoadingTarget } = useQuery(
     ["targetLaptops", targetURL],
@@ -673,9 +675,13 @@ function LaptopBlog() {
           </div>
         </motion.div>
       ) : (
-        <div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+        >
           <CircularLoader />
-        </div>
+        </motion.div>
       )}
     </>
   );

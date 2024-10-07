@@ -108,7 +108,7 @@ function Navbar() {
               </a>
             </div>
             <div className="links hidden lap:flex gap-8 items-center justify-evenly text-[#cfd3e0] font-semibold text-xl flex-wrap">
-              {["Home", "Phone", "Laptop", "Tablet", "About", "Contact"].map(
+              {["Home", "Phone", "Laptop", "Tablet", "About"].map(
                 (item, index) => (
                   <motion.div key={index} className="underline-animation">
                     <Link
@@ -164,7 +164,7 @@ function Navbar() {
         >
           <div className="flex flex-col gap-12 items-start justify-evenly mt-24">
             <div className="flex lap:hidden flex-col gap-4 items-start justify-center flex-1 text-[#cfd3e0] font-semibold text-lg flex-wrap">
-              {["Home", "Phone", "Laptop", "Tablet", "About", "Contact"].map(
+              {["Home", "Phone", "Laptop", "Tablet", "About"].map(
                 (item, index) => (
                   <motion.div key={index}>
                     <Link

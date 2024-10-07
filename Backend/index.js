@@ -38,7 +38,8 @@ const laptopRouter = require("../Backend/routes/laptops");
 const tabletRouter = require("../Backend/routes/tablets");
 const ownerRouter = require("../Backend/routes/ownerRouter");
 const userRouter = require("../Backend/routes/userRouter");
-const apiRouter = require("../Backend/routes/apiRouter");
+const allproductRouter = require("../Backend/routes/allproductRouter");
+const filterRouter = require("../Backend/routes/filterRouter");
 
 app.use("/", homeRouter);
 app.use("/owners", ownerRouter);
@@ -48,7 +49,8 @@ app.use("/modify", modifyRouter);
 app.use("/phones", phoneRouter);
 app.use("/laptops", laptopRouter);
 app.use("/tablets", tabletRouter);
-app.use("/product/api", apiRouter);
+app.use("/allproducts/api", allproductRouter);
+app.use("/filteredproducts/api", filterRouter);
 
 const PORT = process.env.PORT || 5173;
 app.listen(PORT, () => {

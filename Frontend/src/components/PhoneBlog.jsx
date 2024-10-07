@@ -8,9 +8,9 @@ import alibaba from "../images/alibabalogo.png";
 import daraz from "../images/darazlogo.png";
 import { useQuery } from "react-query";
 
-const fetchPopularItems = async (backendURL) => {
+const fetchPopularItems = async (targetPhoneURL) => {
   try {
-    const response = await axios.get(backendURL);
+    const response = await axios.get(targetPhoneURL);
     if (Array.isArray(response.data)) {
       return response.data;
     } else {
@@ -43,18 +43,20 @@ const fetchTargetPhones = async (targetURL) => {
 };
 
 function PhoneBlog() {
-  const backendURL = import.meta.env.VITE_BACKEND_URL;
+  const targetPhoneURL = import.meta.env.VITE_TARGETITEM_URL;
+  const popularItemsURL = import.meta.env.VITE_POPULARITY_URL;
+
   const { itname } = useParams();
 
   const { data: phones = [], isLoading: isLoadingPopular } = useQuery(
-    ["phones", backendURL],
-    () => fetchPopularItems(backendURL),
+    ["phones", popularItemsURL],
+    () => fetchPopularItems(popularItemsURL),
     {
       staleTime: 1000 * 60 * 5,
     }
   );
 
-  const targetURL = backendURL + "/" + itname;
+  const targetURL = targetPhoneURL + "/" + itname;
 
   const { data: targetPhones = [], isLoading: isLoadingTarget } = useQuery(
     ["targetPhones", targetURL],
@@ -650,9 +652,13 @@ function PhoneBlog() {
           </div>
         </motion.div>
       ) : (
-        <div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+        >
           <CircularLoader />
-        </div>
+        </motion.div>
       )}
     </>
   );

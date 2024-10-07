@@ -8,7 +8,6 @@ import PhoneBlog from "./components/PhoneBlog";
 import LaptopBlog from "./components/LaptopBlog";
 import TabletBlog from "./components/TabletBlog";
 import About from "./components/HomePage/About";
-import Contact from "./components/HomePage/Contact";
 import Filter from "./components/Filter";
 import Navbar from "./components/HomePage/Navbar";
 import Footer from "./components/Footer";
@@ -30,7 +29,6 @@ function App() {
             <Route path="/laptop" element={<Laptops />} />
             <Route path="/tablet" element={<Tablets />} />
             <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
             <Route path="/filter" element={<Filter />} />
             <Route path="/phone/:itname" element={<PhoneBlog />} />
             <Route path="/laptop/:itname" element={<LaptopBlog />} />

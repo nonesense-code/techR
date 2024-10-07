@@ -8,12 +8,12 @@ function Laptops() {
   const [laptops, setLaptops] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const backendURL = import.meta.env.VITE_BACKEND_URL;
+  const laptopURL = import.meta.env.VITE_LAPTOPS_URL;
 
   useEffect(() => {
     const fetchLaptops = async () => {
       try {
-        const response = await axios.get(`${backendURL}`);
+        const response = await axios.get(`${laptopURL}`);
         if (Array.isArray(response.data)) {
           setLaptops(response.data);
           setLoading(false);
@@ -27,7 +27,7 @@ function Laptops() {
     };
 
     fetchLaptops();
-  }, [backendURL]);
+  }, [laptopURL]);
 
   function truncateText(text, wordLimit) {
     const words = text.split(" ");
@@ -40,12 +40,17 @@ function Laptops() {
   return (
     <div className="min-h-screen w-full">
       {loading ? (
-        <CircularLoader />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+        >
+          <CircularLoader />
+        </motion.div>
       ) : (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
           className="min-h-screen w-full"
         >
           <div className="container mx-auto px-4 py-8">
@@ -54,58 +59,51 @@ function Laptops() {
             </h1>
             <div className="flex flex-col items-center justify-center w-full gap-6">
               {laptops.length > 0 &&
-                laptops.map(
-                  (laptop, index) =>
-                    laptop.productType === "laptop" && (
-                      <div
-                        key={index}
-                        className="bg-white shadow-lg rounded-lg overflow-hidden p-2 md:flex flex-row w-full"
-                      >
-                        <Link
-                          to={`${laptop.name
-                            .toLowerCase()
-                            .split(" ")
-                            .join("")}`}
-                          className="outline-none"
-                        >
-                          <div className="md:flex items-center justify-center gap-2">
-                            <div className="h-auto w-auto">
-                              <motion.div
-                                initial={{ y: 0 }}
-                                animate={{ y: 6 }}
-                                transition={{
-                                  duration: 2,
-                                  repeat: Infinity,
-                                  repeatType: "reverse",
-                                }}
-                                whileHover={{
-                                  scale: 1.01,
-                                }}
-                                className="w-auto flex items-center justify-center bg-cover bg-center"
-                              >
-                                <img
-                                  src={laptop.image}
-                                  alt={laptop.name}
-                                  className="w-full md:w-full md:h-96 p-12 object-contain object-center"
-                                  loading="lazy"
-                                />
-                              </motion.div>
-                            </div>
-                            <div className="p-4 md:w-1/2 gap-4 flex items-center justify-center flex-col">
-                              <h2 className="underline-animations text-xl text-black text-center font-extrabold">
-                                {laptop.name}
-                              </h2>
-                              <p className="text-stone-600">
-                                {(laptop.blog &&
-                                  truncateText(laptop.blog, 30)) ||
-                                  "No description available"}
-                              </p>
-                            </div>
-                          </div>
-                        </Link>
+                laptops.map((laptop, index) => (
+                  <div
+                    key={index}
+                    className="bg-white shadow-lg rounded-lg overflow-hidden p-2 md:flex flex-row w-full"
+                  >
+                    <Link
+                      to={`${laptop.name.toLowerCase().split(" ").join("")}`}
+                      className="outline-none"
+                    >
+                      <div className="md:flex items-center justify-center gap-2">
+                        <div className="h-auto w-auto">
+                          <motion.div
+                            initial={{ y: 0 }}
+                            animate={{ y: 6 }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              repeatType: "reverse",
+                            }}
+                            whileHover={{
+                              scale: 1.01,
+                            }}
+                            className="w-auto flex items-center justify-center bg-cover bg-center"
+                          >
+                            <img
+                              src={laptop.image}
+                              alt={laptop.name}
+                              className="w-full md:w-full md:h-96 p-12 object-contain object-center"
+                              loading="lazy"
+                            />
+                          </motion.div>
+                        </div>
+                        <div className="p-4 md:w-1/2 gap-4 flex items-center justify-center flex-col">
+                          <h2 className="underline-animations text-xl text-black text-center font-extrabold">
+                            {laptop.name}
+                          </h2>
+                          <p className="text-stone-600">
+                            {(laptop.blog && truncateText(laptop.blog, 30)) ||
+                              "No description available"}
+                          </p>
+                        </div>
                       </div>
-                    )
-                )}
+                    </Link>
+                  </div>
+                ))}
             </div>
           </div>
         </motion.div>
