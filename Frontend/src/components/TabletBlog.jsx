@@ -118,6 +118,7 @@ function TabletBlog() {
 
   return (
     <>
+    <div></div>
       {!isLoading ? (
         <div className="flex h-auto w-auto items-center justify-center px-4 md:px-8 lg:px-1">
           <div className="h-full w-auto">
