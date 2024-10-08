@@ -8,6 +8,15 @@ import alibaba from "../images/alibabalogo.png";
 import daraz from "../images/darazlogo.png";
 import { useQuery } from "react-query";
 
+const filterProducts = async (url) => {
+  try {
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
+
 const fetchTargetTablet = async (targetURL, navigate) => {
   try {
     const response = await axios.get(targetURL);
@@ -30,39 +39,21 @@ const fetchTargetTablet = async (targetURL, navigate) => {
 };
 
 function TabletBlog() {
-  const backendURL = import.meta.env.VITE_BACKEND_URL;
+  const mostpopularURL = import.meta.env.VITE_MOSTPOPULAR_URL;
   const navigate = useNavigate();
 
-  const [products, setProducts] = useState({
-    phones: [],
-    laptops: [],
-    tablets: [],
-    mostpopular: [],
-    latest: [],
-    budget: [],
-    mostsold: [],
-    midrange: [],
-    flagship: [],
-    recommended: [],
-    popularity: [],
-  });
-
-  const [isLoadingPopular, setIsLoading] = useState(true);
-
-  const fetchProducts = async (url) => {
-    try {
-      const response = await axios.get(url);
-      setProducts(response.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    } finally {
-      setIsLoading(false);
+  const {
+    isLoading: loadingMostpopular,
+    data: mostpopular = [],
+    mostpopularisError,
+    mostpopularError,
+  } = useQuery(
+    ["mostpopular", mostpopularURL],
+    () => filterProducts(mostpopularURL, "midrange"),
+    {
+      staleTime: 1000 * 60 * 5,
     }
-  };
-
-  useEffect(() => {
-    fetchProducts(backendURL);
-  }, [backendURL]);
+  );
 
   const targetTabletURL = import.meta.env.VITE_TARGETTABLET_URL;
   const { itname } = useParams();
@@ -76,7 +67,7 @@ function TabletBlog() {
       staleTime: 1000 * 60 * 5,
     }
   );
-  const isLoading = isLoadingPopular || isLoadingTarget;
+  const isLoading = loadingMostpopular || isLoadingTarget;
 
   const hasMultipleOptions =
     targetTablets.ram2 || targetTablets.storage2 || targetTablets.price2;
@@ -127,7 +118,7 @@ function TabletBlog() {
                   <div className="flex flex-col gap-4 items-center h-full mt-4">
                     <h1 className="text-2xl">Popular</h1>
                     <div className="hidescroller w-full pt-4 flex flex-col gap-8 items-center overflow-y-auto p-4 h-[800px]">
-                      {products.mostpopular.map((item, index) => (
+                      {mostpopular.map((item, index) => (
                         <div
                           key={index}
                           className="w-52 h-auto bg-white flex flex-col items-center justify-start border-4 border-black rounded-xl"

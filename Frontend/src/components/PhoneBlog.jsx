@@ -8,7 +8,16 @@ import alibaba from "../images/alibabalogo.png";
 import daraz from "../images/darazlogo.png";
 import { useQuery } from "react-query";
 
-const fetchTargetTablet = async (targetURL, navigate) => {
+const filterProducts = async (url) => {
+  try {
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
+
+const fetchTargetPhone = async (targetURL, navigate) => {
   try {
     const response = await axios.get(targetURL);
 
@@ -30,53 +39,34 @@ const fetchTargetTablet = async (targetURL, navigate) => {
 };
 
 function PhoneBlog() {
-  const backendURL = import.meta.env.VITE_BACKEND_URL;
+  const mostpopularURL = import.meta.env.VITE_MOSTPOPULAR_URL;
   const navigate = useNavigate();
 
-  const [products, setProducts] = useState({
-    phones: [],
-    laptops: [],
-    tablets: [],
-    mostpopular: [],
-    latest: [],
-    budget: [],
-    mostsold: [],
-    midrange: [],
-    flagship: [],
-    recommended: [],
-    popularity: [],
-  });
-
-  const [isLoadingPopular, setIsLoading] = useState(true);
-
-  const fetchProducts = async (url) => {
-    try {
-      const response = await axios.get(url);
-      setProducts(response.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    } finally {
-      setIsLoading(false);
+  const {
+    isLoading: loadingMostpopular,
+    data: mostpopular = [],
+    mostpopularisError,
+    mostpopularError,
+  } = useQuery(
+    ["mostpopular", mostpopularURL],
+    () => filterProducts(mostpopularURL, "midrange"),
+    {
+      staleTime: 1000 * 60 * 5,
     }
-  };
-
-  useEffect(() => {
-    fetchProducts(backendURL);
-  }, [backendURL]);
+  );
 
   const targetPhoneURL = import.meta.env.VITE_TARGETPHONE_URL;
   const { itname } = useParams();
 
   const targetURL = `${targetPhoneURL}/${itname}`;
-
   const { data: targetPhones = [], isLoading: isLoadingTarget } = useQuery(
     ["targetPhones", targetURL],
-    () => fetchTargetTablet(targetURL, navigate),
+    () => fetchTargetPhone(targetURL, navigate),
     {
       staleTime: 1000 * 60 * 5,
     }
   );
-  const isLoading = isLoadingPopular || isLoadingTarget;
+  const isLoading = loadingMostpopular || isLoadingTarget;
 
   const hasMultipleOptions =
     targetPhones.ram2 || targetPhones.storage2 || targetPhones.price2;
@@ -127,7 +117,7 @@ function PhoneBlog() {
                   <div className="flex flex-col gap-4 items-center h-full mt-4">
                     <h1 className="text-2xl">Popular</h1>
                     <div className="hidescroller w-full pt-4 flex flex-col gap-8 items-center overflow-y-auto p-4 h-[800px]">
-                      {products.mostpopular.map((item, index) => (
+                      {mostpopular.map((item, index) => (
                         <div
                           key={index}
                           className="w-52 h-auto bg-white flex flex-col items-center justify-start border-4 border-black rounded-xl"

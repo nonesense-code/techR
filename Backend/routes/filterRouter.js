@@ -2,6 +2,105 @@ const express = require("express");
 const router = express.Router();
 const productModel = require("../models/Products");
 
+router.get("/phone", async (req, res) => {
+  try {
+    const phone = await productModel.find({ productType: "phone" });
+    res.json(phone);
+  } catch (error) {
+    console.log("Error", error.message);
+  }
+});
+
+router.get("/laptop", async (req, res) => {
+  try {
+    const laptop = await productModel.find({ productType: "laptop" });
+    res.json(laptop);
+  } catch (error) {
+    console.log("Error", error.message);
+  }
+});
+
+router.get("/tablet", async (req, res) => {
+  try {
+    const tablet = await productModel.find({ productType: "tablet" });
+    res.json(tablet);
+  } catch (error) {
+    console.log("Error", error.message);
+  }
+});
+
+router.get("/latest", async (req, res) => {
+  try {
+    const latest = await productModel.find({ latest: true });
+    res.json(latest);
+  } catch (error) {
+    console.log("Error", error.message);
+  }
+});
+
+router.get("/mostpopular", async (req, res) => {
+  try {
+    const mostpopular = await productModel.find({ mostpopular: true });
+    res.json(mostpopular);
+  } catch (error) {
+    console.log("Error", error.message);
+  }
+});
+
+router.get("/popularity", async (req, res) => {
+  try {
+    const popularity = await productModel.find({ popularity: "popular" });
+    res.json(popularity);
+  } catch (error) {
+    console.log("Error", error.message);
+  }
+});
+
+router.get("/mostsold", async (req, res) => {
+  try {
+    const mostsold = await productModel.find({ mostsold: true });
+    res.json(mostsold);
+  } catch (error) {
+    console.log("Error", error.message);
+  }
+});
+
+router.get("/budget", async (req, res) => {
+  try {
+    const budget = await productModel.find({ item_categorie: "budget" });
+    res.json(budget);
+  } catch (error) {
+    console.log("Error", error.message);
+  }
+});
+
+router.get("/midrange", async (req, res) => {
+  try {
+    const midrange = await productModel.find({ item_categorie: "midrange" });
+    res.json(midrange);
+  } catch (error) {
+    console.log("Error", error.message);
+  }
+});
+
+router.get("/flagship", async (req, res) => {
+  try {
+    const flagship = await productModel.find({ item_categorie: "flagship" });
+    res.json(flagship);
+  } catch (error) {
+    console.log("Error", error.message);
+  }
+});
+
+router.get("/recommended", async (req, res) => {
+  try {
+    const recommended = await productModel.find({ recommended: true });
+    res.json(recommended);
+  } catch (error) {
+    console.log("Error", error.message);
+  }
+});
+
 router.get("/products", async (req, res) => {
   try {
     const phones = productModel.find({ productType: "phone" });

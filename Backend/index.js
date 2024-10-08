@@ -52,7 +52,7 @@ app.use("/phones", phoneRouter);
 app.use("/laptops", laptopRouter);
 app.use("/tablets", tabletRouter);
 app.use("/allproducts/api", allproductRouter);
-app.use("/filteredproducts/api", filterRouter);
+app.use("/product/api", filterRouter);
 
 const PORT = process.env.PORT || 5173;
 app.listen(PORT, () => {

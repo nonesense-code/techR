@@ -8,7 +8,16 @@ import alibaba from "../images/alibabalogo.png";
 import daraz from "../images/darazlogo.png";
 import { useQuery } from "react-query";
 
-const fetchTargetLaptops = async (targetURL, navigate) => {
+const filterProducts = async (url) => {
+  try {
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
+
+const fetchTargetTablet = async (targetURL, navigate) => {
   try {
     const response = await axios.get(targetURL);
 
@@ -30,39 +39,21 @@ const fetchTargetLaptops = async (targetURL, navigate) => {
 };
 
 function LaptopBlog() {
-  const backendURL = import.meta.env.VITE_BACKEND_URL;
+  const mostpopularURL = import.meta.env.VITE_MOSTPOPULAR_URL;
   const navigate = useNavigate();
-
-  const [products, setProducts] = useState({
-    phones: [],
-    laptops: [],
-    tablets: [],
-    mostpopular: [],
-    latest: [],
-    budget: [],
-    mostsold: [],
-    midrange: [],
-    flagship: [],
-    recommended: [],
-    popularity: [],
-  });
-
-  const [isLoadingPopular, setIsLoading] = useState(true);
-
-  const fetchProducts = async (url) => {
-    try {
-      const response = await axios.get(url);
-      setProducts(response.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    } finally {
-      setIsLoading(false);
+  
+  const {
+    isLoading: loadingMostpopular,
+    data: mostpopular = [],
+    mostpopularisError,
+    mostpopularError,
+  } = useQuery(
+    ["mostpopular", mostpopularURL],
+    () => filterProducts(mostpopularURL, "midrange"),
+    {
+      staleTime: 1000 * 60 * 5,
     }
-  };
-
-  useEffect(() => {
-    fetchProducts(backendURL);
-  }, [backendURL]);
+  );
 
   const targetLaptopURL = import.meta.env.VITE_TARGETLAPTOP_URL;
   const { itname } = useParams();
@@ -71,13 +62,12 @@ function LaptopBlog() {
 
   const { data: targetLaptops = [], isLoading: isLoadingTarget } = useQuery(
     ["targetLaptops", targetURL],
-    () => fetchTargetLaptops(targetURL, navigate),
+    () => fetchTargetTablet(targetURL, navigate),
     {
       staleTime: 1000 * 60 * 5,
     }
   );
-
-  const isLoading = isLoadingPopular || isLoadingTarget;
+  const isLoading = loadingMostpopular || isLoadingTarget;
 
   const row1 =
     targetLaptops.ram1 || targetLaptops.storage1 || targetLaptops.price1;
@@ -130,7 +120,7 @@ function LaptopBlog() {
                   <div className="flex flex-col gap-4 items-center h-full mt-4">
                     <h1 className="text-2xl">Popular</h1>
                     <div className="hidescroller w-full pt-4 flex flex-col gap-8 items-center overflow-y-auto p-4 h-[800px]">
-                      {products.mostpopular.map((item, index) => (
+                      {mostpopular.map((item, index) => (
                         <div
                           key={index}
                           className="w-52 h-auto bg-white flex flex-col items-center justify-start border-4 border-black rounded-xl"

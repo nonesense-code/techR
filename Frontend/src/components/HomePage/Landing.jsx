@@ -11,9 +11,29 @@ import samsumgtab from "../../images/galaxytabs9ultra.jpg";
 import acer from "../../images/acernitrov15.png";
 import apple from "../../images/applemac.png";
 import redmi from "../../images/redminote11pro.jpeg";
+import { useQuery } from "react-query";
 // import GoogleAds from "../GoogleAds";
-
+const filterProducts = async (url) => {
+  try {
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
 function Landing() {
+  const phoneURL = import.meta.env.VITE_PHONE_URL;
+  const laptopURL = import.meta.env.VITE_LAPTOP_URL;
+  const tabletURL = import.meta.env.VITE_TABLET_URL;
+  const latestURL = import.meta.env.VITE_LATEST_URL;
+  const mostpopularURL = import.meta.env.VITE_MOSTPOPULAR_URL;
+  const popularityURL = import.meta.env.VITE_POPULARITY_URL;
+  const mostsoldURL = import.meta.env.VITE_MOSTSOLD_URL;
+  const budgetURL = import.meta.env.VITE_BUDGET_URL;
+  const midrangeURL = import.meta.env.VITE_MIDRANGE_URL;
+  const flagshipURL = import.meta.env.VITE_FLAGSHIP_URL;
+  const recommendedURL = import.meta.env.VITE_RECOMMENDED_URL;
+
   const popular_items = [
     {
       name: "Apple Macbook Pro",
@@ -42,47 +62,128 @@ function Landing() {
     return () => clearTimeout(timer);
   }, []);
 
+  const {
+    isLoading: loadingLatest,
+    data: latest = [],
+    latestisError,
+    latestError,
+  } = useQuery(["latest", latestURL], () => filterProducts(latestURL), {
+    staleTime: 1000 * 60 * 5,
+  });
+  const {
+    isLoading: loadingMostpopular,
+    data: mostpopular = [],
+    mostpopularisError,
+    mostpopularError,
+  } = useQuery(
+    ["mostpopular", mostpopularURL],
+    () => filterProducts(mostpopularURL),
+    {
+      staleTime: 1000 * 60 * 5,
+    }
+  );
+  const {
+    isLoading: loadingMostsold,
+    data: mostsold = [],
+    mostsoldisError,
+    mostsoldError,
+  } = useQuery(["mostsold", mostsoldURL], () => filterProducts(mostsoldURL), {
+    staleTime: 1000 * 60 * 5,
+  });
+  const {
+    isLoading: loadingBudget,
+    data: budget = [],
+    budgetisError,
+    budgetError,
+  } = useQuery(["budget", budgetURL], () => filterProducts(budgetURL), {
+    staleTime: 1000 * 60 * 5,
+  });
+
+  const {
+    isLoading: loadingMidrange,
+    data: midrange = [],
+    midrangeisError,
+    midrangeError,
+  } = useQuery(["midrange", midrangeURL], () => filterProducts(midrangeURL), {
+    staleTime: 1000 * 60 * 5,
+  });
+  const {
+    isLoading: loadingFlagship,
+    data: flagship = [],
+    flagshipisError,
+    flagshipError,
+  } = useQuery(["flagship", flagshipURL], () => filterProducts(flagshipURL), {
+    staleTime: 1000 * 60 * 5,
+  });
+  const {
+    isLoading: loadingRecommended,
+    data: recommended = [],
+    recommendedisError,
+    recommendedError,
+  } = useQuery(
+    ["recommended", recommendedURL],
+    () => filterProducts(recommendedURL),
+    {
+      staleTime: 1000 * 60 * 5,
+    }
+  );
+  const {
+    isLoading: loadingPopularity,
+    data: popularity = [],
+    popularityisError,
+    popularityError,
+  } = useQuery(
+    ["popularity", popularityURL],
+    () => filterProducts(popularityURL),
+    {
+      staleTime: 1000 * 60 * 5,
+    }
+  );
+  const {
+    isLoading: loadingPhone,
+    data: phone = [],
+    phoneisError,
+    phoneError,
+  } = useQuery(["phone", phoneURL], () => filterProducts(phoneURL), {
+    staleTime: 1000 * 60 * 5,
+  });
+  const {
+    isLoading: loadingLaptop,
+    data: laptop = [],
+    laptopisError,
+    laptopError,
+  } = useQuery(["laptop", laptopURL], () => filterProducts(laptopURL), {
+    staleTime: 1000 * 60 * 5,
+  });
+
+  const {
+    isLoading: loadingTablet,
+    data: tablet = [],
+    tabletisError,
+    tabletError,
+  } = useQuery(["tablet", tabletURL], () => filterProducts(tabletURL), {
+    staleTime: 1000 * 60 * 5,
+  });
+
+  let isLoading =
+    loadingLatest ||
+    loadingMostpopular ||
+    loadingPopularity ||
+    loadingMostsold ||
+    loadingBudget ||
+    loadingMidrange ||
+    loadingFlagship ||
+    loadingRecommended ||
+    loadingPhone ||
+    loadingLaptop ||
+    loadingTablet;
+
   function truncateText(text, wordLimit) {
     const words = text.split(" ");
     if (words.length > wordLimit) {
       return words.slice(0, wordLimit).join(" ") + "...";
     }
   }
-
-  const backendURL = import.meta.env.VITE_BACKEND_URL;
-
-  const [products, setProducts] = useState({
-    phones: [],
-    laptops: [],
-    tablets: [],
-    mostpopular: [],
-    latest: [],
-    budget: [],
-    mostsold: [],
-    midrange: [],
-    flagship: [],
-    recommended: [],
-    popularity: [],
-  });
-
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  const fetchProducts = async (url) => {
-    try {
-      const response = await axios.get(url);
-      setProducts(response.data);
-      setIsLoading(false);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      setError(error);
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchProducts(backendURL);
-  }, []);
 
   return (
     <div className="flex flex-col items-center w-full">
@@ -160,7 +261,7 @@ function Landing() {
                     Newly Launched
                   </h1>
                   <div className="flex items-center justify-center gap-6 flex-col">
-                    {products.latest.slice(0, 4).map((item, index) => {
+                    {latest.slice(0, 4).map((item, index) => {
                       return (
                         <div
                           key={index}
@@ -222,7 +323,7 @@ function Landing() {
                     Check out the Budget devices
                   </h1>
                   <div className="flex items-center justify-evenly gap-2 w-full p-4 flex-wrap">
-                    {products.budget.slice(0, 6).map((item, index) => (
+                    {budget.slice(0, 6).map((item, index) => (
                       <div
                         key={index}
                         className="flex items-center justify-center flex-col gap-1"
@@ -254,7 +355,7 @@ function Landing() {
                     Most Sold of {new Date().getFullYear()}
                   </h1>
                   <div className="flex items-center justify-center gap-6 flex-col">
-                    {products.mostsold.slice(0, 4).map((item, index) => {
+                    {mostsold.slice(0, 4).map((item, index) => {
                       return (
                         <div
                           key={index}
@@ -316,7 +417,7 @@ function Landing() {
                     Check out the premium midrange devices
                   </h1>
                   <div className="flex items-center justify-evenly gap-2 w-full p-4 flex-wrap">
-                    {products.midrange.slice(0, 6).map((item, index) => (
+                    {midrange.slice(0, 6).map((item, index) => (
                       <div
                         key={index}
                         className="flex items-center justify-center flex-col gap-1"
@@ -348,7 +449,7 @@ function Landing() {
                     Most Popular
                   </h1>
                   <div className="flex items-center justify-center gap-6 flex-col">
-                    {products.mostpopular.slice(0, 4).map((item, index) => {
+                    {mostpopular.slice(0, 4).map((item, index) => {
                       return (
                         <div
                           key={index}
@@ -410,7 +511,7 @@ function Landing() {
                     Flagship devices
                   </h1>
                   <div className="flex items-center justify-evenly gap-2 w-full p-4 flex-wrap">
-                    {products.flagship.slice(0, 6).map((item, index) => (
+                    {flagship.slice(0, 6).map((item, index) => (
                       <div
                         key={index}
                         className="flex items-center justify-center flex-col gap-1"
@@ -442,7 +543,7 @@ function Landing() {
                     Recommended for you
                   </h1>
                   <div className="flex items-center justify-center gap-6 flex-col">
-                    {products.recommended.slice(0, 4).map((item, index) => {
+                    {recommended.slice(0, 4).map((item, index) => {
                       return (
                         <div
                           key={index}

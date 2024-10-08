@@ -3,42 +3,32 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import CircularLoader from "../CircularLoader";
+import { useQuery } from "react-query";
+
+const filterProducts = async (url) => {
+  try {
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
 
 function Phones() {
-  const backendURL = import.meta.env.VITE_BACKEND_URL;
+  const phoneURL = import.meta.env.VITE_PHONE_URL;
 
-  const [products, setProducts] = useState({
-    phones: [],
-    laptops: [],
-    tablets: [],
-    mostpopular: [],
-    latest: [],
-    budget: [],
-    mostsold: [],
-    midrange: [],
-    flagship: [],
-    recommended: [],
-    popularity: [],
+  const {
+    isLoading: loadingMostpopular,
+    data: phones = [],
+    phonesisError,
+    phonesError,
+  } = useQuery(["phones", phoneURL], () => filterProducts(phoneURL), {
+    staleTime: 1000 * 60 * 5,
   });
 
-  const [isLoading, setIsLoading] = useState(true);
+  const isLoading = loadingMostpopular;
+
   const [error, setError] = useState(null);
-
-  const fetchProducts = async (url) => {
-    try {
-      const response = await axios.get(url);
-      setProducts(response.data);
-      setIsLoading(false);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      setError(error);
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchProducts(backendURL);
-  }, []);
 
   function truncateText(text, wordLimit) {
     const words = text.split(" ");
@@ -70,8 +60,8 @@ function Phones() {
               Available Phones
             </h1>
             <div className="flex flex-col items-center justify-center w-full gap-6">
-              {products.phones.length > 0 &&
-                products.phones.map((phone, index) => (
+              {phones.length > 0 &&
+                phones.map((phone, index) => (
                   <div
                     key={index}
                     className="bg-white shadow-lg rounded-lg overflow-hidden p-2 md:flex flex-row w-full"
