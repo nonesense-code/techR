@@ -83,7 +83,6 @@ function Tablets() {
   }
   return (
     <div className="min-h-screen w-full">
-      <div></div>
       {isLoading ? (
         <motion.div
           initial={{ opacity: 0 }}
