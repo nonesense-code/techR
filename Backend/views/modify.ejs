@@ -99,6 +99,29 @@
               </label>
             </div>
         </div>
+       
+        <div class="flex flex-col md:flex-row md:space-x-4 bg-zinc-500 text-white px-3 py-2 rounded-lg">
+          <h1 class="whitespace-nowrap">Target Audience:</h1>
+          <div class="flex items-center justify-evenly w-full gap-4">
+            <label>
+              Gamer:
+              <input type="checkbox" name="targetaudience" value="gaming" <%= find.targetaudience.includes('gaming') ? 'checked' : '' %> >
+            </label>
+            <label>
+              Professional:
+              <input type="checkbox" name="targetaudience" value="professional" <%= find.targetaudience.includes('professional') ? 'checked' : '' %> >
+            </label>
+            <label>
+              Students:
+              <input type="checkbox" name="targetaudience" value="students" <%= find.targetaudience.includes('students') ? 'checked' : '' %> >
+            </label>
+            <label>
+              Normal Usage:
+              <input type="checkbox" name="targetaudience" value="normalusage" <%= find.targetaudience.includes('normalusage') ? 'checked' : '' %> >
+            </label>
+          </div>
+        </div>
+        
 
           <!-- General Product Details -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">

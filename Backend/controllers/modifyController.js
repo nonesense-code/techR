@@ -9,6 +9,7 @@ module.exports.modifyProducts = async (req, res) => {
       latest,
       mostsold,
       mostpopular,
+      targetaudience,
       recommended,
       item_categorie,
       productType,
@@ -48,7 +49,7 @@ module.exports.modifyProducts = async (req, res) => {
       previousimage,
     } = req.body;
     let imageURL = previousimage;
-
+    console.log(targetaudience);
     if (req.file) {
       const imageBuffer = req.file.buffer;
       const image = imageBuffer.toString("base64");
@@ -78,6 +79,7 @@ module.exports.modifyProducts = async (req, res) => {
         recommended: updatedData.recommended,
         item_categorie,
         productType,
+        targetaudience,
         popularity,
         name,
         dimension,
@@ -115,7 +117,6 @@ module.exports.modifyProducts = async (req, res) => {
       }
     );
 
-    // Redirect based on product type
     if (productType === "phone") {
       res.redirect("/phones");
     } else if (productType === "laptop") {

@@ -517,8 +517,7 @@ function TabletBlog() {
                         </div>
                       )}
                       {(targetTablets.typec ||
-                        targetTablets.audiojack ||
-                        targetTablets.resolution) && (
+                        targetTablets.audiojack) && (
                         <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
                           <div className="hidden md:flex flex-col mr-6">
                             {["P", "O", "R", "T", "S"].map((item, index) => (

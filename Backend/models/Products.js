@@ -14,6 +14,9 @@ const databaseConnection = async () => {
 databaseConnection();
 
 const productSchema = new mongoose.Schema({
+  targetaudience: {
+    type: [],
+  },
   latest: {
     type: String,
   },

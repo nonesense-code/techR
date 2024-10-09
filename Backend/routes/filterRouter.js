@@ -38,6 +38,50 @@ router.get("/latest", async (req, res) => {
   }
 });
 
+router.get("/targetgamer", async (req, res) => {
+  try {
+    const targetaudience = await productModel.find({
+      targetaudience: "gaming",
+    });
+    res.json(targetaudience);
+  } catch (error) {
+    console.log("Error", error.message);
+  }
+});
+
+router.get("/targetprofessional", async (req, res) => {
+  try {
+    const targetaudience = await productModel.find({
+      targetaudience: "professional",
+    });
+    res.json(targetaudience);
+  } catch (error) {
+    console.log("Error", error.message);
+  }
+});
+
+router.get("/targetstudents", async (req, res) => {
+  try {
+    const targetaudience = await productModel.find({
+      targetaudience: "students",
+    });
+    res.json(targetaudience);
+  } catch (error) {
+    console.log("Error", error.message);
+  }
+});
+
+router.get("/targetnormalusage", async (req, res) => {
+  try {
+    const targetaudience = await productModel.find({
+      targetaudience: "normalusage",
+    });
+    res.json(targetaudience);
+  } catch (error) {
+    console.log("Error", error.message);
+  }
+});
+
 router.get("/mostpopular", async (req, res) => {
   try {
     const mostpopular = await productModel.find({ mostpopular: true });
@@ -120,27 +164,28 @@ router.get("/products", async (req, res) => {
       laptops,
       tablets,
       mostpopular,
+      latest,
+      budget,
       mostsold,
       midrange,
       flagship,
       recommended,
       popularity,
-      latest,
-      budget,
     ]);
 
+    console.log(phones);
     return res.json({
       phones: results[0],
       laptops: results[1],
       tablets: results[2],
       mostpopular: results[3],
+      latest: results[9],
+      budget: results[10],
       mostsold: results[4],
       midrange: results[5],
       flagship: results[6],
       recommended: results[7],
       popularity: results[8],
-      latest: results[9],
-      budget: results[10],
     });
   } catch (error) {
     console.error("Error fetching items:", error.message, error.stack);
