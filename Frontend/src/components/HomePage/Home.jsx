@@ -5,6 +5,7 @@ function Home() {
   return (
     <div>
       <Landing />
+      <div></div>
     </div>
   );
 }
