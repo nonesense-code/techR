@@ -7,12 +7,13 @@ const Trending = () => {
   useEffect(() => {
     const options = {
       strings: [
+        "Honor Magic V3",
         "Apple iPhone 16 Pro Max",
         "Samsung Galaxy S24 Ultra",
+        "Lava Agni 3",
         "Apple iPhone 15 Pro Max",
         "Google Pixel 9 Pro",
         "OnePlus 12",
-        "Xioami 14 Ultra",
       ],
       typeSpeed: 100,
       backSpeed: 0,
