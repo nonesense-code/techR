@@ -62,8 +62,6 @@ function Landing() {
     staleTime: 1000 * 60 * 5,
   });
 
-  console.log(latest);
-
   const {
     isLoading: loadingMostpopular,
     data: mostpopular = [],
