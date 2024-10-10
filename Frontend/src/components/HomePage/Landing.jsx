@@ -12,7 +12,6 @@ import acer from "../../images/acernitrov15.png";
 import apple from "../../images/applemac.png";
 import redmi from "../../images/redminote11pro.jpeg";
 import { useQuery } from "react-query";
-// import GoogleAds from "../GoogleAds";
 const filterProducts = async (url) => {
   try {
     const response = await axios.get(url);
@@ -22,9 +21,6 @@ const filterProducts = async (url) => {
   }
 };
 function Landing() {
-  const phoneURL = import.meta.env.VITE_PHONE_URL;
-  const laptopURL = import.meta.env.VITE_LAPTOP_URL;
-  const tabletURL = import.meta.env.VITE_TABLET_URL;
   const latestURL = import.meta.env.VITE_LATEST_URL;
   const mostpopularURL = import.meta.env.VITE_MOSTPOPULAR_URL;
   const popularityURL = import.meta.env.VITE_POPULARITY_URL;
@@ -57,20 +53,17 @@ function Landing() {
     },
   ];
 
-  useEffect(() => {
-    const timer = setTimeout(() => {}, 500);
-    return () => clearTimeout(timer);
-  }, []);
-
   const {
     isLoading: loadingLatest,
     data: latest = [],
     latestisError,
     latestError,
   } = useQuery(["latest", latestURL], () => filterProducts(latestURL), {
-    staleTime: 1000 * 60 * 5, // Keeps data fresh for 5 minutes
-    cacheTime: 1000 * 60 * 10,
+    staleTime: 1000 * 60 * 5,
   });
+
+  console.log(latest);
+
   const {
     isLoading: loadingMostpopular,
     data: mostpopular = [],
@@ -80,27 +73,26 @@ function Landing() {
     ["mostpopular", mostpopularURL],
     () => filterProducts(mostpopularURL),
     {
-      staleTime: 1000 * 60 * 5, // Keeps data fresh for 5 minutes
-      cacheTime: 1000 * 60 * 10,
+      staleTime: 1000 * 60 * 5,
     }
   );
+
   const {
     isLoading: loadingMostsold,
     data: mostsold = [],
     mostsoldisError,
     mostsoldError,
   } = useQuery(["mostsold", mostsoldURL], () => filterProducts(mostsoldURL), {
-    staleTime: 1000 * 60 * 5, // Keeps data fresh for 5 minutes
-    cacheTime: 1000 * 60 * 10,
+    staleTime: 1000 * 60 * 5,
   });
+
   const {
     isLoading: loadingBudget,
     data: budget = [],
     budgetisError,
     budgetError,
   } = useQuery(["budget", budgetURL], () => filterProducts(budgetURL), {
-    staleTime: 1000 * 60 * 5, // Keeps data fresh for 5 minutes
-    cacheTime: 1000 * 60 * 10,
+    staleTime: 1000 * 60 * 5,
   });
 
   const {
@@ -109,18 +101,18 @@ function Landing() {
     midrangeisError,
     midrangeError,
   } = useQuery(["midrange", midrangeURL], () => filterProducts(midrangeURL), {
-    staleTime: 1000 * 60 * 5, // Keeps data fresh for 5 minutes
-    cacheTime: 1000 * 60 * 10,
+    staleTime: 1000 * 60 * 5,
   });
+
   const {
     isLoading: loadingFlagship,
     data: flagship = [],
     flagshipisError,
     flagshipError,
   } = useQuery(["flagship", flagshipURL], () => filterProducts(flagshipURL), {
-    staleTime: 1000 * 60 * 5, // Keeps data fresh for 5 minutes
-    cacheTime: 1000 * 60 * 10,
+    staleTime: 1000 * 60 * 5,
   });
+
   const {
     isLoading: loadingRecommended,
     data: recommended = [],
@@ -130,10 +122,10 @@ function Landing() {
     ["recommended", recommendedURL],
     () => filterProducts(recommendedURL),
     {
-      staleTime: 1000 * 60 * 5, // Keeps data fresh for 5 minutes
-      cacheTime: 1000 * 60 * 10,
+      staleTime: 1000 * 60 * 5,
     }
   );
+
   const {
     isLoading: loadingPopularity,
     data: popularity = [],
@@ -143,39 +135,9 @@ function Landing() {
     ["popularity", popularityURL],
     () => filterProducts(popularityURL),
     {
-      staleTime: 1000 * 60 * 5, // Keeps data fresh for 5 minutes
-      cacheTime: 1000 * 60 * 10,
+      staleTime: 1000 * 60 * 5,
     }
   );
-  const {
-    isLoading: loadingPhone,
-    data: phone = [],
-    phoneisError,
-    phoneError,
-  } = useQuery(["phone", phoneURL], () => filterProducts(phoneURL), {
-    staleTime: 1000 * 60 * 5, // Keeps data fresh for 5 minutes
-    cacheTime: 1000 * 60 * 10,
-  });
-  const {
-    isLoading: loadingLaptop,
-    data: laptop = [],
-    laptopisError,
-    laptopError,
-  } = useQuery(["laptop", laptopURL], () => filterProducts(laptopURL), {
-    staleTime: 1000 * 60 * 5, // Keeps data fresh for 5 minutes
-    cacheTime: 1000 * 60 * 10,
-  });
-
-  const {
-    isLoading: loadingTablet,
-    data: tablet = [],
-    tabletisError,
-    tabletError,
-  } = useQuery(["tablet", tabletURL], () => filterProducts(tabletURL), {
-    staleTime: 1000 * 60 * 5, // Keeps data fresh for 5 minutes
-    cacheTime: 1000 * 60 * 10,
-  });
-
   let isLoading =
     loadingLatest ||
     loadingMostpopular ||
@@ -184,10 +146,7 @@ function Landing() {
     loadingBudget ||
     loadingMidrange ||
     loadingFlagship ||
-    loadingRecommended ||
-    loadingPhone ||
-    loadingLaptop ||
-    loadingTablet;
+    loadingRecommended;
 
   function truncateText(text, wordLimit) {
     const words = text.split(" ");
@@ -276,7 +235,7 @@ function Landing() {
                       return (
                         <div
                           key={index}
-                          className="border-2 border-[#79d1ec] rounded-xl backdrop-blur-md overflow-hidden p-2 md:flex flex-row w-full"
+                          className="border-2 border-[#79d1ec] rounded-xl overflow-hidden p-2 md:flex flex-row w-full"
                         >
                           <Link
                             to={`/${item.productType}/${item.name
@@ -370,7 +329,7 @@ function Landing() {
                       return (
                         <div
                           key={index}
-                          className="border-2 border-[#f1cb69] rounded-xl backdrop-blur-md overflow-hidden p-2 md:flex flex-row w-full"
+                          className="border-2 border-[#f1cb69] rounded-xl overflow-hidden p-2 md:flex flex-row w-full"
                         >
                           <Link
                             to={`/${item.productType}/${item.name
@@ -464,7 +423,7 @@ function Landing() {
                       return (
                         <div
                           key={index}
-                          className="border-2 border-[#77bffa] rounded-xl backdrop-blur-md overflow-hidden p-2 md:flex flex-row w-full"
+                          className="border-2 border-[#77bffa] rounded-xl overflow-hidden p-2 md:flex flex-row w-full"
                         >
                           <Link
                             to={`/${item.productType}/${item.name
@@ -558,7 +517,7 @@ function Landing() {
                       return (
                         <div
                           key={index}
-                          className="border-2 border-[#d28bee] rounded-xl backdrop-blur-md overflow-hidden p-2 md:flex flex-row w-full"
+                          className="border-2 border-[#d28bee] rounded-xl overflow-hidden p-2 md:flex flex-row w-full"
                         >
                           <Link
                             to={`/${item.productType}/${item.name

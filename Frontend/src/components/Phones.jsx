@@ -11,7 +11,6 @@ const filterProducts = async (url) => {
     return response.data;
   } catch (error) {
     console.error("Error fetching data:", error);
-    return [];
   }
 };
 
@@ -95,29 +94,26 @@ function Phones() {
         </motion.div>
       ) : (
         <div className="min-h-screen h-auto w-full mt-12">
-          <div className="container mx-auto px-4 py-8">
-            <h1 className="text-3xl md:text-3xl font-bold text-center mb-4 text-gray-800">
-              Find Your Perfect Phone Companion!
+          <div className="container mx-auto px-4 flex flex-col gap-6 md:gap-8 mb-12">
+            <h1 className="text-2xl md:text-3xl font-bold text-center text-gray-800">
+              Find Your Perfect phone Companion!
             </h1>
 
-            <section className="mb-10 p-4 rounded-lg">
-              <h2 className="text-2xl font-bold text-center mb-4">
-                Gaming Phones
-              </h2>
-              <div className="flex flex-col items-center justify-center w-full gap-6">
+            <div className="flex flex-col items-center justify-center">
+              <h1 className="text-md md:text-3xl font-bold bg-black p-2 rounded-md text-[#FFA500] mb-2">
+                Gaming phone
+              </h1>
+              <div className="flex items-center justify-center gap-4 flex-col">
                 {gamingphone &&
                   gamingphone.map(
                     (phone, index) =>
                       phone.productType === "phone" && (
-                        <motion.div
+                        <div
                           key={index}
-                          className="bg-transparent shadow-md shadow-black rounded-lg overflow-hidden p-2 md:flex flex-row w-full"
-                          initial={{ opacity: 0, scale: 0.96 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ duration: 0.2 }}
+                          className="border-2 border-[#000000] shadow-lg shadow-indigo-600 rounded-xl overflow-hidden p-2 md:flex flex-row w-full"
                         >
                           <Link
-                            to={`${phone.name
+                            to={`/${phone.productType}/${phone.name
                               .toLowerCase()
                               .split(" ")
                               .join("")}`}
@@ -127,30 +123,33 @@ function Phones() {
                               <div className="h-auto w-auto">
                                 <motion.div
                                   initial={{ y: 0 }}
-                                  animate={{ y: 6 }}
+                                  animate={{ y: -2 }}
                                   transition={{
                                     duration: 2,
                                     repeat: Infinity,
                                     repeatType: "reverse",
                                   }}
-                                  whileHover={{
-                                    scale: 1.01,
-                                  }}
                                   className="w-auto flex items-center justify-center bg-cover bg-center"
                                 >
-                                  <img
-                                    src={phone.image}
-                                    alt={phone.name}
-                                    className="w-full md:w-full md:h-96 p-12 object-contain object-center"
-                                    loading="lazy"
-                                  />
+                                  <motion.div
+                                    whileHover={{
+                                      scale: 1.02,
+                                    }}
+                                  >
+                                    <img
+                                      src={phone.image}
+                                      alt={phone.name}
+                                      className="w-full h-52 md:w-72 md:h-72 object-contain object-center rounded-md"
+                                      loading="lazy"
+                                    />
+                                  </motion.div>
                                 </motion.div>
                               </div>
                               <div className="p-4 md:w-1/2 gap-4 flex items-center justify-center flex-col">
-                                <h3 className="underline-animations text-xl text-black text-center font-extrabold">
+                                <h2 className="text-lg whitespace-nowrap break-words md:text-xl lg:text-2xl text-black text-center font-extrabold">
                                   {phone.name}
-                                </h3>
-                                <p className="text-stone-600">
+                                </h2>
+                                <p className="text-stone-600 border-[2px] border-stone-600/30 p-2 rounded-xl text-xs md:text-sm lg:text-lg break-words text-center">
                                   {(phone.blog &&
                                     truncateText(phone.blog, 30)) ||
                                     "No description available"}
@@ -158,30 +157,27 @@ function Phones() {
                               </div>
                             </div>
                           </Link>
-                        </motion.div>
+                        </div>
                       )
                   )}
               </div>
-            </section>
+            </div>
 
-            <section className="mb-10 bg-green-100 p-4 rounded-lg">
-              <h2 className="text-2xl font-bold text-center mb-4">
-                Professional phones
-              </h2>
-              <div className="flex flex-col items-center justify-center w-full gap-6">
+            <div className="flex flex-col items-center justify-center">
+              <h1 className="text-md md:text-3xl font-bold bg-black p-2 rounded-md text-[#FFA500] mb-2">
+                Professional phone
+              </h1>
+              <div className="flex items-center justify-center gap-4 flex-col">
                 {professionalphone &&
                   professionalphone.map(
                     (phone, index) =>
                       phone.productType === "phone" && (
-                        <motion.div
+                        <div
                           key={index}
-                          className="bg-transparent shadow-md shadow-black rounded-lg overflow-hidden p-2 md:flex flex-row w-full"
-                          initial={{ opacity: 0, scale: 0.96 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ duration: 0.2 }}
+                          className="border-2 border-purple-600 shadow-lg shadow-purple-600 rounded-xl overflow-hidden p-2 md:flex flex-row w-full"
                         >
                           <Link
-                            to={`${phone.name
+                            to={`/${phone.productType}/${phone.name
                               .toLowerCase()
                               .split(" ")
                               .join("")}`}
@@ -191,30 +187,33 @@ function Phones() {
                               <div className="h-auto w-auto">
                                 <motion.div
                                   initial={{ y: 0 }}
-                                  animate={{ y: 6 }}
+                                  animate={{ y: -2 }}
                                   transition={{
                                     duration: 2,
                                     repeat: Infinity,
                                     repeatType: "reverse",
                                   }}
-                                  whileHover={{
-                                    scale: 1.01,
-                                  }}
                                   className="w-auto flex items-center justify-center bg-cover bg-center"
                                 >
-                                  <img
-                                    src={phone.image}
-                                    alt={phone.name}
-                                    className="w-full md:w-full md:h-96 p-12 object-contain object-center"
-                                    loading="lazy"
-                                  />
+                                  <motion.div
+                                    whileHover={{
+                                      scale: 1.02,
+                                    }}
+                                  >
+                                    <img
+                                      src={phone.image}
+                                      alt={phone.name}
+                                      className="w-full h-52 md:w-72 md:h-72 object-contain object-center rounded-md"
+                                      loading="lazy"
+                                    />
+                                  </motion.div>
                                 </motion.div>
                               </div>
                               <div className="p-4 md:w-1/2 gap-4 flex items-center justify-center flex-col">
-                                <h3 className="underline-animations text-xl text-black text-center font-extrabold">
+                                <h2 className="text-lg whitespace-nowrap break-words md:text-xl lg:text-2xl text-black text-center font-extrabold">
                                   {phone.name}
-                                </h3>
-                                <p className="text-stone-600">
+                                </h2>
+                                <p className="text-stone-600 border-[2px] border-stone-600/30 p-2 rounded-xl text-xs md:text-sm lg:text-lg break-words text-center">
                                   {(phone.blog &&
                                     truncateText(phone.blog, 30)) ||
                                     "No description available"}
@@ -222,30 +221,27 @@ function Phones() {
                               </div>
                             </div>
                           </Link>
-                        </motion.div>
+                        </div>
                       )
                   )}
               </div>
-            </section>
+            </div>
 
-            <section className="mb-10 bg-purple-100 p-4 rounded-lg">
-              <h2 className="text-2xl font-bold text-center mb-4">
-                Student phones
-              </h2>
-              <div className="flex flex-col items-center justify-center w-full gap-6">
+            <div className="flex flex-col items-center justify-center">
+              <h1 className="text-md md:text-3xl font-bold bg-black p-2 rounded-md text-[#FFA500] mb-2">
+                Students phone
+              </h1>
+              <div className="flex items-center justify-center gap-4 flex-col">
                 {studentsphone &&
                   studentsphone.map(
                     (phone, index) =>
                       phone.productType === "phone" && (
-                        <motion.div
+                        <div
                           key={index}
-                          className="bg-transparent shadow-md shadow-black rounded-lg overflow-hidden p-2 md:flex flex-row w-full"
-                          initial={{ opacity: 0, scale: 0.96 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ duration: 0.2 }}
+                          className="border-2 border-orange-600 shadow-lg shadow-orange-600 rounded-xl overflow-hidden p-2 md:flex flex-row w-full"
                         >
                           <Link
-                            to={`${phone.name
+                            to={`/${phone.productType}/${phone.name
                               .toLowerCase()
                               .split(" ")
                               .join("")}`}
@@ -255,30 +251,33 @@ function Phones() {
                               <div className="h-auto w-auto">
                                 <motion.div
                                   initial={{ y: 0 }}
-                                  animate={{ y: 6 }}
+                                  animate={{ y: -2 }}
                                   transition={{
                                     duration: 2,
                                     repeat: Infinity,
                                     repeatType: "reverse",
                                   }}
-                                  whileHover={{
-                                    scale: 1.01,
-                                  }}
                                   className="w-auto flex items-center justify-center bg-cover bg-center"
                                 >
-                                  <img
-                                    src={phone.image}
-                                    alt={phone.name}
-                                    className="w-full md:w-full md:h-96 p-12 object-contain object-center"
-                                    loading="lazy"
-                                  />
+                                  <motion.div
+                                    whileHover={{
+                                      scale: 1.02,
+                                    }}
+                                  >
+                                    <img
+                                      src={phone.image}
+                                      alt={phone.name}
+                                      className="w-full h-52 md:w-72 md:h-72 object-contain object-center rounded-md"
+                                      loading="lazy"
+                                    />
+                                  </motion.div>
                                 </motion.div>
                               </div>
                               <div className="p-4 md:w-1/2 gap-4 flex items-center justify-center flex-col">
-                                <h3 className="underline-animations text-xl text-black text-center font-extrabold">
+                                <h2 className="text-lg whitespace-nowrap break-words md:text-xl lg:text-2xl text-black text-center font-extrabold">
                                   {phone.name}
-                                </h3>
-                                <p className="text-stone-600">
+                                </h2>
+                                <p className="text-stone-600 border-[2px] border-stone-600/30 p-2 rounded-xl text-xs md:text-sm lg:text-lg break-words text-center">
                                   {(phone.blog &&
                                     truncateText(phone.blog, 30)) ||
                                     "No description available"}
@@ -286,30 +285,27 @@ function Phones() {
                               </div>
                             </div>
                           </Link>
-                        </motion.div>
+                        </div>
                       )
                   )}
               </div>
-            </section>
+            </div>
 
-            <section className="mb-10 bg-yellow-100 p-4 rounded-lg">
-              <h2 className="text-2xl font-bold text-center mb-4">
-                Normal Usage phones
-              </h2>
-              <div className="flex flex-col items-center justify-center w-full gap-6">
+            <div className="flex flex-col items-center justify-center">
+              <h1 className="text-md md:text-3xl font-bold bg-black p-2 rounded-md text-[#FFA500] mb-2">
+                Normal Usage phone
+              </h1>
+              <div className="flex items-center justify-center gap-4 flex-col">
                 {normalusagephone &&
                   normalusagephone.map(
                     (phone, index) =>
                       phone.productType === "phone" && (
-                        <motion.div
+                        <div
                           key={index}
-                          className="bg-transparent shadow-md shadow-black rounded-lg overflow-hidden p-2 md:flex flex-row w-full"
-                          initial={{ opacity: 0, scale: 0.96 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ duration: 0.2 }}
+                          className="border-2 border-sky-600 shadow-lg shadow-sky-600 rounded-xl overflow-hidden p-2 md:flex flex-row w-full"
                         >
                           <Link
-                            to={`${phone.name
+                            to={`/${phone.productType}/${phone.name
                               .toLowerCase()
                               .split(" ")
                               .join("")}`}
@@ -319,30 +315,33 @@ function Phones() {
                               <div className="h-auto w-auto">
                                 <motion.div
                                   initial={{ y: 0 }}
-                                  animate={{ y: 6 }}
+                                  animate={{ y: -2 }}
                                   transition={{
                                     duration: 2,
                                     repeat: Infinity,
                                     repeatType: "reverse",
                                   }}
-                                  whileHover={{
-                                    scale: 1.01,
-                                  }}
                                   className="w-auto flex items-center justify-center bg-cover bg-center"
                                 >
-                                  <img
-                                    src={phone.image}
-                                    alt={phone.name}
-                                    className="w-full md:w-full md:h-96 p-12 object-contain object-center"
-                                    loading="lazy"
-                                  />
+                                  <motion.div
+                                    whileHover={{
+                                      scale: 1.02,
+                                    }}
+                                  >
+                                    <img
+                                      src={phone.image}
+                                      alt={phone.name}
+                                      className="w-full h-52 md:w-72 md:h-72 object-contain object-center rounded-md"
+                                      loading="lazy"
+                                    />
+                                  </motion.div>
                                 </motion.div>
                               </div>
                               <div className="p-4 md:w-1/2 gap-4 flex items-center justify-center flex-col">
-                                <h3 className="underline-animations text-xl text-black text-center font-extrabold">
+                                <h2 className="text-lg whitespace-nowrap break-words md:text-xl lg:text-2xl text-black text-center font-extrabold">
                                   {phone.name}
-                                </h3>
-                                <p className="text-stone-600">
+                                </h2>
+                                <p className="text-stone-600 border-[2px] border-stone-600/30 p-2 rounded-xl text-xs md:text-sm lg:text-lg break-words text-center">
                                   {(phone.blog &&
                                     truncateText(phone.blog, 30)) ||
                                     "No description available"}
@@ -350,11 +349,11 @@ function Phones() {
                               </div>
                             </div>
                           </Link>
-                        </motion.div>
+                        </div>
                       )
                   )}
               </div>
-            </section>
+            </div>
           </div>
         </div>
       )}

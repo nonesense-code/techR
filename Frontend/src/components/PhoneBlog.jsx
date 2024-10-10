@@ -237,7 +237,7 @@ function PhoneBlog() {
                       {(targetPhones.os ||
                         targetPhones.processor ||
                         targetPhones.graphics) && (
-                        <div className="w-full flex items-start gap-4 justify-start p-2 bg-zinc-50 flex-col rounded-lg px-4">
+                        <div className="w-full flex gap-4 justify-start p-2 bg-zinc-50 flex-col rounded-lg px-4">
                           {targetPhones.os && (
                             <InfoSection label="OS" value={targetPhones.os} />
                           )}
