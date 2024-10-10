@@ -105,7 +105,7 @@ function Phones() {
                 Gaming Phones
               </h2>
               <div className="flex flex-col items-center justify-center w-full gap-6">
-                {gamingphone.length > 0 &&
+                {gamingphone &&
                   gamingphone.map(
                     (phone, index) =>
                       phone.productType === "phone" && (
@@ -169,7 +169,7 @@ function Phones() {
                 Professional phones
               </h2>
               <div className="flex flex-col items-center justify-center w-full gap-6">
-                {professionalphone.length > 0 &&
+                {professionalphone &&
                   professionalphone.map(
                     (phone, index) =>
                       phone.productType === "phone" && (
@@ -233,7 +233,7 @@ function Phones() {
                 Student phones
               </h2>
               <div className="flex flex-col items-center justify-center w-full gap-6">
-                {studentsphone.length > 0 &&
+                {studentsphone &&
                   studentsphone.map(
                     (phone, index) =>
                       phone.productType === "phone" && (
@@ -297,7 +297,7 @@ function Phones() {
                 Normal Usage phones
               </h2>
               <div className="flex flex-col items-center justify-center w-full gap-6">
-                {normalusagephone.length > 0 &&
+                {normalusagephone &&
                   normalusagephone.map(
                     (phone, index) =>
                       phone.productType === "phone" && (
