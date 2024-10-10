@@ -81,6 +81,7 @@ function Phones() {
     }
     return text;
   }
+  console.log(s);
 
   return (
     <div className="min-h-screen flex flex-col justify-between">
