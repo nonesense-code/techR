@@ -68,7 +68,8 @@ function Landing() {
     latestisError,
     latestError,
   } = useQuery(["latest", latestURL], () => filterProducts(latestURL), {
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 5, // Keeps data fresh for 5 minutes
+    cacheTime: 1000 * 60 * 10,
   });
   const {
     isLoading: loadingMostpopular,
@@ -79,7 +80,8 @@ function Landing() {
     ["mostpopular", mostpopularURL],
     () => filterProducts(mostpopularURL),
     {
-      staleTime: 1000 * 60 * 5,
+      staleTime: 1000 * 60 * 5, // Keeps data fresh for 5 minutes
+      cacheTime: 1000 * 60 * 10,
     }
   );
   const {
@@ -88,7 +90,8 @@ function Landing() {
     mostsoldisError,
     mostsoldError,
   } = useQuery(["mostsold", mostsoldURL], () => filterProducts(mostsoldURL), {
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 5, // Keeps data fresh for 5 minutes
+    cacheTime: 1000 * 60 * 10,
   });
   const {
     isLoading: loadingBudget,
@@ -96,7 +99,8 @@ function Landing() {
     budgetisError,
     budgetError,
   } = useQuery(["budget", budgetURL], () => filterProducts(budgetURL), {
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 5, // Keeps data fresh for 5 minutes
+    cacheTime: 1000 * 60 * 10,
   });
 
   const {
@@ -105,7 +109,8 @@ function Landing() {
     midrangeisError,
     midrangeError,
   } = useQuery(["midrange", midrangeURL], () => filterProducts(midrangeURL), {
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 5, // Keeps data fresh for 5 minutes
+    cacheTime: 1000 * 60 * 10,
   });
   const {
     isLoading: loadingFlagship,
@@ -113,7 +118,8 @@ function Landing() {
     flagshipisError,
     flagshipError,
   } = useQuery(["flagship", flagshipURL], () => filterProducts(flagshipURL), {
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 5, // Keeps data fresh for 5 minutes
+    cacheTime: 1000 * 60 * 10,
   });
   const {
     isLoading: loadingRecommended,
@@ -124,7 +130,8 @@ function Landing() {
     ["recommended", recommendedURL],
     () => filterProducts(recommendedURL),
     {
-      staleTime: 1000 * 60 * 5,
+      staleTime: 1000 * 60 * 5, // Keeps data fresh for 5 minutes
+      cacheTime: 1000 * 60 * 10,
     }
   );
   const {
@@ -136,7 +143,8 @@ function Landing() {
     ["popularity", popularityURL],
     () => filterProducts(popularityURL),
     {
-      staleTime: 1000 * 60 * 5,
+      staleTime: 1000 * 60 * 5, // Keeps data fresh for 5 minutes
+      cacheTime: 1000 * 60 * 10,
     }
   );
   const {
@@ -145,7 +153,8 @@ function Landing() {
     phoneisError,
     phoneError,
   } = useQuery(["phone", phoneURL], () => filterProducts(phoneURL), {
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 5, // Keeps data fresh for 5 minutes
+    cacheTime: 1000 * 60 * 10,
   });
   const {
     isLoading: loadingLaptop,
@@ -153,7 +162,8 @@ function Landing() {
     laptopisError,
     laptopError,
   } = useQuery(["laptop", laptopURL], () => filterProducts(laptopURL), {
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 5, // Keeps data fresh for 5 minutes
+    cacheTime: 1000 * 60 * 10,
   });
 
   const {
@@ -162,7 +172,8 @@ function Landing() {
     tabletisError,
     tabletError,
   } = useQuery(["tablet", tabletURL], () => filterProducts(tabletURL), {
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 5, // Keeps data fresh for 5 minutes
+    cacheTime: 1000 * 60 * 10,
   });
 
   let isLoading =
@@ -265,7 +276,7 @@ function Landing() {
                       return (
                         <div
                           key={index}
-                          className="border-2 border-[#79d1ec] rounded-xl shadow-lg shadow-[#00FFA3] backdrop-blur-md overflow-hidden p-2 md:flex flex-row w-full"
+                          className="border-2 border-[#79d1ec] rounded-xl backdrop-blur-md overflow-hidden p-2 md:flex flex-row w-full"
                         >
                           <Link
                             to={`/${item.productType}/${item.name
@@ -304,7 +315,7 @@ function Landing() {
                                 <h2 className="underline-animations text-xl text-black text-center font-extrabold">
                                   {item.name}
                                 </h2>
-                                <p className="text-stone-600 border-[1px] shadow-stone-600 shadow-md border-stone-600/30 p-2 rounded-xl break-words text-center">
+                                <p className="text-stone-600 border-[1px] border-stone-600/30 p-2 rounded-xl break-words text-center">
                                   {(item.blog && truncateText(item.blog, 30)) ||
                                     "No description available"}
                                 </p>
@@ -337,7 +348,7 @@ function Landing() {
                           <img
                             src={item.image}
                             alt={item.name}
-                            className="h-32 w-32 md:h-64 md:w-80 object-cover object-center border-2 border-[#0006] rounded-xl shadow-md shadow-[#4A90E2]"
+                            className="h-32 w-32 md:h-64 md:w-80 object-cover object-center border-2 border-[#0006] rounded-xl"
                             loading="lazy"
                           />
                           <h1 className="text-center mt-2">
@@ -359,7 +370,7 @@ function Landing() {
                       return (
                         <div
                           key={index}
-                          className="border-2 border-[#f1cb69] rounded-xl shadow-lg shadow-[#FBC02D] backdrop-blur-md overflow-hidden p-2 md:flex flex-row w-full"
+                          className="border-2 border-[#f1cb69] rounded-xl backdrop-blur-md overflow-hidden p-2 md:flex flex-row w-full"
                         >
                           <Link
                             to={`/${item.productType}/${item.name
@@ -398,7 +409,7 @@ function Landing() {
                                 <h2 className="underline-animations text-xl text-black text-center font-extrabold">
                                   {item.name}
                                 </h2>
-                                <p className="text-stone-600 border-[1px] shadow-stone-600 shadow-md border-stone-600/30 p-2 rounded-xl break-words text-center">
+                                <p className="text-stone-600 border-[1px] border-stone-600/30 p-2 rounded-xl break-words text-center">
                                   {(item.blog && truncateText(item.blog, 30)) ||
                                     "No description available"}
                                 </p>
@@ -431,7 +442,7 @@ function Landing() {
                           <img
                             src={item.image}
                             alt={item.name}
-                            className="h-32 w-32 md:h-64 md:w-80 object-cover object-center border-2 border-[#0006] rounded-xl shadow-md shadow-[#4A90E2]"
+                            className="h-32 w-32 md:h-64 md:w-80 object-cover object-center border-2 border-[#0006] rounded-xl"
                             loading="lazy"
                           />
                           <h1 className="text-center mt-2">
@@ -453,7 +464,7 @@ function Landing() {
                       return (
                         <div
                           key={index}
-                          className="border-2 border-[#77bffa] rounded-xl shadow-lg shadow-[#42A5F5] backdrop-blur-md overflow-hidden p-2 md:flex flex-row w-full"
+                          className="border-2 border-[#77bffa] rounded-xl backdrop-blur-md overflow-hidden p-2 md:flex flex-row w-full"
                         >
                           <Link
                             to={`/${item.productType}/${item.name
@@ -492,7 +503,7 @@ function Landing() {
                                 <h2 className="underline-animations text-xl text-black text-center font-extrabold">
                                   {item.name}
                                 </h2>
-                                <p className="text-stone-600 border-[1px] shadow-stone-600 shadow-md border-stone-600/30 p-2 rounded-xl break-words text-center">
+                                <p className="text-stone-600 border-[1px] border-stone-600/30 p-2 rounded-xl break-words text-center">
                                   {(item.blog && truncateText(item.blog, 30)) ||
                                     "No description available"}
                                 </p>
@@ -525,7 +536,7 @@ function Landing() {
                           <img
                             src={item.image}
                             alt={item.name}
-                            className="h-32 w-32 md:h-64 md:w-80 object-cover object-center border-2 border-[#0006] rounded-xl shadow-md shadow-[#4A90E2]"
+                            className="h-32 w-32 md:h-64 md:w-80 object-cover object-center border-2 border-[#0006] rounded-xl"
                             loading="lazy"
                           />
                           <h1 className="text-center mt-2">
@@ -547,7 +558,7 @@ function Landing() {
                       return (
                         <div
                           key={index}
-                          className="border-2 border-[#d28bee] rounded-xl shadow-lg shadow-[#9B59B6] backdrop-blur-md overflow-hidden p-2 md:flex flex-row w-full"
+                          className="border-2 border-[#d28bee] rounded-xl backdrop-blur-md overflow-hidden p-2 md:flex flex-row w-full"
                         >
                           <Link
                             to={`/${item.productType}/${item.name
@@ -586,7 +597,7 @@ function Landing() {
                                 <h2 className="underline-animations text-xl text-black text-center font-extrabold">
                                   {item.name}
                                 </h2>
-                                <p className="text-stone-600 border-[1px] shadow-stone-600 shadow-md border-stone-600/30 p-2 rounded-xl break-words text-center">
+                                <p className="text-stone-600 border-[1px] border-stone-600/30 p-2 rounded-xl break-words text-center">
                                   {(item.blog && truncateText(item.blog, 30)) ||
                                     "No description available"}
                                 </p>

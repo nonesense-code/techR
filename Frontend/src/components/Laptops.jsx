@@ -81,6 +81,7 @@ function Laptops() {
     }
     return text;
   }
+
   return (
     <div className="min-h-screen w-full">
       {isLoading ? (

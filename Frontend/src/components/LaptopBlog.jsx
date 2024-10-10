@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { easeInOut, motion } from "framer-motion";
+import { motion, easeInOut } from "framer-motion";
 import CircularLoader from "../CircularLoader";
-import { FaAmazon, FaDiceFive } from "react-icons/fa";
+import { FaAmazon } from "react-icons/fa";
 import alibaba from "../images/alibabalogo.png";
 import daraz from "../images/darazlogo.png";
 import { useQuery } from "react-query";
@@ -17,14 +17,14 @@ const filterProducts = async (url) => {
   }
 };
 
-const fetchTargetTablet = async (targetURL, navigate) => {
+const fetchTargetPhone = async (targetURL, navigate) => {
   try {
     const response = await axios.get(targetURL);
 
     if (typeof response.data === "object" && response.data !== null) {
       return response.data;
     } else {
-      navigate("/laptop");
+      navigate("/phone");
       return;
     }
   } catch (error) {
@@ -33,7 +33,7 @@ const fetchTargetTablet = async (targetURL, navigate) => {
     } else {
       console.error("Error during request setup:", error.message);
     }
-    navigate("/laptop");
+    navigate("/phone");
     return;
   }
 };
@@ -59,35 +59,32 @@ function LaptopBlog() {
   const { itname } = useParams();
 
   const targetURL = `${targetLaptopURL}/${itname}`;
-
   const { data: targetLaptops = [], isLoading: isLoadingTarget } = useQuery(
     ["targetLaptops", targetURL],
-    () => fetchTargetTablet(targetURL, navigate),
+    () => fetchTargetPhone(targetURL, navigate),
     {
       staleTime: 1000 * 60 * 5,
     }
   );
   const isLoading = loadingMostpopular || isLoadingTarget;
 
-  const row1 =
-    targetLaptops.ram1 || targetLaptops.storage1 || targetLaptops.price1;
-  const row2 =
+  const hasMultipleOptions =
     targetLaptops.ram2 || targetLaptops.storage2 || targetLaptops.price2;
-  const row3 =
+  const hasThreeOptions =
     targetLaptops.ram3 || targetLaptops.storage3 || targetLaptops.price3;
 
   const rows = [
-    row1 && {
+    {
       ram: targetLaptops.ram1,
       storage: targetLaptops.storage1,
       price: targetLaptops.price1,
     },
-    row2 && {
+    hasMultipleOptions && {
       ram: targetLaptops.ram2,
       storage: targetLaptops.storage2,
       price: targetLaptops.price2,
     },
-    row3 && {
+    hasThreeOptions && {
       ram: targetLaptops.ram3,
       storage: targetLaptops.storage3,
       price: targetLaptops.price3,
@@ -97,7 +94,7 @@ function LaptopBlog() {
     .filter((row) => row.ram && row.storage && row.price);
 
   const InfoSection = ({ label, value }) => (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2 max-w-[1200px]">
       <div className="flex items-center gap-1 p-2 rounded-lg bg-green-100">
         <h1 className="text-xs whitespace-nowrap sm:text-sm md:text-lg font-extrabold text-green-600">
           {label}:
@@ -115,8 +112,8 @@ function LaptopBlog() {
         <div className="flex h-auto items-center justify-center w-full px-4 md:px-8 lg:px-1">
           <div className="h-full w-auto max-w-[1300px]">
             <div className="w-auto">
-              <div className="flex flex-col md:flex-row items-start justify-between border-b-4 border-black/10">
-                <div className="hidden lg:flex mt-8 w-full md:w-1/3 h-auto">
+              <div className="flex flex-col md:flex-row items-start justify-between">
+                <div className="hidden md:flex mt-8 w-full md:w-1/3 h-auto">
                   <div className="flex flex-col gap-4 items-center h-full mt-4">
                     <h1 className="text-2xl">Popular</h1>
                     <div className="hidescroller w-full pt-4 flex flex-col gap-8 items-center overflow-y-auto p-4 h-[800px]">
@@ -138,15 +135,17 @@ function LaptopBlog() {
                               loading="lazy"
                             />
                           </Link>
-                          <h1 className="w-full text-center bg-zinc-600 rounded-b-lg">
-                            {item.name}
-                          </h1>
+                          {mostpopular && (
+                            <h1 className="w-full text-center bg-zinc-600 rounded-b-lg">
+                              {item.name}
+                            </h1>
+                          )}
                         </div>
                       ))}
                     </div>
                   </div>
                 </div>
-                <div className="w-full lg:border-l-4 lg:border-black/10 py-4">
+                <div className="w-full md:border-l-4 md:border-black/10 py-4">
                   <h1 className="mt-8 text-2xl md:text-3xl px-4 flex items-center justify-center lg:justify-start whitespace-nowrap tracking-tighter text-[#001] font-semibold border-b-[3px] border-black/10">
                     {targetLaptops.name || "..."}
                   </h1>
@@ -159,405 +158,190 @@ function LaptopBlog() {
                         loading="lazy"
                       />
                     </div>
-                    <div className="text-black text-sm tracking-wide md:text-xl font-bold text-ellipsis">
+                    <div className="text-black text-sm tracking-wide md:text-md lg:text-lg font-bold text-ellipsis">
                       {targetLaptops.blog || "..."}
                     </div>
                     <div className="w-full h-auto overflow-hidden flex flex-col gap-4 mt-2 text-2xl text-[#002] items-start justify-end">
                       {(targetLaptops.dimension ||
                         targetLaptops.build ||
                         targetLaptops.weight) && (
-                        <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                          <div className="hidden md:flex flex-col mr-6 leading-tighter">
-                            {["B", "O", "D", "Y"].map((item, index) => (
-                              <motion.div
-                                key={index}
-                                initial={{ x: 0, scale: 1 }}
-                                animate={{
-                                  x: 4,
-                                  scale: 1.2,
-                                  color: "#001",
-                                }}
-                                transition={{
-                                  delay: index * 0.9,
-                                  duration: 4,
-                                  repeat: Infinity,
-                                  repeatType: "reverse",
-                                  ease: easeInOut,
-                                }}
-                                className="text-lg md:text-xl text-center text-red font-bold"
-                              >
-                                {item}
-                              </motion.div>
-                            ))}
-                          </div>
-                          <div className="flex flex-col gap-3 w-full">
-                            {targetLaptops.dimension && (
-                              <InfoSection
-                                label="Dimension"
-                                value={targetLaptops.dimension}
-                              />
-                            )}
-                            {targetLaptops.build && (
-                              <InfoSection
-                                label="Build"
-                                value={targetLaptops.build}
-                              />
-                            )}
-                            {targetLaptops.weight && (
-                              <InfoSection
-                                label="Weight"
-                                value={targetLaptops.weight}
-                              />
-                            )}
-                          </div>
+                        <div className="flex flex-col gap-3 w-full px-4">
+                          {targetLaptops.dimension && (
+                            <InfoSection
+                              label="Dimension"
+                              value={targetLaptops.dimension}
+                            />
+                          )}
+                          {targetLaptops.build && (
+                            <InfoSection
+                              label="Build"
+                              value={targetLaptops.build}
+                            />
+                          )}
+                          {targetLaptops.weight && (
+                            <InfoSection
+                              label="Weight"
+                              value={targetLaptops.weight}
+                            />
+                          )}
                         </div>
                       )}
                       {(targetLaptops.dtype ||
                         targetLaptops.size ||
                         targetLaptops.resolution) && (
-                        <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                          <div className="hidden md:flex flex-col mr-6 leading-tighter">
-                            {["D", "I", "S", "P", "L", "A", "Y"].map(
-                              (item, index) => (
-                                <motion.div
-                                  key={index}
-                                  initial={{ x: 0, scale: 1 }}
-                                  animate={{
-                                    x: 4,
-                                    scale: 1.2,
-                                    color: "#001",
-                                  }}
-                                  transition={{
-                                    delay: index * 0.9,
-                                    duration: 4,
-                                    repeat: Infinity,
-                                    repeatType: "reverse",
-                                    ease: easeInOut,
-                                  }}
-                                  className="text-lg md:text-xl text-center text-red font-bold"
-                                >
-                                  {item}
-                                </motion.div>
-                              )
-                            )}
-                          </div>
-                          <div className="flex flex-col gap-3 w-full">
-                            {targetLaptops.dtype && (
-                              <InfoSection
-                                label="Type"
-                                value={targetLaptops.dtype}
-                              />
-                            )}
-                            {targetLaptops.size && (
-                              <InfoSection
-                                label="Size"
-                                value={targetLaptops.size}
-                              />
-                            )}
-                            {targetLaptops.resolution && (
-                              <InfoSection
-                                label="Resolution"
-                                value={targetLaptops.resolution}
-                              />
-                            )}
-                          </div>
+                        <div className="flex flex-col gap-3 w-full px-4">
+                          {targetLaptops.dtype && (
+                            <InfoSection
+                              label="Type"
+                              value={targetLaptops.dtype}
+                            />
+                          )}
+                          {targetLaptops.size && (
+                            <InfoSection
+                              label="Size"
+                              value={targetLaptops.size}
+                            />
+                          )}
+                          {targetLaptops.resolution && (
+                            <InfoSection
+                              label="Resolution"
+                              value={targetLaptops.resolution}
+                            />
+                          )}
                         </div>
                       )}
                       {(targetLaptops.frontcamera ||
                         targetLaptops.maincamera ||
                         targetLaptops.video) && (
-                        <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                          <div className="hidden md:flex flex-col mr-6 leading-tighter">
-                            {["C", "A", "M", "E", "R", "A"].map(
-                              (item, index) => (
-                                <motion.div
-                                  key={index}
-                                  initial={{ x: 0, scale: 1 }}
-                                  animate={{
-                                    x: 4,
-                                    scale: 1.2,
-                                    color: "#001",
-                                  }}
-                                  transition={{
-                                    delay: index * 0.9,
-                                    duration: 4,
-                                    repeat: Infinity,
-                                    repeatType: "reverse",
-                                    ease: easeInOut,
-                                  }}
-                                  className="text-lg md:text-xl text-center text-red font-bold"
-                                >
-                                  {item}
-                                </motion.div>
-                              )
-                            )}
-                          </div>
-                          <div className="flex flex-col gap-3 w-full">
-                            {targetLaptops.frontcamera && (
-                              <InfoSection
-                                label="FrontCamera"
-                                value={targetLaptops.frontcamera}
-                              />
-                            )}
-                            {targetLaptops.maincamera && (
-                              <InfoSection
-                                label="BackCamera"
-                                value={targetLaptops.maincamera}
-                              />
-                            )}
-                            {targetLaptops.video && (
-                              <InfoSection
-                                label="Video"
-                                value={targetLaptops.video}
-                              />
-                            )}
-                          </div>
+                        <div className="flex flex-col gap-3 w-full px-4">
+                          {targetLaptops.frontcamera && (
+                            <InfoSection
+                              label="FrontCamera"
+                              value={targetLaptops.frontcamera}
+                            />
+                          )}
+                          {targetLaptops.maincamera && (
+                            <InfoSection
+                              label="BackCamera"
+                              value={targetLaptops.maincamera}
+                            />
+                          )}
+                          {targetLaptops.video && (
+                            <InfoSection
+                              label="Video"
+                              value={targetLaptops.video}
+                            />
+                          )}
                         </div>
                       )}
                       {(targetLaptops.os ||
                         targetLaptops.processor ||
                         targetLaptops.graphics) && (
-                        <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                          <div className="hidden md:flex flex-col mr-6 leading-tighter">
-                            {["P", "L", "A", "T", "F", "O", "R", "M"].map(
-                              (item, index) => (
-                                <motion.div
-                                  key={index}
-                                  initial={{ x: 0, scale: 1 }}
-                                  animate={{
-                                    x: 4,
-                                    scale: 1.2,
-                                    color: "#001",
-                                  }}
-                                  transition={{
-                                    delay: index * 0.9,
-                                    duration: 4,
-                                    repeat: Infinity,
-                                    repeatType: "reverse",
-                                    ease: easeInOut,
-                                  }}
-                                  className="text-lg md:text-xl text-center text-red font-bold"
-                                >
-                                  {item}
-                                </motion.div>
-                              )
-                            )}
-                          </div>
-                          <div className="flex flex-col gap-3 w-full">
-                            {targetLaptops.os && (
-                              <InfoSection
-                                label="OS"
-                                value={targetLaptops.os}
-                              />
-                            )}
-                            {targetLaptops.processor && (
-                              <InfoSection
-                                label="Processor"
-                                value={targetLaptops.processor}
-                              />
-                            )}
-                            {targetLaptops.graphics && (
-                              <InfoSection
-                                label="Graphics"
-                                value={targetLaptops.graphics}
-                              />
-                            )}
-                          </div>
+                        <div className="w-full flex items-start gap-4 justify-start p-2 bg-zinc-50 flex-col rounded-lg px-4">
+                          {targetLaptops.os && (
+                            <InfoSection label="OS" value={targetLaptops.os} />
+                          )}
+                          {targetLaptops.processor && (
+                            <InfoSection
+                              label="Processor"
+                              value={targetLaptops.processor}
+                            />
+                          )}
+                          {targetLaptops.graphics && (
+                            <InfoSection
+                              label="Graphics"
+                              value={targetLaptops.graphics}
+                            />
+                          )}
                         </div>
                       )}
 
                       {rows.length > 0 && (
-                        <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                          <div className="hidden md:flex flex-col mr-6">
-                            {["M", "E", "M", "O", "R", "Y"].map(
-                              (item, index) => (
-                                <motion.div
-                                  key={index}
-                                  initial={{ x: 0, scale: 1 }}
-                                  animate={{
-                                    x: 4,
-                                    scale: 1.2,
-                                    color: "#001",
-                                  }}
-                                  transition={{
-                                    delay: index * 0.9,
-                                    duration: 4,
-                                    repeat: Infinity,
-                                    repeatType: "reverse",
-                                    ease: easeInOut,
-                                  }}
-                                  className="text-lg md:text-xl text-center text-red font-bold"
-                                >
-                                  {item}
-                                </motion.div>
-                              )
-                            )}
-                          </div>
-                          <div className="flex flex-col w-full gap-2 items-start justify-center">
-                            <div className="flex items-center gap-2 w-full">
-                              <div className="flex items-center gap-1 p-2 rounded-lg bg-green-100">
-                                <h1 className="text-xs sm:text-sm md:text-lg font-extrabold text-green-600">
-                                  RAM:
-                                </h1>
-                              </div>
-                              <div className="text-xs flex sm:text-sm md:text-lg w-full bg-zinc-200 px-3 py-2 rounded-md text-black">
-                                {rows.map(
-                                  (row, index) =>
-                                    row && (
-                                      <div key={index}>
-                                        {row.ram + " "}
-                                        {index < rows.length - 1 && ","}
-                                      </div>
-                                    )
-                                )}
-                              </div>
+                        <div className="w-full flex items-start gap-4 justify-start p-2 bg-zinc-50 flex-col rounded-lg px-4">
+                          <div className="flex items-center gap-2 w-full">
+                            <div className="flex items-center gap-1 p-2 rounded-lg bg-green-100">
+                              <h1 className="text-xs sm:text-sm md:text-lg font-extrabold text-green-600">
+                                RAM:
+                              </h1>
                             </div>
-                            <div className="flex items-center gap-2 w-full">
-                              <div className="flex items-center gap-1 p-2 rounded-lg bg-green-100">
-                                <h1 className="text-xs sm:text-sm md:text-lg font-extrabold text-green-600">
-                                  Storage:
-                                </h1>
-                              </div>
-                              <div className="text-xs flex sm:text-sm md:text-lg w-full bg-zinc-200 px-3 py-2 rounded-md text-black">
-                                {rows.map(
-                                  (row, index) =>
-                                    row && (
-                                      <div key={index}>
-                                        {row.storage + " "}
-                                        {index < rows.length - 1 && ","}
-                                      </div>
-                                    )
-                                )}
-                              </div>
+                            <div className="text-xs flex sm:text-sm md:text-lg w-full bg-zinc-200 px-3 py-2 rounded-md text-black">
+                              {rows.map(
+                                (row, index) =>
+                                  row && (
+                                    <div key={index}>
+                                      {row.ram + " "}
+                                      {index < rows.length - 1 && ","}
+                                    </div>
+                                  )
+                              )}
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2 w-full">
+                            <div className="flex items-center gap-1 p-2 rounded-lg bg-green-100">
+                              <h1 className="text-xs sm:text-sm md:text-lg font-extrabold text-green-600">
+                                Storage:
+                              </h1>
+                            </div>
+                            <div className="text-xs flex sm:text-sm md:text-lg w-full bg-zinc-200 px-3 py-2 rounded-md text-black">
+                              {rows.map(
+                                (row, index) =>
+                                  row && (
+                                    <div key={index}>
+                                      {row.storage + " "}
+                                      {index < rows.length - 1 && ","}
+                                    </div>
+                                  )
+                              )}
                             </div>
                           </div>
                         </div>
                       )}
                       {(targetLaptops.capacity || targetLaptops.charging) && (
-                        <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                          <div className="hidden md:flex flex-col mr-6">
-                            {["B", "A", "T", "T", "E", "R", "Y"].map(
-                              (item, index) => (
-                                <motion.div
-                                  key={index}
-                                  initial={{ x: 0, scale: 1 }}
-                                  animate={{
-                                    x: 4,
-                                    scale: 1.2,
-                                    color: "#001",
-                                  }}
-                                  transition={{
-                                    delay: index * 0.9,
-                                    duration: 4,
-                                    repeat: Infinity,
-                                    repeatType: "reverse",
-                                    ease: easeInOut,
-                                  }}
-                                  className="text-lg md:text-xl text-center text-red font-bold"
-                                >
-                                  {item}
-                                </motion.div>
-                              )
-                            )}
-                          </div>
-                          <div className="flex flex-col gap-3 w-full">
-                            {targetLaptops.capacity && (
-                              <InfoSection
-                                label="Capacity"
-                                value={targetLaptops.capacity}
-                              />
-                            )}
-                            {targetLaptops.charging && (
-                              <InfoSection
-                                label="Charging"
-                                value={targetLaptops.charging}
-                              />
-                            )}
-                          </div>
+                        <div className="flex flex-col gap-3 w-full px-4">
+                          {targetLaptops.capacity && (
+                            <InfoSection
+                              label="Capacity"
+                              value={targetLaptops.capacity}
+                            />
+                          )}
+                          {targetLaptops.charging && (
+                            <InfoSection
+                              label="Charging"
+                              value={targetLaptops.charging}
+                            />
+                          )}
                         </div>
                       )}
                       {(targetLaptops.wifi || targetLaptops.bluetooth) && (
-                        <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                          <div className="hidden md:flex flex-col mr-6">
-                            {["N", "E", "T", "W", "O", "R", "K", "S"].map(
-                              (item, index) => (
-                                <motion.div
-                                  key={index}
-                                  initial={{ x: 0, scale: 1 }}
-                                  animate={{
-                                    x: 4,
-                                    scale: 1.2,
-                                    color: "#001",
-                                  }}
-                                  transition={{
-                                    delay: index * 0.9,
-                                    duration: 4,
-                                    repeat: Infinity,
-                                    repeatType: "reverse",
-                                    ease: easeInOut,
-                                  }}
-                                  className="text-lg md:text-xl text-center text-red font-bold"
-                                >
-                                  {item}
-                                </motion.div>
-                              )
-                            )}
-                          </div>
-                          <div className="flex flex-col gap-3 w-full">
-                            {targetLaptops.wifi && (
-                              <InfoSection
-                                label="Wi-Fi"
-                                value={targetLaptops.wifi}
-                              />
-                            )}
-                            {targetLaptops.bluetooth && (
-                              <InfoSection
-                                label="Bluetooth"
-                                value={targetLaptops.bluetooth}
-                              />
-                            )}
-                          </div>
+                        <div className="flex flex-col gap-3 w-full px-4">
+                          {targetLaptops.wifi && (
+                            <InfoSection
+                              label="Wi-Fi"
+                              value={targetLaptops.wifi}
+                            />
+                          )}
+                          {targetLaptops.bluetooth && (
+                            <InfoSection
+                              label="Bluetooth"
+                              value={targetLaptops.bluetooth}
+                            />
+                          )}
                         </div>
                       )}
                       {(targetLaptops.typec || targetLaptops.audiojack) && (
-                        <div className="w-full flex items-center justify-start p-2 bg-zinc-50 rounded-lg">
-                          <div className="hidden md:flex flex-col mr-6">
-                            {["P", "O", "R", "T", "S"].map((item, index) => (
-                              <motion.div
-                                key={index}
-                                initial={{ x: 0, scale: 1 }}
-                                animate={{
-                                  x: 4,
-                                  scale: 1.2,
-                                  color: "#001",
-                                }}
-                                transition={{
-                                  delay: index * 0.9,
-                                  duration: 4,
-                                  repeat: Infinity,
-                                  repeatType: "reverse",
-                                  ease: easeInOut,
-                                }}
-                                className="text-lg md:text-xl text-center font-bold"
-                              >
-                                {item}
-                              </motion.div>
-                            ))}
-                          </div>
-                          <div className="flex flex-col gap-3 w-full">
-                            {targetLaptops.typec && (
-                              <InfoSection
-                                label="Type-C"
-                                value={targetLaptops.typec}
-                              />
-                            )}
-                            {targetLaptops.audiojack && (
-                              <InfoSection
-                                label="Audio Jack"
-                                value={targetLaptops.audiojack}
-                              />
-                            )}
-                          </div>
+                        <div className="flex flex-col gap-3 w-full px-4">
+                          {targetLaptops.typec && (
+                            <InfoSection
+                              label="Type-C"
+                              value={targetLaptops.typec}
+                            />
+                          )}
+                          {targetLaptops.audiojack && (
+                            <InfoSection
+                              label="Audio Jack"
+                              value={targetLaptops.audiojack}
+                            />
+                          )}
                         </div>
                       )}
                     </div>
