@@ -9,9 +9,8 @@ import { LiaLaptopSolid } from "react-icons/lia";
 import { FaTabletAlt } from "react-icons/fa";
 import samsumgtab from "../../images/galaxytabs9ultra.jpg";
 import acer from "../../images/acernitrov15.png";
-// import 
 import Honor from "../../images/Honor Magic V3.webp";
-import asus from "../../images/asusrogzephyrusg14.jpg";
+import asus from "../../images/Asus-ROG-Zephyrus-G14-image.jpg";
 
 import { useQuery } from "react-query";
 const filterProducts = async (url) => {
@@ -210,7 +209,7 @@ function Landing() {
                   <img
                     src={item.image}
                     alt={item.name}
-                    className="border-b-2 border-white/70 object-cover h-auto w-full bg-black border-r-2 border-white hover:scale-105 duration-200 ease-out"
+                    className="border-b-2 border-white/70 object-cover h-[300px] w-full bg-black border-r-2 border-white hover:scale-105 duration-200 ease-out"
                     loading="lazy"
                   />
                   <div className="absolute text-center bg-black border-white border-t-2 border-b-2 text-[#00FFA3] w-full bottom-0 h-auto p-2 mx-auto left-0 right-0">
