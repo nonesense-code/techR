@@ -8,7 +8,6 @@ import { useQuery } from "react-query";
 const filterProducts = async (url) => {
   try {
     const response = await axios.get(url);
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -86,7 +85,6 @@ function Phones() {
 
   return (
     <div className="min-h-screen flex flex-col justify-between">
-      {/* Full screen height */}
       {isLoading ? (
         <motion.div
           initial={{ opacity: 0 }}
@@ -107,7 +105,7 @@ function Phones() {
                 Gaming Phones
               </h2>
               <div className="flex flex-col items-center justify-center w-full gap-6">
-                {Array.isArray(gamingphone) &&
+                {gamingphone &&
                   gamingphone.map(
                     (phone, index) =>
                       phone.productType === "phone" && (
@@ -171,7 +169,7 @@ function Phones() {
                 Professional phones
               </h2>
               <div className="flex flex-col items-center justify-center w-full gap-6">
-                {Array.isArray(professionalphone) &&
+                {professionalphone &&
                   professionalphone.map(
                     (phone, index) =>
                       phone.productType === "phone" && (
@@ -235,7 +233,7 @@ function Phones() {
                 Student phones
               </h2>
               <div className="flex flex-col items-center justify-center w-full gap-6">
-                {Array.isArray(studentsphone) &&
+                {studentsphone &&
                   studentsphone.map(
                     (phone, index) =>
                       phone.productType === "phone" && (
@@ -299,7 +297,7 @@ function Phones() {
                 Normal Usage phones
               </h2>
               <div className="flex flex-col items-center justify-center w-full gap-6">
-                {Array.isArray(normalusagephone) &&
+                {normalusagephone &&
                   normalusagephone.map(
                     (phone, index) =>
                       phone.productType === "phone" && (
