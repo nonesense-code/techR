@@ -9,8 +9,10 @@ import { LiaLaptopSolid } from "react-icons/lia";
 import { FaTabletAlt } from "react-icons/fa";
 import samsumgtab from "../../images/galaxytabs9ultra.jpg";
 import acer from "../../images/acernitrov15.png";
-import apple from "../../images/applemac.png";
-import redmi from "../../images/redminote11pro.jpeg";
+// import 
+import Honor from "../../images/Honor Magic V3.webp";
+import asus from "../../images/asusrogzephyrusg14.jpg";
+
 import { useQuery } from "react-query";
 const filterProducts = async (url) => {
   try {
@@ -32,19 +34,19 @@ function Landing() {
 
   const popular_items = [
     {
-      name: "Apple Macbook Pro",
-      image: apple,
-      link: "/laptop/applemacbookpro",
+      name: "Asus ROG Zephyrus G14",
+      image: asus,
+      link: "/laptop/asusrogzephyrusg14",
     },
     {
-      name: "Acer Nitro V 15",
+      name: "Acer Nitro V15",
       image: acer,
       link: "/laptop/acernitrov15",
     },
     {
-      name: "Redmi Note 11 Pro",
-      image: redmi,
-      link: "/phone/redminote11pro",
+      name: "Honor Magic V3",
+      image: Honor,
+      link: "/phone/honormagicv3",
     },
     {
       name: "Galaxy Tab S9 Ultra",
@@ -305,7 +307,7 @@ function Landing() {
                           <img
                             src={item.image}
                             alt={item.name}
-                            className="h-32 w-32 md:h-64 md:w-80 object-cover object-center border-2 border-[#0006] rounded-xl"
+                            className="h-32 w-32 md:h-64 md:w-80 object-contain object-center px-4 border-2 border-[#0006] rounded-xl"
                             loading="lazy"
                           />
                           <h1 className="text-center mt-2">
@@ -399,7 +401,7 @@ function Landing() {
                           <img
                             src={item.image}
                             alt={item.name}
-                            className="h-32 w-32 md:h-64 md:w-80 object-cover object-center border-2 border-[#0006] rounded-xl"
+                            className="h-32 w-32 md:h-64 md:w-80 object-contain object-center px-4 border-2 border-[#0006] rounded-xl"
                             loading="lazy"
                           />
                           <h1 className="text-center mt-2">
@@ -493,7 +495,7 @@ function Landing() {
                           <img
                             src={item.image}
                             alt={item.name}
-                            className="h-32 w-32 md:h-64 md:w-80 object-cover object-center border-2 border-[#0006] rounded-xl"
+                            className="h-32 w-32 md:h-64 md:w-80 object-contain object-center px-4 border-2 border-[#0006] rounded-xl"
                             loading="lazy"
                           />
                           <h1 className="text-center mt-2">

@@ -12,7 +12,7 @@ function About() {
           </h2>
           <p className="text-sm md:text-lg text-justify leading-7 mx-auto max-w-6xl">
             In this ever-evolving world, technology is advancing at an
-            unprecedented pace. At{" "}
+            unprecedented pace. At
             <a
               href="https://www.techrbytes.com"
               className="text-sky-500 underline font-semibold"

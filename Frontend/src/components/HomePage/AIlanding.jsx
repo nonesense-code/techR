@@ -3,7 +3,7 @@ import Trending from "./Trending";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import { motion } from "framer-motion";
 import redmi from "../../images/redminote11pro.jpeg";
-import asus from "../../images/asusrogzephyrusg14.jpg";
+import agni from "../../images/lavaagni3image.avif";
 import iPhone from "../../images/iPhone16promax_1.avif";
 
 const Landing = () => {
@@ -13,7 +13,7 @@ const Landing = () => {
   };
   const hotDrop2 = {
     note: "The recently unveiled Samsung Galaxy Tab S9 Ultra features an impressive 14.6-inch AMOLED screen and delivers powerful performance, ideal for enhancing productivity and providing an immersive entertainment experience!",
-    link: "/laptop/asusrogzephyrusg14",
+    link: "/phone/lavaagni3",
   };
 
   const [show1, setShow1] = useState(false);
@@ -97,46 +97,27 @@ const Landing = () => {
                 className="flex items-center w-full justify-center h-auto md:h-auto md:w-auto flex-col relative"
               >
                 <img
-                  src={
-                    "https://res.cloudinary.com/dsvlevzds/image/upload/v1727536743/s0v9feuerycegvvegoja.png" ||
-                    asus
-                  }
+                  src="https://res.cloudinary.com/dsvlevzds/image/upload/v1728584861/d5femsdqwtkr2huc8eei.jpg"
                   alt={hotDrop2.name}
-                  className="mb-4 h-[300px] w-[800px] object-contain md:rounded-none p-2 bg-gradient-to-r from-zinc-900 via-gray-800 to-stone-600"
+                  className="mb-4 w-full h-full md:w-[800px] md:h-[300px] object-cover object-top rounded-md md:rounded-none"
                   loading="lazy"
                 />
                 {show2 && (
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="hidden lg:flex absolute right-80 top-32 justify-center w-full z-50">
-                      {[
-                        "A",
-                        "s",
-                        "u",
-                        "s",
-                        "R",
-                        "o",
-                        "g",
-                        "z",
-                        "e",
-                        "p",
-                        "h",
-                        "y",
-                        "r",
-                        "u",
-                        "s",
-                        "g",
-                        "14",
-                      ].map((item, index) => (
-                        <motion.div
-                          key={index}
-                          initial={{ opacity: 0, y: 30 }}
-                          animate={{ opacity: 1, y: -10 }}
-                          transition={{ duration: 0.2, delay: index * 0.01 }}
-                          className="text-4xl text-[#00FFA3] mx-[1px]"
-                        >
-                          {item}
-                        </motion.div>
-                      ))}
+                      {["L", "a", "v", "a", "A", "g", "n", "i", "3"].map(
+                        (item, index) => (
+                          <motion.div
+                            key={index}
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: -10 }}
+                            transition={{ duration: 0.2, delay: index * 0.01 }}
+                            className="text-4xl text-[#00FFA3] mx-[1px]"
+                          >
+                            {item}
+                          </motion.div>
+                        )
+                      )}
                     </div>
                   </div>
                 )}

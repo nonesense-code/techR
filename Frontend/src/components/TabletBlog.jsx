@@ -17,14 +17,14 @@ const filterProducts = async (url) => {
   }
 };
 
-const fetchTargetPhone = async (targetURL, navigate) => {
+const fetchTargetTablet = async (targetURL, navigate) => {
   try {
     const response = await axios.get(targetURL);
 
     if (typeof response.data === "object" && response.data !== null) {
       return response.data;
     } else {
-      navigate("/phone");
+      navigate("/laptop");
       return;
     }
   } catch (error) {
@@ -33,7 +33,7 @@ const fetchTargetPhone = async (targetURL, navigate) => {
     } else {
       console.error("Error during request setup:", error.message);
     }
-    navigate("/phone");
+    navigate("/laptop");
     return;
   }
 };
@@ -55,13 +55,13 @@ function TabletBlog() {
     }
   );
 
-  const targetTabletURL = import.meta.env.VITE_TARGETTABLET_URL;
+  const targettabletURL = import.meta.env.VITE_TARGETTABLET_URL;
   const { itname } = useParams();
 
-  const targetURL = `${targetTabletURL}/${itname}`;
+  const targetURL = `${targettabletURL}/${itname}`;
   const { data: targetTablets = [], isLoading: isLoadingTarget } = useQuery(
     ["targetTablets", targetURL],
-    () => fetchTargetPhone(targetURL, navigate),
+    () => fetchTargetTablet(targetURL, navigate),
     {
       staleTime: 1000 * 60 * 5,
     }
@@ -154,7 +154,7 @@ function TabletBlog() {
                       <img
                         src={targetTablets.image}
                         alt={targetTablets.name}
-                        className="w-auto min-h-80 sm:h-96 sm:object-cover object-contain"
+                        className="w-auto h-32 min-h-72 sm:h-96 sm:object-cover object-contain"
                         loading="lazy"
                       />
                     </div>
@@ -237,7 +237,7 @@ function TabletBlog() {
                       {(targetTablets.os ||
                         targetTablets.processor ||
                         targetTablets.graphics) && (
-                        <div className="w-full flex items-start gap-4 justify-start p-2 bg-zinc-50 flex-col rounded-lg px-4">
+                        <div className="w-full flex gap-4 justify-start p-2 bg-zinc-50 flex-col rounded-lg px-4">
                           {targetTablets.os && (
                             <InfoSection label="OS" value={targetTablets.os} />
                           )}

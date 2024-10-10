@@ -49,7 +49,6 @@ module.exports.modifyProducts = async (req, res) => {
       previousimage,
     } = req.body;
     let imageURL = previousimage;
-    console.log(targetaudience);
     if (req.file) {
       const imageBuffer = req.file.buffer;
       const image = imageBuffer.toString("base64");

@@ -17,14 +17,14 @@ const filterProducts = async (url) => {
   }
 };
 
-const fetchTargetPhone = async (targetURL, navigate) => {
+const fetchTargetLaptop = async (targetURL, navigate) => {
   try {
     const response = await axios.get(targetURL);
 
     if (typeof response.data === "object" && response.data !== null) {
       return response.data;
     } else {
-      navigate("/phone");
+      navigate("/laptop");
       return;
     }
   } catch (error) {
@@ -33,7 +33,7 @@ const fetchTargetPhone = async (targetURL, navigate) => {
     } else {
       console.error("Error during request setup:", error.message);
     }
-    navigate("/phone");
+    navigate("/laptop");
     return;
   }
 };
@@ -55,13 +55,13 @@ function LaptopBlog() {
     }
   );
 
-  const targetLaptopURL = import.meta.env.VITE_TARGETLAPTOP_URL;
+  const targetlaptopURL = import.meta.env.VITE_TARGETLAPTOP_URL;
   const { itname } = useParams();
 
-  const targetURL = `${targetLaptopURL}/${itname}`;
-  const { data: targetLaptops = [], isLoading: isLoadingTarget } = useQuery(
-    ["targetLaptops", targetURL],
-    () => fetchTargetPhone(targetURL, navigate),
+  const targetURL = `${targetlaptopURL}/${itname}`;
+  const { data: targetlaptops = [], isLoading: isLoadingTarget } = useQuery(
+    ["targetlaptops", targetURL],
+    () => fetchTargetLaptop(targetURL, navigate),
     {
       staleTime: 1000 * 60 * 5,
     }
@@ -69,25 +69,25 @@ function LaptopBlog() {
   const isLoading = loadingMostpopular || isLoadingTarget;
 
   const hasMultipleOptions =
-    targetLaptops.ram2 || targetLaptops.storage2 || targetLaptops.price2;
+    targetlaptops.ram2 || targetlaptops.storage2 || targetlaptops.price2;
   const hasThreeOptions =
-    targetLaptops.ram3 || targetLaptops.storage3 || targetLaptops.price3;
+    targetlaptops.ram3 || targetlaptops.storage3 || targetlaptops.price3;
 
   const rows = [
     {
-      ram: targetLaptops.ram1,
-      storage: targetLaptops.storage1,
-      price: targetLaptops.price1,
+      ram: targetlaptops.ram1,
+      storage: targetlaptops.storage1,
+      price: targetlaptops.price1,
     },
     hasMultipleOptions && {
-      ram: targetLaptops.ram2,
-      storage: targetLaptops.storage2,
-      price: targetLaptops.price2,
+      ram: targetlaptops.ram2,
+      storage: targetlaptops.storage2,
+      price: targetlaptops.price2,
     },
     hasThreeOptions && {
-      ram: targetLaptops.ram3,
-      storage: targetLaptops.storage3,
-      price: targetLaptops.price3,
+      ram: targetlaptops.ram3,
+      storage: targetlaptops.storage3,
+      price: targetlaptops.price3,
     },
   ]
     .filter(Boolean)
@@ -147,110 +147,110 @@ function LaptopBlog() {
                 </div>
                 <div className="w-full md:border-l-4 md:border-black/10 py-4">
                   <h1 className="mt-8 text-2xl md:text-3xl px-4 flex items-center justify-center lg:justify-start whitespace-nowrap tracking-tighter text-[#001] font-semibold border-b-[3px] border-black/10">
-                    {targetLaptops.name || "..."}
+                    {targetlaptops.name || "..."}
                   </h1>
                   <div className="w-full h-auto p-4 flex flex-col gap-4">
                     <div className="w-full h-auto overflow-hidden flex items-center justify-center bg-white rounded-xl">
                       <img
-                        src={targetLaptops.image}
-                        alt={targetLaptops.name}
-                        className="w-auto min-h-80 sm:h-96 sm:object-cover object-contain"
+                        src={targetlaptops.image}
+                        alt={targetlaptops.name}
+                        className="w-auto h-32 min-h-72 sm:h-96 sm:object-cover object-contain"
                         loading="lazy"
                       />
                     </div>
                     <div className="text-black text-sm tracking-wide md:text-md lg:text-lg font-bold text-ellipsis">
-                      {targetLaptops.blog || "..."}
+                      {targetlaptops.blog || "..."}
                     </div>
                     <div className="w-full h-auto overflow-hidden flex flex-col gap-4 mt-2 text-2xl text-[#002] items-start justify-end">
-                      {(targetLaptops.dimension ||
-                        targetLaptops.build ||
-                        targetLaptops.weight) && (
+                      {(targetlaptops.dimension ||
+                        targetlaptops.build ||
+                        targetlaptops.weight) && (
                         <div className="flex flex-col gap-3 w-full px-4">
-                          {targetLaptops.dimension && (
+                          {targetlaptops.dimension && (
                             <InfoSection
                               label="Dimension"
-                              value={targetLaptops.dimension}
+                              value={targetlaptops.dimension}
                             />
                           )}
-                          {targetLaptops.build && (
+                          {targetlaptops.build && (
                             <InfoSection
                               label="Build"
-                              value={targetLaptops.build}
+                              value={targetlaptops.build}
                             />
                           )}
-                          {targetLaptops.weight && (
+                          {targetlaptops.weight && (
                             <InfoSection
                               label="Weight"
-                              value={targetLaptops.weight}
+                              value={targetlaptops.weight}
                             />
                           )}
                         </div>
                       )}
-                      {(targetLaptops.dtype ||
-                        targetLaptops.size ||
-                        targetLaptops.resolution) && (
+                      {(targetlaptops.dtype ||
+                        targetlaptops.size ||
+                        targetlaptops.resolution) && (
                         <div className="flex flex-col gap-3 w-full px-4">
-                          {targetLaptops.dtype && (
+                          {targetlaptops.dtype && (
                             <InfoSection
                               label="Type"
-                              value={targetLaptops.dtype}
+                              value={targetlaptops.dtype}
                             />
                           )}
-                          {targetLaptops.size && (
+                          {targetlaptops.size && (
                             <InfoSection
                               label="Size"
-                              value={targetLaptops.size}
+                              value={targetlaptops.size}
                             />
                           )}
-                          {targetLaptops.resolution && (
+                          {targetlaptops.resolution && (
                             <InfoSection
                               label="Resolution"
-                              value={targetLaptops.resolution}
+                              value={targetlaptops.resolution}
                             />
                           )}
                         </div>
                       )}
-                      {(targetLaptops.frontcamera ||
-                        targetLaptops.maincamera ||
-                        targetLaptops.video) && (
+                      {(targetlaptops.frontcamera ||
+                        targetlaptops.maincamera ||
+                        targetlaptops.video) && (
                         <div className="flex flex-col gap-3 w-full px-4">
-                          {targetLaptops.frontcamera && (
+                          {targetlaptops.frontcamera && (
                             <InfoSection
                               label="FrontCamera"
-                              value={targetLaptops.frontcamera}
+                              value={targetlaptops.frontcamera}
                             />
                           )}
-                          {targetLaptops.maincamera && (
+                          {targetlaptops.maincamera && (
                             <InfoSection
                               label="BackCamera"
-                              value={targetLaptops.maincamera}
+                              value={targetlaptops.maincamera}
                             />
                           )}
-                          {targetLaptops.video && (
+                          {targetlaptops.video && (
                             <InfoSection
                               label="Video"
-                              value={targetLaptops.video}
+                              value={targetlaptops.video}
                             />
                           )}
                         </div>
                       )}
-                      {(targetLaptops.os ||
-                        targetLaptops.processor ||
-                        targetLaptops.graphics) && (
-                        <div className="w-full flex items-start gap-4 justify-start p-2 bg-zinc-50 flex-col rounded-lg px-4">
-                          {targetLaptops.os && (
-                            <InfoSection label="OS" value={targetLaptops.os} />
+                      {(targetlaptops.os ||
+                        targetlaptops.processor ||
+                        targetlaptops.graphics) && (
+                        <div className="w-full flex gap-4 justify-start p-2 bg-zinc-50 flex-col rounded-lg px-4">
+                          {targetlaptops.os && (
+                            <InfoSection label="OS" value={targetlaptops.os} />
                           )}
-                          {targetLaptops.processor && (
+                          {targetlaptops.processor && (
                             <InfoSection
                               label="Processor"
-                              value={targetLaptops.processor}
+                              value={targetlaptops.processor}
                             />
                           )}
-                          {targetLaptops.graphics && (
+                          {targetlaptops.graphics && (
                             <InfoSection
                               label="Graphics"
-                              value={targetLaptops.graphics}
+                              value={targetlaptops.graphics}
                             />
                           )}
                         </div>
@@ -296,50 +296,50 @@ function LaptopBlog() {
                           </div>
                         </div>
                       )}
-                      {(targetLaptops.capacity || targetLaptops.charging) && (
+                      {(targetlaptops.capacity || targetlaptops.charging) && (
                         <div className="flex flex-col gap-3 w-full px-4">
-                          {targetLaptops.capacity && (
+                          {targetlaptops.capacity && (
                             <InfoSection
                               label="Capacity"
-                              value={targetLaptops.capacity}
+                              value={targetlaptops.capacity}
                             />
                           )}
-                          {targetLaptops.charging && (
+                          {targetlaptops.charging && (
                             <InfoSection
                               label="Charging"
-                              value={targetLaptops.charging}
+                              value={targetlaptops.charging}
                             />
                           )}
                         </div>
                       )}
-                      {(targetLaptops.wifi || targetLaptops.bluetooth) && (
+                      {(targetlaptops.wifi || targetlaptops.bluetooth) && (
                         <div className="flex flex-col gap-3 w-full px-4">
-                          {targetLaptops.wifi && (
+                          {targetlaptops.wifi && (
                             <InfoSection
                               label="Wi-Fi"
-                              value={targetLaptops.wifi}
+                              value={targetlaptops.wifi}
                             />
                           )}
-                          {targetLaptops.bluetooth && (
+                          {targetlaptops.bluetooth && (
                             <InfoSection
                               label="Bluetooth"
-                              value={targetLaptops.bluetooth}
+                              value={targetlaptops.bluetooth}
                             />
                           )}
                         </div>
                       )}
-                      {(targetLaptops.typec || targetLaptops.audiojack) && (
+                      {(targetlaptops.typec || targetlaptops.audiojack) && (
                         <div className="flex flex-col gap-3 w-full px-4">
-                          {targetLaptops.typec && (
+                          {targetlaptops.typec && (
                             <InfoSection
                               label="Type-C"
-                              value={targetLaptops.typec}
+                              value={targetlaptops.typec}
                             />
                           )}
-                          {targetLaptops.audiojack && (
+                          {targetlaptops.audiojack && (
                             <InfoSection
                               label="Audio Jack"
-                              value={targetLaptops.audiojack}
+                              value={targetlaptops.audiojack}
                             />
                           )}
                         </div>

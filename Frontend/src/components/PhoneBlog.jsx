@@ -154,7 +154,7 @@ function PhoneBlog() {
                       <img
                         src={targetPhones.image}
                         alt={targetPhones.name}
-                        className="w-auto min-h-80 sm:h-96 sm:object-cover object-contain"
+                        className="w-auto h-32 min-h-72 sm:h-96 sm:object-cover object-contain"
                         loading="lazy"
                       />
                     </div>
