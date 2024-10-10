@@ -8,9 +8,11 @@ import { useQuery } from "react-query";
 const filterProducts = async (url) => {
   try {
     const response = await axios.get(url);
+    console.log("Response data for:", url, response.data);
     return response.data;
   } catch (error) {
     console.error("Error fetching data:", error);
+    return [];
   }
 };
 
@@ -105,7 +107,7 @@ function Phones() {
                 Gaming Phones
               </h2>
               <div className="flex flex-col items-center justify-center w-full gap-6">
-                {gamingphone &&
+                {Array.isArray(gamingphone) &&
                   gamingphone.map(
                     (phone, index) =>
                       phone.productType === "phone" && (
@@ -169,16 +171,16 @@ function Phones() {
                 Professional phones
               </h2>
               <div className="flex flex-col items-center justify-center w-full gap-6">
-                {professionalphone &&
+                {Array.isArray(professionalphone) &&
                   professionalphone.map(
                     (phone, index) =>
                       phone.productType === "phone" && (
                         <motion.div
                           key={index}
-                          className="bg-white shadow-lg rounded-lg overflow-hidden p-2 md:flex flex-row w-full"
-                          initial={{ opacity: 0, scale: 0.9 }}
+                          className="bg-transparent shadow-md shadow-black rounded-lg overflow-hidden p-2 md:flex flex-row w-full"
+                          initial={{ opacity: 0, scale: 0.96 }}
                           animate={{ opacity: 1, scale: 1 }}
-                          transition={{ duration: 0.3 }}
+                          transition={{ duration: 0.2 }}
                         >
                           <Link
                             to={`${phone.name
@@ -233,16 +235,16 @@ function Phones() {
                 Student phones
               </h2>
               <div className="flex flex-col items-center justify-center w-full gap-6">
-                {studentsphone &&
+                {Array.isArray(studentsphone) &&
                   studentsphone.map(
                     (phone, index) =>
                       phone.productType === "phone" && (
                         <motion.div
                           key={index}
-                          className="bg-white shadow-lg rounded-lg overflow-hidden p-2 md:flex flex-row w-full"
-                          initial={{ opacity: 0, scale: 0.9 }}
+                          className="bg-transparent shadow-md shadow-black rounded-lg overflow-hidden p-2 md:flex flex-row w-full"
+                          initial={{ opacity: 0, scale: 0.96 }}
                           animate={{ opacity: 1, scale: 1 }}
-                          transition={{ duration: 0.3 }}
+                          transition={{ duration: 0.2 }}
                         >
                           <Link
                             to={`${phone.name
@@ -297,16 +299,16 @@ function Phones() {
                 Normal Usage phones
               </h2>
               <div className="flex flex-col items-center justify-center w-full gap-6">
-                {normalusagephone &&
+                {Array.isArray(normalusagephone) &&
                   normalusagephone.map(
                     (phone, index) =>
                       phone.productType === "phone" && (
                         <motion.div
                           key={index}
-                          className="bg-white shadow-lg rounded-lg overflow-hidden p-2 md:flex flex-row w-full"
-                          initial={{ opacity: 0, scale: 0.9 }}
+                          className="bg-transparent shadow-md shadow-black rounded-lg overflow-hidden p-2 md:flex flex-row w-full"
+                          initial={{ opacity: 0, scale: 0.96 }}
                           animate={{ opacity: 1, scale: 1 }}
-                          transition={{ duration: 0.3 }}
+                          transition={{ duration: 0.2 }}
                         >
                           <Link
                             to={`${phone.name
