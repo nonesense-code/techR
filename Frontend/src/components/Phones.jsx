@@ -8,7 +8,7 @@ import { useQuery } from "react-query";
 const filterProducts = async (url) => {
   try {
     const response = await axios.get(url);
-    console.log("Response data for:", url, response.data);
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -56,6 +56,7 @@ function Phones() {
       staleTime: 1000 * 60 * 5,
     }
   );
+  console.log("gaming phones data", gamingphone);
 
   const {
     isLoading: loadingnormalusagephone,
