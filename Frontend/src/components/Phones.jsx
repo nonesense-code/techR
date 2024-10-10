@@ -56,7 +56,6 @@ function Phones() {
       staleTime: 1000 * 60 * 5,
     }
   );
-  console.log("gaming phones data", gamingphone);
 
   const {
     isLoading: loadingnormalusagephone,
