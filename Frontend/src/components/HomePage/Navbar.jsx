@@ -142,7 +142,10 @@ function Navbar() {
                 onKeyDown={handleSearch}
                 id="searchedText"
               />
-              <button className="searchBtn h-8 w-8 flex items-center justify-center p-2 outline-none">
+              <button
+                aria-label="SearchBtn"
+                className="searchBtn h-8 w-8 flex items-center justify-center p-2 outline-none"
+              >
                 <FaSearch className="text-white" />
               </button>
             </div>

@@ -10,7 +10,7 @@ const Trending = () => {
         "Honor Magic V3",
         "Apple iPhone 16 Pro Max",
         "Samsung Galaxy S24 Ultra",
-        "Lava Agni 3",
+        "Lava Agni 3",  
         "Apple iPhone 15 Pro Max",
         "Google Pixel 9 Pro",
         "OnePlus 12",

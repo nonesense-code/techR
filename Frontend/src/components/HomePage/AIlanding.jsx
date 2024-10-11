@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import Trending from "./Trending";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import { motion } from "framer-motion";
-import redmi from "../../images/redminote11pro.jpeg";
-import agni from "../../images/lavaagni3image.avif";
 import iPhone from "../../images/iPhone16promax_1.avif";
 
 const Landing = () => {
@@ -45,7 +43,7 @@ const Landing = () => {
                       "https://res.cloudinary.com/dsvlevzds/image/upload/v1728104678/n1rtqevggzkw91opb0dw.avif" ||
                       iPhone
                     }
-                    alt={hotDrop1.name}
+                    alt="iPhone details"
                     className="mb-4 w-full h-full md:w-[800px] md:h-[300px] object-cover object-top rounded-md md:rounded-none"
                     loading="lazy"
                   />
@@ -83,7 +81,7 @@ const Landing = () => {
                 )}
               </div>
             </Link>
-            <div className="absolute text-sm md:text-xs bottom-4 md:bottom-[16px] w-full z-30 bg-black/60 text-white p-2">
+            <div className="absolute text-sm md:text-sm bottom-4 md:bottom-[16px] w-full z-30 bg-black/60 text-white p-2">
               <h1>{hotDrop1.note}</h1>
             </div>
           </div>
@@ -98,7 +96,7 @@ const Landing = () => {
               >
                 <img
                   src="https://res.cloudinary.com/dsvlevzds/image/upload/v1728584861/d5femsdqwtkr2huc8eei.jpg"
-                  alt={hotDrop2.name}
+                  alt="Agni details"
                   className="mb-4 w-full h-full md:w-[800px] md:h-[300px] object-cover object-top rounded-md md:rounded-none"
                   loading="lazy"
                 />
@@ -123,7 +121,7 @@ const Landing = () => {
                 )}
               </div>
             </Link>
-            <div className="absolute text-md md:text-xs bottom-4 md:bottom-[16px] w-full z-30 bg-black/60 text-white p-2">
+            <div className="absolute text-sm md:text-sm bottom-4 md:bottom-[16px] w-full z-30 bg-black/60 text-white p-2">
               <h1>{hotDrop2.note}</h1>
             </div>
           </div>

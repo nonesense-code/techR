@@ -9,7 +9,7 @@ import { LiaLaptopSolid } from "react-icons/lia";
 import { FaTabletAlt } from "react-icons/fa";
 import samsumgtab from "../../images/galaxytabs9ultra.jpg";
 import acer from "../../images/acernitrov15.png";
-import Honor from "../../images/Honor Magic V3.webp";
+import Huwai from "../../images/huaweimatext.jpg";
 import asus from "../../images/Asus-ROG-Zephyrus-G14-image.jpg";
 
 import { useQuery } from "react-query";
@@ -43,9 +43,9 @@ function Landing() {
       link: "/laptop/acernitrov15",
     },
     {
-      name: "Honor Magic V3",
-      image: Honor,
-      link: "/phone/honormagicv3",
+      name: "Huawei Mate XT",
+      image: Huwai,
+      link: "/phone/huaweimatext",
     },
     {
       name: "Galaxy Tab S9 Ultra",
