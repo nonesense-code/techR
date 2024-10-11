@@ -140,7 +140,7 @@ function TabletBlog() {
                     <div className="hidden md:flex mt-8 w-ful h-auto">
                       <div className="h-auto">
                         <h1 className="text-2xl text-center">Flagship</h1>
-                        <div className="hidescroller w-full pt-4 flex flex-col gap-8 items-center overflow-y-auto p-4 h-[500px]">
+                        <div className="hidescroller w-full pt-4 flex flex-col gap-8 items-center overflow-y-auto p-4 h-[550px]">
                           {flagship.map((item, index) => (
                             <div
                               key={index}
@@ -160,9 +160,14 @@ function TabletBlog() {
                                 />
                               </Link>
                               {budget && (
-                                <h1 className="w-full text-center bg-zinc-600 rounded-b-lg">
-                                  {item.name}
-                                </h1>
+                                <div className="w-full">
+                                  <h1 className="w-full text-center border-t-2 border-black">
+                                    {item.name}
+                                  </h1>
+                                  <h1 className="w-full text-center bg-black text-white rounded-b-lg">
+                                    {item.price1}
+                                  </h1>
+                                </div>
                               )}
                             </div>
                           ))}
@@ -172,7 +177,7 @@ function TabletBlog() {
                     <div className="hidden md:flex mt-8 w-ful h-auto">
                       <div className="h-auto">
                         <h1 className="text-2xl text-center">Midrange</h1>
-                        <div className="hidescroller w-full pt-4 flex flex-col gap-8 items-center overflow-y-auto p-4 h-[500px]">
+                        <div className="hidescroller w-full pt-4 flex flex-col gap-8 items-center overflow-y-auto p-4 h-[570px]">
                           {midrange.map((item, index) => (
                             <div
                               key={index}
@@ -192,9 +197,14 @@ function TabletBlog() {
                                 />
                               </Link>
                               {budget && (
-                                <h1 className="w-full text-center bg-zinc-600 rounded-b-lg">
-                                  {item.name}
-                                </h1>
+                                <div className="w-full">
+                                  <h1 className="w-full text-center border-t-2 border-black">
+                                    {item.name}
+                                  </h1>
+                                  <h1 className="w-full text-center bg-black text-white rounded-b-lg">
+                                    {item.price1}
+                                  </h1>
+                                </div>
                               )}
                             </div>
                           ))}
@@ -204,7 +214,7 @@ function TabletBlog() {
                     <div className="hidden md:flex mt-8 w-ful h-auto">
                       <div className="h-auto">
                         <h1 className="text-2xl text-center">Budget</h1>
-                        <div className="hidescroller w-full pt-4 flex flex-col gap-8 items-center overflow-y-auto p-4 h-[500px]">
+                        <div className="hidescroller w-full pt-4 flex flex-col gap-8 items-center overflow-y-auto p-4 h-[780px]">
                           {budget.map((item, index) => (
                             <div
                               key={index}
@@ -224,9 +234,14 @@ function TabletBlog() {
                                 />
                               </Link>
                               {budget && (
-                                <h1 className="w-full text-center bg-zinc-600 rounded-b-lg">
-                                  {item.name}
-                                </h1>
+                                <div className="w-full">
+                                  <h1 className="w-full text-center border-t-2 border-black">
+                                    {item.name}
+                                  </h1>
+                                  <h1 className="w-full text-center bg-black text-white rounded-b-lg">
+                                    {item.price1}
+                                  </h1>
+                                </div>
                               )}
                             </div>
                           ))}
@@ -239,7 +254,7 @@ function TabletBlog() {
                       {targetTablets.name || "..."}
                     </h1>
                     <div className="w-full h-auto py-4 md:px-4 flex flex-col gap-4">
-                      <div className="w-full h-auto overflow-hidden flex items-center justify-center bg-white rounded-xl">
+                      <div className="border-gradient w-full h-auto overflow-hidden flex items-center justify-center bg-white">
                         <img
                           src={targetTablets.image}
                           alt={targetTablets.name}
@@ -473,255 +488,28 @@ function TabletBlog() {
                         </div>
                       </div>
                     )}
-                    {/* <div className="flex flex-col items-center justify-center text-lg text-center">
-                    <div>
-                      <h1>Make a purchase plan from here!</h1>
-                      <h2>
-                        Want to save big? Here's your shortcut to incredible
-                        savings!
-                      </h2>
-                    </div>
-                    <div className="flex items-center justify-center gap-4 border-2 border-black px-4 rounded-md">
-                      <div className="flex items-center justify-center flex-col border-r-2 border-black min-h-24 h-auto pr-2">
-                        <a href="#" target="_blank" className="outline-none">
-                          <FaAmazon className="text-4xl h-full" />
-                        </a>
-                        <h1 className="cursor-pointer">Amazon</h1>
-                      </div>
-                      <div className="flex items-center justify-center flex-col border-r-2 border-black min-h-24 h-full pr-4">
-                        <a href="#" target="_blank" className="outline-none">
-                          <img
-                            src={alibaba}
-                            alt=""
-                            className="h-16 w-20 scale-125 object-contain"
-                            loading="lazy"
-                          />
-                        </a>
-                        <h1 className="cursor-pointer">Alibaba</h1>
-                      </div>
-                      <div className="flex items-center justify-center flex-col">
-                        <a href="#" target="_blank" className="outline-none">
-                          <img
-                            src={daraz}
-                            alt=""
-                            className="h-12 w-20"
-                            loading="lazy"
-                          />
-                        </a>
-                        <h1 className="cursor-pointer">Daraz</h1>
-                      </div>
-                    </div>
-                  </div> */}
                   </div>
                 </div>
               </div>
             </div>
             <div className="border-b-2 border-black/20 w-full"></div>
-            <div className="max-w-6xl text-justify px-4 flex flex-col items-left justify-center gap-12 mt-16">
-              <div className="flex flex-col items-start justify-center gap-2">
-                <h1 className="text-md md:text-lg lg:text-xl font-extrabold whitespace-nowrap">
-                  TOPIC 1
-                </h1>
-                <p className="text-[10px] leading-1 md:text-sm lg:text-lg">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Eveniet quos voluptas minus qui voluptatibus ipsa magnam
-                  pariatur quia tempora blanditiis dolores nostrum et expedita,
-                  sequi iure sit, aut numquam accusantium temporibus vitae
-                  dolorum cupiditate architecto excepturi rem! Placeat iste
-                  sequi, inventore assumenda rem corrupti vitae porro labore
-                  consectetur optio error dolore nam saepe fugiat, perspiciatis
-                  aut quos ad soluta quae, velit corporis culpa ea.
-                  Reprehenderit quam animi, ad, nemo magnam, laborum
-                  consequuntur unde facere quas autem aperiam reiciendis
-                  explicabo. Alias illo fugiat quae mollitia! Nesciunt
-                  voluptatibus rem consequuntur voluptate. Laborum explicabo
-                  esse voluptatum animi nulla similique, sequi odit libero
-                  doloribus dolorum! Totam officia sapiente cupiditate ut?
-                  Eveniet sunt asperiores vitae hic nobis ratione deleniti
-                  recusandae doloribus perspiciatis, at fugit mollitia assumenda
-                  quia officiis fugiat, nulla quas voluptatum porro eum quis
-                  necessitatibus. Eum ducimus quia placeat ratione, recusandae
-                  libero est nisi molestiae repudiandae, quasi reprehenderit
-                  dolorem illo reiciendis veniam, consequuntur obcaecati tenetur
-                  delectus sit! Sapiente recusandae, provident eos qui aliquam
-                  animi doloremque accusamus exercitationem modi blanditiis
-                  magnam maxime corrupti numquam! Eaque facilis alias itaque
-                  soluta ipsam, laborum, esse a voluptates quam iusto cupiditate
-                  assumenda magni! Eum nostrum consequuntur itaque architecto,
-                  voluptatem voluptatum, omnis, ducimus excepturi debitis
-                  pariatur corporis corrupti nulla quasi.
-                </p>
-              </div>
-              <div className="flex flex-col items-start justify-center gap-2">
-                <h1 className="text-md md:text-lg lg:text-xl font-extrabold whitespace-nowrap">
-                  TOPIC 1
-                </h1>
-                <p className="text-[10px] leading-1 md:text-sm lg:text-lg">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Eveniet quos voluptas minus qui voluptatibus ipsa magnam
-                  pariatur quia tempora blanditiis dolores nostrum et expedita,
-                  sequi iure sit, aut numquam accusantium temporibus vitae
-                  dolorum cupiditate architecto excepturi rem! Placeat iste
-                  sequi, inventore assumenda rem corrupti vitae porro labore
-                  consectetur optio error dolore nam saepe fugiat, perspiciatis
-                  aut quos ad soluta quae, velit corporis culpa ea.
-                  Reprehenderit quam animi, ad, nemo magnam, laborum
-                  consequuntur unde facere quas autem aperiam reiciendis
-                  explicabo. Alias illo fugiat quae mollitia! Nesciunt
-                  voluptatibus rem consequuntur voluptate. Laborum explicabo
-                  esse voluptatum animi nulla similique, sequi odit libero
-                  doloribus dolorum! Totam officia sapiente cupiditate ut?
-                  Eveniet sunt asperiores vitae hic nobis ratione deleniti
-                  recusandae doloribus perspiciatis, at fugit mollitia assumenda
-                  quia officiis fugiat, nulla quas voluptatum porro eum quis
-                  necessitatibus. Eum ducimus quia placeat ratione, recusandae
-                  libero est nisi molestiae repudiandae, quasi reprehenderit
-                  dolorem illo reiciendis veniam, consequuntur obcaecati tenetur
-                  delectus sit! Sapiente recusandae, provident eos qui aliquam
-                  animi doloremque accusamus exercitationem modi blanditiis
-                  magnam maxime corrupti numquam! Eaque facilis alias itaque
-                  soluta ipsam, laborum, esse a voluptates quam iusto cupiditate
-                  assumenda magni! Eum nostrum consequuntur itaque architecto,
-                  voluptatem voluptatum, omnis, ducimus excepturi debitis
-                  pariatur corporis corrupti nulla quasi.
-                </p>
-              </div>
-              <div className="flex flex-col items-start justify-center gap-2">
-                <h1 className="text-md md:text-lg lg:text-xl font-extrabold whitespace-nowrap">
-                  TOPIC 1
-                </h1>
-                <p className="text-[10px] leading-1 md:text-sm lg:text-lg">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Eveniet quos voluptas minus qui voluptatibus ipsa magnam
-                  pariatur quia tempora blanditiis dolores nostrum et expedita,
-                  sequi iure sit, aut numquam accusantium temporibus vitae
-                  dolorum cupiditate architecto excepturi rem! Placeat iste
-                  sequi, inventore assumenda rem corrupti vitae porro labore
-                  consectetur optio error dolore nam saepe fugiat, perspiciatis
-                  aut quos ad soluta quae, velit corporis culpa ea.
-                  Reprehenderit quam animi, ad, nemo magnam, laborum
-                  consequuntur unde facere quas autem aperiam reiciendis
-                  explicabo. Alias illo fugiat quae mollitia! Nesciunt
-                  voluptatibus rem consequuntur voluptate. Laborum explicabo
-                  esse voluptatum animi nulla similique, sequi odit libero
-                  doloribus dolorum! Totam officia sapiente cupiditate ut?
-                  Eveniet sunt asperiores vitae hic nobis ratione deleniti
-                  recusandae doloribus perspiciatis, at fugit mollitia assumenda
-                  quia officiis fugiat, nulla quas voluptatum porro eum quis
-                  necessitatibus. Eum ducimus quia placeat ratione, recusandae
-                  libero est nisi molestiae repudiandae, quasi reprehenderit
-                  dolorem illo reiciendis veniam, consequuntur obcaecati tenetur
-                  delectus sit! Sapiente recusandae, provident eos qui aliquam
-                  animi doloremque accusamus exercitationem modi blanditiis
-                  magnam maxime corrupti numquam! Eaque facilis alias itaque
-                  soluta ipsam, laborum, esse a voluptates quam iusto cupiditate
-                  assumenda magni! Eum nostrum consequuntur itaque architecto,
-                  voluptatem voluptatum, omnis, ducimus excepturi debitis
-                  pariatur corporis corrupti nulla quasi.
-                </p>
-              </div>
-              <div className="flex flex-col items-start justify-center gap-2">
-                <h1 className="text-md md:text-lg lg:text-xl font-extrabold whitespace-nowrap">
-                  TOPIC 1
-                </h1>
-                <p className="text-[10px] leading-1 md:text-sm lg:text-lg">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Eveniet quos voluptas minus qui voluptatibus ipsa magnam
-                  pariatur quia tempora blanditiis dolores nostrum et expedita,
-                  sequi iure sit, aut numquam accusantium temporibus vitae
-                  dolorum cupiditate architecto excepturi rem! Placeat iste
-                  sequi, inventore assumenda rem corrupti vitae porro labore
-                  consectetur optio error dolore nam saepe fugiat, perspiciatis
-                  aut quos ad soluta quae, velit corporis culpa ea.
-                  Reprehenderit quam animi, ad, nemo magnam, laborum
-                  consequuntur unde facere quas autem aperiam reiciendis
-                  explicabo. Alias illo fugiat quae mollitia! Nesciunt
-                  voluptatibus rem consequuntur voluptate. Laborum explicabo
-                  esse voluptatum animi nulla similique, sequi odit libero
-                  doloribus dolorum! Totam officia sapiente cupiditate ut?
-                  Eveniet sunt asperiores vitae hic nobis ratione deleniti
-                  recusandae doloribus perspiciatis, at fugit mollitia assumenda
-                  quia officiis fugiat, nulla quas voluptatum porro eum quis
-                  necessitatibus. Eum ducimus quia placeat ratione, recusandae
-                  libero est nisi molestiae repudiandae, quasi reprehenderit
-                  dolorem illo reiciendis veniam, consequuntur obcaecati tenetur
-                  delectus sit! Sapiente recusandae, provident eos qui aliquam
-                  animi doloremque accusamus exercitationem modi blanditiis
-                  magnam maxime corrupti numquam! Eaque facilis alias itaque
-                  soluta ipsam, laborum, esse a voluptates quam iusto cupiditate
-                  assumenda magni! Eum nostrum consequuntur itaque architecto,
-                  voluptatem voluptatum, omnis, ducimus excepturi debitis
-                  pariatur corporis corrupti nulla quasi.
-                </p>
-              </div>
-              <div className="flex flex-col items-start justify-center gap-2">
-                <h1 className="text-md md:text-lg lg:text-xl font-extrabold whitespace-nowrap">
-                  TOPIC 1
-                </h1>
-                <p className="text-[10px] leading-1 md:text-sm lg:text-lg">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Eveniet quos voluptas minus qui voluptatibus ipsa magnam
-                  pariatur quia tempora blanditiis dolores nostrum et expedita,
-                  sequi iure sit, aut numquam accusantium temporibus vitae
-                  dolorum cupiditate architecto excepturi rem! Placeat iste
-                  sequi, inventore assumenda rem corrupti vitae porro labore
-                  consectetur optio error dolore nam saepe fugiat, perspiciatis
-                  aut quos ad soluta quae, velit corporis culpa ea.
-                  Reprehenderit quam animi, ad, nemo magnam, laborum
-                  consequuntur unde facere quas autem aperiam reiciendis
-                  explicabo. Alias illo fugiat quae mollitia! Nesciunt
-                  voluptatibus rem consequuntur voluptate. Laborum explicabo
-                  esse voluptatum animi nulla similique, sequi odit libero
-                  doloribus dolorum! Totam officia sapiente cupiditate ut?
-                  Eveniet sunt asperiores vitae hic nobis ratione deleniti
-                  recusandae doloribus perspiciatis, at fugit mollitia assumenda
-                  quia officiis fugiat, nulla quas voluptatum porro eum quis
-                  necessitatibus. Eum ducimus quia placeat ratione, recusandae
-                  libero est nisi molestiae repudiandae, quasi reprehenderit
-                  dolorem illo reiciendis veniam, consequuntur obcaecati tenetur
-                  delectus sit! Sapiente recusandae, provident eos qui aliquam
-                  animi doloremque accusamus exercitationem modi blanditiis
-                  magnam maxime corrupti numquam! Eaque facilis alias itaque
-                  soluta ipsam, laborum, esse a voluptates quam iusto cupiditate
-                  assumenda magni! Eum nostrum consequuntur itaque architecto,
-                  voluptatem voluptatum, omnis, ducimus excepturi debitis
-                  pariatur corporis corrupti nulla quasi.
-                </p>
-              </div>
-              <div className="flex flex-col items-start justify-center gap-2">
-                <h1 className="text-md md:text-lg lg:text-xl font-extrabold whitespace-nowrap">
-                  TOPIC 1
-                </h1>
-                <p className="text-[10px] leading-1 md:text-sm lg:text-lg">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Eveniet quos voluptas minus qui voluptatibus ipsa magnam
-                  pariatur quia tempora blanditiis dolores nostrum et expedita,
-                  sequi iure sit, aut numquam accusantium temporibus vitae
-                  dolorum cupiditate architecto excepturi rem! Placeat iste
-                  sequi, inventore assumenda rem corrupti vitae porro labore
-                  consectetur optio error dolore nam saepe fugiat, perspiciatis
-                  aut quos ad soluta quae, velit corporis culpa ea.
-                  Reprehenderit quam animi, ad, nemo magnam, laborum
-                  consequuntur unde facere quas autem aperiam reiciendis
-                  explicabo. Alias illo fugiat quae mollitia! Nesciunt
-                  voluptatibus rem consequuntur voluptate. Laborum explicabo
-                  esse voluptatum animi nulla similique, sequi odit libero
-                  doloribus dolorum! Totam officia sapiente cupiditate ut?
-                  Eveniet sunt asperiores vitae hic nobis ratione deleniti
-                  recusandae doloribus perspiciatis, at fugit mollitia assumenda
-                  quia officiis fugiat, nulla quas voluptatum porro eum quis
-                  necessitatibus. Eum ducimus quia placeat ratione, recusandae
-                  libero est nisi molestiae repudiandae, quasi reprehenderit
-                  dolorem illo reiciendis veniam, consequuntur obcaecati tenetur
-                  delectus sit! Sapiente recusandae, provident eos qui aliquam
-                  animi doloremque accusamus exercitationem modi blanditiis
-                  magnam maxime corrupti numquam! Eaque facilis alias itaque
-                  soluta ipsam, laborum, esse a voluptates quam iusto cupiditate
-                  assumenda magni! Eum nostrum consequuntur itaque architecto,
-                  voluptatem voluptatum, omnis, ducimus excepturi debitis
-                  pariatur corporis corrupti nulla quasi.
-                </p>
-              </div>
+            <div className="max-w-6xl text-justify px-4 flex flex-col items-left justify-center gap-12 mt-16 mb-8">
+              {targetTablets.descriptions.map((item, index) => (
+                <div
+                  key={index}
+                  className="flex flex-col items-start justify-center gap-2"
+                >
+                  <h1 className="text-md md:text-lg lg:text-xl font-extrabold whitespace-nowrap">
+                    {item.heading}
+                  </h1>
+                  <p className="text-[10px] leading-1 md:text-sm lg:text-lg">
+                    {item.detail}
+                  </p>
+                  <div>
+                    <img src={item.descriptionimage} alt={item.heading} className="h-52" />
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         ) : (

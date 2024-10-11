@@ -61,6 +61,14 @@ module.exports.modifyProducts = async (req, res) => {
       );
       imageURL = result.secure_url;
     }
+    const { heading, detail, descriptionimage } = req.body;
+
+    const descriptions = heading.map((item, index) => ({
+      heading: heading[index],
+      detail: detail[index],
+      descriptionimage: descriptionimage[index],
+    }));
+
 
     const updatedData = {
       latest: latest === "true" ? "true" : "false",
@@ -76,6 +84,7 @@ module.exports.modifyProducts = async (req, res) => {
         mostsold: updatedData.mostsold,
         mostpopular: updatedData.mostpopular,
         recommended: updatedData.recommended,
+        descriptions,
         item_categorie,
         productType,
         targetaudience,

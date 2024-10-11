@@ -73,3 +73,8 @@ body {
   text-shadow: 10px -10px 20px red, -10px 10px 10px purple;
   color: purple;
 }
+
+.border-gradient {
+  border: 4px dashed #D1B4B4;
+  border-radius: 20px;
+}

@@ -18,7 +18,7 @@ const filterProducts = async (url) => {
   }
 };
 
-const fetchTargetLaptops = async (targetURL, navigate) => {
+const fetchtargetLaptops = async (targetURL, navigate) => {
   try {
     const response = await axios.get(targetURL);
 
@@ -74,9 +74,9 @@ function LaptopBlog() {
   const { itname } = useParams();
 
   const targetURL = `${targetlaptopURL}/${itname}`;
-  const { data: targetlaptops = [], isLoading: isLoadingTarget } = useQuery(
-    ["targetlaptops", targetURL],
-    () => fetchTargetLaptops(targetURL, navigate),
+  const { data: targetLaptops = [], isLoading: isLoadingTarget } = useQuery(
+    ["targetLaptops", targetURL],
+    () => fetchtargetLaptops(targetURL, navigate),
     {
       staleTime: 1000 * 60 * 5,
     }
@@ -85,25 +85,25 @@ function LaptopBlog() {
     loadingBudget || loadingFlagship || loadingMidrange || isLoadingTarget;
 
   const hasMultipleOptions =
-    targetlaptops.ram2 || targetlaptops.storage2 || targetlaptops.price2;
+    targetLaptops.ram2 || targetLaptops.storage2 || targetLaptops.price2;
   const hasThreeOptions =
-    targetlaptops.ram3 || targetlaptops.storage3 || targetlaptops.price3;
+    targetLaptops.ram3 || targetLaptops.storage3 || targetLaptops.price3;
 
   const rows = [
     {
-      ram: targetlaptops.ram1,
-      storage: targetlaptops.storage1,
-      price: targetlaptops.price1,
+      ram: targetLaptops.ram1,
+      storage: targetLaptops.storage1,
+      price: targetLaptops.price1,
     },
     hasMultipleOptions && {
-      ram: targetlaptops.ram2,
-      storage: targetlaptops.storage2,
-      price: targetlaptops.price2,
+      ram: targetLaptops.ram2,
+      storage: targetLaptops.storage2,
+      price: targetLaptops.price2,
     },
     hasThreeOptions && {
-      ram: targetlaptops.ram3,
-      storage: targetlaptops.storage3,
-      price: targetlaptops.price3,
+      ram: targetLaptops.ram3,
+      storage: targetLaptops.storage3,
+      price: targetLaptops.price3,
     },
   ]
     .filter(Boolean)
@@ -128,8 +128,8 @@ function LaptopBlog() {
           <div className="flex h-auto items-center justify-center w-full lg:px-2 flex-col">
             <Helmet>
               <title>
-                {targetlaptops
-                  ? `${targetlaptops.name} - Description and Details`
+                {targetLaptops
+                  ? `${targetLaptops.name} - Description and Details`
                   : "Loading..."}
               </title>
             </Helmet>
@@ -140,7 +140,7 @@ function LaptopBlog() {
                     <div className="hidden md:flex mt-8 w-ful h-auto">
                       <div className="h-auto">
                         <h1 className="text-2xl text-center">Flagship</h1>
-                        <div className="hidescroller w-full pt-4 flex flex-col gap-8 items-center overflow-y-auto p-4 h-[500px]">
+                        <div className="hidescroller w-full pt-4 flex flex-col gap-8 items-center overflow-y-auto p-4 h-[550px]">
                           {flagship.map((item, index) => (
                             <div
                               key={index}
@@ -160,9 +160,14 @@ function LaptopBlog() {
                                 />
                               </Link>
                               {budget && (
-                                <h1 className="w-full text-center bg-zinc-600 rounded-b-lg">
-                                  {item.name}
-                                </h1>
+                                <div className="w-full">
+                                  <h1 className="w-full text-center border-t-2 border-black">
+                                    {item.name}
+                                  </h1>
+                                  <h1 className="w-full text-center bg-black text-white rounded-b-lg">
+                                    {item.price1}
+                                  </h1>
+                                </div>
                               )}
                             </div>
                           ))}
@@ -172,7 +177,7 @@ function LaptopBlog() {
                     <div className="hidden md:flex mt-8 w-ful h-auto">
                       <div className="h-auto">
                         <h1 className="text-2xl text-center">Midrange</h1>
-                        <div className="hidescroller w-full pt-4 flex flex-col gap-8 items-center overflow-y-auto p-4 h-[500px]">
+                        <div className="hidescroller w-full pt-4 flex flex-col gap-8 items-center overflow-y-auto p-4 h-[570px]">
                           {midrange.map((item, index) => (
                             <div
                               key={index}
@@ -192,9 +197,14 @@ function LaptopBlog() {
                                 />
                               </Link>
                               {budget && (
-                                <h1 className="w-full text-center bg-zinc-600 rounded-b-lg">
-                                  {item.name}
-                                </h1>
+                                <div className="w-full">
+                                  <h1 className="w-full text-center border-t-2 border-black">
+                                    {item.name}
+                                  </h1>
+                                  <h1 className="w-full text-center bg-black text-white rounded-b-lg">
+                                    {item.price1}
+                                  </h1>
+                                </div>
                               )}
                             </div>
                           ))}
@@ -204,7 +214,7 @@ function LaptopBlog() {
                     <div className="hidden md:flex mt-8 w-ful h-auto">
                       <div className="h-auto">
                         <h1 className="text-2xl text-center">Budget</h1>
-                        <div className="hidescroller w-full pt-4 flex flex-col gap-8 items-center overflow-y-auto p-4 h-[500px]">
+                        <div className="hidescroller w-full pt-4 flex flex-col gap-8 items-center overflow-y-auto p-4 h-[780px]">
                           {budget.map((item, index) => (
                             <div
                               key={index}
@@ -224,9 +234,14 @@ function LaptopBlog() {
                                 />
                               </Link>
                               {budget && (
-                                <h1 className="w-full text-center bg-zinc-600 rounded-b-lg">
-                                  {item.name}
-                                </h1>
+                                <div className="w-full">
+                                  <h1 className="w-full text-center border-t-2 border-black">
+                                    {item.name}
+                                  </h1>
+                                  <h1 className="w-full text-center bg-black text-white rounded-b-lg">
+                                    {item.price1}
+                                  </h1>
+                                </div>
                               )}
                             </div>
                           ))}
@@ -236,113 +251,114 @@ function LaptopBlog() {
                   </div>
                   <div className="w-full md:border-l-4 md:border-black/10 py-4">
                     <h1 className="mt-8 text-2xl md:text-3xl px-4 flex items-center justify-center lg:justify-start whitespace-nowrap tracking-tighter text-[#001] font-semibold border-b-[3px] border-black/10">
-                      {targetlaptops.name || "..."}
+                      {targetLaptops.name || "..."}
                     </h1>
+
                     <div className="w-full h-auto py-4 md:px-4 flex flex-col gap-4">
-                      <div className="w-full h-auto overflow-hidden flex items-center justify-center bg-white rounded-xl">
+                      <div className="border-gradient w-full h-auto overflow-hidden flex items-center justify-center bg-white">
                         <img
-                          src={targetlaptops.image}
-                          alt={targetlaptops.name}
+                          src={targetLaptops.image}
+                          alt={targetLaptops.name}
                           className="w-auto h-32 min-h-72 sm:h-96 object-contain"
                           loading="lazy"
                         />
                       </div>
                       <div className="text-black text-sm tracking-wide md:text-md lg:text-lg font-bold text-justify">
-                        {targetlaptops.blog || "..."}
+                        {targetLaptops.blog || "..."}
                       </div>
                       <div className="w-full h-auto overflow-hidden flex flex-col gap-4 mt-2 text-2xl text-[#002] items-start justify-end">
-                        {(targetlaptops.dimension ||
-                          targetlaptops.build ||
-                          targetlaptops.weight) && (
+                        {(targetLaptops.dimension ||
+                          targetLaptops.build ||
+                          targetLaptops.weight) && (
                           <div className="flex flex-col gap-3 w-full px-4">
-                            {targetlaptops.dimension && (
+                            {targetLaptops.dimension && (
                               <InfoSection
                                 label="Dimension"
-                                value={targetlaptops.dimension}
+                                value={targetLaptops.dimension}
                               />
                             )}
-                            {targetlaptops.build && (
+                            {targetLaptops.build && (
                               <InfoSection
                                 label="Build"
-                                value={targetlaptops.build}
+                                value={targetLaptops.build}
                               />
                             )}
-                            {targetlaptops.weight && (
+                            {targetLaptops.weight && (
                               <InfoSection
                                 label="Weight"
-                                value={targetlaptops.weight}
+                                value={targetLaptops.weight}
                               />
                             )}
                           </div>
                         )}
-                        {(targetlaptops.dtype ||
-                          targetlaptops.size ||
-                          targetlaptops.resolution) && (
+                        {(targetLaptops.dtype ||
+                          targetLaptops.size ||
+                          targetLaptops.resolution) && (
                           <div className="flex flex-col gap-3 w-full px-4">
-                            {targetlaptops.dtype && (
+                            {targetLaptops.dtype && (
                               <InfoSection
                                 label="Type"
-                                value={targetlaptops.dtype}
+                                value={targetLaptops.dtype}
                               />
                             )}
-                            {targetlaptops.size && (
+                            {targetLaptops.size && (
                               <InfoSection
                                 label="Size"
-                                value={targetlaptops.size}
+                                value={targetLaptops.size}
                               />
                             )}
-                            {targetlaptops.resolution && (
+                            {targetLaptops.resolution && (
                               <InfoSection
                                 label="Resolution"
-                                value={targetlaptops.resolution}
+                                value={targetLaptops.resolution}
                               />
                             )}
                           </div>
                         )}
-                        {(targetlaptops.frontcamera ||
-                          targetlaptops.maincamera ||
-                          targetlaptops.video) && (
+                        {(targetLaptops.frontcamera ||
+                          targetLaptops.maincamera ||
+                          targetLaptops.video) && (
                           <div className="flex flex-col gap-3 w-full px-4">
-                            {targetlaptops.frontcamera && (
+                            {targetLaptops.frontcamera && (
                               <InfoSection
                                 label="FrontCamera"
-                                value={targetlaptops.frontcamera}
+                                value={targetLaptops.frontcamera}
                               />
                             )}
-                            {targetlaptops.maincamera && (
+                            {targetLaptops.maincamera && (
                               <InfoSection
                                 label="BackCamera"
-                                value={targetlaptops.maincamera}
+                                value={targetLaptops.maincamera}
                               />
                             )}
-                            {targetlaptops.video && (
+                            {targetLaptops.video && (
                               <InfoSection
                                 label="Video"
-                                value={targetlaptops.video}
+                                value={targetLaptops.video}
                               />
                             )}
                           </div>
                         )}
-                        {(targetlaptops.os ||
-                          targetlaptops.processor ||
-                          targetlaptops.graphics) && (
+                        {(targetLaptops.os ||
+                          targetLaptops.processor ||
+                          targetLaptops.graphics) && (
                           <div className="w-full flex gap-4 justify-start p-2 bg-zinc-50 flex-col rounded-lg px-4">
-                            {targetlaptops.os && (
+                            {targetLaptops.os && (
                               <InfoSection
                                 label="OS"
-                                value={targetlaptops.os}
+                                value={targetLaptops.os}
                               />
                             )}
-                            {targetlaptops.processor && (
+                            {targetLaptops.processor && (
                               <InfoSection
                                 label="Processor"
-                                value={targetlaptops.processor}
+                                value={targetLaptops.processor}
                               />
                             )}
-                            {targetlaptops.graphics && (
+                            {targetLaptops.graphics && (
                               <InfoSection
                                 label="Graphics"
-                                value={targetlaptops.graphics}
+                                value={targetLaptops.graphics}
                               />
                             )}
                           </div>
@@ -388,50 +404,50 @@ function LaptopBlog() {
                             </div>
                           </div>
                         )}
-                        {(targetlaptops.capacity || targetlaptops.charging) && (
+                        {(targetLaptops.capacity || targetLaptops.charging) && (
                           <div className="flex flex-col gap-3 w-full px-4">
-                            {targetlaptops.capacity && (
+                            {targetLaptops.capacity && (
                               <InfoSection
                                 label="Capacity"
-                                value={targetlaptops.capacity}
+                                value={targetLaptops.capacity}
                               />
                             )}
-                            {targetlaptops.charging && (
+                            {targetLaptops.charging && (
                               <InfoSection
                                 label="Charging"
-                                value={targetlaptops.charging}
+                                value={targetLaptops.charging}
                               />
                             )}
                           </div>
                         )}
-                        {(targetlaptops.wifi || targetlaptops.bluetooth) && (
+                        {(targetLaptops.wifi || targetLaptops.bluetooth) && (
                           <div className="flex flex-col gap-3 w-full px-4">
-                            {targetlaptops.wifi && (
+                            {targetLaptops.wifi && (
                               <InfoSection
                                 label="Wi-Fi"
-                                value={targetlaptops.wifi}
+                                value={targetLaptops.wifi}
                               />
                             )}
-                            {targetlaptops.bluetooth && (
+                            {targetLaptops.bluetooth && (
                               <InfoSection
                                 label="Bluetooth"
-                                value={targetlaptops.bluetooth}
+                                value={targetLaptops.bluetooth}
                               />
                             )}
                           </div>
                         )}
-                        {(targetlaptops.typec || targetlaptops.audiojack) && (
+                        {(targetLaptops.typec || targetLaptops.audiojack) && (
                           <div className="flex flex-col gap-3 w-full px-4">
-                            {targetlaptops.typec && (
+                            {targetLaptops.typec && (
                               <InfoSection
                                 label="Type-C"
-                                value={targetlaptops.typec}
+                                value={targetLaptops.typec}
                               />
                             )}
-                            {targetlaptops.audiojack && (
+                            {targetLaptops.audiojack && (
                               <InfoSection
                                 label="Audio Jack"
-                                value={targetlaptops.audiojack}
+                                value={targetLaptops.audiojack}
                               />
                             )}
                           </div>
@@ -473,255 +489,38 @@ function LaptopBlog() {
                         </div>
                       </div>
                     )}
-                    {/* <div className="flex flex-col items-center justify-center text-lg text-center">
-                    <div>
-                      <h1>Make a purchase plan from here!</h1>
-                      <h2>
-                        Want to save big? Here's your shortcut to incredible
-                        savings!
-                      </h2>
-                    </div>
-                    <div className="flex items-center justify-center gap-4 border-2 border-black px-4 rounded-md">
-                      <div className="flex items-center justify-center flex-col border-r-2 border-black min-h-24 h-auto pr-2">
-                        <a href="#" target="_blank" className="outline-none">
-                          <FaAmazon className="text-4xl h-full" />
-                        </a>
-                        <h1 className="cursor-pointer">Amazon</h1>
-                      </div>
-                      <div className="flex items-center justify-center flex-col border-r-2 border-black min-h-24 h-full pr-4">
-                        <a href="#" target="_blank" className="outline-none">
-                          <img
-                            src={alibaba}
-                            alt=""
-                            className="h-16 w-20 scale-125 object-contain"
-                            loading="lazy"
-                          />
-                        </a>
-                        <h1 className="cursor-pointer">Alibaba</h1>
-                      </div>
-                      <div className="flex items-center justify-center flex-col">
-                        <a href="#" target="_blank" className="outline-none">
-                          <img
-                            src={daraz}
-                            alt=""
-                            className="h-12 w-20"
-                            loading="lazy"
-                          />
-                        </a>
-                        <h1 className="cursor-pointer">Daraz</h1>
-                      </div>
-                    </div>
-                  </div> */}
                   </div>
                 </div>
               </div>
             </div>
             <div className="border-b-2 border-black/20 w-full"></div>
-            <div className="max-w-6xl text-justify px-4 flex flex-col items-left justify-center gap-12 mt-16">
-              <div className="flex flex-col items-start justify-center gap-2">
-                <h1 className="text-md md:text-lg lg:text-xl font-extrabold whitespace-nowrap">
-                  TOPIC 1
-                </h1>
-                <p className="text-[10px] leading-1 md:text-sm lg:text-lg">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Eveniet quos voluptas minus qui voluptatibus ipsa magnam
-                  pariatur quia tempora blanditiis dolores nostrum et expedita,
-                  sequi iure sit, aut numquam accusantium temporibus vitae
-                  dolorum cupiditate architecto excepturi rem! Placeat iste
-                  sequi, inventore assumenda rem corrupti vitae porro labore
-                  consectetur optio error dolore nam saepe fugiat, perspiciatis
-                  aut quos ad soluta quae, velit corporis culpa ea.
-                  Reprehenderit quam animi, ad, nemo magnam, laborum
-                  consequuntur unde facere quas autem aperiam reiciendis
-                  explicabo. Alias illo fugiat quae mollitia! Nesciunt
-                  voluptatibus rem consequuntur voluptate. Laborum explicabo
-                  esse voluptatum animi nulla similique, sequi odit libero
-                  doloribus dolorum! Totam officia sapiente cupiditate ut?
-                  Eveniet sunt asperiores vitae hic nobis ratione deleniti
-                  recusandae doloribus perspiciatis, at fugit mollitia assumenda
-                  quia officiis fugiat, nulla quas voluptatum porro eum quis
-                  necessitatibus. Eum ducimus quia placeat ratione, recusandae
-                  libero est nisi molestiae repudiandae, quasi reprehenderit
-                  dolorem illo reiciendis veniam, consequuntur obcaecati tenetur
-                  delectus sit! Sapiente recusandae, provident eos qui aliquam
-                  animi doloremque accusamus exercitationem modi blanditiis
-                  magnam maxime corrupti numquam! Eaque facilis alias itaque
-                  soluta ipsam, laborum, esse a voluptates quam iusto cupiditate
-                  assumenda magni! Eum nostrum consequuntur itaque architecto,
-                  voluptatem voluptatum, omnis, ducimus excepturi debitis
-                  pariatur corporis corrupti nulla quasi.
-                </p>
-              </div>
-              <div className="flex flex-col items-start justify-center gap-2">
-                <h1 className="text-md md:text-lg lg:text-xl font-extrabold whitespace-nowrap">
-                  TOPIC 1
-                </h1>
-                <p className="text-[10px] leading-1 md:text-sm lg:text-lg">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Eveniet quos voluptas minus qui voluptatibus ipsa magnam
-                  pariatur quia tempora blanditiis dolores nostrum et expedita,
-                  sequi iure sit, aut numquam accusantium temporibus vitae
-                  dolorum cupiditate architecto excepturi rem! Placeat iste
-                  sequi, inventore assumenda rem corrupti vitae porro labore
-                  consectetur optio error dolore nam saepe fugiat, perspiciatis
-                  aut quos ad soluta quae, velit corporis culpa ea.
-                  Reprehenderit quam animi, ad, nemo magnam, laborum
-                  consequuntur unde facere quas autem aperiam reiciendis
-                  explicabo. Alias illo fugiat quae mollitia! Nesciunt
-                  voluptatibus rem consequuntur voluptate. Laborum explicabo
-                  esse voluptatum animi nulla similique, sequi odit libero
-                  doloribus dolorum! Totam officia sapiente cupiditate ut?
-                  Eveniet sunt asperiores vitae hic nobis ratione deleniti
-                  recusandae doloribus perspiciatis, at fugit mollitia assumenda
-                  quia officiis fugiat, nulla quas voluptatum porro eum quis
-                  necessitatibus. Eum ducimus quia placeat ratione, recusandae
-                  libero est nisi molestiae repudiandae, quasi reprehenderit
-                  dolorem illo reiciendis veniam, consequuntur obcaecati tenetur
-                  delectus sit! Sapiente recusandae, provident eos qui aliquam
-                  animi doloremque accusamus exercitationem modi blanditiis
-                  magnam maxime corrupti numquam! Eaque facilis alias itaque
-                  soluta ipsam, laborum, esse a voluptates quam iusto cupiditate
-                  assumenda magni! Eum nostrum consequuntur itaque architecto,
-                  voluptatem voluptatum, omnis, ducimus excepturi debitis
-                  pariatur corporis corrupti nulla quasi.
-                </p>
-              </div>
-              <div className="flex flex-col items-start justify-center gap-2">
-                <h1 className="text-md md:text-lg lg:text-xl font-extrabold whitespace-nowrap">
-                  TOPIC 1
-                </h1>
-                <p className="text-[10px] leading-1 md:text-sm lg:text-lg">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Eveniet quos voluptas minus qui voluptatibus ipsa magnam
-                  pariatur quia tempora blanditiis dolores nostrum et expedita,
-                  sequi iure sit, aut numquam accusantium temporibus vitae
-                  dolorum cupiditate architecto excepturi rem! Placeat iste
-                  sequi, inventore assumenda rem corrupti vitae porro labore
-                  consectetur optio error dolore nam saepe fugiat, perspiciatis
-                  aut quos ad soluta quae, velit corporis culpa ea.
-                  Reprehenderit quam animi, ad, nemo magnam, laborum
-                  consequuntur unde facere quas autem aperiam reiciendis
-                  explicabo. Alias illo fugiat quae mollitia! Nesciunt
-                  voluptatibus rem consequuntur voluptate. Laborum explicabo
-                  esse voluptatum animi nulla similique, sequi odit libero
-                  doloribus dolorum! Totam officia sapiente cupiditate ut?
-                  Eveniet sunt asperiores vitae hic nobis ratione deleniti
-                  recusandae doloribus perspiciatis, at fugit mollitia assumenda
-                  quia officiis fugiat, nulla quas voluptatum porro eum quis
-                  necessitatibus. Eum ducimus quia placeat ratione, recusandae
-                  libero est nisi molestiae repudiandae, quasi reprehenderit
-                  dolorem illo reiciendis veniam, consequuntur obcaecati tenetur
-                  delectus sit! Sapiente recusandae, provident eos qui aliquam
-                  animi doloremque accusamus exercitationem modi blanditiis
-                  magnam maxime corrupti numquam! Eaque facilis alias itaque
-                  soluta ipsam, laborum, esse a voluptates quam iusto cupiditate
-                  assumenda magni! Eum nostrum consequuntur itaque architecto,
-                  voluptatem voluptatum, omnis, ducimus excepturi debitis
-                  pariatur corporis corrupti nulla quasi.
-                </p>
-              </div>
-              <div className="flex flex-col items-start justify-center gap-2">
-                <h1 className="text-md md:text-lg lg:text-xl font-extrabold whitespace-nowrap">
-                  TOPIC 1
-                </h1>
-                <p className="text-[10px] leading-1 md:text-sm lg:text-lg">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Eveniet quos voluptas minus qui voluptatibus ipsa magnam
-                  pariatur quia tempora blanditiis dolores nostrum et expedita,
-                  sequi iure sit, aut numquam accusantium temporibus vitae
-                  dolorum cupiditate architecto excepturi rem! Placeat iste
-                  sequi, inventore assumenda rem corrupti vitae porro labore
-                  consectetur optio error dolore nam saepe fugiat, perspiciatis
-                  aut quos ad soluta quae, velit corporis culpa ea.
-                  Reprehenderit quam animi, ad, nemo magnam, laborum
-                  consequuntur unde facere quas autem aperiam reiciendis
-                  explicabo. Alias illo fugiat quae mollitia! Nesciunt
-                  voluptatibus rem consequuntur voluptate. Laborum explicabo
-                  esse voluptatum animi nulla similique, sequi odit libero
-                  doloribus dolorum! Totam officia sapiente cupiditate ut?
-                  Eveniet sunt asperiores vitae hic nobis ratione deleniti
-                  recusandae doloribus perspiciatis, at fugit mollitia assumenda
-                  quia officiis fugiat, nulla quas voluptatum porro eum quis
-                  necessitatibus. Eum ducimus quia placeat ratione, recusandae
-                  libero est nisi molestiae repudiandae, quasi reprehenderit
-                  dolorem illo reiciendis veniam, consequuntur obcaecati tenetur
-                  delectus sit! Sapiente recusandae, provident eos qui aliquam
-                  animi doloremque accusamus exercitationem modi blanditiis
-                  magnam maxime corrupti numquam! Eaque facilis alias itaque
-                  soluta ipsam, laborum, esse a voluptates quam iusto cupiditate
-                  assumenda magni! Eum nostrum consequuntur itaque architecto,
-                  voluptatem voluptatum, omnis, ducimus excepturi debitis
-                  pariatur corporis corrupti nulla quasi.
-                </p>
-              </div>
-              <div className="flex flex-col items-start justify-center gap-2">
-                <h1 className="text-md md:text-lg lg:text-xl font-extrabold whitespace-nowrap">
-                  TOPIC 1
-                </h1>
-                <p className="text-[10px] leading-1 md:text-sm lg:text-lg">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Eveniet quos voluptas minus qui voluptatibus ipsa magnam
-                  pariatur quia tempora blanditiis dolores nostrum et expedita,
-                  sequi iure sit, aut numquam accusantium temporibus vitae
-                  dolorum cupiditate architecto excepturi rem! Placeat iste
-                  sequi, inventore assumenda rem corrupti vitae porro labore
-                  consectetur optio error dolore nam saepe fugiat, perspiciatis
-                  aut quos ad soluta quae, velit corporis culpa ea.
-                  Reprehenderit quam animi, ad, nemo magnam, laborum
-                  consequuntur unde facere quas autem aperiam reiciendis
-                  explicabo. Alias illo fugiat quae mollitia! Nesciunt
-                  voluptatibus rem consequuntur voluptate. Laborum explicabo
-                  esse voluptatum animi nulla similique, sequi odit libero
-                  doloribus dolorum! Totam officia sapiente cupiditate ut?
-                  Eveniet sunt asperiores vitae hic nobis ratione deleniti
-                  recusandae doloribus perspiciatis, at fugit mollitia assumenda
-                  quia officiis fugiat, nulla quas voluptatum porro eum quis
-                  necessitatibus. Eum ducimus quia placeat ratione, recusandae
-                  libero est nisi molestiae repudiandae, quasi reprehenderit
-                  dolorem illo reiciendis veniam, consequuntur obcaecati tenetur
-                  delectus sit! Sapiente recusandae, provident eos qui aliquam
-                  animi doloremque accusamus exercitationem modi blanditiis
-                  magnam maxime corrupti numquam! Eaque facilis alias itaque
-                  soluta ipsam, laborum, esse a voluptates quam iusto cupiditate
-                  assumenda magni! Eum nostrum consequuntur itaque architecto,
-                  voluptatem voluptatum, omnis, ducimus excepturi debitis
-                  pariatur corporis corrupti nulla quasi.
-                </p>
-              </div>
-              <div className="flex flex-col items-start justify-center gap-2">
-                <h1 className="text-md md:text-lg lg:text-xl font-extrabold whitespace-nowrap">
-                  TOPIC 1
-                </h1>
-                <p className="text-[10px] leading-1 md:text-sm lg:text-lg">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Eveniet quos voluptas minus qui voluptatibus ipsa magnam
-                  pariatur quia tempora blanditiis dolores nostrum et expedita,
-                  sequi iure sit, aut numquam accusantium temporibus vitae
-                  dolorum cupiditate architecto excepturi rem! Placeat iste
-                  sequi, inventore assumenda rem corrupti vitae porro labore
-                  consectetur optio error dolore nam saepe fugiat, perspiciatis
-                  aut quos ad soluta quae, velit corporis culpa ea.
-                  Reprehenderit quam animi, ad, nemo magnam, laborum
-                  consequuntur unde facere quas autem aperiam reiciendis
-                  explicabo. Alias illo fugiat quae mollitia! Nesciunt
-                  voluptatibus rem consequuntur voluptate. Laborum explicabo
-                  esse voluptatum animi nulla similique, sequi odit libero
-                  doloribus dolorum! Totam officia sapiente cupiditate ut?
-                  Eveniet sunt asperiores vitae hic nobis ratione deleniti
-                  recusandae doloribus perspiciatis, at fugit mollitia assumenda
-                  quia officiis fugiat, nulla quas voluptatum porro eum quis
-                  necessitatibus. Eum ducimus quia placeat ratione, recusandae
-                  libero est nisi molestiae repudiandae, quasi reprehenderit
-                  dolorem illo reiciendis veniam, consequuntur obcaecati tenetur
-                  delectus sit! Sapiente recusandae, provident eos qui aliquam
-                  animi doloremque accusamus exercitationem modi blanditiis
-                  magnam maxime corrupti numquam! Eaque facilis alias itaque
-                  soluta ipsam, laborum, esse a voluptates quam iusto cupiditate
-                  assumenda magni! Eum nostrum consequuntur itaque architecto,
-                  voluptatem voluptatum, omnis, ducimus excepturi debitis
-                  pariatur corporis corrupti nulla quasi.
-                </p>
-              </div>
+            <div className="max-w-6xl text-justify px-4 flex flex-col items-left justify-center gap-12 mt-16 mb-8">
+              {targetLaptops.descriptions.map((item, index) => (
+                <div
+                  key={index}
+                  className="flex flex-col items-start justify-center gap-2"
+                >
+                  {item.heading && (
+                    <h1 className="text-md md:text-lg lg:text-xl font-extrabold whitespace-nowrap uppercase">
+                      {item.heading}
+                    </h1>
+                  )}
+                  {item.detail && (
+                    <p className="text-[10px] leading-1 md:text-sm lg:text-lg">
+                      {item.detail}
+                    </p>
+                  )}
+                  {item.descriptionimage && (
+                    <div className="h-full w-full">
+                      <img
+                        src={item.descriptionimage}
+                        alt={item.name}
+                        className="h-[450px] object-center w-full object-cover"
+                      />
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         ) : (

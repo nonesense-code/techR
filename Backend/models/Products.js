@@ -14,6 +14,13 @@ const databaseConnection = async () => {
 databaseConnection();
 
 const productSchema = new mongoose.Schema({
+  descriptions: [
+    {
+      heading: { type: String },
+      detail: { type: String },
+      descriptionimage: { type: String },
+    },
+  ],
   targetaudience: {
     type: [],
   },

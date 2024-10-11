@@ -384,20 +384,136 @@
             ><%= find.blog %></textarea>
           </div>
 
-          <!-- Submit and Reset Buttons -->
-          <div class="flex gap-4 justify-center mt-6">
-            <input
-              type="submit"
-              value="Update"
-              class="bg-orange-600 p-3 rounded-lg font-semibold text-lg cursor-pointer hover:bg-orange-700 transition"
-            />
-            <input
-              type="reset"
-              value="Reset"
-              class="bg-orange-600 p-3 rounded-lg font-semibold text-lg cursor-pointer hover:bg-orange-700 transition"
-            />
+          <div class="bg-stone-700 p-4 rounded-lg">
+            <h1 class="text-white text-2xl mb-4">Add Product Descriptions</h1>
+            <div id="descriptionContainer">
+              <% if (find.descriptions && find.descriptions.length > 0) { %>
+                <% find.descriptions.forEach((desc, index) => { %>
+                  <div class="description-section mt-4">
+                    <label class="block text-white font-semibold mb-1 text-lg">Heading <%= index + 1 %>:</label>
+                    <textarea
+                      name="heading[]"
+                      class="w-full outline-none resize-none rounded-lg bg-zinc-500 text-white px-3 py-2 h-10 placeholder:text-zinc-300/80 placeholder:font-semibold"
+                      placeholder="Heading"
+                    ><%= desc.heading %></textarea>
+          
+                    <textarea
+                      name="detail[]"
+                      class="w-full outline-none resize-none rounded-lg bg-zinc-500 text-white px-3 py-2 h-40 placeholder:text-zinc-300/80 placeholder:font-semibold"
+                      placeholder="Details"
+                    ><%= desc.detail %></textarea>
+          
+                    <textarea
+                      name="descriptionimage[]"
+                      class="w-full outline-none resize-none rounded-lg bg-zinc-500 text-white px-3 py-2 h-40 placeholder:text-zinc-300/80 placeholder:font-semibold"
+                      placeholder="Image URL"
+                    ><%= desc.descriptionimage %></textarea>
+                  </div>
+                <% }); %>
+              <% } else { %>
+                <div class="description-section">
+                  <label class="block text-white font-semibold mb-1 text-lg">Heading 1:</label>
+                  <textarea
+                    name="heading[]"
+                    class="w-full outline-none resize-none rounded-lg bg-zinc-500 text-white px-3 py-2 h-10 placeholder:text-zinc-300/80 placeholder:font-semibold"
+                    placeholder="Heading"
+                  ></textarea>
+          
+                  <textarea
+                    name="detail[]"
+                    class="w-full outline-none resize-none rounded-lg bg-zinc-500 text-white px-3 py-2 h-40 placeholder:text-zinc-300/80 placeholder:font-semibold"
+                    placeholder="Details"
+                  ></textarea>
+                  <textarea
+                    name="descriptionimage[]"
+                    class="w-full outline-none resize-none rounded-lg bg-zinc-500 text-white px-3 py-2 h-40 placeholder:text-zinc-300/80 placeholder:font-semibold"
+                    placeholder="Image URL"
+                  ></textarea>
+                </div>
+              <% } %>
+            </div>
+          
+            <button
+              id="addDescriptionBtn"
+              type="button"
+              class="mt-4 bg-blue-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-blue-600"
+            >
+              Add Description
+            </button>
+          
+            <button
+              id="removeDescriptionBtn"
+              type="button"
+              class="mt-2 bg-red-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-red-600"
+            >
+              Remove Empty Descriptions
+            </button>
+          
+            <script>
+              const descriptionContainer = document.getElementById('descriptionContainer');
+              const addDescriptionBtn = document.getElementById('addDescriptionBtn');
+              const removeDescriptionBtn = document.getElementById('removeDescriptionBtn');
+          
+              let descriptionCount = <%= find.descriptions.length > 0 ? find.descriptions.length : 1 %>;
+          
+              addDescriptionBtn.addEventListener('click', function () {
+                descriptionCount++;
+          
+                const newSection = document.createElement('div');
+                newSection.classList.add('description-section', 'mt-4');
+          
+                newSection.innerHTML = `
+                  <label class="block text-white font-semibold mb-1 text-lg">Heading ${descriptionCount}:</label>
+                  <textarea
+                    name="heading[]"
+                    class="w-full outline-none resize-none rounded-lg bg-zinc-500 text-white px-3 py-2 h-10 placeholder:text-zinc-300/80 placeholder:font-semibold"
+                    placeholder="Heading"
+                  ></textarea>
+          
+                  <textarea
+                    name="detail[]"
+                    class="w-full outline-none resize-none rounded-lg bg-zinc-500 text-white px-3 py-2 h-40 placeholder:text-zinc-300/80 placeholder:font-semibold"
+                    placeholder="Details"
+                  ></textarea>
+          
+                  <textarea
+                    name="descriptionimage[]"
+                    class="w-full outline-none resize-none rounded-lg bg-zinc-500 text-white px-3 py-2 h-40 placeholder:text-zinc-300/80 placeholder:font-semibold"
+                    placeholder="Image URL"
+                  ></textarea>
+                `;
+          
+                descriptionContainer.appendChild(newSection);
+              });
+          
+              removeDescriptionBtn.addEventListener('click', function () {
+                const sections = descriptionContainer.querySelectorAll('.description-section');
+                sections.forEach(section => {
+                  const headingTextarea = section.querySelector('textarea[name="heading[]"]');
+                  const detailTextarea = section.querySelector('textarea[name="detail[]"]');
+                  const imageTextarea = section.querySelector('textarea[name="descriptionimage[]"]');
+          
+                  if (headingTextarea.value.trim() === '' && detailTextarea.value.trim() === '' && imageTextarea.value.trim() === '') {
+                    section.remove();
+                  }
+                });
+              });
+            </script>
+          
+            <div class="flex gap-4 justify-center mt-6">
+              <input
+                type="submit"
+                value="Update"
+                class="bg-orange-600 p-3 rounded-lg font-semibold text-lg cursor-pointer hover:bg-orange-700 transition"
+              />
+              <input
+                type="reset"
+                value="Reset"
+                class="bg-orange-600 p-3 rounded-lg font-semibold text-lg cursor-pointer hover:bg-orange-700 transition"
+              />
+            </div>
           </div>
-        </div>
+          
       </form>
     <% } else { %>
       <p class="text-center text-lg text-white">Product not found.</p>
