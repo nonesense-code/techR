@@ -494,7 +494,7 @@ function TabletBlog() {
             </div>
             <div className="border-b-2 border-black/20 w-full"></div>
             <div className="max-w-6xl text-justify px-4 flex flex-col items-left justify-center gap-12 mt-16 mb-8">
-              {targetLaptops.descriptions.map((item, index) => (
+              {targetTablets.descriptions.map((item, index) => (
                 <div
                   key={index}
                   className="flex flex-col items-start justify-center gap-2"
