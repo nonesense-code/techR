@@ -491,20 +491,30 @@ function PhoneBlog() {
             </div>
             <div className="border-b-2 border-black/20 w-full"></div>
             <div className="max-w-6xl text-justify px-4 flex flex-col items-left justify-center gap-12 mt-16 mb-8">
-              {targetPhones.descriptions.map((item, index) => (
+              {targetLaptops.descriptions.map((item, index) => (
                 <div
                   key={index}
                   className="flex flex-col items-start justify-center gap-2"
                 >
-                  <h1 className="text-md md:text-lg lg:text-xl font-extrabold whitespace-nowrap">
-                    {item.heading}
-                  </h1>
-                  <p className="text-[10px] leading-1 md:text-sm lg:text-lg">
-                    {item.detail}
-                  </p>
-                  <div>
-                    <img src={item.descriptionimage} alt="" />
-                  </div>
+                  {item.heading && (
+                    <h1 className="text-md md:text-lg lg:text-xl font-extrabold whitespace-nowrap uppercase">
+                      {item.heading}
+                    </h1>
+                  )}
+                  {item.detail && (
+                    <p className="text-[10px] leading-1 md:text-sm lg:text-lg">
+                      {item.detail}
+                    </p>
+                  )}
+                  {item.descriptionimage && (
+                    <div className="h-full w-full">
+                      <img
+                        src={item.descriptionimage}
+                        alt={item.name}
+                        className="h-[450px] object-center w-full object-cover"
+                      />
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
