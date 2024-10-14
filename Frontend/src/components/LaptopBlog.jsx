@@ -117,7 +117,7 @@ function LaptopBlog() {
     .filter((row) => row.ram && row.storage && row.price);
 
   const InfoSection = ({ label, value }) => (
-    <div className="flex items-center gap-2 max-w-[1200px]">
+    <div className="flex items-center gap-2 max-w-[1300px]">
       <div className="flex items-center gap-1 p-2 rounded-lg bg-green-100">
         <h1 className="text-xs whitespace-nowrap sm:text-sm md:text-md lg:text-[16px] font-extrabold text-green-600">
           {label}:
@@ -256,17 +256,22 @@ function LaptopBlog() {
                       </div>
                     </div>
                   </div>
-                  <div className="w-full md:border-l-4 md:border-black/10 py-4">
-                    <h1 className="mt-8 text-2xl md:text-3xl px-4 flex items-center justify-center lg:justify-start whitespace-nowrap tracking-tighter text-[#001] font-semibold border-b-[3px] border-black/10">
+                  <div className="w-auto md:border-l-4 md:border-black/10 py-4">
+                    <h1
+                      className={`mt-8 text-2xl md:text-3xl px-4 flex items-center justify-center lg:justify-start whitespace-nowrap tracking-tighter ${
+                        targetLaptops.mostpopular === "true"
+                          ? "text-red-600"
+                          : "text-[#001]"
+                      } font-semibold border-b-[3px] border-black/10`}
+                    >
                       {targetLaptops.name || "..."}
                     </h1>
-
-                    <div className="w-full h-auto py-4 md:px-4 flex flex-col gap-4">
-                      <div className="border-gradient w-full h-auto overflow-hidden flex items-center justify-center bg-white">
+                    <div className="w-auto h-auto py-4 md:px-4 flex flex-col gap-4">
+                      <div className="w-full h-auto overflow-hidden flex items-center justify-center bg-white">
                         <img
                           src={targetLaptops.image}
                           alt={targetLaptops.name}
-                          className="w-auto h-32 min-h-72 sm:h-96 object-contain"
+                          className="border-gradient h-full w-auto min-h-32 max-h-96 sm:h-96 object-contain"
                           loading="lazy"
                         />
                       </div>
@@ -501,7 +506,7 @@ function LaptopBlog() {
               </div>
             </div>
             <div className="border-b-2 border-black/20 w-full"></div>
-            <div className="max-w-6xl text-justify px-4 flex flex-col items-left justify-center gap-12 mt-16 mb-8">
+            <div className="max-w-[1250px] text-justify px-4 flex flex-col items-left justify-center gap-12 mt-16 mb-8">
               {targetLaptops.descriptions.map((item, index) => (
                 <div
                   key={index}
@@ -519,11 +524,13 @@ function LaptopBlog() {
                   )}
                   {item.descriptionimage && (
                     <div className="h-full w-full">
-                      <img
-                        src={item.descriptionimage}
-                        alt={item.name}
-                        className="h-[450px] object-center w-full object-cover"
-                      />
+                      <div className="flex items-center justify-center w-full h-full">
+                        <img
+                          src={item.descriptionimage}
+                          alt={item.name}
+                          className="h-[300px] md:h-auto md:max-h-[400px] object-center w-auto object-cover"
+                        />
+                      </div>
                     </div>
                   )}
                 </div>

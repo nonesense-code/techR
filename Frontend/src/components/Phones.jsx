@@ -115,7 +115,7 @@ function Phones() {
                         phone.productType === "phone" && (
                           <div
                             key={index}
-                            className="border-2 border-[#000000] shadow-lg shadow-indigo-600 rounded-xl overflow-hidden p-2 md:flex flex-row w-full"
+                            className="border-2 border-zinc-500 shadow-lg shadow-indigo-600 rounded-xl overflow-hidden p-2 md:flex flex-row w-full"
                           >
                             <Link
                               to={`/${phone.productType}/${phone.name
