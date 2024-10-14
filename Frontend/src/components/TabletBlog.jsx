@@ -261,11 +261,11 @@ function TabletBlog() {
                         <img
                           src={targetTablets.image}
                           alt={targetTablets.name}
-                          className="border-gradient h-full w-auto min-h-32 max-h-96 sm:h-96 object-contain"
+                          className="border-gradient h-auto max-h-80 w-auto md:max-h-96 sm:h-96 object-contain"
                           loading="lazy"
                         />
                       </div>
-                      <div className="text-[12px] leading-1 md:text-sm lg:text-lg text-black text-justify">
+                      <div className="text-[14px] leading-1 md:text-sm lg:text-lg text-justify">
                         {targetTablets.blog || "..."}
                       </div>
                       <div className="w-full h-auto overflow-hidden flex flex-col gap-4 mt-2 text-2xl text-[#002] items-start justify-end">

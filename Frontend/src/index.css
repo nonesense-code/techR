@@ -75,6 +75,6 @@ body {
 }
 
 .border-gradient {
-  border: 4px dashed black;
+  border: 3px dashed rgba(204, 201, 201, 0.801);
   border-radius: 20px;
 }

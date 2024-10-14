@@ -130,7 +130,7 @@ function Navbar() {
                 )
               )}
             </div>
-            <div className="searchbar flex items-center bg-gray-600 rounded-md border-2 border-black">
+            <div className="hidden sm:flex searchbar items-center bg-gray-600 rounded-md border-2 border-black">
               <input
                 type="text"
                 placeholder="Search"
