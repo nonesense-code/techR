@@ -267,7 +267,7 @@ function PhoneBlog() {
                           loading="lazy"
                         />
                       </div>
-                      <div className="text-black text-sm tracking-wide md:text-md lg:text-lg font-bold text-justify">
+                      <div className="text-[12px] leading-1 md:text-sm lg:text-lg text-black text-justify">
                         {targetPhones.blog || "..."}
                       </div>
                       <div className="w-full h-auto overflow-hidden flex flex-col gap-4 mt-2 text-2xl text-[#002] items-start justify-end">
@@ -517,7 +517,7 @@ function PhoneBlog() {
                         <img
                           src={item.descriptionimage}
                           alt={item.name}
-                          className="h-[300px] md:h-auto md:max-h-[400px] object-center w-auto object-cover"
+                          className="h-auto max-h-[400px] md:h-auto object-center w-auto object-contain"
                         />
                       </div>
                     </div>
