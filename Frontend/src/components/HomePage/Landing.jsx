@@ -161,7 +161,7 @@ function Landing() {
         <h1 className="text-center text-2xl font-bold tracking-wide">
           Distinguished Picks
         </h1>
-        <div className="w-full flex flex-wrap border-2 border-stone-600 mt-2">
+        <div className="min-w-full w-full flex flex-wrap border-2 border-stone-600 mt-2">
           <div className="flex-1 min-w-0 w-full md:w-1/3 border-r-2 border-black p-2 text-center hover:bg-sky-600/30 active:bg-sky-600/40 overflow-hidden">
             <Link
               to="/phone"
@@ -209,7 +209,7 @@ function Landing() {
                   <img
                     src={item.image}
                     alt={item.name}
-                    className="border-b-2 border-white/70 object-cover h-[300px] w-full bg-black border-r-2 border-white hover:scale-105 duration-200 ease-out"
+                    className="border-b-2 border-white/70 object-cover h-[160px] md:h-[240px] lg:h-[300px] w-full bg-black border-r-2 border-white hover:scale-105 duration-200 ease-out"
                     loading="lazy"
                   />
                   <div className="absolute text-center bg-black border-white border-t-2 border-b-2 text-[#00FFA3] w-full bottom-0 h-auto p-2 mx-auto left-0 right-0">
@@ -223,7 +223,7 @@ function Landing() {
         {!isLoading ? (
           <div className="h-auto w-full">
             <div className="h-auto w-full">
-              <div className="container mx-auto px-4 py-8">
+              <div className="container mx-auto px-4 py-8 max-w-[1120px]">
                 {/* for the newly launched change item.popularity to item.isNew */}
                 <div className="flex flex-col items-center justify-center">
                   <h1 className="text-md lg:text-3xl font-bold bg-black p-2 rounded-md text-[#FFA500] mb-2">

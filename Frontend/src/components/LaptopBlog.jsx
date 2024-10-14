@@ -3,9 +3,6 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { motion, easeInOut } from "framer-motion";
 import CircularLoader from "../CircularLoader";
-import { FaAmazon } from "react-icons/fa";
-import alibaba from "../images/alibabalogo.png";
-import daraz from "../images/darazlogo.png";
 import { useQuery } from "react-query";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 
@@ -40,6 +37,16 @@ const fetchtargetLaptops = async (targetURL, navigate) => {
 };
 
 function LaptopBlog() {
+  useEffect(() => {
+    const filterProducts = async (url) => {
+      try {
+        const response = await axios.get(url);
+        return response.data;
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+  }, []);
   const flagshipURL = import.meta.env.VITE_FLAGSHIP_URL;
   const midrangeURL = import.meta.env.VITE_MIDRANGE_URL;
   const budgetURL = import.meta.env.VITE_BUDGET_URL;
@@ -270,7 +277,7 @@ function LaptopBlog() {
                         {(targetLaptops.dimension ||
                           targetLaptops.build ||
                           targetLaptops.weight) && (
-                          <div className="flex flex-col gap-3 w-full px-4">
+                          <div className="flex flex-col gap-3 w-full">
                             {targetLaptops.dimension && (
                               <InfoSection
                                 label="Dimension"
@@ -294,7 +301,7 @@ function LaptopBlog() {
                         {(targetLaptops.dtype ||
                           targetLaptops.size ||
                           targetLaptops.resolution) && (
-                          <div className="flex flex-col gap-3 w-full px-4">
+                          <div className="flex flex-col gap-3 w-full">
                             {targetLaptops.dtype && (
                               <InfoSection
                                 label="Type"
@@ -318,7 +325,7 @@ function LaptopBlog() {
                         {(targetLaptops.frontcamera ||
                           targetLaptops.maincamera ||
                           targetLaptops.video) && (
-                          <div className="flex flex-col gap-3 w-full px-4">
+                          <div className="flex flex-col gap-3 w-full">
                             {targetLaptops.frontcamera && (
                               <InfoSection
                                 label="FrontCamera"
@@ -342,7 +349,7 @@ function LaptopBlog() {
                         {(targetLaptops.os ||
                           targetLaptops.processor ||
                           targetLaptops.graphics) && (
-                          <div className="w-full flex gap-4 justify-start p-2 bg-zinc-50 flex-col rounded-lg px-4">
+                          <div className="w-full flex gap-4 justify-start py-2 flex-col rounded-lg">
                             {targetLaptops.os && (
                               <InfoSection
                                 label="OS"
@@ -365,7 +372,7 @@ function LaptopBlog() {
                         )}
 
                         {rows.length > 0 && (
-                          <div className="w-full flex items-start gap-4 justify-start p-2 bg-zinc-50 flex-col rounded-lg px-4">
+                          <div className="w-full flex items-start gap-4 justify-start py-2 flex-col rounded-lg">
                             <div className="flex items-center gap-2 w-full">
                               <div className="flex items-center gap-1 p-2 rounded-lg bg-green-100">
                                 <h1 className="text-xs sm:text-sm md:text-md lg:text-[16px] font-extrabold text-green-600">
@@ -405,7 +412,7 @@ function LaptopBlog() {
                           </div>
                         )}
                         {(targetLaptops.capacity || targetLaptops.charging) && (
-                          <div className="flex flex-col gap-3 w-full px-4">
+                          <div className="flex flex-col gap-3 w-full">
                             {targetLaptops.capacity && (
                               <InfoSection
                                 label="Capacity"
@@ -421,7 +428,7 @@ function LaptopBlog() {
                           </div>
                         )}
                         {(targetLaptops.wifi || targetLaptops.bluetooth) && (
-                          <div className="flex flex-col gap-3 w-full px-4">
+                          <div className="flex flex-col gap-3 w-full">
                             {targetLaptops.wifi && (
                               <InfoSection
                                 label="Wi-Fi"
@@ -437,7 +444,7 @@ function LaptopBlog() {
                           </div>
                         )}
                         {(targetLaptops.typec || targetLaptops.audiojack) && (
-                          <div className="flex flex-col gap-3 w-full px-4">
+                          <div className="flex flex-col gap-3 w-full">
                             {targetLaptops.typec && (
                               <InfoSection
                                 label="Type-C"

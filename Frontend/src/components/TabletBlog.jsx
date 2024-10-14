@@ -3,9 +3,6 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { motion, easeInOut } from "framer-motion";
 import CircularLoader from "../CircularLoader";
-import { FaAmazon } from "react-icons/fa";
-import alibaba from "../images/alibabalogo.png";
-import daraz from "../images/darazlogo.png";
 import { useQuery } from "react-query";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 
@@ -269,7 +266,7 @@ function TabletBlog() {
                         {(targetTablets.dimension ||
                           targetTablets.build ||
                           targetTablets.weight) && (
-                          <div className="flex flex-col gap-3 w-full px-4">
+                          <div className="flex flex-col gap-3 w-full">
                             {targetTablets.dimension && (
                               <InfoSection
                                 label="Dimension"
@@ -293,7 +290,7 @@ function TabletBlog() {
                         {(targetTablets.dtype ||
                           targetTablets.size ||
                           targetTablets.resolution) && (
-                          <div className="flex flex-col gap-3 w-full px-4">
+                          <div className="flex flex-col gap-3 w-full">
                             {targetTablets.dtype && (
                               <InfoSection
                                 label="Type"
@@ -317,7 +314,7 @@ function TabletBlog() {
                         {(targetTablets.frontcamera ||
                           targetTablets.maincamera ||
                           targetTablets.video) && (
-                          <div className="flex flex-col gap-3 w-full px-4">
+                          <div className="flex flex-col gap-3 w-full">
                             {targetTablets.frontcamera && (
                               <InfoSection
                                 label="FrontCamera"
@@ -341,7 +338,7 @@ function TabletBlog() {
                         {(targetTablets.os ||
                           targetTablets.processor ||
                           targetTablets.graphics) && (
-                          <div className="w-full flex gap-4 justify-start p-2 bg-zinc-50 flex-col rounded-lg px-4">
+                          <div className="w-full flex gap-4 justify-start py-2 flex-col rounded-lg">
                             {targetTablets.os && (
                               <InfoSection
                                 label="OS"
@@ -364,7 +361,7 @@ function TabletBlog() {
                         )}
 
                         {rows.length > 0 && (
-                          <div className="w-full flex items-start gap-4 justify-start p-2 bg-zinc-50 flex-col rounded-lg px-4">
+                          <div className="w-full flex items-start gap-4 justify-start py-2 flex-col rounded-lg">
                             <div className="flex items-center gap-2 w-full">
                               <div className="flex items-center gap-1 p-2 rounded-lg bg-green-100">
                                 <h1 className="text-xs sm:text-sm md:text-md lg:text-[16px] font-extrabold text-green-600">
@@ -404,7 +401,7 @@ function TabletBlog() {
                           </div>
                         )}
                         {(targetTablets.capacity || targetTablets.charging) && (
-                          <div className="flex flex-col gap-3 w-full px-4">
+                          <div className="flex flex-col gap-3 w-full">
                             {targetTablets.capacity && (
                               <InfoSection
                                 label="Capacity"
@@ -420,7 +417,7 @@ function TabletBlog() {
                           </div>
                         )}
                         {(targetTablets.wifi || targetTablets.bluetooth) && (
-                          <div className="flex flex-col gap-3 w-full px-4">
+                          <div className="flex flex-col gap-3 w-full">
                             {targetTablets.wifi && (
                               <InfoSection
                                 label="Wi-Fi"
@@ -436,7 +433,7 @@ function TabletBlog() {
                           </div>
                         )}
                         {(targetTablets.typec || targetTablets.audiojack) && (
-                          <div className="flex flex-col gap-3 w-full px-4">
+                          <div className="flex flex-col gap-3 w-full">
                             {targetTablets.typec && (
                               <InfoSection
                                 label="Type-C"

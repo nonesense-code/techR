@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { motion, easeInOut } from "framer-motion";
+import { motion } from "framer-motion";
 import CircularLoader from "../CircularLoader";
-import { FaAmazon } from "react-icons/fa";
-import alibaba from "../images/alibabalogo.png";
-import daraz from "../images/darazlogo.png";
 import { useQuery } from "react-query";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 
@@ -269,7 +266,7 @@ function PhoneBlog() {
                         {(targetPhones.dimension ||
                           targetPhones.build ||
                           targetPhones.weight) && (
-                          <div className="flex flex-col gap-3 w-full px-4">
+                          <div className="flex flex-col gap-3 w-full">
                             {targetPhones.dimension && (
                               <InfoSection
                                 label="Dimension"
@@ -293,7 +290,7 @@ function PhoneBlog() {
                         {(targetPhones.dtype ||
                           targetPhones.size ||
                           targetPhones.resolution) && (
-                          <div className="flex flex-col gap-3 w-full px-4">
+                          <div className="flex flex-col gap-3 w-full">
                             {targetPhones.dtype && (
                               <InfoSection
                                 label="Type"
@@ -317,7 +314,7 @@ function PhoneBlog() {
                         {(targetPhones.frontcamera ||
                           targetPhones.maincamera ||
                           targetPhones.video) && (
-                          <div className="flex flex-col gap-3 w-full px-4">
+                          <div className="flex flex-col gap-3 w-full">
                             {targetPhones.frontcamera && (
                               <InfoSection
                                 label="FrontCamera"
@@ -341,7 +338,7 @@ function PhoneBlog() {
                         {(targetPhones.os ||
                           targetPhones.processor ||
                           targetPhones.graphics) && (
-                          <div className="w-full flex gap-4 justify-start p-2 bg-zinc-50 flex-col rounded-lg px-4">
+                          <div className="w-full flex gap-4 justify-start py-2 flex-col rounded-lg">
                             {targetPhones.os && (
                               <InfoSection label="OS" value={targetPhones.os} />
                             )}
@@ -361,7 +358,7 @@ function PhoneBlog() {
                         )}
 
                         {rows.length > 0 && (
-                          <div className="w-full flex items-start gap-4 justify-start p-2 bg-zinc-50 flex-col rounded-lg px-4">
+                          <div className="w-full flex items-start gap-4 justify-start py-2 flex-col rounded-lg">
                             <div className="flex items-center gap-2 w-full">
                               <div className="flex items-center gap-1 p-2 rounded-lg bg-green-100">
                                 <h1 className="text-xs sm:text-sm md:text-md lg:text-[16px] font-extrabold text-green-600">
@@ -401,7 +398,7 @@ function PhoneBlog() {
                           </div>
                         )}
                         {(targetPhones.capacity || targetPhones.charging) && (
-                          <div className="flex flex-col gap-3 w-full px-4">
+                          <div className="flex flex-col gap-3 w-full">
                             {targetPhones.capacity && (
                               <InfoSection
                                 label="Capacity"
@@ -417,7 +414,7 @@ function PhoneBlog() {
                           </div>
                         )}
                         {(targetPhones.wifi || targetPhones.bluetooth) && (
-                          <div className="flex flex-col gap-3 w-full px-4">
+                          <div className="flex flex-col gap-3 w-full">
                             {targetPhones.wifi && (
                               <InfoSection
                                 label="Wi-Fi"
@@ -433,7 +430,7 @@ function PhoneBlog() {
                           </div>
                         )}
                         {(targetPhones.typec || targetPhones.audiojack) && (
-                          <div className="flex flex-col gap-3 w-full px-4">
+                          <div className="flex flex-col gap-3 w-full">
                             {targetPhones.typec && (
                               <InfoSection
                                 label="Type-C"
