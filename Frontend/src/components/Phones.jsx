@@ -94,6 +94,7 @@ function Phones() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
+            className="h-screen w-full"
           >
             <CircularLoader />
           </motion.div>
