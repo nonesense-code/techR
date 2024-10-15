@@ -5,7 +5,7 @@ const productModel = require("../Backend/models/Products");
 const fs = require("fs");
 const path = require("path");
 
-const frontendURL = process.env.frontendURL;
+const domainURL = process.env.domainURL;
 
 const frontendPublicDir = path.join(__dirname, "../Frontend/public");
 
@@ -39,7 +39,7 @@ router.get("/", async (req, res) => {
   try {
     const { phone, laptop, tablet } = await findNames();
     const sitemap = new SitemapStream({
-      hostname: frontendURL,
+      hostname: domainURL,
     });
 
     sitemap.write({ url: "/" });
