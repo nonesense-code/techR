@@ -4,6 +4,7 @@ const cors = require("cors");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const compression = require("compression");
+const sitemapRoute = require("./sitemap-generator");
 require("dotenv").config();
 
 const cloudinary = require("cloudinary").v2;
@@ -15,7 +16,6 @@ cloudinary.config({
 });
 
 const frontendURL = process.env.frontendURL;
-
 const corsOptions = {
   origin: frontendURL,
   methods: ["GET", "POST", "PUT", "DELETE"],
@@ -43,6 +43,7 @@ const userRouter = require("../Backend/routes/userRouter");
 const allproductRouter = require("../Backend/routes/allproductRouter");
 const filterRouter = require("../Backend/routes/filterRouter");
 
+app.use("/", sitemapRoute);
 app.use("/", homeRouter);
 app.use("/owners", ownerRouter);
 app.use("/users", userRouter);
