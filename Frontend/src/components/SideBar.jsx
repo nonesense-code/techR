@@ -55,36 +55,37 @@ function SideBar() {
             <div className="h-auto">
               {!isLoading && <h1 className="text-2xl text-center">Flagship</h1>}
               <div className="hidescroller w-full pt-4 flex flex-col gap-8 items-center overflow-y-auto p-4 h-[550px]">
-                {flagship.map((item, index) => (
-                  <div
-                    key={index}
-                    className="w-52 h-auto bg-white flex flex-col items-center justify-start border-4 border-black rounded-xl"
-                  >
-                    <Link
-                      to={`/${item.productType}/${item.name
-                        .toLowerCase()
-                        .split(" ")
-                        .join("")}`}
+                {isLoading &&
+                  flagship.map((item, index) => (
+                    <div
+                      key={index}
+                      className="w-52 h-auto bg-white flex flex-col items-center justify-start border-4 border-black rounded-xl"
                     >
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        className="rounded-t-lg w-full h-full object-contain object-top"
-                        loading="lazy"
-                      />
-                    </Link>
-                    {budget && (
-                      <div className="w-full">
-                        <h1 className="w-full text-center border-t-2 border-black">
-                          {item.name}
-                        </h1>
-                        <h1 className="w-full text-center bg-black text-white rounded-b-lg">
-                          {item.price1}
-                        </h1>
-                      </div>
-                    )}
-                  </div>
-                ))}
+                      <Link
+                        to={`/${item.productType}/${item.name
+                          .toLowerCase()
+                          .split(" ")
+                          .join("")}`}
+                      >
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          className="rounded-t-lg w-full h-full object-contain object-top"
+                          loading="lazy"
+                        />
+                      </Link>
+                      {budget && (
+                        <div className="w-full">
+                          <h1 className="w-full text-center border-t-2 border-black">
+                            {item.name}
+                          </h1>
+                          <h1 className="w-full text-center bg-black text-white rounded-b-lg">
+                            {item.price1}
+                          </h1>
+                        </div>
+                      )}
+                    </div>
+                  ))}
               </div>
             </div>
           </div>
@@ -92,36 +93,37 @@ function SideBar() {
             <div className="h-auto">
               {!isLoading && <h1 className="text-2xl text-center">Midrange</h1>}
               <div className="hidescroller w-full pt-4 flex flex-col gap-8 items-center overflow-y-auto p-4 h-[570px]">
-                {midrange.map((item, index) => (
-                  <div
-                    key={index}
-                    className="w-52 h-auto bg-white flex flex-col items-center justify-start border-4 border-black rounded-xl"
-                  >
-                    <Link
-                      to={`/${item.productType}/${item.name
-                        .toLowerCase()
-                        .split(" ")
-                        .join("")}`}
+                {isLoading &&
+                  midrange.map((item, index) => (
+                    <div
+                      key={index}
+                      className="w-52 h-auto bg-white flex flex-col items-center justify-start border-4 border-black rounded-xl"
                     >
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        className="rounded-t-lg w-full h-full object-contain object-top"
-                        loading="lazy"
-                      />
-                    </Link>
-                    {budget && (
-                      <div className="w-full">
-                        <h1 className="w-full text-center border-t-2 border-black">
-                          {item.name}
-                        </h1>
-                        <h1 className="w-full text-center bg-black text-white rounded-b-lg">
-                          {item.price1}
-                        </h1>
-                      </div>
-                    )}
-                  </div>
-                ))}
+                      <Link
+                        to={`/${item.productType}/${item.name
+                          .toLowerCase()
+                          .split(" ")
+                          .join("")}`}
+                      >
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          className="rounded-t-lg w-full h-full object-contain object-top"
+                          loading="lazy"
+                        />
+                      </Link>
+                      {budget && (
+                        <div className="w-full">
+                          <h1 className="w-full text-center border-t-2 border-black">
+                            {item.name}
+                          </h1>
+                          <h1 className="w-full text-center bg-black text-white rounded-b-lg">
+                            {item.price1}
+                          </h1>
+                        </div>
+                      )}
+                    </div>
+                  ))}
               </div>
             </div>
           </div>
@@ -129,36 +131,37 @@ function SideBar() {
             <div className="h-auto">
               {!isLoading && <h1 className="text-2xl text-center">Budget</h1>}
               <div className="hidescroller w-full pt-4 flex flex-col gap-8 items-center overflow-y-auto p-4 h-[490px]">
-                {budget.map((item, index) => (
-                  <div
-                    key={index}
-                    className="w-52 h-auto bg-white flex flex-col items-center justify-start border-4 border-black rounded-xl"
-                  >
-                    <Link
-                      to={`/${item.productType}/${item.name
-                        .toLowerCase()
-                        .split(" ")
-                        .join("")}`}
+                {isLoading &&
+                  budget.map((item, index) => (
+                    <div
+                      key={index}
+                      className="w-52 h-auto bg-white flex flex-col items-center justify-start border-4 border-black rounded-xl"
                     >
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        className="rounded-t-lg w-full h-full object-contain object-top"
-                        loading="lazy"
-                      />
-                    </Link>
-                    {budget && (
-                      <div className="w-full">
-                        <h1 className="w-full text-center border-t-2 border-black">
-                          {item.name}
-                        </h1>
-                        <h1 className="w-full text-center bg-black text-white rounded-b-lg">
-                          {item.price1}
-                        </h1>
-                      </div>
-                    )}
-                  </div>
-                ))}
+                      <Link
+                        to={`/${item.productType}/${item.name
+                          .toLowerCase()
+                          .split(" ")
+                          .join("")}`}
+                      >
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          className="rounded-t-lg w-full h-full object-contain object-top"
+                          loading="lazy"
+                        />
+                      </Link>
+                      {budget && (
+                        <div className="w-full">
+                          <h1 className="w-full text-center border-t-2 border-black">
+                            {item.name}
+                          </h1>
+                          <h1 className="w-full text-center bg-black text-white rounded-b-lg">
+                            {item.price1}
+                          </h1>
+                        </div>
+                      )}
+                    </div>
+                  ))}
               </div>
             </div>
           </div>
