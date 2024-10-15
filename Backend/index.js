@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -5,7 +6,6 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const compression = require("compression");
 const sitemapRoute = require("./sitemap-generator");
-require("dotenv").config();
 
 const cloudinary = require("cloudinary").v2;
 
@@ -43,8 +43,8 @@ const userRouter = require("../Backend/routes/userRouter");
 const allproductRouter = require("../Backend/routes/allproductRouter");
 const filterRouter = require("../Backend/routes/filterRouter");
 
-app.use("/", sitemapRoute);
 app.use("/", homeRouter);
+app.use("/sitemap", sitemapRoute);
 app.use("/owners", ownerRouter);
 app.use("/users", userRouter);
 app.use("/products", addProductRouter);

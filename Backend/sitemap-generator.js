@@ -1,9 +1,13 @@
 const express = require("express");
+const router = express.Router();
 const { SitemapStream, streamToPromise } = require("sitemap");
 const productModel = require("../Backend/models/Products");
-require("dotenv").config();
+const fs = require("fs");
+const path = require("path");
 
-const router = express.Router();
+const frontendURL = process.env.frontendURL;
+
+const frontendPublicDir = path.join(__dirname, "../Frontend/public");
 
 const findNames = async () => {
   try {
@@ -11,13 +15,16 @@ const findNames = async () => {
     const laptop = [];
     const tablet = [];
     const products = await productModel.find();
+
     products.forEach((product) => {
+      const formattedName = product.name.toLowerCase().split(" ").join("");
+
       if (product.productType === "phone") {
-        phone.push(product.name.toLowerCase().split(" ").join(""));
+        phone.push(formattedName);
       } else if (product.productType === "laptop") {
-        laptop.push(product.name.toLowerCase().split(" ").join(""));
+        laptop.push(formattedName);
       } else if (product.productType === "tablet") {
-        tablet.push(product.name.toLowerCase().split(" ").join(""));
+        tablet.push(formattedName);
       }
     });
 
@@ -28,45 +35,50 @@ const findNames = async () => {
   }
 };
 
-const frontendURL = process.env.frontendURL;
-router.get("/sitemap.xml", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const { phone, laptop, tablet } = await findNames();
     const sitemap = new SitemapStream({
-      hostname: `${frontendURL}`,
+      hostname: frontendURL,
     });
 
-    sitemap.write({ url: "/", priority: 1.0 });
-    sitemap.write({ url: "/phone", priority: 1.0 });
-    sitemap.write({ url: "/laptop", priority: 1.0 });
-    sitemap.write({ url: "/tablet", priority: 1.0 });
-    sitemap.write({ url: "/about", priority: 1.0 });
-    sitemap.write({ url: "/filter", priority: 1.0 });
+    sitemap.write({ url: "/" });
+    sitemap.write({ url: "/phone" });
+    sitemap.write({ url: "/laptop" });
+    sitemap.write({ url: "/tablet" });
+    sitemap.write({ url: "/about" });
+    sitemap.write({ url: "/filter" });
 
     phone.forEach((item) => {
-      sitemap.write({
-        url: `/phone/${item}`,
-        priority: 1.0,
-      });
+      sitemap.write({ url: `/phone/${item}` });
     });
 
     laptop.forEach((item) => {
-      sitemap.write({
-        url: `/laptop/${item}`,
-        priority: 1.0,
-      });
+      sitemap.write({ url: `/laptop/${item}` });
     });
 
     tablet.forEach((item) => {
-      sitemap.write({
-        url: `/tablet/${item}`,
-        priority: 1.0,
-      });
+      sitemap.write({ url: `/tablet/${item}` });
     });
 
     sitemap.end();
 
     const xml = await streamToPromise(sitemap).then((data) => data.toString());
+
+    const formattedXml = xml.replace(/<\/url>/g, "</url>\n");
+
+    const publicDir = path.join(frontendPublicDir, "public");
+    if (!fs.existsSync(publicDir)) {
+      fs.mkdirSync(publicDir);
+    }
+
+    try {
+      const filePath = path.join(frontendPublicDir, "sitemap.xml");
+
+      fs.writeFileSync(filePath, formattedXml, "utf8");
+    } catch (error) {
+      console.error("Error writing file:", error);
+    }
 
     res.header("Content-Type", "application/xml");
     res.send(xml);
