@@ -82,7 +82,7 @@ function TabletBlog() {
                 {targetTablets
                   ? `${
                       targetTablets.name || "TechR"
-                    } Price, Specifications, and Launch Details`
+                    } - Price, Specifications, and Launch Details`
                   : "Loading..."}
               </title>
             </Helmet>

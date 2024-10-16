@@ -80,7 +80,9 @@ function PhoneBlog() {
             <Helmet>
               <title>
                 {targetPhones
-                  ? `${targetPhones.name || "TechR"} - Specifications`
+                  ? `${
+                      targetPhones.name || "TechR"
+                    } - Price, Specifications, and Launch Details`
                   : "Loading..."}
               </title>
             </Helmet>

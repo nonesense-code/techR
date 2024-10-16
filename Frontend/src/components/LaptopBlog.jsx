@@ -80,7 +80,9 @@ function LaptopBlog() {
             <Helmet>
               <title>
                 {targetLaptops
-                  ? `${targetLaptops.name || "TechR"} - Specifications`
+                  ? `${
+                      targetLaptops.name || "TechR"
+                    } - Price, Specifications, and Launch Details`
                   : "Loading..."}
               </title>
             </Helmet>
