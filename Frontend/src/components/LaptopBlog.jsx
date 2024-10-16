@@ -104,7 +104,7 @@ function LaptopBlog() {
                           <img
                             src={targetLaptops.image}
                             alt={targetLaptops.name}
-                            className="border-gradient w-auto max-h-72 md:h-96 md:w-96 lg:max-w-[1200px] object-contain"
+                            className="border-gradient w-auto max-h-72 md:h-96 md:w-auto lg:min-h-[430px] object-contain"
                             loading="lazy"
                           />
                         ) : (
