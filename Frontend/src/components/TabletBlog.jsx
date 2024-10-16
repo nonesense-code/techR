@@ -290,7 +290,7 @@ function TabletBlog() {
                   </div>
                 </div>
               </div>
-              <div className="text-justify px-4 flex flex-col items-center justify-center gap-12 mt-16 mb-8">
+              <div className="text-justify px-4 flex flex-col items-start justify-center gap-12 mt-16 mb-8">
                 {targetTablets?.descriptions?.map((item, index) => (
                   <div key={index} className="flex flex-col gap-2">
                     {item.heading && (
