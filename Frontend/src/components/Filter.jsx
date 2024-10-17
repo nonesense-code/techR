@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
+
 function Filter() {
   const navigate = useNavigate();
   const [deviceType, setDeviceType] = useState("");
@@ -20,10 +22,15 @@ function Filter() {
         battery,
         price,
       });
+      if (response.data.message === "No such device found") {
+        toast.error("No such products found", {
+          position: "top-center",
+          autoClose: 4000,
+        });
+      }
+
       if (response.data.productType && response.data.name) {
         navigate(`/${response.data.productType}/${response.data.name}`);
-      } else {
-        navigate("/filter");
       }
     } catch (error) {
       console.error("Error", error.message);

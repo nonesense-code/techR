@@ -14,12 +14,15 @@ import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import { QueryClient, QueryClientProvider } from "react-query";
 // import Test from "./components/Test";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const queryClient = new QueryClient();
 
 function App() {
   return (
     <>
+      <ToastContainer />
       <Router>
         <QueryClientProvider client={queryClient}>
           <Navbar />
