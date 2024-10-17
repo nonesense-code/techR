@@ -8,6 +8,7 @@ import { IoMenu } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
 import { IoInformationCircle } from "react-icons/io5";
 import { RiContactsBookFill } from "react-icons/ri";
+import { LuSlidersHorizontal } from "react-icons/lu";
 import axios from "axios";
 import { easeInOut, motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -108,7 +109,7 @@ function Navbar() {
               </a>
             </div>
             <div className="links hidden lap:flex gap-8 items-center justify-evenly text-[#cfd3e0] font-semibold text-xl flex-wrap">
-              {["Home", "Phone", "Laptop", "Tablet", "About"].map(
+              {["Home", "Phone", "Laptop", "Tablet", "Filter", "About"].map(
                 (item, index) => (
                   <motion.div key={index} className="underline-animation">
                     <Link
@@ -122,8 +123,8 @@ function Navbar() {
                       {index === 0 && <FaHome />} {index === 1 && <CiMobile1 />}
                       {index === 2 && <AiOutlineLaptop />}
                       {index === 3 && <FaTabletScreenButton />}
-                      {index === 4 && <IoInformationCircle />}
-                      {index === 5 && <RiContactsBookFill />}
+                      {index === 4 && <LuSlidersHorizontal />}
+                      {index === 5 && <IoInformationCircle />}
                       {item}
                     </Link>
                   </motion.div>
@@ -167,7 +168,7 @@ function Navbar() {
         >
           <div className="flex flex-col gap-12 items-start justify-evenly mt-24">
             <div className="flex lap:hidden flex-col gap-4 items-start justify-center flex-1 text-[#cfd3e0] font-semibold text-lg flex-wrap">
-              {["Home", "Phone", "Laptop", "Tablet", "About"].map(
+              {["Home", "Phone", "Laptop", "Tablet", "Filter", "About"].map(
                 (item, index) => (
                   <motion.div key={index}>
                     <Link
@@ -183,8 +184,8 @@ function Navbar() {
                       {index === 1 && <CiMobile1 />}
                       {index === 2 && <AiOutlineLaptop />}
                       {index === 3 && <FaTabletScreenButton />}
-                      {index === 4 && <IoInformationCircle />}
-                      {index === 5 && <RiContactsBookFill />}
+                      {index === 4 && <LuSlidersHorizontal />}
+                      {index === 5 && <IoInformationCircle />}
                       {item}
                     </Link>
                   </motion.div>

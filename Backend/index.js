@@ -42,6 +42,7 @@ const ownerRouter = require("../Backend/routes/ownerRouter");
 const userRouter = require("../Backend/routes/userRouter");
 const allproductRouter = require("../Backend/routes/allproductRouter");
 const filterRouter = require("../Backend/routes/filterRouter");
+const lol = require("../Backend/routes/lol");
 
 app.use("/", homeRouter);
 app.use("/sitemap", sitemapRoute);
@@ -54,6 +55,7 @@ app.use("/laptops", laptopRouter);
 app.use("/tablets", tabletRouter);
 app.use("/allproducts/api", allproductRouter);
 app.use("/product/api", filterRouter);
+app.use("/filter", lol);
 
 const PORT = process.env.PORT || 5173;
 app.listen(PORT, () => {
