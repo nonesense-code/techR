@@ -2,10 +2,6 @@ const express = require("express");
 const router = express();
 const productModel = require("../models/Products");
 
-router.get("/", async (req, res) => {
-  res.json({ data: "Hello" });
-});
-
 router.post("/", async (req, res) => {
   let { deviceType, processor, ram, graphics, battery, price } = req.body;
 
