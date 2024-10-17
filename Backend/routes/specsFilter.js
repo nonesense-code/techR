@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express();
 const productModel = require("../models/Products");
-const frontendURL = process.env.frontendURL;
 
 router.get("/", async (req, res) => {
   res.json({ data: "Hello" });

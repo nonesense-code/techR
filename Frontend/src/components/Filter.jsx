@@ -198,7 +198,7 @@ function Filter() {
           "NVIDIA GTX 980",
           "NVIDIA GTX 980 Ti",
         ],
-        battery: ["30Wh", "50Wh", "60Wh", "75Wh", "100Wh"],
+        battery: ["30Wh - 50Wh", "50Wh - 70Wh", "70Wh - 90Wh", "90Wh - 110Wh"],
         price: [
           "< $100",
           "$100 - $199",

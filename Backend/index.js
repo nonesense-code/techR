@@ -42,7 +42,7 @@ const ownerRouter = require("../Backend/routes/ownerRouter");
 const userRouter = require("../Backend/routes/userRouter");
 const allproductRouter = require("../Backend/routes/allproductRouter");
 const filterRouter = require("../Backend/routes/filterRouter");
-const lol = require("../Backend/routes/lol");
+const lol = require("./routes/specsFilter");
 
 app.use("/", homeRouter);
 app.use("/sitemap", sitemapRoute);
