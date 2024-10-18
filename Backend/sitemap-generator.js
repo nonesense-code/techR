@@ -40,6 +40,12 @@ router.get("/", async (req, res) => {
     const { phone, laptop, tablet } = await findNames();
     const sitemap = new SitemapStream({
       hostname: domainURL,
+      xmlns: {
+        news: false,
+        xhtml: false,
+        image: false,
+        video: false,
+      },
     });
 
     sitemap.write({ url: "/" });
