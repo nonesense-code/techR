@@ -30,6 +30,10 @@ function Filter() {
       }
 
       if (response.data.productType && response.data.name) {
+        toast.success("Congo! You got a catch", {
+          position: "top-center",
+          autoClose: 2000,
+        });
         navigate(`/${response.data.productType}/${response.data.name}`);
       }
     } catch (error) {
