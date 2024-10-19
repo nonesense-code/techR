@@ -1,329 +1,3 @@
-// import React from "react";
-// import { useParams, useNavigate } from "react-router-dom";
-// import axios from "axios";
-// import { useQuery } from "react-query";
-// import { Helmet, HelmetProvider } from "react-helmet-async";
-// import CircularLoader from "../CircularLoader";
-// import SideBar from "./SideBar";
-
-// const fetchtargetPhones = async (targetURL, navigate) => {
-//   try {
-//     const response = await axios.get(targetURL);
-//     if (typeof response.data === "object" && response.data !== null) {
-//       return response.data;
-//     } else {
-//       navigate("/phone");
-//       return;
-//     }
-//   } catch (error) {
-//     if (error.response) {
-//       console.error("Error response from server:", error.response);
-//     } else {
-//       console.error("Error during request setup:", error.message);
-//     }
-//     navigate("/phone");
-//     return;
-//   }
-// };
-
-// function PhoneBlog() {
-//   const navigate = useNavigate();
-//   const targetphoneURL = import.meta.env.VITE_TARGETPHONE_URL;
-//   const { itname } = useParams();
-//   const targetURL = `${targetphoneURL}/${itname}`;
-//   const { data: targetPhones = [], isLoading: isLoadingTarget } = useQuery(
-//     ["targetPhones", targetURL],
-//     () => fetchtargetPhones(targetURL, navigate),
-//     {
-//       staleTime: 1000 * 60 * 5,
-//     }
-//   );
-
-//   const rows = [
-//     {
-//       ram: targetPhones.ram1,
-//       storage: targetPhones.storage1,
-//       price: targetPhones.price1,
-//     },
-//     targetPhones.ram2 && {
-//       ram: targetPhones.ram2,
-//       storage: targetPhones.storage2,
-//       price: targetPhones.price2,
-//     },
-//     targetPhones.ram3 && {
-//       ram: targetPhones.ram3,
-//       storage: targetPhones.storage3,
-//       price: targetPhones.price3,
-//     },
-//   ]
-//     .filter(Boolean)
-//     .filter((row) => row.ram && row.storage && row.price);
-
-//   const InfoSection = ({ label, value }) => (
-//     <div className="flex gap-none w-full flex-col items-start border-[1px] md:border-2 overflow-hidden border-black/80 rounded-lg">
-//       <div className="flex items-start justify-start gap-1 px-2 py-1">
-//         <h2 className="sm:text-sm text-lg md:text-md lg:text-[16px] whitespace-nowrap font-extrabold text-black">
-//           {label}:
-//         </h2>
-//       </div>
-//       <div className="text-sm font-semibold tracking-tight leading-1 sm:text-sm md:text-md lg:text-[16px] w-full bg-zinc-100 px-2 py-1 rounded-md md:rounded-none text-[#002]">
-//         {value || "..."}
-//       </div>
-//     </div>
-//   );
-
-//   return (
-//     <HelmetProvider>
-//       <div className="flex items-center justify-center">
-//         <div className="flex items-start flex-col justify-center w-full max-w-screen-xl md:px-2">
-//           <div className="flex w-full">
-//             <Helmet>
-//               <title>
-//                 {targetPhones
-//                   ? `${
-//                       targetPhones.name || "TechR"
-//                     } - Price, Specifications, and Launch Details`
-//                   : "Loading..."}
-//               </title>
-//             </Helmet>
-//             <div className="w-full flex flex-col">
-//               <div className="flex w-full gap-2">
-//                 <SideBar />
-//                 <div className="flex w-full flex-col md:flex-row items-start justify-between">
-//                   <div className="w-full md:border-l-4 md:border-black/10 py-4">
-//                     <h1
-//                       className={`mt-4 md:pl-2 py-2 text-2xl md:text-3xl flex items-center justify-center lg:justify-start tracking-tighter ${
-//                         targetPhones.mostpopular === "true"
-//                           ? "text-red-600"
-//                           : "text-[#001]"
-//                       } font-semibold border-b-[3px] border-black/10`}
-//                     >
-//                       {targetPhones.name || "..."}
-//                     </h1>
-//                     <div className="w-full h-auto py-4 flex flex-col gap-4">
-//                       <div className="flex items-center justify-center bg-white px-4 md:px-none">
-//                         {targetPhones.image ? (
-//                           <img
-//                             src={targetPhones.image}
-//                             alt={targetPhones.name}
-//                             className="border-gradient w-auto max-h-72 md:h-96 md:w-auto lg:min-h-[430px] object-contain"
-//                             loading="lazy"
-//                           />
-//                         ) : (
-//                           <div className="border-gradient h-80 w-[300px] object-contain">
-//                             <CircularLoader />
-//                           </div>
-//                         )}
-//                       </div>
-//                       <div
-//                         className={`text-[10px] leading-1 tracking-tight font-semibold px-4 md:text-sm lg:text-lg text-justify ${
-//                           targetPhones.blog
-//                             ? ""
-//                             : "flex items-center justify-center text-[50px]"
-//                         }`}
-//                       >
-//                         {targetPhones.blog || "..."}
-//                       </div>
-//                       <div className="w-full px-4 h-auto overflow-hidden flex flex-col gap-4 mt-2 text-2xl text-[#002] items-start justify-end">
-//                         <div className="flex flex-col gap-3 w-full">
-//                           <InfoSection
-//                             label="Dimension"
-//                             value={targetPhones.dimension}
-//                           />
-//                           <InfoSection
-//                             label="Build"
-//                             value={targetPhones.build}
-//                           />
-//                           <InfoSection
-//                             label="Weight"
-//                             value={targetPhones.weight}
-//                           />
-//                         </div>
-//                         <div className="flex flex-col gap-3 w-full">
-//                           <InfoSection
-//                             label="Type"
-//                             value={targetPhones.dtype}
-//                           />
-//                           <InfoSection label="Size" value={targetPhones.size} />
-
-//                           <InfoSection
-//                             label="Resolution"
-//                             value={targetPhones.resolution}
-//                           />
-//                         </div>
-//                         <div className="flex flex-col gap-3 w-full">
-//                           <InfoSection
-//                             label="MainCamera"
-//                             value={targetPhones.maincamera}
-//                           />
-//                           <InfoSection
-//                             label="FrontCamera"
-//                             value={targetPhones.frontcamera}
-//                           />
-//                           <InfoSection
-//                             label="Video"
-//                             value={targetPhones.video}
-//                           />
-//                         </div>
-//                         <div className="w-full flex gap-4 justify-start py-2 flex-col rounded-lg">
-//                           <InfoSection label="OS" value={targetPhones.os} />
-
-//                           <InfoSection
-//                             label="Processor"
-//                             value={targetPhones.processor}
-//                           />
-//                           <InfoSection
-//                             label="Graphics"
-//                             value={targetPhones.graphics}
-//                           />
-//                         </div>
-//                         {rows.length > 0 && (
-//                           <div className="w-full flex items-start gap-4 justify-start py-2 flex-col rounded-lg">
-//                             <div className="flex items-start flex-col gap-none w-full border-[1px] md:border-2 border-black/80 rounded-lg overflow-hidden">
-//                               <div className="flex items-center gap-none px-2 py-1">
-//                                 <h2 className="text-lg sm:text-sm md:text-md lg:text-[16px] whitespace-nowrap font-extrabold">
-//                                   RAM:
-//                                 </h2>
-//                               </div>
-//                               <div className="flex text-sm font-semibold tracking-tight leading-1 sm:text-sm md:text-md lg:text-[16px] w-full bg-zinc-100 px-2 py-1 rounded-md text-[#002]">
-//                                 {rows.map(
-//                                   (row, index) =>
-//                                     row && (
-//                                       <div key={index}>
-//                                         {row.ram + " "}
-//                                         {index < rows.length - 1 && ","}
-//                                       </div>
-//                                     )
-//                                 )}
-//                               </div>
-//                             </div>
-//                             <div className="flex items-start flex-col gap-none w-full border-[1px] md:border-2 border-black/80 rounded-lg overflow-hidden">
-//                               <div className="flex items-center gap-none p-2 rounded-lg">
-//                                 <h2 className="text-lg sm:text-sm md:text-md lg:text-[16px] whitespace-nowrap font-extrabold">
-//                                   Storage:
-//                                 </h2>
-//                               </div>
-//                               <div className="flex text-sm font-semibold tracking-tight leading-1 sm:text-sm md:text-md lg:text-[16px] w-full bg-zinc-100 px-2 py-1 rounded-md text-[#002]">
-//                                 {rows.map(
-//                                   (row, index) =>
-//                                     row && (
-//                                       <div key={index}>
-//                                         {row.storage + " "}
-//                                         {index < rows.length - 1 && ","}
-//                                       </div>
-//                                     )
-//                                 )}
-//                               </div>
-//                             </div>
-//                           </div>
-//                         )}
-
-//                         <div className="flex flex-col gap-3 w-full">
-//                           <InfoSection
-//                             label="Capacity"
-//                             value={targetPhones.capacity}
-//                           />
-//                           <InfoSection
-//                             label="Charging"
-//                             value={targetPhones.charging}
-//                           />
-//                         </div>
-
-//                         <div className="flex flex-col gap-3 w-full">
-//                           <InfoSection
-//                             label="Wi-Fi"
-//                             value={targetPhones.wifi}
-//                           />
-//                           <InfoSection
-//                             label="Bluetooth"
-//                             value={targetPhones.bluetooth}
-//                           />
-//                         </div>
-
-//                         <div className="flex flex-col gap-3 w-full">
-//                           <InfoSection
-//                             label="Type-C"
-//                             value={targetPhones.typec}
-//                           />
-//                           <InfoSection
-//                             label="Audio Jack"
-//                             value={targetPhones.audiojack}
-//                           />
-//                         </div>
-//                       </div>
-//                     </div>
-//                     {rows.length > 0 && (
-//                       <div className="h-auto w-full p-8 text-[12px] md:text-[18px] lg:text-xl">
-//                         <div className="border-2 border-black overflow-hidden rounded-lg w-full flex flex-col">
-//                           <div className="w-full flex flex-wrap bg-black text-white">
-//                             <div className="flex-1 text-sm md:text-lg border-r-2 border-white px-2 py-1 text-center font-bold">
-//                               S.N
-//                             </div>
-//                             <div className="flex-1 text-sm md:text-lg border-r-2 border-white px-2 py-1 text-center font-bold">
-//                               OPTIONS
-//                             </div>
-//                             <div className="flex-1 text-sm md:text-lg px-2 py-1 text-center font-bold">
-//                               PRICE
-//                             </div>
-//                           </div>
-
-//                           {rows.map((row, index) => (
-//                             <div
-//                               key={index}
-//                               className={`w-full flex flex-wrap border-t-2 border-stone-600`}
-//                             >
-//                               <div className="flex-1 border-r-2 border-black p-1 text-center">
-//                                 {index + 1}
-//                               </div>
-//                               <div className="flex-1 border-r-2 border-black p-1 text-center">
-//                                 {row.ram}/{row.storage}
-//                               </div>
-//                               <div className="flex-1 p-1 text-center">
-//                                 {row.price}
-//                               </div>
-//                             </div>
-//                           ))}
-//                         </div>
-//                       </div>
-//                     )}
-//                   </div>
-//                 </div>
-//               </div>
-//               <div className="text-justify px-4 flex flex-col items-start justify-center gap-12 mt-16 mb-8">
-//                 {targetPhones?.descriptions?.map((item, index) => (
-//                   <div key={index} className="flex flex-col gap-2">
-//                     {item.heading && (
-//                       <h1 className="text-md md:text-lg lg:text-xl font-extrabold uppercase">
-//                         {item.heading}
-//                       </h1>
-//                     )}
-//                     {item.detail && (
-//                       <p className="text-[10px] leading-1 md:text-sm lg:text-lg">
-//                         {item.detail}
-//                       </p>
-//                     )}
-//                     {item.descriptionimage && (
-//                       <div className="w-full">
-//                         <img
-//                           src={item.descriptionimage}
-//                           alt={item.name}
-//                           className="h-auto max-h-[400px] md:h-auto object-center w-full object-contain"
-//                         />
-//                       </div>
-//                     )}
-//                   </div>
-//                 ))}
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </HelmetProvider>
-//   );
-// }
-
-// export default PhoneBlog;
-
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -331,6 +5,7 @@ import { useQuery } from "react-query";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import CircularLoader from "../CircularLoader";
 import SideBar from "./SideBar";
+import MoreOptions from "./MoreOptions";
 
 const fetchtargetPhones = async (targetURL, navigate) => {
   try {
@@ -357,173 +32,196 @@ function PhoneBlog() {
   const targetphoneURL = import.meta.env.VITE_TARGETPHONE_URL;
   const { itname } = useParams();
   const targetURL = `${targetphoneURL}/${itname}`;
-
-  const { data: targetPhones = [], isLoading: isLoadingTarget } = useQuery(
-    ["targetPhones", targetURL],
+  const { data: targetphones = {}, isLoading: isLoadingTarget } = useQuery(
+    ["targetphones", targetURL],
     () => fetchtargetPhones(targetURL, navigate),
     {
-      staleTime: 1000 * 60 * 5, // Cache data for 5 minutes
+      staleTime: 1000 * 60 * 5,
     }
   );
 
   const rows = [
     {
-      ram: targetPhones.ram1,
-      storage: targetPhones.storage1,
-      price: targetPhones.price1,
+      ram: targetphones.ram1,
+      storage: targetphones.storage1,
+      price: targetphones.price1,
     },
-    targetPhones.ram2 && {
-      ram: targetPhones.ram2,
-      storage: targetPhones.storage2,
-      price: targetPhones.price2,
+    targetphones.ram2 && {
+      ram: targetphones.ram2,
+      storage: targetphones.storage2,
+      price: targetphones.price2,
     },
-    targetPhones.ram3 && {
-      ram: targetPhones.ram3,
-      storage: targetPhones.storage3,
-      price: targetPhones.price3,
+    targetphones.ram3 && {
+      ram: targetphones.ram3,
+      storage: targetphones.storage3,
+      price: targetphones.price3,
     },
   ]
     .filter(Boolean)
     .filter((row) => row.ram && row.storage && row.price);
 
   const InfoSection = ({ label, value }) => (
-    <div className="flex gap-none w-full flex-col items-start border-[1px] md:border-2 overflow-hidden border-black/80 rounded-lg">
-      <div className="flex items-start justify-start gap-1 px-2 py-1">
-        <h2 className="sm:text-sm text-lg md:text-md lg:text-[16px] whitespace-nowrap font-extrabold text-black">
-          {label}:
-        </h2>
+    <div className="flex flex-col items-start w-full border-b border-gray-300 py-4 hover:bg-gray-100 px-2 rounded-md transition duration-300 ease-in-out">
+      <div className="flex items-center space-x-2">
+        <span className="text-blue-500">
+          <i className="fas fa-info-circle"></i>{" "}
+        </span>
+        <span className="text-lg md:text-lg font-semibold text-gray-800">
+          {label}
+        </span>
       </div>
-      <div className="text-sm font-semibold tracking-tight leading-1 sm:text-sm md:text-md lg:text-[16px] w-full bg-zinc-100 px-2 py-1 rounded-md md:rounded-none text-[#002]">
-        {value || "..."}
-      </div>
+      <span className="text-gray-900 text-sm md:text-base mt-1">
+        {value || <span className="text-gray-400 italic">Not available</span>}
+      </span>
     </div>
   );
 
   return (
     <HelmetProvider>
-      <div className="flex items-center justify-center">
-        <div className="flex items-start flex-col justify-center w-full max-w-screen-xl md:px-2">
-          <div className="flex w-full">
-            <Helmet>
-              <title>
-                {targetPhones
-                  ? `${
-                      targetPhones.name || "TechR"
-                    } - Price, Specifications, and Launch Details`
-                  : "Loading..."}
-              </title>
-            </Helmet>
-            <div className="w-full flex flex-col">
-              <div className="flex w-full gap-2">
-                <SideBar />
-                <div className="flex w-full flex-col md:flex-row items-start justify-between">
-                  <div className="w-full md:border-l-4 md:border-black/10 py-4">
-                    <h1
-                      className={`mt-4 md:pl-2 py-2 text-2xl md:text-3xl flex items-center justify-center lg:justify-start tracking-tighter ${
-                        targetPhones.mostpopular === "true"
-                          ? "text-red-600"
-                          : "text-[#001]"
-                      } font-semibold border-b-[3px] border-black/10`}
-                    >
-                      {targetPhones.name || "..."}
-                    </h1>
+      <div className="flex flex-col items-center justify-center p-4">
+        <Helmet>
+          <title>
+            {targetphones.name
+              ? `${targetphones.name} - Specifications`
+              : "Loading..."}
+          </title>
+        </Helmet>
+        <div className="flex w-full max-w-screen-xl">
+          <SideBar />
+          {!isLoadingTarget ? (
+            <div className="flex-1 p-4 bg-white rounded-lg shadow-md">
+              <h1
+                className={`border-b-2 border-black md:border-none underline-animations text-2xl mt-2 inline-block w-auto font-semibold cursor-pointer ${
+                  targetphones.mostpopular === "true"
+                    ? "text-red-600"
+                    : "text-gray-900"
+                } transition duration-300 ease-in-out`}
+              >
+                {targetphones.name || "..."}
+              </h1>
+              <p className="text-gray-600 text-xs md:text-sm my-2">
+                Explore the outstanding features of this phone that make it a
+                great choice for your needs.
+              </p>
+              <div className="flex justify-center py-4">
+                {targetphones.image ? (
+                  <img
+                    src={targetphones.image}
+                    alt={targetphones.name}
+                    className="max-h-72 object-contain"
+                    loading="lazy"
+                  />
+                ) : (
+                  <CircularLoader />
+                )}
+              </div>
+              <div className="text-gray-700 text-xs font-semibold md:text-sm py-2 text-justify mb-4">
+                {targetphones.blog || "..."}
+              </div>
 
-                    {isLoadingTarget ? (
-                      <div className="flex justify-center py-4">
-                        <CircularLoader />
+              <div className="py-6 border-t-2 w-full">
+                <h2 className="underline-animations text-xl font-bold w-auto inline-block">
+                  Specifications
+                </h2>
+
+                <div className="flex flex-col space-y-2">
+                  {[
+                    { label: "Dimension", value: targetphones.dimension },
+                    { label: "Build", value: targetphones.build },
+                    { label: "Weight", value: targetphones.weight },
+                    { label: "Type", value: targetphones.dtype },
+                    { label: "Size", value: targetphones.size },
+                    { label: "Resolution", value: targetphones.resolution },
+                    { label: "Front Camera", value: targetphones.frontcamera },
+                    { label: "Video", value: targetphones.video },
+                    { label: "OS", value: targetphones.os },
+                    { label: "Processor", value: targetphones.processor },
+                    { label: "Graphics", value: targetphones.graphics },
+                    { label: "Capacity", value: targetphones.capacity },
+                    { label: "Charging", value: targetphones.charging },
+                    { label: "Wi-Fi", value: targetphones.wifi },
+                    { label: "Bluetooth", value: targetphones.bluetooth },
+                    { label: "Type-C", value: targetphones.typec },
+                    { label: "Audio Jack", value: targetphones.audiojack },
+                  ].map((spec, index) => (
+                    <InfoSection
+                      key={index}
+                      label={spec.label}
+                      value={spec.value}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {rows.length > 0 && (
+                <div className="py-4">
+                  <h2 className="underline-animations inline-block w-auto text-lg font-bold uppercase lg:text-xl">
+                    Pricing
+                  </h2>
+                  <div className="overflow-hidden rounded-lg border border-gray-400 mt-2 shadow-lg">
+                    <div className="flex bg-gray-800 text-white">
+                      <div className="flex-1 text-center font-bold py-2 border-b border-gray-600">
+                        S.N
                       </div>
-                    ) : (
-                      <div className="w-full h-auto py-4 flex flex-col gap-4">
-                        <div className="flex items-center justify-center bg-white px-4 md:px-none">
-                          {targetPhones.image ? (
-                            <img
-                              src={targetPhones.image}
-                              alt={targetPhones.name}
-                              className="border-gradient w-auto max-h-72 md:h-96 md:w-auto lg:min-h-[430px] object-contain"
-                              loading="lazy"
-                            />
-                          ) : (
-                            <div className="border-gradient h-80 w-[300px] object-contain">
-                              <CircularLoader />
-                            </div>
-                          )}
+                      <div className="flex-1 text-center font-bold py-2 border-b border-gray-600">
+                        OPTIONS
+                      </div>
+                      <div className="flex-1 text-center font-bold py-2 border-b border-gray-600">
+                        PRICE
+                      </div>
+                    </div>
+                    {rows.map((row, index) => (
+                      <div
+                        key={index}
+                        className="flex border-t border-gray-300 hover:bg-[#80fcce] transition-colors"
+                      >
+                        <div className="flex-1 text-center py-2">
+                          {index + 1}
                         </div>
-                        <div
-                          className={`text-[10px] leading-1 tracking-tight font-semibold px-4 md:text-sm lg:text-lg text-justify ${
-                            targetPhones.blog
-                              ? ""
-                              : "flex items-center justify-center text-[50px]"
-                          }`}
-                        >
-                          {targetPhones.blog || "..."}
+                        <div className="flex-1 text-center py-2">{`${row.ram}/${row.storage}`}</div>
+                        <div className="flex-1 text-center py-2">
+                          {row.price}
                         </div>
-                        {/* Other info sections */}
-                        <div className="w-full px-4 h-auto overflow-hidden flex flex-col gap-4 mt-2 text-2xl text-[#002] items-start justify-end">
-                          <InfoSection
-                            label="Dimension"
-                            value={targetPhones.dimension}
-                          />
-                          <InfoSection
-                            label="Build"
-                            value={targetPhones.build}
-                          />
-                          <InfoSection
-                            label="Weight"
-                            value={targetPhones.weight}
-                          />
-                          <InfoSection
-                            label="Type"
-                            value={targetPhones.dtype}
-                          />
-                          <InfoSection label="Size" value={targetPhones.size} />
-                          <InfoSection
-                            label="Resolution"
-                            value={targetPhones.resolution}
-                          />
-                          {/* More sections ... */}
-                        </div>
-                        {rows.length > 0 && (
-                          <div className="w-full px-4 flex gap-4 justify-start py-2 flex-col rounded-lg">
-                            {/* RAM and Storage */}
-                            <div className="flex items-start flex-col gap-none w-full border-[1px] md:border-2 border-black/80 rounded-lg overflow-hidden">
-                              <div className="flex items-center gap-none px-2 py-1">
-                                <h2 className="text-lg sm:text-sm md:text-md lg:text-[16px] whitespace-nowrap font-extrabold">
-                                  RAM:
-                                </h2>
-                              </div>
-                              <div className="flex text-sm font-semibold tracking-tight leading-1 sm:text-sm md:text-md lg:text-[16px] w-full bg-zinc-100 px-2 py-1 rounded-md text-[#002]">
-                                {rows.map((row, index) => (
-                                  <div key={index}>
-                                    {row.ram + " "}
-                                    {index < rows.length - 1 && ","}
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-                            <div className="flex items-start flex-col gap-none w-full border-[1px] md:border-2 border-black/80 rounded-lg overflow-hidden">
-                              <div className="flex items-center gap-none p-2 rounded-lg">
-                                <h2 className="text-lg sm:text-sm md:text-md lg:text-[16px] whitespace-nowrap font-extrabold">
-                                  Storage:
-                                </h2>
-                              </div>
-                              <div className="flex text-sm font-semibold tracking-tight leading-1 sm:text-sm md:text-md lg:text-[16px] w-full bg-zinc-100 px-2 py-1 rounded-md text-[#002]">
-                                {rows.map((row, index) => (
-                                  <div key={index}>
-                                    {row.storage + " "}
-                                    {index < rows.length - 1 && ","}
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-                          </div>
-                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <div className="py-4">
+                {targetphones?.descriptions?.map((item, index) => (
+                  <div key={index} className="py-2 flex flex-col gap-2">
+                    {item.heading && (
+                      <h1 className="text-md md:text-xl font-bold">
+                        {item.heading}
+                      </h1>
+                    )}
+                    {item.detail && (
+                      <p className="text-xs md:text-sm font-semibold text-justify">
+                        {item.detail}
+                      </p>
+                    )}
+                    {item.descriptionimage && (
+                      <div className="py-2">
+                        <img
+                          src={item.descriptionimage}
+                          alt={item.name}
+                          className="max-h-400px w-full object-contain"
+                        />
                       </div>
                     )}
                   </div>
-                </div>
+                ))}
+              </div>
+              <div>
+                <MoreOptions />
               </div>
             </div>
-          </div>
+          ) : (
+            <div className="w-full h-screen flex items-center justify-center">
+              <CircularLoader />
+            </div>
+          )}
         </div>
       </div>
     </HelmetProvider>

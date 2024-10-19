@@ -25,6 +25,28 @@ body {
   display: none;
 }
 
+.underline-animations {
+  position: relative;
+}
+
+.underline-animations:hover {
+  color: #000000;
+}
+
+.underline-animations::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: auto;
+  background-color: #92dde7;
+}
+
+.underline-animations:hover::after {
+  animation: grow 0.6s ease-in-out forwards;
+}
+
 .underline-animation {
   position: relative;
 }

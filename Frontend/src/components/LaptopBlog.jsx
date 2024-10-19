@@ -5,6 +5,7 @@ import { useQuery } from "react-query";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import CircularLoader from "../CircularLoader";
 import SideBar from "./SideBar";
+import MoreOptions from "./MoreOptions";
 
 const fetchtargetLaptops = async (targetURL, navigate) => {
   try {
@@ -31,7 +32,7 @@ function LaptopBlog() {
   const targetlaptopURL = import.meta.env.VITE_TARGETLAPTOP_URL;
   const { itname } = useParams();
   const targetURL = `${targetlaptopURL}/${itname}`;
-  const { data: targetlaptops = [], isLoading: isLoadingTarget } = useQuery(
+  const { data: targetlaptops = {}, isLoading: isLoadingTarget } = useQuery(
     ["targetlaptops", targetURL],
     () => fetchtargetLaptops(targetURL, navigate),
     {
@@ -60,261 +61,167 @@ function LaptopBlog() {
     .filter((row) => row.ram && row.storage && row.price);
 
   const InfoSection = ({ label, value }) => (
-    <div className="flex gap-none w-full flex-col items-start border-[1px] md:border-2 overflow-hidden border-black/80 rounded-lg">
-      <div className="flex items-start justify-start gap-1 px-2 py-1">
-        <h2 className="sm:text-sm text-lg md:text-md lg:text-[16px] whitespace-nowrap font-extrabold text-black">
-          {label}:
-        </h2>
+    <div className="flex flex-col items-start w-full border-b border-gray-300 py-4 hover:bg-gray-100 px-2 rounded-md transition duration-300 ease-in-out">
+      <div className="flex items-center space-x-2">
+        <span className="text-blue-500">
+          <i className="fas fa-info-circle"></i>{" "}
+        </span>
+        <span className="text-lg md:text-lg font-semibold text-gray-800">
+          {label}
+        </span>
       </div>
-      <div className="text-sm font-semibold tracking-tight leading-1 sm:text-sm md:text-md lg:text-[16px] w-full bg-zinc-100 px-2 py-1 rounded-md md:rounded-none text-[#002]">
-        {value || "..."}
-      </div>
+      <span className="text-gray-900 text-sm md:text-base mt-1">
+        {value || <span className="text-gray-400 italic">Not available</span>}
+      </span>
     </div>
   );
 
   return (
     <HelmetProvider>
-      <div className="flex items-center justify-center">
-        <div className="flex items-start flex-col justify-center w-full max-w-screen-xl md:px-2">
-          <div className="flex w-full">
-            <Helmet>
-              <title>
-                {targetlaptops
-                  ? `${
-                      targetlaptops.name || "TechR"
-                    } - Price, Specifications, and Launch Details`
-                  : "Loading..."}
-              </title>
-            </Helmet>
-            <div className="w-full flex flex-col">
-              <div className="flex w-full gap-2">
-                <SideBar />
-                <div className="flex w-full flex-col md:flex-row items-start justify-between">
-                  <div className="w-full md:border-l-4 md:border-black/10 py-4">
-                    <h1
-                      className={`mt-4 md:pl-2 py-2 text-2xl md:text-3xl flex items-center justify-center lg:justify-start tracking-tighter ${
-                        targetlaptops.mostpopular === "true"
-                          ? "text-red-600"
-                          : "text-[#001]"
-                      } font-semibold border-b-[3px] border-black/10`}
-                    >
-                      {targetlaptops.name || "..."}
-                    </h1>
-                    <div className="w-full h-auto py-4 flex flex-col gap-4">
-                      <div className="flex items-center justify-center bg-white px-4 md:px-none">
-                        {targetlaptops.image ? (
-                          <img
-                            src={targetlaptops.image}
-                            alt={targetlaptops.name}
-                            className="border-gradient w-auto max-h-72 md:h-96 md:w-auto lg:min-h-[430px] object-contain"
-                            loading="lazy"
-                          />
-                        ) : (
-                          <div className="border-gradient h-80 w-[300px] object-contain">
-                            <CircularLoader />
-                          </div>
-                        )}
-                      </div>
-                      <div
-                        className={`text-[10px] leading-1 tracking-tight font-semibold px-4 md:text-sm lg:text-lg text-justify ${
-                          targetlaptops.blog
-                            ? ""
-                            : "flex items-center justify-center text-[50px]"
-                        }`}
-                      >
-                        {targetlaptops.blog || "..."}
-                      </div>
-                      <div className="w-full px-4 h-auto overflow-hidden flex flex-col gap-4 mt-2 text-2xl text-[#002] items-start justify-end">
-                        <div className="flex flex-col gap-3 w-full">
-                          <InfoSection
-                            label="Dimension"
-                            value={targetlaptops.dimension}
-                          />
-                          <InfoSection
-                            label="Build"
-                            value={targetlaptops.build}
-                          />
-                          <InfoSection
-                            label="Weight"
-                            value={targetlaptops.weight}
-                          />
-                        </div>
-                        <div className="flex flex-col gap-3 w-full">
-                          <InfoSection
-                            label="Type"
-                            value={targetlaptops.dtype}
-                          />
-                          <InfoSection
-                            label="Size"
-                            value={targetlaptops.size}
-                          />
+      <div className="flex flex-col items-center justify-center p-4">
+        <Helmet>
+          <title>
+            {targetlaptops.name
+              ? `${targetlaptops.name} - Specifications`
+              : "Loading..."}
+          </title>
+        </Helmet>
+        <div className="flex w-full max-w-screen-xl">
+          <SideBar />
+          {!isLoadingTarget ? (
+            <div className="flex-1 p-4 bg-white rounded-lg shadow-md">
+              <h1
+                className={`border-b-2 border-black md:border-none underline-animations text-2xl mt-2 inline-block w-auto font-semibold cursor-pointer ${
+                  targetlaptops.mostpopular === "true"
+                    ? "text-red-600"
+                    : "text-gray-900"
+                } transition duration-300 ease-in-out`}
+              >
+                {targetlaptops.name || "..."}
+              </h1>
+              <p className="text-gray-600 text-xs md:text-sm my-2">
+                Explore the outstanding features of this laptop that make it a
+                great choice for your needs.
+              </p>
+              <div className="flex justify-center py-4">
+                {targetlaptops.image ? (
+                  <img
+                    src={targetlaptops.image}
+                    alt={targetlaptops.name}
+                    className="max-h-72 object-contain"
+                    loading="lazy"
+                  />
+                ) : (
+                  <CircularLoader />
+                )}
+              </div>
+              <div className="text-gray-700 text-xs font-semibold md:text-sm py-2 text-justify mb-4">
+                {targetlaptops.blog || "..."}
+              </div>
 
-                          <InfoSection
-                            label="Resolution"
-                            value={targetlaptops.resolution}
-                          />
-                        </div>
-                        <div className="flex flex-col gap-3 w-full">
-                          <InfoSection
-                            label="FrontCamera"
-                            value={targetlaptops.frontcamera}
-                          />
-                          <InfoSection
-                            label="Video"
-                            value={targetlaptops.video}
-                          />
-                        </div>
-                        <div className="w-full flex gap-4 justify-start py-2 flex-col rounded-lg">
-                          <InfoSection label="OS" value={targetlaptops.os} />
+              <div className="py-6 border-t-2 w-full">
+                <h2 className="underline-animations text-xl font-bold w-auto inline-block">
+                  Specifications
+                </h2>
 
-                          <InfoSection
-                            label="Processor"
-                            value={targetlaptops.processor}
-                          />
-                          <InfoSection
-                            label="Graphics"
-                            value={targetlaptops.graphics}
-                          />
-                        </div>
-                        {rows.length > 0 && (
-                          <div className="w-full flex items-start gap-4 justify-start py-2 flex-col rounded-lg">
-                            <div className="flex items-start flex-col gap-none w-full border-[1px] md:border-2 border-black/80 rounded-lg overflow-hidden">
-                              <div className="flex items-center gap-none px-2 py-1">
-                                <h2 className="text-lg sm:text-sm md:text-md lg:text-[16px] whitespace-nowrap font-extrabold">
-                                  RAM:
-                                </h2>
-                              </div>
-                              <div className="flex text-sm font-semibold tracking-tight leading-1 sm:text-sm md:text-md lg:text-[16px] w-full bg-zinc-100 px-2 py-1 rounded-md text-[#002]">
-                                {rows.map(
-                                  (row, index) =>
-                                    row && (
-                                      <div key={index}>
-                                        {row.ram + " "}
-                                        {index < rows.length - 1 && ","}
-                                      </div>
-                                    )
-                                )}
-                              </div>
-                            </div>
-                            <div className="flex items-start flex-col gap-none w-full border-[1px] md:border-2 border-black/80 rounded-lg overflow-hidden">
-                              <div className="flex items-center gap-none p-2 rounded-lg">
-                                <h2 className="text-lg sm:text-sm md:text-md lg:text-[16px] whitespace-nowrap font-extrabold">
-                                  Storage:
-                                </h2>
-                              </div>
-                              <div className="flex text-sm font-semibold tracking-tight leading-1 sm:text-sm md:text-md lg:text-[16px] w-full bg-zinc-100 px-2 py-1 rounded-md text-[#002]">
-                                {rows.map(
-                                  (row, index) =>
-                                    row && (
-                                      <div key={index}>
-                                        {row.storage + " "}
-                                        {index < rows.length - 1 && ","}
-                                      </div>
-                                    )
-                                )}
-                              </div>
-                            </div>
-                          </div>
-                        )}
-
-                        <div className="flex flex-col gap-3 w-full">
-                          <InfoSection
-                            label="Capacity"
-                            value={targetlaptops.capacity}
-                          />
-                          <InfoSection
-                            label="Charging"
-                            value={targetlaptops.charging}
-                          />
-                        </div>
-
-                        <div className="flex flex-col gap-3 w-full">
-                          <InfoSection
-                            label="Wi-Fi"
-                            value={targetlaptops.wifi}
-                          />
-                          <InfoSection
-                            label="Bluetooth"
-                            value={targetlaptops.bluetooth}
-                          />
-                        </div>
-
-                        <div className="flex flex-col gap-3 w-full">
-                          <InfoSection
-                            label="Type-C"
-                            value={targetlaptops.typec}
-                          />
-                          <InfoSection
-                            label="Audio Jack"
-                            value={targetlaptops.audiojack}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    {rows.length > 0 && (
-                      <div className="h-auto w-full p-8 text-[12px] md:text-[18px] lg:text-xl">
-                        <div className="border-2 border-black overflow-hidden rounded-lg w-full flex flex-col">
-                          <div className="w-full flex flex-wrap bg-black text-white">
-                            <div className="flex-1 text-sm md:text-lg border-r-2 border-white px-2 py-1 text-center font-bold">
-                              S.N
-                            </div>
-                            <div className="flex-1 text-sm md:text-lg border-r-2 border-white px-2 py-1 text-center font-bold">
-                              OPTIONS
-                            </div>
-                            <div className="flex-1 text-sm md:text-lg px-2 py-1 text-center font-bold">
-                              PRICE
-                            </div>
-                          </div>
-
-                          {rows.map((row, index) => (
-                            <div
-                              key={index}
-                              className={`w-full flex flex-wrap border-t-2 border-stone-600`}
-                            >
-                              <div className="flex-1 border-r-2 border-black p-1 text-center">
-                                {index + 1}
-                              </div>
-                              <div className="flex-1 border-r-2 border-black p-1 text-center">
-                                {row.ram}/{row.storage}
-                              </div>
-                              <div className="flex-1 p-1 text-center">
-                                {row.price}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
+                <div className="flex flex-col space-y-2">
+                  {[
+                    { label: "Dimension", value: targetlaptops.dimension },
+                    { label: "Build", value: targetlaptops.build },
+                    { label: "Weight", value: targetlaptops.weight },
+                    { label: "Type", value: targetlaptops.dtype },
+                    { label: "Size", value: targetlaptops.size },
+                    { label: "Resolution", value: targetlaptops.resolution },
+                    { label: "Front Camera", value: targetlaptops.frontcamera },
+                    { label: "Video", value: targetlaptops.video },
+                    { label: "OS", value: targetlaptops.os },
+                    { label: "Processor", value: targetlaptops.processor },
+                    { label: "Graphics", value: targetlaptops.graphics },
+                    { label: "Capacity", value: targetlaptops.capacity },
+                    { label: "Charging", value: targetlaptops.charging },
+                    { label: "Wi-Fi", value: targetlaptops.wifi },
+                    { label: "Bluetooth", value: targetlaptops.bluetooth },
+                    { label: "Type-C", value: targetlaptops.typec },
+                    { label: "Audio Jack", value: targetlaptops.audiojack },
+                  ].map((spec, index) => (
+                    <InfoSection
+                      key={index}
+                      label={spec.label}
+                      value={spec.value}
+                    />
+                  ))}
                 </div>
               </div>
-              <div className="text-justify px-4 flex flex-col items-start justify-center gap-12 mt-16 mb-8">
+
+              {rows.length > 0 && (
+                <div className="py-4">
+                  <h2 className="underline-animations inline-block w-auto text-lg font-bold uppercase lg:text-xl">
+                    Pricing
+                  </h2>
+                  <div className="overflow-hidden rounded-lg border border-gray-400 mt-2 shadow-lg">
+                    <div className="flex bg-gray-800 text-white">
+                      <div className="flex-1 text-center font-bold py-2 border-b border-gray-600">
+                        S.N
+                      </div>
+                      <div className="flex-1 text-center font-bold py-2 border-b border-gray-600">
+                        OPTIONS
+                      </div>
+                      <div className="flex-1 text-center font-bold py-2 border-b border-gray-600">
+                        PRICE
+                      </div>
+                    </div>
+                    {rows.map((row, index) => (
+                      <div
+                        key={index}
+                        className="flex border-t border-gray-300 hover:bg-[#80fcce] transition-colors"
+                      >
+                        <div className="flex-1 text-center py-2">
+                          {index + 1}
+                        </div>
+                        <div className="flex-1 text-center py-2">{`${row.ram}/${row.storage}`}</div>
+                        <div className="flex-1 text-center py-2">
+                          {row.price}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <div className="py-4">
                 {targetlaptops?.descriptions?.map((item, index) => (
-                  <div key={index} className="flex flex-col gap-2">
+                  <div key={index} className="py-2 flex flex-col gap-2">
                     {item.heading && (
-                      <h1 className="text-md md:text-lg lg:text-xl font-extrabold uppercase">
+                      <h1 className="text-md md:text-xl font-bold">
                         {item.heading}
                       </h1>
                     )}
                     {item.detail && (
-                      <p className="text-[10px] leading-1 md:text-sm lg:text-lg">
+                      <p className="text-xs md:text-sm font-semibold text-justify">
                         {item.detail}
                       </p>
                     )}
                     {item.descriptionimage && (
-                      <div className="w-full">
+                      <div className="py-2">
                         <img
                           src={item.descriptionimage}
                           alt={item.name}
-                          className="h-auto max-h-[400px] md:h-auto object-center w-full object-contain"
+                          className="max-h-400px w-full object-contain"
                         />
                       </div>
                     )}
                   </div>
                 ))}
               </div>
+              <div>
+                <MoreOptions />
+              </div>
             </div>
-          </div>
+          ) : (
+            <div className="w-full h-screen flex items-center justify-center">
+              <CircularLoader />
+            </div>
+          )}
         </div>
       </div>
     </HelmetProvider>
