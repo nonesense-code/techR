@@ -17,7 +17,7 @@ cloudinary.config({
 
 const frontendURL = process.env.frontendURL;
 const corsOptions = {
-  origin: [`${frontendURL}`, "techrbytes.com"],
+  origin: frontendURL,
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
 };
