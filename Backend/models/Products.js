@@ -3,8 +3,9 @@ const URI = process.env.URI;
 const databaseConnection = async () => {
   try {
     await mongoose.connect(URI, {
-      serverSelectionTimeoutMS: 30000,
-      connectTimeoutMS: 30000,
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      poolSize: 10,
     });
     console.log("MongoDB Connection successful for product-model");
   } catch (error) {
