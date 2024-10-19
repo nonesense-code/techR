@@ -60,13 +60,13 @@ function PhoneBlog() {
     .filter((row) => row.ram && row.storage && row.price);
 
   const InfoSection = ({ label, value }) => (
-    <div className="flex items-center gap-2 w-full">
-      <div className="flex items-center gap-1 p-2 rounded-lg bg-green-100">
-        <h1 className="text-xs sm:text-sm md:text-md lg:text-[16px] whitespace-nowrap font-extrabold text-green-600">
+    <div className="flex gap-none w-full flex-col items-start border-[1px] md:border-2 overflow-hidden border-black/80 rounded-lg">
+      <div className="flex items-start justify-start gap-1 px-2 py-1">
+        <h2 className="sm:text-sm text-lg md:text-md lg:text-[16px] whitespace-nowrap font-extrabold text-black">
           {label}:
-        </h1>
+        </h2>
       </div>
-      <div className="text-xs sm:text-sm md:text-md lg:text-[16px] w-full bg-zinc-200 px-3 py-2 rounded-md text-black">
+      <div className="text-sm font-semibold tracking-tight leading-1 sm:text-sm md:text-md lg:text-[16px] w-full bg-zinc-100 px-2 py-1 rounded-md md:rounded-none text-[#002]">
         {value || "..."}
       </div>
     </div>
@@ -75,7 +75,7 @@ function PhoneBlog() {
   return (
     <HelmetProvider>
       <div className="flex items-center justify-center">
-        <div className="flex items-start flex-col justify-center w-full max-w-screen-xl px-4">
+        <div className="flex items-start flex-col justify-center w-full max-w-screen-xl md:px-2">
           <div className="flex w-full">
             <Helmet>
               <title>
@@ -101,7 +101,7 @@ function PhoneBlog() {
                       {targetPhones.name || "..."}
                     </h1>
                     <div className="w-full h-auto py-4 flex flex-col gap-4">
-                      <div className="flex items-center justify-center bg-white">
+                      <div className="flex items-center justify-center bg-white px-4 md:px-none">
                         {targetPhones.image ? (
                           <img
                             src={targetPhones.image}
@@ -116,7 +116,7 @@ function PhoneBlog() {
                         )}
                       </div>
                       <div
-                        className={`text-[10px] px-4 leading-1 md:text-sm lg:text-lg text-justify ${
+                        className={`text-[10px] leading-1 tracking-tight font-semibold px-4 md:text-sm lg:text-lg text-justify ${
                           targetPhones.blog
                             ? ""
                             : "flex items-center justify-center text-[50px]"
@@ -179,13 +179,13 @@ function PhoneBlog() {
                         </div>
                         {rows.length > 0 && (
                           <div className="w-full flex items-start gap-4 justify-start py-2 flex-col rounded-lg">
-                            <div className="flex items-center gap-2 w-full">
-                              <div className="flex items-center gap-1 p-2 rounded-lg bg-green-100">
-                                <h1 className="text-xs sm:text-sm md:text-md lg:text-[16px] font-extrabold text-green-600">
+                            <div className="flex items-start flex-col gap-none w-full border-[1px] md:border-2 border-black/80 rounded-lg overflow-hidden">
+                              <div className="flex items-center gap-none px-2 py-1">
+                                <h2 className="text-lg sm:text-sm md:text-md lg:text-[16px] whitespace-nowrap font-extrabold">
                                   RAM:
-                                </h1>
+                                </h2>
                               </div>
-                              <div className="text-xs flex sm:text-sm md:text-md lg:text-[16px] w-full bg-zinc-200 px-3 py-2 rounded-md text-black">
+                              <div className="flex text-sm font-semibold tracking-tight leading-1 sm:text-sm md:text-md lg:text-[16px] w-full bg-zinc-100 px-2 py-1 rounded-md text-[#002]">
                                 {rows.map(
                                   (row, index) =>
                                     row && (
@@ -197,13 +197,13 @@ function PhoneBlog() {
                                 )}
                               </div>
                             </div>
-                            <div className="flex items-center gap-2 w-full">
-                              <div className="flex items-center gap-1 p-2 rounded-lg bg-green-100">
-                                <h1 className="text-xs sm:text-sm md:text-md lg:text-[16px] font-extrabold text-green-600">
+                            <div className="flex items-start flex-col gap-none w-full border-[1px] md:border-2 border-black/80 rounded-lg overflow-hidden">
+                              <div className="flex items-center gap-none p-2 rounded-lg">
+                                <h2 className="text-lg sm:text-sm md:text-md lg:text-[16px] whitespace-nowrap font-extrabold">
                                   Storage:
-                                </h1>
+                                </h2>
                               </div>
-                              <div className="text-xs flex sm:text-sm md:text-md lg:text-[16px] w-full bg-zinc-200 px-3 py-2 rounded-md text-black">
+                              <div className="flex text-sm font-semibold tracking-tight leading-1 sm:text-sm md:text-md lg:text-[16px] w-full bg-zinc-100 px-2 py-1 rounded-md text-[#002]">
                                 {rows.map(
                                   (row, index) =>
                                     row && (
@@ -254,15 +254,15 @@ function PhoneBlog() {
                     </div>
                     {rows.length > 0 && (
                       <div className="h-auto w-full p-8 text-[12px] md:text-[18px] lg:text-xl">
-                        <div className="border-4 border-black overflow-hidden rounded-lg w-full flex flex-col">
-                          <div className="w-full flex flex-wrap bg-gray-200">
-                            <div className="flex-1 border-r-4 border-black p-2 text-center font-bold">
+                        <div className="border-2 border-black overflow-hidden rounded-lg w-full flex flex-col">
+                          <div className="w-full flex flex-wrap bg-black text-white">
+                            <div className="flex-1 text-sm md:text-lg border-r-2 border-white px-2 py-1 text-center font-bold">
                               S.N
                             </div>
-                            <div className="flex-1 border-r-4 border-black p-2 text-center font-bold">
+                            <div className="flex-1 text-sm md:text-lg border-r-2 border-white px-2 py-1 text-center font-bold">
                               OPTIONS
                             </div>
-                            <div className="flex-1 p-2 text-center font-bold">
+                            <div className="flex-1 text-sm md:text-lg px-2 py-1 text-center font-bold">
                               PRICE
                             </div>
                           </div>
@@ -270,15 +270,15 @@ function PhoneBlog() {
                           {rows.map((row, index) => (
                             <div
                               key={index}
-                              className="w-full flex flex-wrap border-t-2 border-stone-600"
+                              className={`w-full flex flex-wrap border-t-2 border-stone-600`}
                             >
-                              <div className="flex-1 border-r-4 border-black p-2 text-center">
+                              <div className="flex-1 border-r-2 border-black p-1 text-center">
                                 {index + 1}
                               </div>
-                              <div className="flex-1 border-r-4 border-black p-2 text-center">
+                              <div className="flex-1 border-r-2 border-black p-1 text-center">
                                 {row.ram}/{row.storage}
                               </div>
-                              <div className="flex-1 p-2 text-center">
+                              <div className="flex-1 p-1 text-center">
                                 {row.price}
                               </div>
                             </div>
