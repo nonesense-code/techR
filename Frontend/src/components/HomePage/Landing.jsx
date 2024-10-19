@@ -148,7 +148,7 @@ function Landing() {
         </Helmet>
         <AIlanding />
         <div className="h-full min-w-full sm:min-w-0 w-auto md:max-w-[1200px]">
-          <div className="min-w-[1200px] max-w-[1200px]">
+          <div className="lg:min-w-[1200px] lg:max-w-[1200px]">
             <h1 className="text-center text-2xl font-bold tracking-wide">
               Distinguished Picks
             </h1>

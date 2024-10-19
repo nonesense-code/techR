@@ -23,7 +23,7 @@ const Landing = () => {
           <Trending />
         </div>
         <div className="flex items-center justify-center w-auto md:w-full flex-col">
-          <h2 className="stroke text-lg md:text-2xl font-bold mb-1 text-center cursor-pointer">
+          <h2 className="stroke text-3xl md:text-3xl font-bold mb-1 text-center cursor-pointer">
             HOT DROP
           </h2>
         </div>
@@ -81,7 +81,7 @@ const Landing = () => {
                 )}
               </div>
             </Link>
-            <div className="absolute text-[8px] leading-1 tracking-tighter md:text-sm bottom-4 md:bottom-[16px] w-full z-30 bg-black/60 text-white p-2">
+            <div className="absolute text-xs leading-1 tracking-tighter md:text-sm bottom-4 md:bottom-[16px] w-full z-30 bg-black/60 text-white p-2">
               <h1>{hotDrop1.note}</h1>
             </div>
           </div>
@@ -121,7 +121,7 @@ const Landing = () => {
                 )}
               </div>
             </Link>
-            <div className="absolute text-[8px] leading-1 tracking-tighter md:text-sm bottom-4 md:bottom-[16px] w-full z-30 bg-black/60 text-white p-2">
+            <div className="absolute text-xs leading-1 tracking-tighter md:text-sm bottom-4 md:bottom-[16px] w-full z-30 bg-black/60 text-white p-2">
               <h1>{hotDrop2.note}</h1>
             </div>
           </div>
