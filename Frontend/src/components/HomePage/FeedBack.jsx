@@ -53,7 +53,7 @@ function Feedback() {
 
         <div className="flex justify-center mt-12 space-x-6 w-full">
           <a
-            href="https://facebook.com"
+            href="https://www.facebook.com/profile.php?id=61566375895055"
             target="_blank"
             rel="noopener noreferrer"
             className="text-2xl text-gray-400 hover:text-blue-500 transition duration-300"
