@@ -47,8 +47,7 @@ function MoreOptions() {
       <Link
         to={`/${item.productType}/${item.name
           .toLowerCase()
-          .split(" ")
-          .join(" ")}`}
+          .replace(/\s+/g, "")}`}
         className="block w-full outline-none"
       >
         <div
