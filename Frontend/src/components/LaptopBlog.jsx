@@ -61,21 +61,18 @@ function LaptopBlog() {
     .filter((row) => row.ram && row.storage && row.price);
 
   const InfoSection = ({ label, value }) => (
-    <div className="flex flex-col items-start w-full border-b border-gray-300 py-4 hover:bg-gray-100 px-2 rounded-md transition duration-300 ease-in-out">
+    <div className="flex justify-between items-start sm:items-center w-full bg-white p-2 border border-gray-200 rounded-md shadow-sm hover:shadow-md transition duration-300 ease-in-out">
       <div className="flex items-center space-x-2">
-        <span className="text-blue-500">
-          <i className="fas fa-info-circle"></i>{" "}
+        <span className="text-blue-500 text-base">
+          <i className="fas fa-info-circle"></i>
         </span>
-        <span className="text-lg md:text-lg font-semibold text-gray-800">
-          {label}
-        </span>
+        <span className="text-sm font-semibold text-gray-800">{label}</span>
       </div>
-      <span className="text-gray-900 text-sm md:text-base mt-1">
+      <span className="text-gray-900 text-sm text-right sm:text-left flex-1 sm:flex-none break-words sm:ml-4 mt-1 sm:mt-0">
         {value || <span className="text-gray-400 italic">Not available</span>}
       </span>
     </div>
   );
-
   return (
     <HelmetProvider>
       <div className="flex flex-col items-center justify-center p-4">
@@ -91,7 +88,7 @@ function LaptopBlog() {
           {!isLoadingTarget ? (
             <div className="flex-1 p-4 bg-white rounded-lg shadow-md">
               <h1
-                className={`border-b-2 border-black md:border-none underline-animations text-2xl mt-2 inline-block w-auto font-semibold cursor-pointer ${
+                className={`underline-animations text-2xl mt-2 inline-block w-auto font-bold cursor-pointer ${
                   targetlaptops.mostpopular === "true"
                     ? "text-red-600"
                     : "text-gray-900"
@@ -118,10 +115,9 @@ function LaptopBlog() {
               <div className="text-gray-700 text-xs font-semibold md:text-sm py-2 text-justify mb-4">
                 {targetlaptops.blog || "..."}
               </div>
-
-              <div className="py-6 border-t-2 w-full">
-                <h2 className="underline-animations text-xl font-bold w-auto inline-block">
-                  Specifications
+              <div className="py-4 border-t-2 w-full">
+                <h2 className="underline-animations text-xl font-bold w-auto inline-block mb-3">
+                  {targetlaptops.name + " "}Specifications
                 </h2>
 
                 <div className="flex flex-col space-y-2">
@@ -173,7 +169,7 @@ function LaptopBlog() {
                     {rows.map((row, index) => (
                       <div
                         key={index}
-                        className="flex border-t border-gray-300 hover:bg-[#80fcce] transition-colors"
+                        className="flex border-t border-gray-300 hover:bg-[#f7e2ff] transition-colors"
                       >
                         <div className="flex-1 text-center py-2">
                           {index + 1}

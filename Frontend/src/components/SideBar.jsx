@@ -66,11 +66,12 @@ function SideBar() {
                           .toLowerCase()
                           .split(" ")
                           .join("")}`}
+                        className="outline-none"
                       >
                         <img
                           src={item.image}
                           alt={item.name}
-                          className="rounded-t-lg w-full h-full object-contain object-top"
+                          className="rounded-t-lg w-full h-full object-contain object-top outline-none"
                           loading="lazy"
                         />
                       </Link>
@@ -104,6 +105,7 @@ function SideBar() {
                           .toLowerCase()
                           .split(" ")
                           .join("")}`}
+                        className="outline-none"
                       >
                         <img
                           src={item.image}
@@ -142,6 +144,7 @@ function SideBar() {
                           .toLowerCase()
                           .split(" ")
                           .join("")}`}
+                        className="outline-none"
                       >
                         <img
                           src={item.image}

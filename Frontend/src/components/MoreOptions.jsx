@@ -4,6 +4,7 @@ import axios from "axios";
 import { useQuery } from "react-query";
 import CircularLoader from "../CircularLoader";
 
+// Utility function to fetch products
 const filterProducts = async (url) => {
   try {
     const response = await axios.get(url);
@@ -14,108 +15,118 @@ const filterProducts = async (url) => {
 };
 
 function MoreOptions() {
+  // Define URLs from environment variables
   const flagshipURL = import.meta.env.VITE_FLAGSHIP_URL;
   const midrangeURL = import.meta.env.VITE_MIDRANGE_URL;
   const budgetURL = import.meta.env.VITE_BUDGET_URL;
 
+  // Fetch product data using React Query
   const { isLoading: loadingBudget, data: budget = [] } = useQuery(
     ["budget", budgetURL],
     () => filterProducts(budgetURL),
-    {
-      staleTime: 1000 * 60 * 5,
-    }
+    { staleTime: 1000 * 60 * 5 }
   );
 
   const { isLoading: loadingFlagship, data: flagship = [] } = useQuery(
     ["flagship", flagshipURL],
     () => filterProducts(flagshipURL),
-    {
-      staleTime: 1000 * 60 * 5,
-    }
+    { staleTime: 1000 * 60 * 5 }
   );
 
   const { isLoading: loadingMidrange, data: midrange = [] } = useQuery(
     ["midrange", midrangeURL],
     () => filterProducts(midrangeURL),
-    {
-      staleTime: 1000 * 60 * 5,
-    }
+    { staleTime: 1000 * 60 * 5 }
   );
 
   const isLoading = loadingBudget || loadingFlagship || loadingMidrange;
 
   const renderProductItems = (items) => {
     return items.slice(0, 4).map((item, index) => (
-      <div
-        key={index}
-        className="w-40 md:w-52 h-auto bg-white flex flex-col items-center justify-start border border-gray-200 rounded-lg shadow-md p-2 transition-all hover:scale-105"
+      <Link
+        to={`/${item.productType}/${item.name
+          .toLowerCase()
+          .split(" ")
+          .join(" ")}`}
+        className="block w-full outline-none"
       >
-        <Link
-          to={`/${item.productType}/${item.name
-            .toLowerCase()
-            .split(" ")
-            .join("")}`}
+        <div
+          key={index}
+          className="flex flex-col items-center w-full sm:w-40 p-4 bg-white rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl"
+          aria-label={`Product: ${item.name}`}
         >
           <img
             src={item.image}
             alt={item.name}
-            className="rounded-t-lg w-full h-32 object-contain object-top"
+            className="w-32 h-32 object-contain mb-3 transition-opacity duration-300"
             loading="lazy"
           />
-        </Link>
-        <div className="w-full text-center mt-2">
-          <h1 className="border-t border-gray-200 pt-2 text-sm md:text-base font-semibold">
-            {item.name}
-          </h1>
-          <h1 className="bg-black text-white rounded-b-lg py-1">
-            {item.price1}
-          </h1>
+          <div className="text-center">
+            <h1 className="text-sm font-medium text-gray-800 truncate">
+              {item.name}
+            </h1>
+            <p className="text-lg text-black font-bold mt-1">{item.price1}</p>
+          </div>
         </div>
-      </div>
+      </Link>
     ));
   };
 
   return (
-    <div className="flex flex-col md:flex-row md:gap-4 mt-2 p-4">
+    <div className="p-6 bg-gradient-to-b from-gray-50 to-gray-100 min-h-screen">
       {isLoading ? (
         <div className="flex h-64 w-full items-center justify-center">
           <CircularLoader />
         </div>
       ) : (
-        <>
-          <div>
-            <h2 className="text-lg border-b-2 border-black/50 md:text-xl font-bold text-center mb-10">
-              Elevate Your Experience with More Choices!
+        <div className="space-y-10">
+          <div className="text-center mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+              Discover Your Perfect Device
             </h2>
-            <div className="flex-1">
-              <h1 className="text-2xl text-center font-bold mb-2">Flagship</h1>
-              <p className="text-center text-sm md:text-base text-gray-600 mb-4">
-                Experience the latest technology.
+            <p className="text-md text-gray-600">
+              Explore our diverse range of smartphones tailored to your needs.
+            </p>
+          </div>
+
+          <div className="flex flex-col space-y-10">
+            <div className="text-center">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-2">
+                Flagship Devices
+              </h3>
+              <p className="text-sm text-gray-500 mb-4">
+                Experience cutting-edge technology with our flagship collection.
               </p>
-              <div className="w-full pt-4 flex flex-wrap gap-4 items-center justify-center">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {renderProductItems(flagship)}
               </div>
             </div>
-            <div className="flex-1 mt-12">
-              <h1 className="text-2xl text-center font-bold mb-2">Midrange</h1>
-              <p className="text-center text-sm md:text-base text-gray-600 mb-4">
-                Balance performance and price.
+
+            <div className="text-center">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-2">
+                Midrange Devices
+              </h3>
+              <p className="text-sm text-gray-500 mb-4">
+                Get the best value with our midrange selection.
               </p>
-              <div className="w-full pt-4 flex flex-wrap gap-4 items-center justify-center">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {renderProductItems(midrange)}
               </div>
             </div>
-            <div className="flex-1 mt-12">
-              <h1 className="text-2xl text-center font-bold mb-2">Budget</h1>
-              <p className="text-center text-sm md:text-base text-gray-600 mb-4">
-                Affordable options for everyone.
+
+            <div className="text-center">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-2">
+                Budget Devices
+              </h3>
+              <p className="text-sm text-gray-500 mb-4">
+                Affordable options for every budget.
               </p>
-              <div className="w-full pt-4 flex flex-wrap gap-4 items-center justify-center">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {renderProductItems(budget)}
               </div>
             </div>
           </div>
-        </>
+        </div>
       )}
     </div>
   );
