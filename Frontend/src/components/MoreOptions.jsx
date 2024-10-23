@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useQuery } from "react-query";
 import CircularLoader from "../CircularLoader";
+import Button from "./Button";
 
 // Utility function to fetch products
 const filterProducts = async (url) => {
@@ -81,7 +82,7 @@ function MoreOptions() {
       ) : (
         <div className="space-y-10">
           <div className="text-center mb-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+            <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">
               Discover Your Perfect Device
             </h2>
             <p className="text-md text-gray-600">
@@ -92,7 +93,7 @@ function MoreOptions() {
           <div className="flex flex-col space-y-10">
             <div className="text-center">
               <h3 className="text-2xl font-semibold text-gray-900 mb-2">
-                Flagship Devices
+                <Button text="Flagship Devices" />
               </h3>
               <p className="text-sm text-gray-500 mb-4">
                 Experience cutting-edge technology with our flagship collection.
@@ -104,7 +105,7 @@ function MoreOptions() {
 
             <div className="text-center">
               <h3 className="text-2xl font-semibold text-gray-900 mb-2">
-                Midrange Devices
+                <Button text="Midrange Devices" />
               </h3>
               <p className="text-sm text-gray-500 mb-4">
                 Get the best value with our midrange selection.
@@ -116,7 +117,7 @@ function MoreOptions() {
 
             <div className="text-center">
               <h3 className="text-2xl font-semibold text-gray-900 mb-2">
-                Budget Devices
+                <Button text="Budget Devices" />
               </h3>
               <p className="text-sm text-gray-500 mb-4">
                 Affordable options for every budget.

@@ -64,8 +64,7 @@ function SideBar() {
                       <Link
                         to={`/${item.productType}/${item.name
                           .toLowerCase()
-                          .split(" ")
-                          .join("")}`}
+                          .replace(/\s+/g, "")}`}
                         className="outline-none"
                       >
                         <img
@@ -103,8 +102,7 @@ function SideBar() {
                       <Link
                         to={`/${item.productType}/${item.name
                           .toLowerCase()
-                          .split(" ")
-                          .join("")}`}
+                          .replace(/\s+/g, "")}`}
                         className="outline-none"
                       >
                         <img
@@ -142,8 +140,7 @@ function SideBar() {
                       <Link
                         to={`/${item.productType}/${item.name
                           .toLowerCase()
-                          .split(" ")
-                          .join("")}`}
+                          .replace(/\s+/g, "")}`}
                         className="outline-none"
                       >
                         <img
