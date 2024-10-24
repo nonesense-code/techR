@@ -45,6 +45,7 @@ function MoreOptions() {
   const renderProductItems = (items) => {
     return items.slice(0, 4).map((item, index) => (
       <Link
+        key={index}
         to={`/${item.productType}/${item.name
           .toLowerCase()
           .replace(/\s+/g, "")}`}
