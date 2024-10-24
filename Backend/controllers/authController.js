@@ -45,7 +45,6 @@ module.exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    // Validate email and password
     if (!email || !password) {
       console.log("Missing email or password");
       return res
@@ -53,7 +52,6 @@ module.exports.loginUser = async (req, res) => {
         .json({ message: "E-mail and Password are required!" });
     }
 
-    // Find user in the database
     const user = await userModel.findOne({ email });
     if (!user) {
       console.log(`User not found with email: ${email}`);
@@ -62,16 +60,14 @@ module.exports.loginUser = async (req, res) => {
         .json({ message: "E-mail or Password is incorrect" });
     }
 
-    // Compare passwords using bcrypt
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       console.log("Incorrect password");
       return res.status(401).json({ message: "Incorrect Password" });
     }
 
-    // Generate token and send response
     const token = generateToken(user);
-    res.cookie("token", token, { httpOnly: true }); // httpOnly for security
+    res.cookie("token", token);
     console.log("Login successful, token generated");
     return res.redirect("/");
   } catch (error) {
