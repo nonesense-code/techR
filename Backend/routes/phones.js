@@ -3,7 +3,7 @@ const router = express();
 const productModel = require("../models/Products");
 const isLoggedIn = require("../utils/isLoggedIn");
 
-router.get("/", isLoggedIn, async (req, res) => {
+router.get("/", async (req, res) => {
   const phones = await productModel.find({ productType: "phone" });
   res.render("Phones", { phones });
 });
