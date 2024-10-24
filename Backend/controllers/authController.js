@@ -46,30 +46,39 @@ module.exports.loginUser = async (req, res) => {
 
   try {
     if (!email || !password) {
+      console.log("Missing email or password");
       return res.status(400).send("E-mail and Password are required!");
     }
 
+    // Check if user exists
     let user = await userModel.findOne({ email });
     if (!user) {
+      console.log("User not found with email:", email);
       return res.status(401).send("E-mail or Password is incorrect");
     }
 
+    // Compare passwords
     bcrypt.compare(password, user.password, (err, result) => {
-      if (err) return res.status(500).send("Error comparing passwords");
+      if (err) {
+        console.error("Error comparing passwords:", err);
+        return res.status(500).send("Error comparing passwords");
+      }
 
       if (result) {
+        // Generate token and set cookie
         let token = generateToken(user);
-        console.log(token);
+        console.log("Generated token:", token);
         res.cookie("token", token);
-        res.redirect("/");
+
+        // Send a success response (avoid redirect after sending a response)
+        return res.status(200).send("Login successful!");
       } else {
-        res.status(401).send("Incorrect Password");
-        res.redirect("/");
+        console.log("Incorrect password for email:", email);
+        return res.status(401).send("Incorrect Password");
       }
     });
   } catch (error) {
     console.error("Error in loginUser:", error);
-    res.redirect("/");
     return res.status(500).send("Server error");
   }
 };
