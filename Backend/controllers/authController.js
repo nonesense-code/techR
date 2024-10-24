@@ -59,14 +59,17 @@ module.exports.loginUser = async (req, res) => {
 
       if (result) {
         let token = generateToken(user);
+        console.log(token);
         res.cookie("token", token);
         res.redirect("/");
       } else {
         res.status(401).send("Incorrect Password");
+        res.redirect("/");
       }
     });
   } catch (error) {
-    console.error("Error in loginUser:", error.message);
+    console.error("Error in loginUser:", error);
+    res.redirect("/");
     return res.status(500).send("Server error");
   }
 };
