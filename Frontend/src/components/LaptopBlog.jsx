@@ -104,9 +104,13 @@ function LaptopBlog() {
               >
                 {targetlaptops.name || "..."}
               </h1>
-              <p className="text-gray-600 text-xs md:text-sm my-2">
-                Explore the outstanding features of this laptop that make it a
-                great choice for your needs.
+              <p className="text-gray-600 text-sm md:text-sm my-2">
+                Explore the{" "}
+                {targetlaptops.item_categorie === "flagship"
+                  ? "outstanding "
+                  : "great "}
+                features of this tablet that make it a great choice for your
+                needs.
               </p>
               <div className="flex justify-center py-4">
                 {targetlaptops.image ? (
@@ -120,7 +124,7 @@ function LaptopBlog() {
                   <CircularLoader />
                 )}
               </div>
-              <div className="text-gray-700 text-xs font-semibold md:text-sm py-2 text-justify mb-4">
+              <div className="text-gray-700 text-sm font-semibold md:text-sm py-2 text-justify mb-4">
                 {targetlaptops.blog || "..."}
               </div>
               <div className="py-4 border-t-2 w-full">
@@ -196,12 +200,12 @@ function LaptopBlog() {
                 {targetlaptops?.descriptions?.map((item, index) => (
                   <div key={index} className="py-2 flex flex-col gap-2">
                     {item.heading && (
-                      <h1 className="text-md md:text-xl font-bold">
+                      <h1 className="text-lg md:text-xl font-bold">
                         {item.heading}
                       </h1>
                     )}
                     {item.detail && (
-                      <p className="text-xs md:text-sm font-semibold text-justify">
+                      <p className="text-sm md:text-sm font-semibold text-justify">
                         {item.detail}
                       </p>
                     )}
