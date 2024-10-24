@@ -42,44 +42,41 @@ module.exports.registerUser = async (req, res) => {
 };
 
 module.exports.loginUser = async (req, res) => {
-  let { email, password } = req.body;
+  const { email, password } = req.body;
 
   try {
+    // Validate email and password
     if (!email || !password) {
       console.log("Missing email or password");
-      return res.status(400).send("E-mail and Password are required!");
+      return res
+        .status(400)
+        .json({ message: "E-mail and Password are required!" });
     }
 
-    // Check if user exists
-    let user = await userModel.findOne({ email });
+    // Find user in the database
+    const user = await userModel.findOne({ email });
     if (!user) {
-      console.log("User not found with email:", email);
-      return res.status(401).send("E-mail or Password is incorrect");
+      console.log(`User not found with email: ${email}`);
+      return res
+        .status(401)
+        .json({ message: "E-mail or Password is incorrect" });
     }
 
-    // Compare passwords
-    bcrypt.compare(password, user.password, (err, result) => {
-      if (err) {
-        console.error("Error comparing passwords:", err);
-        return res.status(500).send("Error comparing passwords");
-      }
+    // Compare passwords using bcrypt
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      console.log("Incorrect password");
+      return res.status(401).json({ message: "Incorrect Password" });
+    }
 
-      if (result) {
-        // Generate token and set cookie
-        let token = generateToken(user);
-        console.log("Generated token:", token);
-        res.cookie("token", token);
-
-        // Send a success response (avoid redirect after sending a response)
-        return res.status(200).send("Login successful!");
-      } else {
-        console.log("Incorrect password for email:", email);
-        return res.status(401).send("Incorrect Password");
-      }
-    });
+    // Generate token and send response
+    const token = generateToken(user);
+    res.cookie("token", token, { httpOnly: true }); // httpOnly for security
+    console.log("Login successful, token generated");
+    return res.status(200).json({ message: "Login successful" });
   } catch (error) {
-    console.error("Error in loginUser:", error);
-    return res.status(500).send("Server error");
+    console.error("Error during login:", error);
+    return res.status(500).json({ message: "Internal Server Error" });
   }
 };
 
