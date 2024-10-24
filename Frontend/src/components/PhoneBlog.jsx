@@ -80,8 +80,16 @@ function PhoneBlog() {
           <title>
             {targetphones.name
               ? `${targetphones.name} - Specifications`
-              : "Loading..."}
+              : "TechR"}
           </title>
+          <meta
+            name="description"
+            content={
+              targetphones.name
+                ? `${targetphones.name} - Specifications`
+                : "TechR"
+            }
+          />
         </Helmet>
         <div className="flex w-full max-w-screen-xl">
           <SideBar />

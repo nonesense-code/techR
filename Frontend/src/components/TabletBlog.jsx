@@ -80,8 +80,16 @@ function TabletBlog() {
           <title>
             {targettablets.name
               ? `${targettablets.name} - Specifications`
-              : "Loading..."}
+              : "TechR"}
           </title>
+          <meta
+            name="description"
+            content={
+              targettablets.name
+                ? `${targettablets.name} - Specifications`
+                : "TechR"
+            }
+          />
         </Helmet>
         <div className="flex w-full max-w-screen-xl">
           <SideBar />

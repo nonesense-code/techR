@@ -80,8 +80,16 @@ function LaptopBlog() {
           <title>
             {targetlaptops.name
               ? `${targetlaptops.name} - Specifications`
-              : "Loading..."}
+              : "TechR"}
           </title>
+          <meta
+            name="description"
+            content={
+              targetlaptops.name
+                ? `${targetlaptops.name} - Specifications`
+                : "TechR"
+            }
+          />
         </Helmet>
         <div className="flex w-full max-w-screen-xl">
           <SideBar />
